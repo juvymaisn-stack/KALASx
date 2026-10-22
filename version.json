@@ -1,7 +1,7 @@
 {
-  "version": 60,
-  "notes": "Update v60",
-  "sha256": "ea8242946125416f41c0037cbdadce30f37f95727d9124f5dd2234562cea1801",
+  "version": 65,
+  "notes": "Update v65",
+  "sha256": "3d3ba5335b53bdaad9eabebd08d9016d9dc357e5b888fc0b50089e013e5103e2",
   "file": "klassx_launcher.js",
-  "published": "2026-10-22T20:15:16.005Z"
+  "published": "2026-10-22T22:50:40.879Z"
 }
