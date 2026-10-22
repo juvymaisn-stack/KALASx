@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 42;                    // the Admin panel raises this automatically on every publish
+var APP_VERSION = 44;                    // the Admin panel raises this automatically on every publish
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -220,6 +220,10 @@ var MOVE_MS = 700;                                 // how long the stick is held
 var MOVE_GAP_MS = 1500;                            // minimum pause between two walks (ms)
 var MOVE_FAR_ON = false;                           // true = also walk when a mob is selected but far away (off: a selected mob always means "attacking" -> joystick stays still)
 var MOVE_FAR_FRAC = 0.14;                          // a selected mob farther than this (fraction of screen width) from the character is "out of reach" = not attacking
+var MOVE_RANDOM_ON = true;                         // true = every swipe goes in a RANDOM direction with a random length (false = toward the mob)
+var MOVE_RANDOM_NEEDS_MOB = true;                  // true = random swipes only while a mob plate was seen recently (no monster around -> still); false = random swipe whenever not attacking
+var MOVE_MS_MIN = 400, MOVE_MS_MAX = 1000;         // random hold time range (ms) = random walking distance
+var MOVE_RADIUS_MIN = 0.7;                         // random stick push: 70%..100% of MOVE_RADIUS
 var MOVE_BLIND_ON = false;                         // false = no mob plate on screen -> never move (default); true = walk in MOVE_BLIND_DIRS (rotating) anyway
 var MOVE_BLIND_DIRS = [[0, -1], [1, 0], [0, 1], [-1, 0]];   // up, right, down, left (screen directions)
 var mvDirAt = 0, MOVE_DIR_FRESH_MS = 2000;           // the mob direction is only used while it was seen this recently (ms)
@@ -1031,6 +1035,7 @@ w.mini.click(function () {
     minimized = !minimized;
     w.mini.setText(minimized ? "▢" : "—");
     inputFocus(false);
+    if (minimized) { try { closeServerPopup(); closeChannelPopup(); } catch (e) {} }
     applyPanels();
 });
 
@@ -1359,6 +1364,7 @@ function setAuthMsg(text, good) {
 function applyPanels() {                // show login panel OR controls, depending on state
     ui.run(function () {
         var V = android.view.View;
+        w.mainscroll.setVisibility(minimized ? V.GONE : V.VISIBLE);   // minimized = only the title bar stays
         w.auth.setVisibility(!authed && !minimized ? V.VISIBLE : V.GONE);
         var subOkNow = authed && subOk();
         w.controls.setVisibility(subOkNow && !minimized ? V.VISIBLE : V.GONE);
@@ -1579,7 +1585,7 @@ function doLogout() {
     log("logout: " + currentUser);
     authed = false;
     currentUser = "";
-    subUntil = 0; sessRefresh = ""; myUid = ""; deviceOk = false;
+    subUntil = 0; sessRefresh = ""; myUid = ""; deviceOk = false; subWasActive = false;
     devShown = false; devDocs = {}; devSelId = ""; usersShown = false;
     monShown = false; monView = ""; monTok = null; monState = "Logged out";
     kickSeen = null;
@@ -1833,16 +1839,28 @@ w.subPaste.click(function () {
 });
 w.subGo.click(function () { inputFocus(false); redeemKey(); });
 w.subLogout.click(doLogout);
-bindAuthField(w.admDays, true);              // type the number of days (1 to MAX_KEY_DAYS)
+bindAuthField(w.admDays);              // type the number of days (1 to MAX_KEY_DAYS)
 ui.run(function () { w.admDays.setText(String(DEFAULT_KEY_DAYS)); });
 w.admGenKey.click(function () { inputFocus(false); generateKey(); });
 w.admInfo.on("long_click", function () { if (myUid) { setClip(myUid); toast("uid copied"); } return true; });
-setInterval(function () {               // subscription ran out while playing -> stop and lock
-    if (authed && !subChecking && !subOk()) {
-        if (busy) { stopFlag = true; toast("Subscription ended"); log("subscription ended - stopping"); }
-        applyPanels(); refreshSubUI();
+var subWasActive = false;               // true once this login session had an active subscription
+setInterval(function () {               // subscription ran out while logged in -> stop the bot and log out automatically
+    if (!authed || subChecking) return;
+    if (!isAdmin() && deviceOk && subUntil > Date.now()) subWasActive = true;
+    if (subOk()) return;
+    if (subWasActive && deviceOk && !isAdmin() && subUntil <= Date.now()) {
+        subWasActive = false;
+        log("subscription expired - logging out");
+        try { toast("Subscription expired - logged out"); } catch (e) {}
+        ui.run(function () {
+            doLogout();
+            try { setAuthMsg("Subscription expired. Log in and enter a new key.", false); } catch (e2) {}
+        });
+        return;
     }
-}, 30000);
+    if (busy) { stopFlag = true; toast("Subscription ended"); log("subscription ended - stopping"); }
+    applyPanels(); refreshSubUI();
+}, 10000);
 
 // ================= updates through GitHub =================
 function isAdmin() { return ADMIN_USERS.indexOf(String(currentUser).toLowerCase()) >= 0; }
@@ -2352,7 +2370,7 @@ function grabScreen() {
     if (!rotLogged) { rotLogged = true; log("capture is portrait " + W + "x" + H + " -> rotated " + deg + " deg to landscape " + out.getWidth() + "x" + out.getHeight()); }
     return out;
 }
-var captureOk = false;
+var captureOk = captureOk || false;   // keep a value the initCapture thread may already have set (auto sign-in starts it before this line runs)
 function initCapture() {
     try { captureOk = requestScreenCapture(true); } catch (e) { captureOk = false; logErr("requestScreenCapture", e); }
     log("screen capture permission: " + (captureOk ? "GRANTED" : "DENIED"));
@@ -3007,15 +3025,22 @@ function autoMove() {                      // called while attacking; walks with
     if (!idle) { mvIdleSince = 0; return false; }                          // attacking -> never move
     if (!mvIdleSince) { mvIdleSince = now; return false; }
     if (now - mvIdleSince < MOVE_IDLE_MS || now - mvLastAt < MOVE_GAP_MS) return false;
-    var d = (mvDir && now - mvDirAt <= MOVE_DIR_FRESH_MS) ? mvDir : null, how = "toward mob";   // stale / no plate = no monster around
+    var d = (mvDir && now - mvDirAt <= MOVE_DIR_FRESH_MS) ? mvDir : null, how = "toward mob", holdMs = MOVE_MS, rad = MOVE_RADIUS;   // stale / no plate = no monster around
+    if (MOVE_RANDOM_ON && (d || !MOVE_RANDOM_NEEDS_MOB)) {                   // random direction / length / push
+        var ang = Math.random() * Math.PI * 2;
+        d = [Math.cos(ang), Math.sin(ang)];
+        holdMs = Math.round(MOVE_MS_MIN + Math.random() * (MOVE_MS_MAX - MOVE_MS_MIN));
+        rad = MOVE_RADIUS * (MOVE_RADIUS_MIN + Math.random() * (1 - MOVE_RADIUS_MIN));
+        how = "random " + Math.round(ang * 180 / Math.PI) + "deg " + holdMs + "ms";
+    }
     if (!d) {
-        if (!MOVE_BLIND_ON) { mvIdleSince = now; return false; }                    // no monster around -> stay still (home-return handles the rest)
+        if (!MOVE_BLIND_ON) { mvIdleSince = now; return false; }                    // no monster around -> stay still
         d = MOVE_BLIND_DIRS[mvBlind % MOVE_BLIND_DIRS.length]; mvBlind++; how = "no plate, direction " + mvBlind;
     }
     var a = toPx(MOVE_JOY[0], MOVE_JOY[1], "l", "b");
-    var b = toPx(MOVE_JOY[0] + d[0] * MOVE_RADIUS, MOVE_JOY[1] + d[1] * MOVE_RADIUS, "l", "b");
-    try { gesture(MOVE_MS, [a[0], a[1]], [b[0], b[1]], [b[0], b[1]]); }    // drag out, then hold
-    catch (e) { try { swipe(a[0], a[1], b[0], b[1], MOVE_MS); } catch (e2) { logErr("auto move", e2); return false; } }
+    var b = toPx(MOVE_JOY[0] + d[0] * rad, MOVE_JOY[1] + d[1] * rad, "l", "b");
+    try { gesture(holdMs, [a[0], a[1]], [b[0], b[1]], [b[0], b[1]]); }    // drag out, then hold
+    catch (e) { try { swipe(a[0], a[1], b[0], b[1], holdMs); } catch (e2) { logErr("auto move", e2); return false; } }
     mvLastAt = Date.now(); mvIdleSince = mvLastAt; mvStateAt = 0;           // wait for a fresh look before deciding again
     log("Auto move: joystick swipe (" + how + ")");
     nap(150);
