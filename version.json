@@ -1,7 +1,7 @@
 {
-  "version": 42,
-  "notes": "Update v42",
-  "sha256": "3c802f4c6c97c7e0efbc595db6537cf952e257d4d1b0404207004e9c57efc9bc",
+  "version": 44,
+  "notes": "Update v44",
+  "sha256": "b1cc36f06b27e8db841e58ad9385a20d164ee9c1ca89c1d89eda5c826e4e4cd4",
   "file": "klassx_launcher.js",
-  "published": "2026-10-22T04:57:48.248Z"
+  "published": "2026-10-22T07:54:45.306Z"
 }
