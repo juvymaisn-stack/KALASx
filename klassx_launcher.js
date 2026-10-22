@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 44;                    // the Admin panel raises this automatically on every publish
+var APP_VERSION = 56;                    // the Admin panel raises this automatically on every publish (must be HIGHER than the copy saved on the phone, or that older copy runs instead)
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -209,25 +209,6 @@ var TARGET_TAP_GAP_MS = 700;                       // minimum time between two t
 var TARGET_SWEEP_ON = false;                       // true = also tap around the character when no plate / template is found
 var RETARGET_ON = true;                            // true = even while a mob is selected, tap a mob again every RETARGET_MS (stops the character standing stuck on one spot / one mob)
 var RETARGET_MS = 700;                             // retarget interval (ms)
-// Auto move: when the character is NOT attacking (no mob selected, or the selected mob is too far away) for MOVE_IDLE_MS,
-// the joystick is swiped to walk a short distance toward the nearest mob plate (or in a rotating direction when no plate is
-// visible) so the attack can start again. Nothing happens while a mob is selected and close = while attacking.
-var MOVE_ON = true;                                // false = never touch the joystick
-var MOVE_IDLE_MS = 1000;                           // not attacking for this long -> swipe the joystick (ms)
-var MOVE_JOY = [295, 877];                         // joystick centre on the 2576x1177 reference screen (left-bottom anchored)
-var MOVE_RADIUS = 110;                             // how far the stick is pushed from the centre (reference px)
-var MOVE_MS = 700;                                 // how long the stick is held = how far the character walks (ms)
-var MOVE_GAP_MS = 1500;                            // minimum pause between two walks (ms)
-var MOVE_FAR_ON = false;                           // true = also walk when a mob is selected but far away (off: a selected mob always means "attacking" -> joystick stays still)
-var MOVE_FAR_FRAC = 0.14;                          // a selected mob farther than this (fraction of screen width) from the character is "out of reach" = not attacking
-var MOVE_RANDOM_ON = true;                         // true = every swipe goes in a RANDOM direction with a random length (false = toward the mob)
-var MOVE_RANDOM_NEEDS_MOB = true;                  // true = random swipes only while a mob plate was seen recently (no monster around -> still); false = random swipe whenever not attacking
-var MOVE_MS_MIN = 400, MOVE_MS_MAX = 1000;         // random hold time range (ms) = random walking distance
-var MOVE_RADIUS_MIN = 0.7;                         // random stick push: 70%..100% of MOVE_RADIUS
-var MOVE_BLIND_ON = false;                         // false = no mob plate on screen -> never move (default); true = walk in MOVE_BLIND_DIRS (rotating) anyway
-var MOVE_BLIND_DIRS = [[0, -1], [1, 0], [0, 1], [-1, 0]];   // up, right, down, left (screen directions)
-var mvDirAt = 0, MOVE_DIR_FRESH_MS = 2000;           // the mob direction is only used while it was seen this recently (ms)
-var mvIdleSince = 0, mvLastAt = 0, mvBlind = 0, mvLocked = null, mvStateAt = 0, mvDir = null, mvFar = false;
 var tgtCheckAt = 0, tgtTapAt = 0, tgtRing = 0, tgtTaps = 0, tgtLogAt = 0, tgtLastPt = null;
 
 // Server List = 8 names in game order, only ~4 are visible at a time. The list opens at the TOP, and the script
@@ -447,6 +428,7 @@ var w = floaty.window(
                 <button id="captcha" text="" w="*" h="36" textSize="12sp" margin="1" alpha="0.9"/>
                 <button id="teach" text="" w="*" h="36" textSize="12sp" margin="1" alpha="0.9"/>
                 <button id="tgt" text="" w="*" h="36" textSize="12sp" margin="1" alpha="0.9"/>
+                <button id="apots" text="" w="*" h="36" textSize="12sp" margin="1" alpha="0.9"/>
                 <button id="matchScr" text="Match screen" w="*" h="36" textSize="12sp" margin="1" alpha="0.9"/>
             </vertical>
             <horizontal visibility="gone">
@@ -1054,6 +1036,9 @@ function refreshSkillUI() {
     w.teach.setAlpha(teachOn ? 1 : 0.5);
     w.tgt.setText("Auto target: " + (targetOn ? "ON" : "OFF"));
     w.tgt.setAlpha(targetOn ? 1 : 0.5);
+    var _apOn = store.get("autoPotsOn", true);
+    w.apots.setText("Auto Pots: " + (_apOn ? "ON" : "OFF"));
+    w.apots.setAlpha(_apOn ? 1 : 0.5);
     w.gap.setText("Gap " + (ATK_GAPS[gapIdx] / 1000) + "s (tap to change)");
 }
 ui.run(refreshSkillUI);
@@ -1076,6 +1061,14 @@ w.tgt.click(function () {
     targetOn = !targetOn;
     store.put("targetOn", targetOn);
     log("Auto target -> " + (targetOn ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.apots.click(function () {
+    var on = !store.get("autoPotsOn", true);
+    store.put("autoPotsOn", on);
+    AUTOPOTS_ON = on;                // (declared further down; the click can only happen after the whole script has loaded)
+    autoPotsKick = true;             // ON while in game -> run the Auto Pots step now; OFF -> cancel a pending run
+    log("Auto Pots -> " + (on ? "ON" : "OFF"));
     refreshSkillUI();
 });
 w.teach.click(function () {
@@ -2983,7 +2976,6 @@ function autoTarget() {                    // called while attacking; selects a 
     var W = img.getWidth(), H = img.getHeight();
     var locked = targetLocked(img, L);                         // target.png (if you made one) ...
     if (locked === null && TARGET_NAME_ON) locked = barLocked(img, W, H);   // ... else the red HP bar at the top centre
-    mvLocked = locked; mvStateAt = now;                        // for autoMove()
     var retarget = false;
     if (locked === true) {                                     // a mob is already selected
         if (!RETARGET_ON || now - tgtTapAt < RETARGET_MS) return false;
@@ -2995,7 +2987,6 @@ function autoTarget() {                    // called while attacking; selects a 
     else if (TARGET_NAME_ON && (mob = findNamePlate(img, W, H, retarget ? tgtLastPt : null))) { tx = mob[0]; ty = mob[1]; how = retarget ? "retarget" : "name plate"; }
     else if (retarget && (mob = findMob(img, L))) { tx = mob[0]; ty = mob[1]; how = "retarget"; }
     else {
-        if (!retarget) { mvDir = null; mvFar = false; }          // no plate on screen
         if (!TARGET_SWEEP_ON || retarget) return false;        // nothing on screen to target (no blind sweeping while a mob is already selected)
         if (now - tgtTapAt < (locked === false ? TARGET_SWEEP_MS : TARGET_RETRY_MS)) return false;
         var rp = TARGET_RING[tgtRing % TARGET_RING.length]; tgtRing++;
@@ -3003,12 +2994,6 @@ function autoTarget() {                    // called while attacking; selects a 
     }
     press(tx, ty, TAP_MS);
     tgtTapAt = Date.now(); tgtTaps++; tgtLastPt = [tx, ty];
-    if (how === "sweep") { mvDir = null; mvFar = false; }
-    else {                                                     // remember where the mob is relative to the character (for autoMove)
-        var mdx = tx - W * TARGET_NAME_CHAR[0], mdy = ty - H * TARGET_NAME_CHAR[1], mdl = Math.sqrt(mdx * mdx + mdy * mdy);
-        mvDir = mdl > 1 ? [mdx / mdl, mdy / mdl] : null; mvDirAt = Date.now();
-        mvFar = mdl > W * MOVE_FAR_FRAC;
-    }
     if ((how !== "sweep" && how !== "retarget") || Date.now() - tgtLogAt > 15000) {
         tgtLogAt = Date.now();
         log("Auto target: tapped (" + tx + "," + ty + ") " + how + (locked === false ? " [no target selected]" : "") + " #" + tgtTaps);
@@ -3017,34 +3002,210 @@ function autoTarget() {                    // called while attacking; selects a 
     return true;
 }
 
-function autoMove() {                      // called while attacking; walks with the joystick when the character is not attacking
-    if (!MOVE_ON || !targetOn) return false;
-    var now = Date.now();
-    if (now - mvStateAt > 2500) { mvIdleSince = 0; return false; }          // no fresh target info
-    var idle = mvLocked === false || (MOVE_FAR_ON && mvLocked === true && mvFar);         // no target, or target out of reach
-    if (!idle) { mvIdleSince = 0; return false; }                          // attacking -> never move
-    if (!mvIdleSince) { mvIdleSince = now; return false; }
-    if (now - mvIdleSince < MOVE_IDLE_MS || now - mvLastAt < MOVE_GAP_MS) return false;
-    var d = (mvDir && now - mvDirAt <= MOVE_DIR_FRESH_MS) ? mvDir : null, how = "toward mob", holdMs = MOVE_MS, rad = MOVE_RADIUS;   // stale / no plate = no monster around
-    if (MOVE_RANDOM_ON && (d || !MOVE_RANDOM_NEEDS_MOB)) {                   // random direction / length / push
-        var ang = Math.random() * Math.PI * 2;
-        d = [Math.cos(ang), Math.sin(ang)];
-        holdMs = Math.round(MOVE_MS_MIN + Math.random() * (MOVE_MS_MAX - MOVE_MS_MIN));
-        rad = MOVE_RADIUS * (MOVE_RADIUS_MIN + Math.random() * (1 - MOVE_RADIUS_MIN));
-        how = "random " + Math.round(ang * 180 / Math.PI) + "deg " + holdMs + "ms";
+// ---- Auto Pots: once the character is in game, open the MENU and press "Auto Pots" (both found by image) ----
+// Templates in TEMPLATE_DIR (cropped from a 2576x1177 screenshot): menu_btn.png (the MENU button, top-right) and
+// autopots_btn.png (the "Auto Pots" button of the menu pop-up). If a template file is missing, that button is tapped
+// at its fixed position instead. Runs once after every login / re-login (set AUTOPOTS_REPEAT_MS to repeat it).
+var AUTOPOTS_ON = store.get("autoPotsOn", true);   // false = never open the menu / press Auto Pots (toggled by the "Auto Pots" button in Tools)
+var autoPotsKick = false;                        // set by the button: the main loop starts / cancels the Auto Pots step on its next pass
+var AUTOPOTS_REPEAT_MS = 0;                      // 0 = ONCE per login (default); otherwise re-check every this many ms
+var AUTOPOTS_RETRY_MS = 15000;                   // when Auto Pots could not be confirmed: try again after this many ms
+var AUTOPOTS_MAX_RETRIES = 1;                    // ... at most this many extra runs, and only when the window never opened
+var MENU_BOX = [2200, 250, 2576, 450];           // where the MENU button is searched (reference px, top-right)
+var AUTOPOTS_BOX = [1000, 300, 1580, 900];       // where the Auto Pots button is searched (reference px, centred pop-up)
+var MENU_FALLBACK = [2464, 338];                 // fixed MENU position (only used when menu_btn.png is missing)
+var AUTOPOTS_FALLBACK = [1288, 483];             // fixed Auto Pots position (only used when autopots_btn.png is missing)
+var MENU_TPL_THRESHOLD = 0.8, AUTOPOTS_TPL_THRESHOLD = 0.7;
+var AUTOPOTS_OPEN_WAIT_MS = 800;                 // wait after tapping MENU before looking for Auto Pots (ms)
+var AUTOPOTS_AFTER_MS = 1000;                    // pause after tapping Auto Pots (ms)
+var AUTOPOTS_TRIES = 2;                          // attempts per run (only used when the window does not open)
+var lastAutoPots = 0, btnTplLogged = {}, apTicked = false;
+function findBtn(img, L, name, box, thr, ax, ay) {     // -> { state: "found" | "none" | "missing", p: [x, y] pixel centre }
+    var tpl = getTemplateFit(name, L);
+    if (!tpl) {
+        if (!btnTplLogged[name]) { btnTplLogged[name] = true; log("Auto Pots: " + name + ".png not found in " + TEMPLATE_DIR + " - using the fixed position"); }
+        return { state: "missing", p: null };
     }
-    if (!d) {
-        if (!MOVE_BLIND_ON) { mvIdleSince = now; return false; }                    // no monster around -> stay still
-        d = MOVE_BLIND_DIRS[mvBlind % MOVE_BLIND_DIRS.length]; mvBlind++; how = "no plate, direction " + mvBlind;
+    var x0 = mapX(L, box[0], ax), y0 = mapY(L, box[1], ay), x1 = mapX(L, box[2], ax), y1 = mapY(L, box[3], ay);
+    x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(img.getWidth(), x1); y1 = Math.min(img.getHeight(), y1);
+    var pt = null;
+    if (x1 - x0 >= tpl.getWidth() && y1 - y0 >= tpl.getHeight()) {
+        try { pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: thr }); }
+        catch (e) { logErr(name + " findImage", e); }
     }
-    var a = toPx(MOVE_JOY[0], MOVE_JOY[1], "l", "b");
-    var b = toPx(MOVE_JOY[0] + d[0] * rad, MOVE_JOY[1] + d[1] * rad, "l", "b");
-    try { gesture(holdMs, [a[0], a[1]], [b[0], b[1]], [b[0], b[1]]); }    // drag out, then hold
-    catch (e) { try { swipe(a[0], a[1], b[0], b[1], holdMs); } catch (e2) { logErr("auto move", e2); return false; } }
-    mvLastAt = Date.now(); mvIdleSince = mvLastAt; mvStateAt = 0;           // wait for a fresh look before deciding again
-    log("Auto move: joystick swipe (" + how + ")");
-    nap(150);
-    return true;
+    if (!pt) return { state: "none", p: null };
+    return { state: "found", p: [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)] };
+}
+function tapPx(p, what, m) {
+    log("tap " + what + " px(" + p[0] + "," + p[1] + ") via " + TAP_METHODS[m]);
+    if (m === 1) click(p[0], p[1]);
+    else if (m === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+    else press(p[0], p[1], TAP_MS);
+}
+// ---- Auto Potion Window (opens after Auto Pots): tick "Enable Auto Potion", set the HP / MP / SP sliders, press OK ----
+// The sliders are read back from the screen (length of the orange bar) and corrected until they show the wanted value.
+// Template autopot_ok.png (the OK button) is used to see that the window is open and to tap OK; fixed position if missing.
+var AUTOPOTS_SET = true;                         // false = stop after tapping Auto Pots (leave the window alone)
+var AUTOPOTS_OK_TAP = true;                      // true = press OK at the end (false = leave the window open)
+var AP_VALUES = { hp: 69, mp: 63, sp: 71 };      // wanted percentages
+var AP_OK_BOX = [1400, 740, 1720, 880];          // where the OK button is searched (reference px)
+var AP_OK_FALLBACK = [1573, 810];                // fixed OK position (only used when autopot_ok.png is missing)
+var AP_OK_THRESHOLD = 0.7;
+var AP_WIN_WAIT_MS = 3000;                       // how long to wait for the window to show up (ms)
+var AP_CHECK_PT = [1633, 482];                   // centre of the "Enable Auto Potion" box
+var AP_CHECK_BOX = [1614, 464, 1652, 500];       // inside of that box: white pixels here = ticked
+var AP_BAR_Y = { hp: 566, mp: 651, sp: 736 };    // centre line of each slider
+var AP_BAR_X0 = 1074, AP_BAR_PX = 4.16;          // x of 0% and reference px per 1% (bar spans ~1078 - 1494)
+function apRefX(L, x) { return L.stretch ? x / L.kx : REF_W / 2 + (x - L.W / 2) / L.kx; }
+function apOrange(c) {
+    var r = capR(c), g = capG(c), b = capB(c);
+    return r >= 190 && g >= 110 && g <= 215 && b <= 90 && r - b >= 110;
+}
+function apChecked(img, L) {             // true when the white tick is inside the box
+    var x0 = mapX(L, AP_CHECK_BOX[0], "c"), y0 = mapY(L, AP_CHECK_BOX[1], "c");
+    var x1 = mapX(L, AP_CHECK_BOX[2], "c"), y1 = mapY(L, AP_CHECK_BOX[3], "c"), n = 0, x, y, c;
+    for (y = y0; y < y1; y += 2) for (x = x0; x < x1; x += 2) {
+        c = img.pixel(x, y);
+        if (Math.min(capR(c), capG(c), capB(c)) >= 200) n++;
+    }
+    return n >= 12;
+}
+function apFill(img, L, key) {           // -> { pct, refX } of the orange bar (refX = where it ends, reference px)
+    var xa = mapX(L, 1060, "c"), xb = mapX(L, 1510, "c"), step = Math.max(1, Math.round(L.kx)), best = -1;
+    for (var dy = -8; dy <= 8; dy += 4) {
+        var py = mapY(L, AP_BAR_Y[key] + dy, "c"), last = -1, x;
+        for (x = xa; x <= xb; x += step) {
+            if (apOrange(img.pixel(x, py))) last = x;
+            else if (last >= 0 && x - last > 6 * step) break;
+        }
+        if (last > best) best = last;
+    }
+    if (best < 0) return { pct: 0, refX: AP_BAR_X0 };
+    var rx = apRefX(L, best), pct = Math.round((rx - AP_BAR_X0) / AP_BAR_PX);
+    return { pct: Math.max(0, Math.min(100, pct)), refX: rx };
+}
+function setApBar(key, target) {         // drags the slider until the bar shows `target` %; returns true when it does
+    var tx = AP_BAR_X0 + AP_BAR_PX * target, y = AP_BAR_Y[key], tries = 7, cur = null;
+    for (var t = 1; t <= tries; t++) {
+        var img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) return false;
+        var L = layoutOf(img.getWidth(), img.getHeight());
+        cur = apFill(img, L, key);
+        var diff = target - cur.pct;
+        if (diff === 0 || (t >= 4 && Math.abs(diff) <= 1)) { log("Auto Potion: " + key.toUpperCase() + " = " + cur.pct + "%"); return diff === 0; }
+        if (t > 1) tx += diff * AP_BAR_PX;                         // correct the aim by what is still missing
+        var sx = Math.max(AP_BAR_X0 + 10, cur.refX), a = toPx(sx, y, "c", "c"), b = toPx(tx, y, "c", "c");
+        log("Auto Potion: " + key.toUpperCase() + " shows " + cur.pct + "% -> drag to " + target + "% (try " + t + ")");
+        try { swipe(a[0], a[1], b[0], b[1], 350); } catch (e2) { logErr("auto potion swipe", e2); return false; }
+        nap(300);
+    }
+    log("Auto Potion: " + key.toUpperCase() + " could not be set to " + target + "% (shows " + (cur ? cur.pct : "?") + "%)");
+    return false;
+}
+var apWinSeen = false;
+function apWindowOpen(img, L) {          // the "Enable Auto Potion" box frame (grey border) - no template needed
+    var n = 0, t = 0, x, y;
+    function grey(px, py) {                  // a grey border pixel within +-2 px of the expected spot (tolerates 1-2 px shifts)
+        var dx, dy, c, v, hit = false;
+        t++;
+        for (dy = -2; dy <= 2 && !hit; dy++) for (dx = -2; dx <= 2 && !hit; dx++) {
+            c = img.pixel(px + dx, py + dy); v = (capR(c) + capG(c) + capB(c)) / 3;
+            if (v >= 80 && v <= 125) hit = true;
+        }
+        if (hit) n++;
+    }
+    for (y = 455; y < 512; y += 4) { grey(mapX(L, 1602, "c"), mapY(L, y, "c")); grey(mapX(L, 1666, "c"), mapY(L, y, "c")); }
+    for (x = 1606; x < 1664; x += 4) { grey(mapX(L, x, "c"), mapY(L, 451, "c")); grey(mapX(L, x, "c"), mapY(L, 513, "c")); }
+    return t > 0 && n / t >= 0.8;
+}
+function apTickCount(img, L) {           // white pixels inside the box (the tick mark)
+    var x0 = mapX(L, AP_CHECK_BOX[0], "c"), y0 = mapY(L, AP_CHECK_BOX[1], "c");
+    var x1 = mapX(L, AP_CHECK_BOX[2], "c"), y1 = mapY(L, AP_CHECK_BOX[3], "c"), n = 0, x, y, c;
+    for (y = y0; y < y1; y += 2) for (x = x0; x < x1; x += 2) {
+        c = img.pixel(x, y);
+        if (Math.min(capR(c), capG(c), capB(c)) >= 200) n++;
+    }
+    return n;
+}
+function setAutoPotion() {
+    var t0 = Date.now(), ok = { state: "none", p: null }, i, img, L;
+    apWinSeen = false;
+    while (true) {                                                  // 1) wait for the window (box frame, or its OK button)
+        img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (img) {
+            L = layoutOf(img.getWidth(), img.getHeight());
+            ok = findBtn(img, L, "autopot_ok", AP_OK_BOX, AP_OK_THRESHOLD, "c", "c");
+            if (ok.state === "found" || apWindowOpen(img, L)) break;
+        }
+        if (Date.now() - t0 >= AP_WIN_WAIT_MS) { log("Auto Potion: window not detected - nothing changed"); return false; }
+        nap(300);
+    }
+    apWinSeen = true;
+    log("Auto Potion: window is open");
+    try { img = grabScreen(); } catch (e1) { img = null; }       // 2) tick "Enable Auto Potion" - tapped AT MOST ONCE (a 2nd tap would un-tick it)
+    if (!img) return false;
+    L = layoutOf(img.getWidth(), img.getHeight());
+    var n0 = apTickCount(img, L);
+    if (n0 >= 12) { apTicked = true; log("Auto Potion: Enable box already ticked"); }
+    else {
+        var cp = toPx(AP_CHECK_PT[0], AP_CHECK_PT[1], "c", "c");
+        log("Auto Potion: ticking the Enable box (tick pixels " + n0 + ")");
+        press(cp[0], cp[1], TAP_MS);
+        nap(700);
+        try { img = grabScreen(); } catch (e2) { img = null; }
+        var n1 = img ? apTickCount(img, layoutOf(img.getWidth(), img.getHeight())) : 0;
+        apTicked = n1 >= 12 || n1 >= n0 + 6;
+        log("Auto Potion: tick " + (apTicked ? "confirmed" : "NOT confirmed - not tapping again, so it can not be un-ticked") + " (tick pixels " + n1 + ")");
+    }
+    var allOk = setApBar("hp", AP_VALUES.hp);                       // 3) sliders
+    allOk = setApBar("mp", AP_VALUES.mp) && allOk;
+    allOk = setApBar("sp", AP_VALUES.sp) && allOk;
+    if (AUTOPOTS_OK_TAP) {                                          // 4) OK
+        var op = ok.state === "found" ? ok.p : toPx(AP_OK_FALLBACK[0], AP_OK_FALLBACK[1], "c", "c");
+        tapPx(op, "OK", 0);
+        nap(500);
+    }
+    log("Auto Potion: done" + (allOk ? "" : " (some value could not be confirmed)"));
+    return allOk;
+}
+function runAutoPots() {                 // returns true when the Auto Potion window was opened and the Enable box is ticked
+    var menuOpenGuess = false;
+    for (var attempt = 1; attempt <= AUTOPOTS_TRIES; attempt++) {
+        var m = (attempt - 1) % 3, img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) return false;
+        var L = layoutOf(img.getWidth(), img.getHeight());
+        if (!apWindowOpen(img, L)) {                                  // window not open yet
+            var ap = findBtn(img, L, "autopots_btn", AUTOPOTS_BOX, AUTOPOTS_TPL_THRESHOLD, "c", "c");
+            if (ap.state !== "found" && !menuOpenGuess) {             // menu pop-up not open -> tap MENU
+                var mn = findBtn(img, L, "menu_btn", MENU_BOX, MENU_TPL_THRESHOLD, "r", "t");
+                var mp = mn.state === "found" ? mn.p : toPx(MENU_FALLBACK[0], MENU_FALLBACK[1], "r", "t");
+                tapPx(mp, "MENU" + (mn.state === "found" ? "" : " (fixed position)") + " (attempt " + attempt + "/" + AUTOPOTS_TRIES + ")", m);
+                nap(AUTOPOTS_OPEN_WAIT_MS);
+                var t0 = Date.now();
+                while (true) {                                        // wait up to ~2.5 s for the Auto Pots button
+                    var img2 = null;
+                    try { img2 = grabScreen(); } catch (e2) {}
+                    if (img2) ap = findBtn(img2, layoutOf(img2.getWidth(), img2.getHeight()), "autopots_btn", AUTOPOTS_BOX, AUTOPOTS_TPL_THRESHOLD, "c", "c");
+                    if (ap.state === "found" || Date.now() - t0 >= 2500) break;
+                    nap(300);
+                }
+            }
+            var ap_p = ap.state === "found" ? ap.p : toPx(AUTOPOTS_FALLBACK[0], AUTOPOTS_FALLBACK[1], "c", "c");
+            tapPx(ap_p, "Auto Pots" + (ap.state === "found" ? "" : " (fixed position)"), m);
+            nap(AUTOPOTS_AFTER_MS);
+        }
+        if (!AUTOPOTS_SET) return true;
+        apTicked = false;
+        try { setAutoPotion(); } catch (e3) { if (String(e3).indexOf("STOPPED") >= 0) throw e3; logErr("auto potion window", e3); }
+        if (apWinSeen) return true;                                   // window opened and handled -> finished (once per login)
+        log("Auto Pots: window did not open (attempt " + attempt + "/" + AUTOPOTS_TRIES + ")");
+        menuOpenGuess = !menuOpenGuess;                               // maybe the menu is still open: next time skip MENU, then alternate
+    }
+    log("Auto Pots: gave up after " + AUTOPOTS_TRIES + " attempts");
+    return false;
 }
 
 function runLoop() {
@@ -3074,6 +3235,7 @@ function runLoop() {
         // It is armed at Play, then disarmed when the character is in game. It is re-armed only if the game is
         // force closed or "Disconnected from Server!" shows up.
         var flowArmed = true, lastPkgCheck = 0, pkgMiss = 0;
+        var autoPotsPending = false, autoPotsFails = 0, lastApWaitLog = 0;
         var armFlow = function (why) {
             flowArmed = true; inGame = false; loginFails = 0;
             streak = 0; loginStreak = 0; charStreak = 0; startStreak = 0;
@@ -3081,6 +3243,7 @@ function runLoop() {
             monState = "Login flow (" + why + ")";
             log("Login flow ARMED (" + why + ")");
         };
+        log("Build v" + APP_VERSION + ": Auto Pots step " + (AUTOPOTS_ON ? "ON (runs after the pet step; MENU -> Auto Pots -> tick + HP " + AP_VALUES.hp + " MP " + AP_VALUES.mp + " SP " + AP_VALUES.sp + ")" : "OFF"));
         log("watching for the Select Server screen...");
         while (true) {
             if (!subOk()) { toast("Subscription ended"); log("subscription ended - stopping"); throw "STOPPED"; }
@@ -3098,6 +3261,12 @@ function runLoop() {
                 pkgMiss = 0;
                 monState = "In game";
                 log("In game -> login flow DONE (will run again only after force close / disconnect)");
+                autoPotsPending = AUTOPOTS_ON; autoPotsFails = 0;
+            }
+            if (autoPotsKick) {              // Auto Pots button pressed
+                autoPotsKick = false;
+                autoPotsFails = 0;
+                autoPotsPending = AUTOPOTS_ON && !flowArmed;     // ON in game -> run now; OFF -> cancel; during login it is armed again when the game is entered
             }
             // Force close: the game is no longer the foreground app for a few checks in a row -> relaunch + re-arm.
             if (!flowArmed && Date.now() - lastPkgCheck >= 2000) {
@@ -3197,6 +3366,32 @@ function runLoop() {
                 log("Loot button gone after " + lootTaps + " taps");
             }
 
+            // In game, AFTER the pet step: Auto Pots is due (first time, a retry, or the periodic re-check) -> MENU -> Auto Pots -> tick + values
+            var petStepDone = !PET_ON || petDone || !atkOn;
+            var apNow = Date.now();
+            if (AUTOPOTS_ON && autoPotsPending && apNow - lastApWaitLog >= 20000 &&
+                (flowArmed || returnPending || hudStreak < STABLE_NEEDED || lastLootSeen || !petStepDone)) {
+                lastApWaitLog = apNow;
+                log("Auto Pots waiting: login flow " + (flowArmed ? "still running" : "done") + ", HUD " + hudStreak + "/" + STABLE_NEEDED + ", loot button " + (lastLootSeen ? "showing" : "no") + ", pet step " + (petStepDone ? "done" : "not done yet"));
+            }
+            if (AUTOPOTS_ON && !flowArmed && !returnPending && hudStreak >= STABLE_NEEDED && !lastLootSeen && petStepDone &&
+                ((autoPotsPending && apNow - lastAutoPots >= (autoPotsFails > 0 ? AUTOPOTS_RETRY_MS : 0)) ||
+                 (AUTOPOTS_REPEAT_MS > 0 && lastAutoPots > 0 && apNow - lastAutoPots >= AUTOPOTS_REPEAT_MS))) {
+                autoPotsPending = false;
+                monState = "Auto Pots";
+                log("Auto Pots: opening MENU");
+                var apOk = false;
+                try { apOk = runAutoPots(); } catch (ae) { if (String(ae).indexOf("STOPPED") >= 0) throw ae; logErr("auto pots", ae); }
+                lastAutoPots = Date.now();
+                if (apOk) { autoPotsFails = 0; log("Auto Pots: finished" + (apTicked ? " - Enable box ticked" : " - tick NOT confirmed (check the window once by hand)") + " - will not run again until the next login"); }
+                else if (autoPotsFails < AUTOPOTS_MAX_RETRIES) {
+                    autoPotsFails++; autoPotsPending = true;
+                    log("Auto Pots: not confirmed -> trying again in " + (AUTOPOTS_RETRY_MS / 1000) + "s (" + autoPotsFails + "/" + AUTOPOTS_MAX_RETRIES + ")");
+                } else { autoPotsFails = 0; log("Auto Pots: still not confirmed after " + AUTOPOTS_MAX_RETRIES + " retries - giving up for now"); }
+                monState = "In game";
+                continue;
+            }
+
             if (flowArmed && TAP_LOGIN && loginStreak >= STABLE_NEEDED) {
                 log("Login screen DETECTED & stable (" + SCREENS.login.hit + "/" + SCREENS.login.btn.length + " button, label " + SCREENS.login.white + (lastLoginPt ? ", image match" : "") + ")");
                 loginStreak = 0;
@@ -3279,7 +3474,6 @@ function runLoop() {
                 }
                 checkBuff();
                 autoTarget();
-                if (autoMove()) continue;
                 var n = SKILLS.length, tries = 0;
                 while (tries < n) {
                     skillPtr = (skillPtr + 1) % n;
