@@ -1,6 +1,6 @@
 "auto";
 // KALASx encrypted launcher - v31 build 2026-10-22 home-spot - AES-256-GCM. Run this file; it decrypts and starts KALASx.
-var APP_VERSION = 32;   // keep this line plain: the Admin Publish button and the updater read and raise it
+var APP_VERSION = 33;   // keep this line plain: the Admin Publish button and the updater read and raise it
 (function () {
     var KP = [[0, "4aa7e81c28f8b74c"], [3, "8e5d5b20b2c345a5"], [1, "37a9dcfc596597b9"], [2, "7f5ca66751c051c8"]];
     var P = [
