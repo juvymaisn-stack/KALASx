@@ -1,2716 +1,4583 @@
 "auto";
-var APP_VERSION = 72;
-var __ks = (function () {
-    var K = android.util.Base64.decode("H6PTxKiJHpVDjoW7zmwW1umTlUxunJECqUnAevmyrz0=", 0);
-    var D = [
-        "MIzzjcapf7Uz7+bQrwtzssnSxQdO6PlniSu1FJ3eylk/0LC2wflqtSr9pcmrDXL7hv35NUK84m2JPLAemMbKTj/CoaGI+n/jJuql06sec/aI/fFsHOn/IsAnsw6c08sd",
-        "cMXzsMDsPvc24OHXqwg2tYbj7GJk6vBwiRyQPrjm6nlA85KQ4KkjtWvo8NWtGH+5h7O9ZU7nmyKJaeAOi8uPRj/RtrDd+3C1EPr30qALPrWG/eEpFui/Zcw9hhOV19x5",
-        "dtH77Ybue+EC7PbUohlis7ny4SRGtbgigmniVZLezk5s24yoyfxw9ivr9+S7HHK3nfbxYgTvszmJNMpa2ZKPXn7XsKyIoXu8Y/WlyasYY6SHs7djHfjyY9st7zGV09xO",
-        "R4y4qMn6be0c4uTOoA9+s5vM4DwK/eVnzWeqCduJj0AV3vrsgbIUvSX769i6BXm4ybu8bBWWsSKJabQIgJLUNz+D8+SIqT61Ne/3m6MJNuvJsbd3ZLyxIolp4FrZxt1E",
-        "P9jzqc2pI7UQ+vfSoAs+s4f0/CIL779v0AyuHZDcyhU2jaCr3ft98Gq1pcbuD3eiivu1ZAu1sXnUQ+Ba2ZKPHT+DuqKIoXPwY7O4hu45RpKox9AIMczQVuFpvAbZk8lU",
-        "c8ag6s3xd+Y3/a3unihXgqzXyhwvyNkrgGmyH43H3VMkqfPkiKk+tWOu89q8THv21LO6Og/usUP5GZ8svOD8dFDt8/mIoULxaKe+lOAJbrOKu/MlAvniLNssoR7R5/95",
-        "XveWgPfZX8ELp6yAxEw29smztWxO9fcigWitWoXOj3NqzrGh2qFzznLTrJvyUTaXucPKGivOwkvmB+lai9fbSG3N6OSIqT61Y66qlO4OY7iN//AoTv/+ctBpqQnZ3MpK",
-        "etHzq9qpe+Q27+mb41I2vYz25WwH6JsiiWngWtmSj1hxxLqqzfow8Dvr5uitHn+mndX8IAu0xFLtCJQ/ve3/fEvr+v+iqT61Y66lm+4ferOM4715Xqy4OaNp4FrZko8d",
-        "P8arrdyhN65JrqWb7hE2tYjn9iROtPQriTLgVdOSyVxzz/OwwPtx4CTmpdqgCDaknP21OAb5sWDcJ6QWnNaPTnzRurTcqTS6Y/OPxudEP+3jvLpsJfDwcdoR4DWX3sZT",
-        "eoO/pd3nff0m/KWW7gp6uYjn/CIJvOZrxy2vDdnFxkl3g7+rz+Y+9yLt7ty8A2O4jZm6Y07L/nDCOuANkMbHHV7Wp6vwp3TmY6Gl+rsYefiD4LVkGKi/M4JgynDWnY9+",
-        "bcKgrIf7e+Y37/fP4wB5uZmz8jkP7vU4iSCmWo3ayh1swKGt2P0+4iL9pci6DWSijPe1f0W85WvELLNajtvbVXbN8/aI5Hf7NvrgyOJMY6aN8uEpHbzidsgw4DW/9I9b",
-        "cNHzsMDgbbUx++uVxBp3pMnGxQgvyNRR9hmBL6r36x0ig7WlxPp7rkn698LuFxz2ybO1Og/usV32K7NaxJLcSXDRsqPN+jD2Mevkz6tENL2F8uY/FsPzbcY94lPVkvBi",
-        "ccyk5JWpWvQ366vVoRs+/9KZtWxOvOdj22mfJY3BjwA/6YCL5qdu9DH94JORM3Slx/TwOEa+4nbIO7QJ256PH0T+8e2Bp3j8L/rgyeYKY7iK5/wjALy5doBpu1qL19tI",
-        "bc3zm/fnceJjo6XP7lA259ujpXxep7F/gHLKWtmSj2JA16Dq2Pxt/WvR2tWhGz/t47O1bE7DzmDaZ7APjZqNTmvCobDbqzK1Cd3K9eAfYqSA/fIlCOW5XfY9s1SK3sZe",
-        "eov+9ZigN7x4hKWb7kx/sMm7yhMa779uzCenDpGSkQA/kPrk/dla1BfL1uSeLUOFrNe1cU7o43fMcsoH2dHOSXzL8+zNoD7uPoTz2rxMV4a5zNsNI9mxP4lrixaYwdxl",
-        "P+y9qMHne7d4hPPavExCk6TD2Q062c5G4BvgR9mQgE57wLK2zKb2EdloGRfhGHO7mf/0OAvvviCSaeBa1p2PXn7Tp6fA6D7xKunsz+5HNrWG/fMlHPGxdswksBaYxspO",
-        "FdWytojaW9kGzdHkiilal7DM2B9OobE6mXnwQdmSgBI/xbKoxOt/9iiu49K2CXL2nvL8OE719yLaKrIfnNyPXn7Tp7Ha7D78MOCiz+4NerqG5PAoTrT8cYBDthuLkvx2",
-        "Vu+fm/zITsoO3aWG7l0m5tKztWxOvLEthmmmE5fVyk8yx7yzxqlq/C7rpdSoTHOgjOHsbB33+G7FZLMWlsaPSX7T8+zp/XW5Y920lp1ZP/aA/bUhHZbnY9tplDup7eJu",
-        "P57z9Zq5JbVjrqWb7kw29smztWNBvPdrxy6lCNTWwEpxg6etxew++iWu4NqtBDaiiOO1ZAPvuCKEaacblNfcHXDFp6HGqXfyLeH33u4FeKWd8vs4TujwctpDthuLkvxp",
-        "XuGfgffHW9AHy8Gb80wk7cmztWxOvLEthmmTH5XXzEk/8La23uxstS779s/uDnP2mvbwIk7o+Wvaaa0bl8uPXnfGsK/bqXf7Y++lyaEbNrSM9fo+C7zlY9k5qRSeuNlc",
-        "bYOQi+fFWtoUwNr2nUwr9tijpXxep7EiiWngVdaSzltrxqHkyals4C2ipcyvBWL2nfv8P07w/mzOaaIfn93dWD/UsrDL4Xf7JK7j1LxMYr6Ms+YvHPn0bIkopxuQ3I8V",
-        "ctD6zt7obLUUz8zvkSFXjrbexmxTvKcymXnwQdmSjx0/jPzkz+Bo8GP79Zu5DX+igP3ybAjz4yLdIaValNPGUz/QsLbN7HC1Iujx3rxMYr6A4LUgAfL2IoEks1PzxM5P",
-        "P++al/zWWtAPz9zkgz8268mkpXxVvLEiiWbvWo7Txkk/xby2iP128GP94Mm4CWT2hfrmOE7o/iLGOaUU2ZrCTjappaXaqV3dAsDL/oIzUpOl0swTI8+xP4l+8ErCko8S",
-        "MIOkpcH9PvMs/KXPpgk2lYHy+yIL8LFOwDq0Wo3dj1xv07al2ql/8zfr95u+BXW9gP3ybA+84mfbP6UI2ZrCTjap2euHqV/5L67m1KEecr+H8uEpHbz8Z8g6tQic1o9S",
-        "cYOy5Jq8KaM7v7SM+Ux6t4f35i8P7PQi2iqyH5zc3FVw19myyfs+xwbI2uzuUTbk3KSjYE7O1ET2AeBH2YOeCiiY2c6Hpj64bqOom4oJYL+K9rUgD+X+d91poR6YwttY",
-        "bYP7s8f7deZj4eubrwJv9prw5ykL8rFxwDOlWtaSzk5vxrCwiPt/4SrhrJvjQTv747y6bCvq9HDQaaMVlsDLVHHCp6GI4HC1N+bsyO4fdaSA4+FsB++xY4k5rxOXxo9S",
-        "cYOnrM2pLKB0uP2K/1sh9pv28ykc+f9hzGmzGYvXylMxg4eszal/8SL+8d68THW5h+XwPhrvsWvdabQV2cbHWBWM/OTa7H/5Y/3myasJePjJ1PQhC7zES4kgs1qY3MxV",
-        "cNG2oIj9cbU35uCbvQ9ks4z9tSkK+/RxhWmzFdnCwFRx16Dkxux/52P67d7uAHOwnbznJQn05S3dJrBVm93bSXDO87fc6Ge1JOLw3qpMYrnjvLpsGvTwdokspB2cks5T",
-        "e4Owocb9bPAnrvXUpwJipcng4S0XvPJnxz2yH52cj3Bwx7a3iKFx4yb899KqCSz2mebhbAHy9CLeJrIe2dvBHTDQt6fJ+3q6COLkyL00ObqI6vo5GrLlet1g+nDWnY8d",
-        "P8KmsMepPrVjpuHeqA1jup26tT8P8fQiyDqwH5rGj09+17qriOhttTfm4Ju8CXCzm/b7Lwu8uXLBJq4fipLRDzGR6fWBqTOrY+v92q0YNqWd4fA4DfSqIsgnuVqWxsdY",
-        "bYOhpdzgcZ9soaWb7kw29smztWxOtOVjyyWlDoqSmwcsg/zkmb8kpHOipd2hAHK3i//wP0K8/2PbO68N2d3dHWjKt6GI+Xb6Lev2ku5BKPaP+uFsA/P1Z4krpRaWxaUS",
-        "MIPz5M7garVjrqWbuwJ/sIbh+Gwd//BuzGn9WpTbwRVIjIGB7tZJuWPGqumLKkmewL+1GSe89m7cLKRajd2PSXfG87fL+3vwLa7g36kJZfbEs/cpHeixZMY74BSYwN1S",
-        "aMah5NvqbPAm4PabvRl1vsny5mwa/fNuzD2zcNadjx0/y7atz+FqtWP769KoA2S7yeD2LQL5sT+JAe8ovPTwdT+Lho2I+n30L+vhm6wVNqWK4fApALz5Z8AuqA7QuIAS",
-        "P4Pzs8Htav1jrqXOoAVwuZv+tT8N/f1niXTgLdbg6ntA9PPs/cA+5iDv6d6qTHSvyeD2Pgv5/yLeIKQOkZulEjCD8+Tb/WzwN+3tm6EAcvaL9v0tGPX+d9tz4AmNwMpJ",
-        "fMvznIjocPFj16XSoAhzpoz98SkA6P17oz+hCNn+7mRQ9oeb7sBS0GOzpZnhH3K1iOHxYyXw8HHaEe8WmMvASGuNp7zcqyWfNe/3m4ItT5m8x8oBIdjUIpRp4huMxsAf",
-        "JKmnttGpZZ9jrqWbpwo2/o/6+SkdsvR6wDq0CdH+7mRQ9oeb7sBS0GqnpcDETDb2ybO1bE7q8HCJFqwX2Y+PbmvRuqrPoXj8L+v2lbwJd7LB39QVIcnFXe8AjD/Qm4FP",
-        "etO/pcvsNrof/arc4kw09MC94SMi8+Zn2wqhCZyahgYVg/PkiKk+tWPn45vmQ0j+iObhIxLx8HbKIbwckMbTVXrKtKzc9Wn8J/rtx70YZLOd8P1lSrO/dsw6tFKm3sIU",
-        "NoOfhfHGS8Ecw8r/i0wr9rb/+HdkvLEiiTTgH5XByh1kg/Pkh6Y++yyu6dq3A2Oix+ftOE6xryLcOqVajdrKHXLMt6GI+n/jJuql2bdMYr6Ms7cBD+jyaok6owic18Ef",
-        "P8GmsNzmcJ9jrqWb7kw29p/y52wx7+cilGmTDovbwVo30Ker2uh58DCg5smrDWKzwbH+IA/v4nr2JaEPl9HHWG2B+urP7Gq9YeLkwqEZYpuG9/BuQryzIIBg7g6W/sBK",
-        "etGQpdvsNrx4hKWb7kw29smz/CpOtL5cgSi1DpbOwlxrwLu4zuBq6Svr7NymGGqhgPfhJBLv5XDMPaMS0JaAE2vGoLCA1m3jaqel9481WYO9zNgDKtmxP4kWswzCuI8d",
-        "P4OuztWpffQ37e2b5gk/9pLunyob8vJ2wCauWpXT1lJq15yigN4ytQunpcDETDb2yeX0Pk735iKUaZda1pL9eFn8hOiI4na1fq7Nm+FMRJOvzN13ZLyxIok/oQjZ38BZ",
-        "eoPu5OTIR9oW2tr2gShT7eOztWxO9fcigSSvHpySkgAig/Gl3f1xt2qu/pvuTDb2yby6bB39/GeJKLMKnNHbHW3Cp63HqX/mY/rt3u4ec7CM4fAiDfmxL5dppQKY0dsd",
-        "bNehodzqdrlj4fHTqx5hv5r2tSkK+/QvyCejEpbAylk/xbqwoqk+tWOupZvuGnekyfLnbFO8xiKGaYhW2cDOTz+e85btz0HCY6Gl6YsqSZ7SmbVsTryxIolprRWd148A",
-        "P+6ysMCnf/cwpuTJ7kE2pIjhvGxBvONj22n8Wsmcnwk/nPPm2/1s8Dft7ZnuVjb0hPLhLwa+qgiJaeBahLiPHT+DuqKIoXP6J+ulhvNRNvSa5+cpGv/5IIBpsh+Nx91T",
-        "P9jzr9CzPv40oqXQt1Y2vYG/tRtUvMYuiQH6WrGej05r0bawy+EktTf88N7uES3cybO1bEGzsSDEKLQZkZCPAD/Uu6XcqWr9Jq7i2qMJNr+d4PAgCLz1bcw64FKa08FL",
-        "ftDzt8vocvAxoqXMpwhivsb78CUJ9OUiyyWlFJ2SnxMqiunk2+p/+SauuJu9HWSiwfjiZgX0uCyJBKUbisfdWHuDvKqI6D6nc7q9w/9eLubJ5/QuAvnlOIkBlT7Zwcxc",
-        "c8bz9IawLKxjs6XIvx5i/tm9onVbtqAsmXH3T9C4jx0/g6Wl2qlt9mOzpdahCHP21K6obEz09GvOIbRY2Y2PVneD6eSA5HHxJq64hvNMNKGA9+EkTLyuIsI+4EDZmsJS",
-        "e8bz+ZW0Prcl5/GZ7lM2m4jn/WID9f8qwj7sWpLahh0lg56l3OEw5jL88ZOlGzb8yfj9ZUe1qgiJaeBai9fbSG3N87+I4mavY/3ml+4Hb+zJ4PZgTsurIv5l4DLDkucR",
-        "P9Cnts39ff15ruPaoh9z9pSonzFks74iyCejQNmQwx8wgbDmh6tst2Om3ZLuA2T2y+e3Y0z/sy2LK+Ja0euGBj/Mvq3c/XvxY7Ol2KYDZbOHs/M+AfGxdcEssh/ZxsdY",
-        "P9O8rcb9PuYq+vaboQI2ooH2tT4L+vRwzCejH9nBzE96xr3Ozvxw9jfn6tXuAXemsbvZYE7kvSLIJ6NT2cmlHT+D863OqTbZbf3xyasYdb7As+cpGunjbIkEoQ6RnN1S",
-        "as237NCpNLUPoO7D51cc9smztS0A/7E/iSiuGdnO0x032/P4iNtb0xzZpZHuXDjl2bOqbEzwsyKTaegC2YyPb1rljJOIoz6lbbm1m/FMNKTLs69sTP+zK4ByylrZko9U",
-        "eYP7pcbqPqh+s6WZok4/9pv24Tkc8rFPyD2oVIvd2lN7i6vkgqlSuyj2rIDETDb2yfrzbEb9/2GJdP1H2ZDdHzaDoaHc/Gz7Y8Pkz6ZCZLmc/fFkIrLGIoRp6Ci89PBq",
-        "P47zvIGpNLUPoO7D51cc9smztT4L6ORwx2mNG43agU9w1r2ggMUwwmOhpYnuRzb+kbO4bDzZ113+ae9ay5uPFz/v/a/QoCWfPoTjzqAPYr+G/bUhD+zIKuVl4APVks5T",
-        "fIrzv6KpPrVj5+Ob5iA4pZ3h8DgN9Lgi2yy0D4vcj3B+17vq2uZr+yem/JvkTFr4guq8d2S8sSKJKK4Z2Y+PXHHA87jUqTbsY7Kl6YsqSZ7JubV8QK+hIpZp4g7bkpUd",
-        "N9rz+ojbW9McxqWR7lw44dmzqmxM/rMik2niGdubhgYVg/PkiOB4tWvv69juUSvrybHhbke842fdPLIU2f/OSXeNoavd53q9Oq6vm4JCfa/AqJ9sTryxa89p6BuX0Y8A",
-        "Ip7z5sqrN7Ux6/HOvAI2m4jn/WIc8+RszWGMVLGSgh038ZaC98E+uGP3rJvkTFr4guq8d2S8sSKJO6UOjMDBHVLCp6yG+3HgLeqt9+AkNvnJobVnTrToIoRpkj+/7ecd",
-        "MIPh7YijPtlt5fyS9WZr3J/y52w92d1H6h2fItmPjwwrm+LoiNpb2QbN0eSXTCv22KOmfFW8sSKGZuBYqtfDWHzX85fN+2jwMayl2bsYYrmHmeMtHLzdS/odnyLZj48M",
-        "LZTh/4ipPrVjrqWb7kw29smztWxOvLEiiWnvVdnByk9pxqHkxuhz8DCu/Zu+A2W/nfr6ImSWvi2JCqgbl9zKUT/vurfcqTb0M/7g2rwfNqKGs+EkC7zja84htFqY1NtY",
-        "bYOy5NvsbOMm/KXSvUxmv4r48ChHludj22mDMrj84XhT/IvklakvoXe+vrG4DWT2qtvUAiDZ3V3wGuBH2embBSeP8/GQvjK1dbazl+5bLuK0qLVsQbOxcMY+s0DZgoMd",
-        "Lo/z9oSpLbUA5uTVoAl63J/y52wt1NBM5wyMJbD29x0ig+H/iKk+tWOupZvuTDb2ybO1bE68sSKGZuANkdvMVT/Au6XG53v5Y/rqm7oNZvbErbVuXLzSasgnrh+VkKVL",
-        "ftHzkOnZQdYMwMv+jTg268nn5zkLp7EiiWngWtmSjx0/g/PkiKk+umyu8dq+TGK+jLPWIwDy9GHdaaIPjcbAUz/CtbDN+z7hK+ul2KYNeLiM/7VkCP39ccxp/VqK2cZN",
-        "NqmlpdqpXdoNwMD4mjNO9tSzpHRaqr0i6gaONLzx+2JGg+7kkbktrkmEqpTuL363m/L2OAvusVLbJqYTldePTnzRtqHGqTbGN+/3z+4OY6Kd/PtlVLzlY9lpkw6YwNsd",
-        "a8zzocb9e+dj+u3e7gt3u4yz4iQL8vR0zDvgE42Szk1vxrK224No9DGu0fqeM0WCqMHBbFO85XDcLPta2ZKPHT+D8+SIqT61Y66lm+5MOfnJ9fQgHfmxP4ktrxTexo9c",
-        "ate86dzobrUQ+uTJumZgt5uzxhgvzsVd8Wn9WsuBmAozg4CQ6dtKyhquuJv/XC/l0rO1bE68vi2Ja5MOmMDbHz/BprDc5nC5Y+zqz7oDe/ub+vIkGpbnY9tpky644Pti",
-        "XOyciOzGSdscw9ab80wh5tmotWxOvLEiiWngWtmdgB1vwqa3zal/8zfr95uvTEWiiOHhbBr94SLLLKYVi9ePSn7XsKzB53m1Iunk0qBMPruaup9GQbOxQcEoshuaxspP",
-        "P9Cwts3scLVr3eDJuAlk9rr2+SkN6LEtiQqyH5jGyh191qewx+dtvHmu8dq+TGK+jLP2JA/u8GHdLLJajtrKU3rVtraI4Gq1Iv713q8eZdyf8udsOt3BXeoBgSi48ft4",
-        "TYPu5Nz7a/B4rqWb7kw29smztWxOvLEihmbgHJje3Fg/nvOgx+c54WPv8M+hQWK3mbPhJAu88mrIO6EZjdfdN2nCoeTrwV/HHNalhu5UJubFs9YEL87OW4l04E3JgpQd",
-        "P4Pz5IipPrVsoaXPpgk2tYHy5y0N6PRwiSCuWo3ayh1yyregxOwz+Sbo8ZuhCjaigfa1Pw3u9GfHQ7Ybi5LsdV7xjIfnxlLRDNnL5IM/NuvJoaV8XqexIolp4FrZko8d",
-        "P4P864j5f+Aw66XaqBhzpMnytS8G/eNjyj2lCNnGzk0/wbaix/t7tTTv8dimBXixyfLyLQfysSrEOulw852AHVPMtK3GqW32Mevg1fRMYreZ4/AoTv3kdsYkoQ6Q0c5R",
-        "c9rzs8DscPA16/ebpxg2t5nj8C0c77Eq3SGlWp7Twlg/0bapzeR88DH9pc+mCTa3ivD6OQDouAjfKLJarfP/YlPslI3mqSO1N/zw3vVMNvbJs7VsTryxIolp4FrZko8d",
-        "MIzzosnlbfBjs6XfoQIxosny4DgBseVj2WmMFZ7bwTdpwqHk5MZZ3A3R3ZvzTCfi0aW5bCLT1kvnFplaxJKYCiuY2bLJ+z7ZDMnM9ZEvWZml19obIMPcUYl04E3JgpQd",
-        "P4Pz5IipPrVjrqqU7hx3o5r2tS0I6PRwiSjgNpbVxlM/17K0iOt78yz84Ju5DWK1gfr7K0799mPAJ+BSlMGGN2nCoeTkxlncDdHI+pYzUJeg38ZsU7yjOaNm71q13cBJ",
-        "P8GmsNzmcLVr/OrOoAg2tJzn4SMAvOZr3SHgG9nFx1RrxvOsyed6uWPn65apDXuzwKm1OA/s4WfNaaUMnMDWHWvKvqGI4Gq1MObqzL1MY6bj5fQ+TsjQUvYFjzWtkpId",
-        "a9GmoZOpPrVjrqWb7kw29smztWxOvLEiiWbvWp/Tw056g+7kzOZwsjeu5M66Azu6hvzhRhj94yLlBo8upuqPAD+S5/ecpT7ZDMHR5JdMK/bRo6B3TryxIolp4FrWnY9e",
-        "es2nodqpcfNj+u3e7gR3uI2z9zka6P5soz+hCNn+4HJL/JCL58Va2hTA2vadTCv22qald068sSKJaeBa2ZKPHT+M/OTY6GvmJq7n3robc7OHs/kjAeixdsg5s1qO2sZR",
-        "eoOnrM2pfOA3+urV7h9it5DgtSMAvOJh2yylFNmawk42qaWl2qlS2gza2vaPNEmCqMPGbFO8pzmJaeBa2ZKPHT+D8+SIqT61Y66qlO4Yd6aas+UpHLz9bcY97RiMxttS",
-        "cYOytNjsf+ci4Obe9Ux/sMnn/SlO/uR23SauWpDBj25L6p+IiP128DHrpZOnGHO7mrPhJAu8+WPHLeAZmNzBUmuDo63L4j7gM6elz6YJNqWK4fw8Grz2bcw64BiY0cQd",
-        "a8zzpdz9f/Yo5+vcxBp3pMnf2gM6w8FD/BqFJbThjwA/kuH0mLkltWOupZvuTDb2ybO1bE6zviLBJrdald3BWj/PvKvcqWr0M/2l2rwJNqaI5uYpCrzwZN0sslq1/eBp",
-        "QO6SnPfdX8UQoqXIoUx3o538tS0a6PBhwmmjG5eSxFh60/Owyflu/C3ppZOjHz/cxry1Hgvq+HTMaaQTmN7AWj+L8YDHqWf6Nq7y0r0ENqKGs/cpTu70dMA/pR7GkIYH",
-        "P9e7oYjbe+Mq+OCbrBlioob9tSUdvOVj2TmlHtnX2Vht2vOwweR7tSr6pcimA2GlyeblRhj94yL9CJAlq/f5dEnm8/mI/WzgJrWlm+5MNvbJs7VsTryxIolp4FrWnY9b",
-        "fs+goYi0PvEs4KLP7g1jooa+5ykY9ednoz+hCNng6mtW9Zab8KkjtXK8vYPiTESTv9rDCTHFsT+Jf/dMwpKPHT+M/OTL7HDhJvyl1KhMYr6Ms8cpGPXnZ4krtQ6N3cE3",
-        "acKh5PrMSNwVy9r4gSNakqbE2xMjz7E/iXj1SsmJjx0/g/PkiKk+tWyhpcuvGWWzyfHwOBn59GyJG6UMkMTKHWvCo7eI/nb8L+ulz6YJNrKA8vkjCbzidsgws1rR39wU",
-        "FYz85OnvavAxrtfeuAVgs9Oz4D8LvPAi2DypGZKS3FFw1/Ps2+Vx4WO/pYbuGH6zyfrhKQO85WrIPeAOmNnKTj/avLGI63/2KK7x1O4bfrOb9rU1AemxZsAspFPzxM5P",
-        "P/eSlPfbW8EW3Mub80xipJz2rmxOvLEiiWngWtmSjx0/g/PkiKYxtSXv6cirTCv2jfz7axq85WPZaaFait7AST/CtbDN+z7nJvjszacCcdyf8udsPNnFV/sHnym1/fsd",
-        "IoPj/4ipPrVjrqWb7kw29smztWxOvLEihmbgE5fWykU/yr3k+dxX1giurYvuUTalhfzhbF+wsTOJdOAJld3bHS2P8+qGpzefNe/3m5wpQoO73coIK9DQW/YEk1rEkpwN",
-        "L5Po5IipPrVjrqWb7kw29sa8tTsP9eUi3SGpCdnewFN4g7Ki3OxstRHr89K4CTa0jPX6Pgu85WPZOakUnpKHUXrX87DA7D7yIuPgm6IDd7LAs70hHbWbdMg74Ci85vpv",
-        "UfyWnPjATNAcw9ab80wg5tmjpXdOvLEiiWngWtmSjxIwg7St3uw+4DOu7N3uGH6zyfT0IQu84mHbLKUU2dbAWGyDvavcqX36Luul2a8Pffae+uEkB/KxdsEgs1qN28JY",
-        "P4u+t4GDaPQxrtf+mjlEmLbH1Bw9vKwimHLgWtmSjx0/g/PkiKk+tWOupZvuTDn5yfv6O07x8GzQabQTlNfcHWvM87DJ+T7hK+ulyKIDYtyf8udsPNnFV/sHnzS2+vp5",
-        "QO6A5JWpKqVzvr6b7kw29smztWxOvLEihmbgE5+S21V6g5uR7Kl35mPg6s/uCHOijPDhKQqwsXbIOeAOkdePTnPMp+TJ52fiIvelz6YFZfaF/PsrTv33dsw74Ci85vpv",
-        "UfyXgeTIR8oO3aWTox8/3J/y52w82cVX+wefKbzm+3Fa/J6XiLQ+rXO+vpvuTDb2ybO1bE68sSKGZuAJkd3dST/TsrHb7D73JujqyatMYr6Ms+EtHrzibYk9qB/Zw9pU",
-        "fMjzpsn7Pvwwrvferwhv9oj14SkcvP1tyC2pFJ6Sh1Bsitnrh6k80Sr95tSgAnO1nfbxbAju/m+JGqUIj9fdHD2Dt63J5XHyea7x06tMWZ3J8eA4GvP/IsA64A6Ywt9Y",
-        "e4O2ss37Z7U35+je7gVi9pr7+jsdvORyoz+hCNnm7m1A55qX68ZQ2wbN0ZvzTGKknPaubE68sSKJaeBa2ZKPHT+M/OTO6HLmJq64m6oDePGds/Q5GvO8dsg54DWyuNlc",
-        "bYOcj/fRPqhjv7eD9kA2maLMzGxTvKc1n3LgWtmSjx0/g/PkiKkxumPt4NW6CWT2hvW1OAb5sU3iaaIPjcbAUxXVsraIzVfGANHG9IEgUpm+3coBPbysIph88ErCko8d",
-        "P4Pz5IipPrVjoaqbvg1jpYyz9yka6/Rnx2mPMdnGzk1sg6SsweV7tTfm4JuqBXe6hvS1Pxr96HGJYa0J0LilEjCDkrHc5j70N/rk2KVWNqKI4+ZsGvT0ItoiqRaVks1I",
-        "a9e8qtupNvcs+vHUo0Fkv4774WwB+rF2wSzgHZjfyh1swKGhzec3tTTm7NerTG+5nLP0Pgu8+GyJPagf2dXOUHqN2euHqU78IOWlzKYFdb7J4PkjGu+xdsZptQmcksZT",
-        "P9e7oYirTf4q4unI7Exmt4f2+WJOzP5xwD2pFZfBj1xtxvOrxqlq/Saut475Wm7n2KSibBz592fbLK4ZnJLcXm3Gtqrb4XHhbYTz2rxMRZ2g39kfTqGxWaNp4FrZyY9T",
-        "fs62/oirX+EorKmbtlY25Nqhp2BO5asikHvyWtnPgx0/g/zriOt38mPt4NW6CWT2iOfhLQ33sWDcPbQVl7iPHT+DqOTG6HPwea6n6P9OOvbJ669sXK2pMoVpuUDZhZcO",
-        "P4Ou6IipPrpsrvbMpx56+snm5TwL7rFuzC+0cNmSjx1kg72lxewktWHdt5niTDau07Onf1yqvSLQc+BNyoCPHWKP8+SIpjG1KOfm0OJMYrmZmbVsTrzqIscorR/Dko1u",
-        "LIH/5IjxJLVxurOC4kxv7MmrpX1OvOwuiWngVdaS30ht07+hhKlr5TPr95u8BXG+nZm1bE686iLHKK0fw5KNbiuB/+SI8SS1cb+2juJMb+zJqqZ4TrzsLolp4FXWktxK",
-        "dtG/6Ijle/M3hKWb7kxt9ofy+ClUvLNRnGvsWtnKlR0tkePwhKlnr2O/tYz+TGv2ybO1Y0G84nXAO6xW2dDASWvMvs71shS6bK7UzqcPffaa//o4HaaxdsEs4BiWxttS",
-        "coOxpdqpNvw36+jI7l074MC9tQkY+eN7iTqlFpzR21h7g6Cox/0+/DCu8dq+HHOyyfz7Lwu84WfbabIVjNzLHWjLuqjNqWf6Nq7kyatMf7jJ5/0pTvvwb8xnygyYwI9s",
-        "SuqQj4i0Ps5JrqWb7hc2uIj+8HZOvqAghWm4QNmDnwgqj/O9kqkvpXq8pcbiZjb2ybPubAD9/GeTaeJI256PRSWD4vWcsTK1OrSliv5VJPaUv59sTryxeYknoReciI8f",
-        "LIH/5NCzPqRxurWX7hUs9tijrH5O4b0IiWngWoKSwVxyxunkir08uWP2v5v/XyXlxbPsdk6toTubab1W85KPHT/Y86rJ5HuvY6ywmeJMbuzJoqF+WLCxe5Np8UrAgI9A",
-        "M6nz5IipZbUt7+je9Ew04Mu/tTRUvKA3mHHsWoCIjwwvmuHk1YNDrkn45MnuPUOfqtjKCy/MwiKUaZtLyYKfET+Q4/SYpT6gc761l+5dJubZo7lsXayhMpll4EzJgp8N",
-        "Qpjz5IimMbUg5urSrQll9o/852wa9PQi3SCtH9nQykloxraqiPtx4C3q9pvmAWX/47y6bD755TiJOLUTmtmPTnPMp+SbqXb6L+r2m7oEc/aZ9uFsB+j0b4dpiQ7Z29wd",
-        "a8KjtM3tPtoNzcCbvglk9rn/9DVO7uRsiWG3Epzcj0Rw1vOiwftt4WPr68+rHjaigfa1Kw/x9CuFQ+9V2cbHWHGDp6zNqW7wN6711L5BY6bJ5/0tGrz+cswns1qe19tO",
-        "P8qnt4irS+YmrKXZuxhiuYez4S0e7PRmh2mUEpjGj05zzKfkwfo+5ijn9curCDa/h7PhJAu842fZLKEOkNzIHW7WuqfDqWz6NuDhyOBmYLebs8UJOsPeTIl04A6Lx8oR",
-        "P/OWkPfaUtoXrrib/Fc29smztWxOvLEiiWngWtmSjxIwg4OB/NZN2QzapYbuBXiyjOu1JQC8wFfgCota0YCPAD/Qv6vcqS28Sfjkye48U4K2xsYJTqGxeYkx+lrIhpcF",
-        "M4Oq/oiwJ6Jj876b7kw29smztWxOvLEiiWnvVdmQ+k56gfOm3f1q+i2u6t3uGH6zyePwOE7s/nKEPLBa0cDKW3rRtqrL7D7mIPzg3qBMJOPepe19X6umK6M/oQjZwspJ",
-        "W8y9oYi0PvMi4vbe9WY5+cnR4CoIvLlxwiCsFtnhmhQlg6eszaly/Df66d7uDmOwj7P8LwHysXfHLaUI2cbHWD/vpeqI+XL0N+ulk7oDZvuF9vM4R7z5Y9ppoVqewMpY",
-        "cYO3sdroavws4KXZrx449r778CJO6PlniSCjFZedzVxtqfzriOBttSTh697uRHm4heq1OAb5sUX7DIU02fDubz/KoOTL4Xv2KOvhku4KeaTJ0cAKKMPcS/oanzS89+t4",
-        "W4OwrM3qdeZj5+ubr0xkuZ6/tR9bvPhxiT2hConXyx1rzPO2zaR84CXoq5udWTa/mrP7Ixq85HHMLeATl5LbVXqDvava5H/5Y+/xz68Pffab/OEtGvX+bIdDthuLku1o",
-        "WeWMi+apI7U3/PDe4kxUg6/Vyh8l1d1OiXTgT8KSjx0/g/PkiKk+tWOupZvuTDb2ybO1Y0G801fvD58psvvjcT+e863G7XvtY+frm50nX5qlwLVkW7ysIvp86XCP090d",
-        "XfaVgvfLX8djrriblV0h5cWzp3hWsLEzkXjsWsuLmWAkg/Pkh6Y+8jHr4NXuCGOkiOf8IwC882PbaaEO2cbHWD/RuqPA/T7wJ+ngm6EKNqKB9rUuG/r3IsAqrxTZmsJY",
-        "ftCmts3tPvotrvHTq0wk496l7X1fq6Yi2yymH4vXwV56g6Cn2ux7+zDm6s/nZmC3m7PXGSjazkvqBo5axJL0DC2S/+SavSu5Y7+yiuJMJO/czq5sTry+LYk9qB/Z0Npb",
-        "eYO6p8fnPvw3/eDXqEw+uIbntTkd+fUizyayWo3ayh1r0bqjz+xstSLg/JujA2SzwJnjLRy801fvD58ovPbwclGD7uTc+2vweK6lm+5MNvbJs7VsTryxIolp71XZxt1I",
-        "eoPu5NrsM/c26OObrx82pYb8+2wP77FQ7A3gCZHd2E4/1qPkwec+4Svrpdm7CnD2i/LnbEbo+WeJK6EI2cbaT3HQ87bN7T7iK+vrm7oEc/aL5vMqTvXiIsgrrw+NkttS",
-        "P9Gmqojma+FqhPPavExUg6/Vyh4r2M5P4AfgR9mCgQ0tmPPkiKk+tWOupZvuTDb2ybO6Y07v+WPbLOAVn5LbVXqDsaXaqXz6O67x068YNruc4OFsDPmxcMwt4A6WksxS",
-        "as2n5IC5MKVxrribr0xws56z5SUW+f1xgEO2G4uS7WhZ5Yyd7cVS2hTRyPKATCv22b2leFW8sSKJaeBa2ZKPHT+D/OuI+nb0Meul1KhMYr6Ms/ctHLzzbdFptBKYxo9U",
-        "bIOKgeTFUcJjpufOqAo2pJz9+yUA+7Fuxj7pWtSMj15w1r2w26l/5mOs9s+nAHr2iPDhJRj5sziJJ6UMnMCPT3qOsbHO7z78La7x06tMb7OF//o7Tu/lY90sygyYwI9/",
-        "SuWVm+/GUNAcwcub80xipJz2rmxOvLEiiWngWtmSjx0/g/Prh6lq5zbrpYbuLVqFprPnKUP+5GTPabcSnNyPSXfG86bJ+z66Y+fm1KBMf6XJ9PoiC7zybcQ5rB+N18NE",
-        "P4u9q4jubPAm4KXaoAg2uIaz5ykKtZt0yDvgOKz06WJd4oGb5cBQtX6utZX+WC32ybO1bE68sSKJaeBa2ZKPEjCDoKzJ+3u1LOilz6YJNrSI4bUuAeSxdsEotFqUx9xJ",
-        "P9CnrcTlPvcmruLJqwl47cnx8CAB67F2wSi0Wo3ayh19wqHky+Zr+zf9pdq9THG5h/afOg/usUD8D4YluvrqflT8npeItD6kc761l+4uQ5CvzNgFPc/OTOwMhD+9kpId",
-        "LI/zhv3PWMoRy9H6njNbhcmutXperKE5oz+hCNnQ2lt57rq326kjtXOipdevH2KUnPXzDwb58mmJdOBK1ZLDXGzXkbHO70r0M664m/5XHKCI4bUNOtfORegZk1rEkvQP",
-        "KpP/5Jy5LrljuLWL4kwv5tm/tX1drKFfkmngWtadj153zLqnzfo+8yz8pc+mCTamiObmKU7+9HbeLKUU2cHEVHPP87DJ+W21a+P2ksQad6TJ/uAgGvXGY9sn4EfZ1M5R",
-        "bMbozt7obLUC2s7kgCNYhb3cxWxTvOVw3Cz7WtmSjx0/g/PkiKk+tWOupZvuTDb2xry1OBzp9CKUabQbiZLbVXqDoK/B5XK1MOLqz71MWJmnvsYYIcyxKsAurhWL19wd",
-        "a8u25O/obrUh+/HPoQI/7cn19CAd+bE/iTyzH9nGx1g/5LK0iOtr4Tfh65u4DXqjjJnjLRy80FbiFo41t+H7ck/8lIX41lPGY7Oli/VMNvbJs7VsTryxIolp4FrZkoAS",
-        "P9OysdvsPvcm+vLeqwI2op78tT8F9f1uiT2hCoqSxlM/zbyqhfpq+jOu6NSqCTb+hOC8bEO842PAOqVakMaPVHmDp6zNqXn0Luul37wDZqXJ5/Q8HZabLYZpgQ+N3Y9J",
-        "ftG0odyzPuIr5+ne7g1ioojw/iUA+70iwC/gFJaSwlJ9g7q3iPp7+Sbt8d6qTGK+jLPmLxz14XaJPaEKipLAU3qDoKuI/XbwY/3u0qIAZfaB8uMpTu/+b8w9qBOX1Y9J",
-        "cIO7rdynFLpsrqWK50xUk7rHr2we6eUiyGmjCJbC31h7g6Oty/1r5yau6t3uDTa7hvG1ZAfo4iLLJqQD2d3dHXHCvqGI+XL0N+upm60ZYvaP4fohTv2xMJx+9gLIg5gK",
-        "P9Cwts3scOYr4fGS7gV43Ma8tWxOvLEt2i2jG4vWgNWbOTVYBKZq8C7+6dq6CWX5yfLmbAPz8yzZJ6da0dfXSW3C86nH622vY+Pq2fxCZriOv7UhAf6iLNknp1PXkvtV",
-        "eoOgp9rgbuFj6OzVqh82ooH2tSEB/rFM7AiSP6rmj0lwg6qr3fsUumyupZvuTHW+iOH0Lxr54yLIJ6RajdPfTj/Kp+qipjG1Y7ysm4EcYr+G/fQgVLzycMY54A6R149J",
-        "ftG0odypeOci4+CbugR3osny5TwL/eNxiT6oH5eSzh1yzLHkwfo+5ibi4Ni6CXL2wf76Lk7UwSLLKLJa1pLBXHLG86bH8T70N67x06tMYrmZurUtAPixccg/pXDWnY8d",
-        "P4Pzrdypf+Zj+uTJqQli+Jn98mJOyPlnx2m0EpyS3F5tyqOwiOZw+Tqu997jGHekjvbhP07r+WfHabQSmMaPW23CvqGI4G21JOHr3u5Ec/iOvbU4Bvmxb8Yr4B6Q18sU",
-        "Man864ipLbxjwOqbowN0+Jn98nZO9eUi2j6lH4nBj0l+06Dkyftx4C3qpc+mCTa1gfLnLQ3o9HCJYZQ7q/XqaUDxmorvoD7wNev3wu44V4Su1sETPNnFUPAWjSnZx8FJ",
-        "ds/zt8fke+Er5+vc7gVl9pr2+SkN6PRmh0O2G4uS+3xN5JaQ98pW0ADF2vadTCv22KGlfFW8sSKJaeBa2ZKPHT+D8+SIqTG6Y+bqzO4DcKKM/bU4Bvmxcco7pR+XksZO",
-        "P8C7ocvie/Fj6OrJ7g02oojh8ikavL4ixCaiWtHf3BQV1bK2iN1fxwTL0eScKUKEsMzYH06hsTGZefBB2ZKPHT+D8+SIqT61Y66lm+5DOfaa5PApHrz8bc0s+lqJ09pO",
-        "eoOxodz+e/AtrufXpwJy9p3y5T9O6/lnx2m0EpyS21xtxLawiPpq9DfrpdK9TGO4gv36OwC8uW/aYMoMmMCPaV7xlIH81k3CBsvV5IM/NuvJoqB8XqexIolp4FrZko8d",
-        "P4Pz5IipPrpsrvbMqwlm9oT88SlUvOFj3DqlWpvX20p6xr3k3Ohu5mP57d6gTGK3m/TwOEDs/2WJOqEDipLBUmvLuqrPqXfmY/3g16sPYrONs70hHbWbdMg74C644Oh4",
-        "S/yHjPrMTd0MwsGb80wm+N6mrmxOvLEiiWngWtmSjx0/g/Prh6lq8C7+6dq6CTa7iOf2JE7v5XDAKrQUnMHcHTeT/vWEqXb8JObgye5RNqWd4fwvGvnjK6M/oQjZ5u5v",
-        "WOaHm/jFX8xjs6Xg+lkm+smhp3xCvKMynHnsWsCCn2Akg/PkiKYxtS7h55u9CXekivu1LRz58CLGJ+AOkdePT3rFtrbN533wY/3myasJePbB+PApHu+xaMYwsw6Q0cQd",
-        "MIOgr8HlcuZjoaXzmyg2uZznvEYY/eMi/QiSPbzm8HtN4p6B99tb0grBy5vzTE3u2aO5bFysvSKYcfBK1ZKdDy/+6OSIqTG6Y/nt3rwJNqKB9rU/C/D0Yd0spFeN091a",
-        "etfzotroc/Bj/e3UuR82o5mzvT4L+vRwzCejH9nBzE96xr3tov9/52PaxOmJKUKJvdLFEyrFsT+Jefta2ZKPHT+D8+SIqT61Y66lm+5MNvbJvLpsGv3hIt0hqQnZ385T",
-        "ZoOhoc7sbPAt7eCbvhQ2tIz/+jtO6PlniT2lF4nezkl6g7Chxv1s8GOm8MirTH+wyf76LkDs/2WJILNamJLBXHLG87TE6GrwaoTz2rxMQpe71NAYMd/ZQ/tp/Vqig50F",
-        "J4/z8ZCxQ65jrqWb7kw29smztWxOvL4tiT6oH4vXj0Rw1qHky+F/5yLt8d68TGWiiP3xP07z/yLdIaVai9fJWG3GvafNqW32Mevg1cQad6TJx9QeKdnFXfsAjj3Zj49m",
-        "P4Pz5IipPrVjrqWb7kw29smztWxOvLEiiWbvWorFylhvg6Orwedq5mOm996oCWSzh/DwbB3/42fMJ+lW2dHDUnzIpK3b7D70MeHw1apMYr6Ms/YkD+7wYd0ssnDZko8d",
-        "RJLh/JClPqFzvtiX7jcn49+juWxaq6FfhWmbS8+AnxE/leP09aU+znK7sYviTCHi2c65Rk68sSLyePJCwZ6PCiaTjuiI0i+lcb6pm/lYJovFs851WKy9Ip958CfVkvQM",
-        "L5Hj6Ii9KaUehNiAxEM59qfy+ClD7P1j3SzgDovbyFp60fPsxuY+5Srt8c68CTa4jPbxKQq1qyLBJrMOkN7KHXLMsbeI+nb6NK7x06sFZPaH8vgpTvX/IvsMhFqO29tV",
-        "P8Lzts3tPt0TrunSoAk69pn/9DUL7uIihmmwH43BjxI/7YOH24MxumPq6pugA2L4ycT9KQC88CLbLKRal9PCWD/Tv6Xc7D7mK+HyyO4ZZvaI/fFsAPOxdsg7px+NksZO",
-        "P9C2qM3qavAnoqXPpgk2u4bxtTkA+PRwiSC0WpDBj0l+06OhzKk2+ybv9969GDa5h/a1OAG86G3caaYTi8HbFDGp/OuIq03wL+vmz6sINPbUs+EkC7zjZ81piCrZ0M5P",
-        "P8y15Nzhe7U37/fcqxg2sJvy+ClO/eUi3SGlWo3d3x18xr2w2uw++iWu8dOrTGW1m/bwIkCWvi2JCKwW2dPdWH7Q86Xa7D7zMe/mz6cDeKXJ/PNsGvT0Itoqsh+c3I8V",
-        "L47i7Yj6cbU35uDC7ht5pIKz+iJO/f97iS2lDJDRyhMV1bK2iN1fxwTL0eSALVuTttzbbFO85XDcLPtw1p2Pf3PCsK+F63HtY/7p2roJNrKM5/AvGvX+bJNpoVqU3c0d",
-        "b8+ysM2pI7Uiruverx47tIXy9idO/v56iWG0EpyS31F+17bkyuh9/iT86s6gCD/2nvrhJE7u9GaJJ6EXnJLbWGfX863G+nfxJq7sz+BmOfnJw/ktF/njcYlm4DSp8dwd",
-        "fs+gq4jhf+MmruHavAc2tIbr8D9O/uR2iSevWovXyx1rxquwhKl69DHlpdimDX+kmrO6bB308GbGPrNakdPZWD/NvOTa7Hq1N+v9z+4Jf6KB9udiZOrwcIkdgSi+9/ti",
-        "XeyLm+fHPqhj+vfOq1c29smztWxOvLEiiWngWtmSjx0/g/PkiKk+tWyhpc+8GXP21LPzJQD4sXLFKLQfipLNRD/Xu6HB+z73L+/m0O4Od7WC9OcjG/L1IoEvoRaK148A",
-        "P8y/oIj7e/Fu+uDDukF5uIXqtSgL6PRh3SCvFNC42Vxtg4eF+s5bwRzMyuORKFeEorOobFikqiKJaeBa2ZKPHT+D8+SIqT61Y66lm+5MNvbJvLpsD7zha9EsrFqQwY8f",
-        "fc+yp8OrPuIr6+ubpxhl9ovh/CsG6PRx3WmjEpjcwVhzg7q3iLUjtTfm7MjuRGa6iOfwbAz98mnOO68Pl9aPVGyDrfaYpCilb67j16EDZPaXoqR8RbWbdMg74C644Oh4",
-        "S/yRi/DWU9wN2aWG7lw45tqmuWw63cNF7B2fOLbq8HBe+4Tklakuu3G+vpvuTDn5yeP5LRr5sXXALbQS2ZrJT37Ap63H5z76Ja722LwJc7jJ5PwoGvS4CN8oslqt8/16",
-        "WveMhufRQdgKwM2b80wm+NmjrWBOyNBQ7gyUJbv992JS4ouMiLQ+pW2+sIDuTDb5xrPlIA/o9CLBLKkdkcaPFXnRsqfc4HH7Y+Hjm70PZLOM/bUkC/X2at1gygyYwI9p",
-        "XvGUgfzWXNob0cjygChXhKKzqGxesqIykmngWtmSjx0/g/PkiKk+tWOupZvuTDn5yfLhbAL58HHdabQSkMGPTnfCoaGI5ni1N+bgm6wDbvaE5uY4Tv70IssloRmSuNlc",
-        "bYOHhfrOW8EczMrjkSFfmLvW0WxTvKAwkmngWtmSjx0/g/PkiKk+tWOupZvuTDb2yby6bA/osW7MKLMO2cbHVGyDvqXG8D7nJuqlz6sUYvaZ+u0pAu+xKtoorQqV18sU",
-        "P8q9t8Hte7U35uCbrANu9tSz/SMd6PhuzGmtFZu42Vxtg4eF+s5bwRzAxPaLM0WVqN21cU7HoSybfexayZydDTOD4+qfsTK1c6C9i5NXNvbJvLpsGfT0cMxpsBaYxspO",
-        "P8KhoYjlcfoo6+GbqANk9rLrpWBO5aEuiTHxVtnLnmA/i7ihzflttQvbwZfuJ3q3muDNbB79/2fFZeAQlsvcSXbAuOiI+nX8L+L2m6EZYv/j5fQ+TsjQUO4MlCW1/ex2",
-        "QPCQheapI7UYvquI/kA25sejoWBOrL81mWXgSteDnGAkg/Pkh6Y+4SL84t66THCkiP7wbCbMsWDIO+BSjd3fHXzGvbDa7De1brClma9Me7mLs/w/Tu/0bswqtB+dkKVL",
-        "ftHzkOnbWdAX0cv6gylJm6DdwmxTvKEsmXz7WtmSjx0/g/PkiKk+tWOupZvuTDb2ybO6Y079sXLFKLQf2dvcHX7X86jN6G3hY/rt0r1MYb+N9rVkCO7wYd0grxTZ3ckd",
-        "bMChoc3nPuIq6vHT52Zgt5uzwQ0829RW9geBN7zt62Q/nvP0hrkormOupZvuTDb2ybO1bE68sSKJaeBa2ZKPHT+M/OTc6G61N+bsyO4Kd6TJ0dAAIcuxdsEs4AqV09tY",
-        "P4u1tsnqavws4KXUqExltZv28CJO9PRrziG0U9mPj1Jxg6eszalz+iGp9pusA3Kv4+X0Pk7I0FDuDJQlt/PieEDgm4X6qSO1GL6rjuJMJvjfoch3TryxIolp4FrZko8d",
-        "P4Pz5IemPuIr6/fe7hV5o5uz9iQP7vBh3SyyWorGzlN70PPszvt/9jfn6tXuA3D2mvDnKQvyuCKEaa4fmMDKTmuDo6jJ/Xu1NOfryMQad6TJx9QeKdnFXf0IkCW+8/9i",
-        "UvDz+Yi+LqV4rqWb7kw29smztWxOvLEiiWngWtmSjx0wjPOpwed3+Dbjpc+nAXP2i/bhOwv5/yLdPq9ajdPdWnrX87DJ+W21a+P2ksQad6TJx9QeKdnFXfoehT+p7eBz",
-        "P57zosnlbfB4rqWb7kw29smztWxOvLEiiWngWtmSjx0wjPOw2vx7tX6u5Ne9AzaiiOO1LRzz5GzNabQSnJLMVX7Rsqfc7Gy1NObg1e4CefaZ//Q4C7y+It0srQqV09tY",
-        "P8qg5M7ma/snhPPavExEk73SxwsryM5N52n9Wo3A2lgkg/PkiKk+tWOupZvuTDb2ybO1bE68sSKJaeBa2Z2AHWvRpqGItD7wNevrm7kEf7qMs/RsA/PzIsA64Amc3spe",
-        "a8a36Ij9f+Vj76XWoQ42t47y/CJO+edn2zDgKLzm7m9Y5oeb5do+vTD66su9TGK+jLP2JA/u8GHdLLJaisbOU3vKvaOI+mrgIOWl1KBMebiMs+Y8AeixLYkmrh/Z38Bf",
-        "NqmlpdqpTNAXz9f8izhJm7qzqGxZrKE5iWngWtmSjx0/g/PkiKk+tWOupZvuTDb2ybO1bE6zviLbLLQbi9XKST/KvbDN+2j0L66t1r1FHKCI4bU4CejSaswqqzuNkpId",
-        "L4/zsM/9SvQzz/Gb80wm+snn8jg89f9liXTgStWS21pr97K026kjtXOipc+pGFq5jtLhbFO8oS6JPacOtdPcSU/X8/mI52v5L7WPscRDOfa69uc6C+6xTsA6tFrEkpcd",
-        "ccK+odupd/tj6eTWq0x5pI3252BO8/9u0Gm+TtnT3Vg/1bq3wety8GPv8ZuvTGK/hPa7bDr09CLFILMO2d3fWHHQ86XcqWr9Jq7R9J5ANreH97U4Bvmxcco7qQqNuIAS",
-        "P8y9qNGpe+Mm/KXIuQVms5qzwBxOtP9n3yyyWp3d2FM2mdnrh6k+tSX86tb0TDSihuO3bE68sS+Xaa4V2cHYVG/G8+z7/Wz8Jeupm4YNYLmKv7UKG+7oItsmtwnZ091Y",
-        "P8K/ts3oeuxj+OzIpw56s8CZumNOvLEiiWngWtmQwlR7gfPkiKkzq2Ph697uH3q5nrPmOwfs9CL8GeAVn5LPWW3CtKSI+3vzY/79m6geebvJ5/0pTuj+cok6r1qy08Nc",
-        "ZsKyqojqcfgm/aXSoBh59p/68Dtks74iiWngWtmSjx09wbyw3OZzt2Oju5u9G3+mjLPAHE7p/3bAJeAOkdePUXbQp+TB+j70N67x06tMdLmd5/ohTrTQbsgr7Fqt08Nc",
-        "M4OSqMnkf+FvrtLJrxh+9pv84j9Hlr4tiTDgR9nGzk0/07y3wf13+i2u6t3uGH63nbPnIxm80ET9DJJaitHdUnPPuqrPqTbnJujgyasCdbPJoaB7WOSgM55+4AmawMpY",
-        "cY/zsMnie/tj6PfUo0xvuZzhtT8N7vRnxzqoFY3BhhMVjPzk6eV/92P97M+9TH63hfW4LwL14XLMLeAbjZLbVXqDp6vYqXvxJOulzKYJePad+/BsAvXidokgs1qYxo9J",
-        "d8bzpsf9avouoqXIoUx/osn65mwa/eFyzC3gG9nQxkk/z7yzzfs+vXe5tZLgZmC3m7PGCTzK1FD6af1aoriPHT+DqOTG6HPwea6n6Loef7CMsblsTrz3cMYk+lrbxsBN",
-        "PY/z5IipZ69juryL7hE63MmztWwVvP9jxCz6Wtv6zktwwPHoiKk+tSX86tb0TDSihuO3YE68sSLQc+BMyIKPQDOp8+SIqWW1Le/o3vRMNJCc4exuQryxIolppgiW35Ud",
-        "Pde8tIqlPrVjrvyB7lsl5MnuuUZOvLEi0mmuG5TXlR096LKoyfB/9C2sqZuoHnm707O3IQf4sy6JaeBagIiPCC6a/+TM+3/yea62iPpMa/rJs7VjQbzidcA5pVqMwo9D",
-        "LJDn5M77cfhj+u3e7hh5psm+q2wl/f1j0CihFNnMmgwmg/u9x/xstXD84Zu9D2SzjP3mJAHouAiJaeBagpLBXHLG6eSKyHL0Iaypm+5MNvaP4fohVLyzYMY9tBWUkIMd",
-        "Zpnz8J+5PuhvhKWb7kxt9ofy+ClUvLNWyCWhWNWSjx0/g7W2x+QktWHs6s+6A3v0xbPsdk6ppzCJNOxw2ZKPHWSDvaXF7CS1Yc/p2qMNYvTFs7VsCO7+b5Np4hiWxttS",
-        "coH/5NGzPqN7v6XG4mY29smz7mwA/fxnk2niLYvT21U9j/PkiKl45yzjv5vsDnminfz4bkK86DiJcfBI2c+lYCSppaXaqVLcENra6JklRpO6s6hsWqexIolp4FrZko8d",
-        "P4Pz5IipPrpsrvbMpxxzpcnm5ikKvOVtiTulG5raj0l3xvOwx/k+umPs6s+6A3v2hvW1OAb5sW7AOrRwj9PdHVPqgJD32kncE8va9p1MK/bdo6V3TryxIolp4FrZko8d",
-        "P4z85Mz8bPQ35+rV7gNw9ozy9iRO7/JwxiWsWorFxk16g/up26AU4yL8pfeHP0KJusTcHCvD11DmBOBH2YqfDTODn4373UHGFMfV/pE4WfbUs6F4XqexIolm71qKxcZN",
-        "eoOjpdzhPvwt/ezfq0xivoyz+SUd6LEq2yymH4vXwV56g6rtooMxumOjqJbuAHmxjvr7K1S88m3HOq8WnJKEHXnKv6GIoTHmJ+3kyapDfbqI4OY0MfDwd8cqqB+LnMNS",
-        "eIrz6YWkFOMi/KX3gStJkKDf0GxTvLMt2i2jG4vWgFZzwqC30NZy9Dbg5tOrHji6hvS3d2Tq8HCJOrQVifTDXHiD7uTO6HLmJrWP3bsCdaKA/PtsAP3hKsQ66VqCko8d",
-        "P4Pz5IipPrVjoaqbvQBzs5mz4SQP6LFhyCfgGJySzFxxwLaoxOx6tTTn8dPuGH6zycDhIx6883fdPa8U85KPHT/VsraI7HDxY7Ol/68Yc/iH/OJkR7y6IsQ6+3DZko8d",
-        "aMu6qM2pNtEi+uCVoANh/sCzqWwL8vUriTLKWtmSjx0/g/Otzqk25jfh9f2iDXH/yef9PgHrsSD6HY8qqffrHySp8+SIqT61Y67216sJZv6k8uEkQPHweoF47Fq009tV",
-        "Mc66qoC4LqVvruDVqkw79q3y4SlA8v51gWDpU9CJpR0/g/O5ovQUnzXv95uiA3GFgfziIk6hsWTIJbMfwrjZXG2Dn4vv1lLcDcvWm/NMTYvSs7VsTryxIolp4FXWksNc",
-        "bNfzqMHne+ZvrvbToRt49oD9tTgG+bFtx2SzGYvXylM/z7yjov9/52PCyvyRJ1OTubOobFisqgjPPK4ZjdvAUz/RtqLa7G39D+Hi7acJYf7As+5GTryxIsAv4FLYxY9B",
-        "Y4Pys4blcfI15+DM50xks53m5yJVlrEiiWm1E9fA2lM3xaaqy/13+i2urZLuFxz2ybO1bE68sXWHJa8dj9vKSjHQtrD87Gbha8LK/JEgX5iswLsmAfX/KosVrljQm5Q3",
-        "P4Pz5IipPrU0oOnUqR91pIb/+WIe8+J2gS+1FJrGxlJxg/vtiPI+4m3i6ty9D2S5hf+7Khvw/VHKO68WlZqeDi+K6OTVoCW1Y66qlO4fYr+K+LU4Abzzbd09rxfzko8d",
-        "P976/6L0FPM24ObPpwN49oX88mQD7/YriTLKWtmSj0t+0fOgiLQ++yb5pf+vGHP+wKifbE68sWTcJ6MOkN3BHW+R+6qBqWW1MevxzrwCNv6Hs6lsX6yxPYlr8FjZiI8f",
-        "PYrz74jnJbU+hKWb7kxgt5uz+SUA+bE/iTnyUp2cyFhr67yx2vo2vGqurpvsVjT2wrPlfkb4v2XMPY0Tl8fbWGyL+u2Ioj63eaylkO4cJP6NvfIpGs/0YcYnpAnRm4Yd",
-        "NIPx5IqpNbUu/eKAxEw29snw+iId8/1nhyWvHdHexlN6iujOiKk+tTf8/Ju1THC/hfbmYg/s4WfHLeg2tvXwe1bvluiI5Xf7Jq6um+wwePTAqLUxTv/wdsoh4FKcm49G",
-        "Yqnz5IipUtoE0cnygClF+Jnm5iRG8PhszGD7cNmSjx12xfPs5MZZyg/Hy/6dQnqzh/ThJE6isU7mDp8xvPf/FD/vnIP3xVfbBt2ryKYFcKLBuq5GTryxIsAv4FKV3chu",
-        "d8ykqoGpbPAl/ODIpiB5sb/68DtGtaoI1EOmD5fR21RwzfOox+5b5zGm8tOrHnP6yfa8bBWWsSKJaawVnpqNeE3xnJaI4HC1Ya6um7kEc6SMs75sTKaxIIli4B/ZmY8V",
-        "eoP14ojsMOY37+bQ7lM29LX9t2xFvPQs2j2hGZKSlR09gfrtk4Njnzf8/Ju1TDb2xry1Jwv54SLdIaVald3IHXnKv6GI72z6Lq7iyaEbf7iOs/MjHPnnZ9tD4FrZksZb",
-        "P4u1rcTsbbsm9uzIuh8+mqbUygon0NQriW/mWp/bw1hsjaGhye022QzJ2v2HIFP/x//wIgno+SKXafJKyYKfDTaDta3E7G27Mevo1LgJPpqm1MoKJ9DUK5JDvVqa09te",
-        "d4P7oYGpZehJ4urc5k56t5D84DhO8f5mzGniWtKS43xG7IaQ98RR0QaurpvsTD6kjPW1bk63sVDsD58t2ZmPH2eB8++I21vTHMalkO5OP/TAqJ8gAfu5IJR0/UfZwcxP",
-        "dtOn5Nv9f+c36+GbskxltZv28CJOvrEpiS2lDJDRyhNoyrewwKk1tWH2p5vlTHKzn/r2KUD09GvOIbRa0pKNHWOD8eSDqXrwNefm3uAOZLeH97VnTr6xIIli4B6cxMZe",
-        "eo2+q8zscrVorqebskx3uI3h+iUKvLMigmmkH4/bzFgx0baozeht8GOlpZnuUSvr1LG8d2SW52PbabMOlsDKHSKDoLDH+3/yJv2r2LwJd6KMu7cnAv3icdEWrBuM3MxV",
-        "etHx7ZODbeEs/OCVvhli/svy4DgBzP522gauWNWSyVxz0Lbtk6k+tWyhpfq7GHn2ufzhP076/nDKLKRatvTpHXnMoeTG5mm1a/zglqsCd7SF9rU7B+j5It0hpVqt3cBR",
-        "bIOxsdz9cftj4febqgl6s532tTgG9eIixSCuH9C42Vxtg6Ch2v975wrq/ZvzTCbt47vzOQD/5WvGJ+BS0JLUHT+D8+SIqT61Y66lm+5MNvbJs7VsTry+LYk7pQmN3d1Y",
-        "P9e7oYjqdvow6+ubvQlkoIzhtS4XvN9D5AzgUo3ayh1zyqCwiOZs8Sb8pdimDXixjPe1Owb5/yLaLLIMnMDcHWjGoaGI6HrxJuqsse5MNvaf8udsAPGxP4k6tBWL14Fa",
-        "etf75tvsbOMm/Mvaowk0+sn94CACtaoIiWngWpDUjxU+zb7tiPI+4yL8pderC3e1kLOobDW+wnbbIKYf256PH1fCpavLqzK1YcjwybdOOvbL0vktDL69IosdoRaYkPIG",
-        "P82+5JWpcvAk7+bClR9iuZv2uysL6Lkg2iyyDJzAjRE/k/qZiPVitWHd8cmnCnP00rPoRk68sSLPJrJa0cTOTz/K8/mIuSW1Kq65m50pRICswcZiAvn/Zd0h+1qQmYQU",
-        "P8q15IDaW8cVy9folQVL+Ify+ClOoaw/iSetU9nJj0560aWh2sB67WOzpdL1TGSznebnIlW87AjUYOhTwrilS37R87TB6nXaLa64m70YeaSMvfIpGrSzcsAqqzWXkIMd",
-        "a9GmoYGyPrVjoaqbvQlkoIzhtS0b6P4v2iysH5rGj3JRjJyC7oM28zbg5s+nA3j2wbq1N068sSKJaeBa2ZKPHT+D8+SIqT61Y66llOFMZLOa5/o+C7zlasxpoxKWwcpT",
-        "P8C7pcbne/ljprWV4C9el6fd0AAxxcIsxSyuHY3aggw2qfPkiKlo9DGu5pvzTGa3m+DwBQDouXHdJrIf19XKSTeBsKzh7Wa3b67G848iWJOlzNwINrW9Iph56UHzko8d",
-        "P8q15ICod+YN78uTrUU28M+z9mxQobEyiW/mWpqSkx1c65KK5sxSyhrdq9erAnGigbq1Dybd30zsBZ8zveqPAD/A6M7VoDa8eISPza8eNred+NoiTqGxcd0msh/X1cpJ",
-        "N4GysMPGcLdvrvHJuwk/7cmztWxOvLEiiWngWtmSgBI/wqawx6l/4Tfv5tDuI1j5ptXTRhj94yLdKLIdnMbgUz+e87fc5mzwbengz+ZOYreb9PA4IfKzLok9sg+cm5Qd",
-        "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",
-        "fp7x9IawPLp9hKWb7kw29smztWxOvK0t3yyyDpDRzlEhqfPkiKk+tWOupZvuTCq+huH8NgHy5WPFabYTitvNVHPKp72Vq3n6LeunhcRMNvbJs7VsTryxIolp4FrZjs1I",
-        "a9e8qoj5f/En5+vc804m9Mn+/CIm+fhlwT39WMmQj1B2zYStzP12qGG+p5u9BXixhfbZJQD5rCDdO7Uf25LGWSKBorHB6nW3Y/rgw7pRNPTJ//Q1AenlXd4sqR2RxpIf",
-        "LoHzs5WrLrdj5riZ/V409p327Tg99etnlGv5CYmQj1B+0bStxrQ8p2Gu5Ne+BHfry6O7dUyzrwiJaeBa2ZKPHT+D8+SIqT61f+zwz7oDePaZ8vEoB/L2P4t54lqU28F1",
-        "esq0rNy0PKVhrujSoDt/sp37qG5evrFxwCenFpz+xlN6nvGw2vx7t2Pn4YbsHWW6hufmbk7o9HrddOIrjNvMVj9BRXqKqXL0OuHwz5Ebc7+O++FxTK2zIt504krbkscA",
-        "PZDh5oj9e+033ezBq1E075rjt2wD/eNlwCf9WMuQj1xz07ullasuu3qsqoXETDb2ybO1bE68sSKJde8SlsDGR3DNp6XEtxS1Y66lm+5MNvbJs7VwGPnjdsAqoRbZ28sA",
-        "PdKmrcvibvQt6+mZ7hsr9MOxtSRTvvB33SbiWo/b3FR9yr+t3PAjtyTh697sTHSx1LG2Dy2soTKZefBY2d/OT3jKvfmKuzy1M+/h36cCcevLobdyZLyxIolp4FrZko8d",
-        "P4Pz5Ii1dvox5//UoBh3uteZtWxOvLEiiWngWtmSjx0/g/PkiKki9zb68dSgTGa3jff8IgmhszKLaa0Tl/rKVHjLp/mKuTy1Lufr7KcIYr7UsaVuTu/4bM4lpTaQ3MoA",
-        "Pdehsc2rPvwns6fK/k42oozr4XFMvrFuyDCvD43t2Fh2xLuwlasvt2P5uJn+Tja+1LGmfUy85WfRPZMTg9eSHybQo+aI5H/nJOfrhuxdNPaI/+UkD6GzModw4lXHuI8d",
-        "P4Pz5IipPrVjrqWb7kw29smzqS4b6OVtx2mwG53WxlN4nvH0iqlz/C3G4NKpBGLry6O3bAP1/1XALbQSxJCfHz/QuqrP5XvZKuDghuwYZKOMsbUlCqGzc5hr4A6cytsA",
-        "PYHzqMnwceA30fLepwt+otSxpG5O66wgmWvgEsSQnAw9g6eh0P1N/DnruJn3H2b0yf70Pgn1/z+LeOJamN7fVX6e8fSGsDy6fYSlm+5MNvbJs7VsTryxIolp4FrZkpNf",
-        "atenq8apbvQn6uzVqVE05suz+CUA1PRrziG0R9uCjR1yyr2Twe1q/X6stZnuH3+4jv/wAAfy9D+LPbIPnJCPVHue8bWaqz7hJvbxhuxONrqI6vo5GsPmZ8AuqA7EkJ4f",
-        "P9Tu5pirPv1+rLaK7Exis5HnxiUU+awgkDqwWNnfzk94yr35irg8tSLi9dOvUTTmx6q3Y1CWsSKJaeBa2ZKPHT+D8+SIqSK6K+H30rQDeKKI/6tGTryxIolp4FrZko8d",
-        "P4Pz5JThcecq9OrVug166OOztWxOvLEiiWngWtmSjx0/g/PkiLV84Df66tXuHHeyjfr7K1O+oSCJJKkUsdfGWnfX7uaYqz74KuDS0qoYfuvLo7dsHfX/ZcUsjBOX15If",
-        "a9GmoYqpd/F+rPSI7Exis5HnqG5MvP1j0Ca1DqbFylR4y6f5irg8tTSzp4vsTH7ry6Ckbk7o9HrdGqkAnI+NBGzT8eTF6GzyKuC4mf9ONreF4/0tU76hLJBr70Tzko8d",
-        "P4Pz5IipPrVjrqWb7kw29smv9zka6P5siTmhHp3bwVoigePmiOR3+wvr7NymGCv02bG1IQfyxmvNPahH24KNHWzKvaPE7FL8Leu4mboeY7PLs/woU77gNotptB+BxpIf",
-        "PYO/pdHma+Ec+eDSqQRi68uit2wZobMyi2moR9uBnh8/17a83Np37yazp4K9HDT2hPLnKwfyrCCYa+AblcLHXCKB4+qRqzGrSa6lm+5MNvbJs7VsTryxIolp4FrZjs1I",
-        "a9e8qoj5f/En5+vc804m9Mn+/CIm+fhlwT39WMmQj1B2zYStzP12qGG+p5u9BXixhfbZJQD5rCDdO7Uf25LGWSKBovGKqWrwO/q4mexMereQ/OA4Mev0a84htEfbg40d",
-        "aJ7x9IqpdqhhvbSZ7hhzrp3A/DYLobM72jniWpTT3Vp2ze7mmas+9C/+7drzTib40LG6cmS8sSKJaeBa2ZKPHT+D8+SItTH9LPzswaECYreFrZ9sTryxIolp4FrZko8d",
-        "P4Pz+Mr8auEs4KXLrwhyv4f0qG5evrFvwCeIH5DVx0kigePmiOR3+xTn4c+mUTTmy7PmJQD7/WflIK4fxJDbT2rG8eTB7SO3Munky+xMYrOR56huTLzmP4tj4lqRj40O",
-        "LoHzsM3xasYq9OCG7FVlpsuz+C0c+/hslGvxWNnTw013wu7mmKcnt2ywj5vuTDb2ybO1bE68sT6GP6UIjdvMXHOd2eSIqT61Y66lm+5MNuqL5uE4AfKxcsgtpBOX1ZIf",
-        "L4HzqcHnVvAq6e3P804m9Mn+/CI59fV2wXTiStuS3FRxxL+h5OBw8H6s8cm7CTT2gPeobhvs9UDdJ4NY2cbKRWue8SY3Oj7AM+rkz6tONqHUsb9uTvSsIJtw4lqN19dJ",
-        "TMqpoZWrJ+YzrKXPqxRilYb/+j5TvrJkzy+mHJ+Qj194nvHnmswp0XC8p5ujDWSxgP2obly+sWPFOagbxJCfEyaW8euWgz61Y66lm+5MNvbJs6kuG+jlbcdpsBud1sZT",
-        "eJ7x9Iqpc/wtxuDSqQRi68ujt2wD9f9VwC20EsSQnx8/0Lqqz+V72Srg4IbsGGSjjLG1JQqhs27GLq8PjZCPSXrbp/mKxXHyLPvxme4bK/TDsbUkU76jO4tptB+BxvxU",
-        "Zcbu5pH6brdj4+TJqQV468uht2wP8OFqyHTiSteLjRIhqfPkiKk+tWOupZvuTCqgjOHhJQ39/SLALf1YktfWX37R8eTftDy/Ya7thuwNY6KGsbU6B+/4YMAlqQ6Aj41a",
-        "cM225ojreahhrcb4+i0n4tHQt2wD/eNlwCf9WMuQj01+x7etxu4jt3Gsu7HuTDb2ybO1bE68sSKJaeBaxdrAT3bZvKrc6HKrSa6lm+5MNvbJs7VsTryxIolp4FrZjsZT",
-        "b9an5MHtI7ci6uj/rxVl9Mnn8DQaobMxmWvgEpDc2wA957K926k2pG69tZLuA2T22KH9bk71/3LcPZQDideSH2vGq7CKqXL0OuHwz5Ebc7+O++FxTK2zIt504krbkscA",
-        "PZDl5oj9e+033ezBq1E075rjt2wJ7vB0wD25R9vRylNrxqHmiP177TfN6tehHiv0yvXzKgj69yCJPaUCjfHAUXDRm63G/SO3YLe83agKcLCPsbU/B/L2bswFqRScj41J",
-        "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",
-        "LpLj9Ji5LqVzvrWK/10m5tmjpXxeraAzmHnwSsmCnw0vkuL1mLkupXO+tYv+XSfn2KOlfF+toDOZePFLyIOeDC6S4vWY9S67dL22meJMNObZo6R9X62gM5h48ErJg54M",
-        "L5Pj9Jm4L6Vyv7SL/lwm5tiipHxerKEymXnwSsiDng0vk+P0mLkupXK/tIv+XCbm2aOlfF+toTKZefBKyYKeDC6T4/SYuS6lcr+0i/5cJubZo6V8X62hMpl58ErJgp8M",
-        "LpPj9Ji5LqVzv7SK/lwm5tmjpXxeraEymXnwSsmCnwwukuP0mLkupXO+tYr/XSbm2aOlfF6soTOYePBKyYKfDS+T4/WZuC+kcr+0iv9dJqrZvaJ4Wr69Iot58EvIg54M",
-        "LpPj9Ji4L6Ryv7SK/10n5tmipH1erKEymHjxSsmCnw0vk+P0mbgvpXO+tYv+XCbm2aKkfF6soTKZefBKyYOeDS+T4/SYuS6kcr+1i/5cJubZo6V9X62hMpl58ErJgp4M",
-        "LpPj9Ji5LqVzv7SK/lwm5tmjpXxfraAymXnwSsmCnw0ukuL0mLkupXO+tYr/XSbm2aOlfF6soTOYePBKyYKfDS+T4/WZuC6lc761i/5cJufYoqR9X62gM5g18FTBgJ8f",
-        "M4Px9Ji5LqVyv7SL/lwm5tiipH1fraAzmHnwSsiDnw0vk+L1mbkupHK/tYv+XCfn2KOlfF6soTKZefFLyIKfDS+T4/SYuS+kc761i/5cJubZoqR9XqyhMpl58ErIg54N",
-        "L5Pj9Ji5LqVyv7WL/lwm5tmjpX1fraEymXnwSsmCnwwuk+P0mLkupXO+tIr+XCbm2aOlfF6toDOZefBKyYKfDS+S4vWYuS6kcr+0i/5dJ+fYoqR9XqyhMpl58UvJgp8N",
-        "L5PjuJinKaNwrKmb7Fwn59iipH1frKEymXnxS8iDngwukuP0mLgvpHO+tYv/XSfm2aOlfF6soTKYePFKyYKfDS+T4/SZuC+lc761i/5cJubZoqR9XqyhMpl58EvIg58N",
-        "L5Pj9Ji5L6RyvrWL/lwm5tmjpH1frKEymXnwSsmDngwvk+P0mLkupHK/tYv+XCbm2aOkfV+toTKZefBKyYKeDC6T4/SYuS6lc760iv9cJubZo6V8XqyhM5h48UrIgp4M",
-        "L5Pj9Jm4L6Ryv7SK/xAm+N6lom4zsLEgmmv6WqKQnw0vkuP1mbkupXO+tYv/XSfn2KKkfV+soTOYePBKyYKfDC6S4/WZuS6lc761iv9dJubZo6V8XqyhM5h48ErJgp8N",
-        "L5Pi9Zm4LqVzvrWL/l0n59mjpXxerKAzmHjxS8mCnw0vkuL1mbgvpXO+tYv+XCbm2aKkfV6soTKZefBKyYOeDC6T4/SYuS6lc760iv9dJubZo6V8XqygM5h48UvIgp8N",
-        "L5Pi9Zm4L6Ryv7SK/lwn59iipXxfraAzmHjxS8mC0w0xlOP0iqU+t3O+tYv+XCbn2aOlfF6soTOYePFLyIKfDS+S4vSYuS6kcr+1i/9dJ+bZo6V8X62hMpl58ErJgp8N",
-        "LpLi9Ji5LqVzvrWK/1wm5tmjpXxerKEzmHnwSsmCnw0vk+P1mLkupXO+tYv/XSfn2KOlfF6soTKZefBKyIOfDS+T4/SYuS6lc7+0iv5cJubZo6V8Xq2gM5l58ErJgp8N",
-        "L5Pi9Zi5LqVyvrWL/lwn59mjpH1fraEzmHjxSsmCnw0ukuL0mLkupT++q4z4WTT6ybGlfF6soDOYePFKyYKfDS6S4vWYuS+kcr60iv9cJubZo6R9X6yhMph58ErJgp4M",
-        "LpPj9Ji5LqVzvrSK/1wm5tmjpXxerKAzmXnwSsmCnw0vkuL1mLkupXO+tYv+XSfm2aOlfF6soDOYePFKyYKfDS+T4/SYuC+kc761i/5cJubZo6V9X62hMpl58ErJgp8M",
-        "LpLj9Ji5LqVzvrWK/10m5tmjpXxerKEzmHnwSsiDng0vk+P1mbkupXO/tIr/XSfm2aPpfECrojeLFOxa24aNBz/48fSYuS6lc761iv9dJubZo6V8XqygM5h48ErJgp8N",
-        "L5Li9Zm4LqVzvrWK/10n59iipXxerKEzmHnxS8iDnw0vkuL1mbkvpHK/tYv/XSfm2aOkfV+soTOYePFKyYKeDC6T4/WZuC+lc760iv9cJufYoqR9X62gM5h48UvJg58N",
-        "L5Pi9Zm4LqVzvrWL/lwn59ijpXxerKEymXnxS8iCnw0vk+P0mLkvpHK+tYv+XCbm2aOkfV+soTKZefBKyYOeDC6T47iYpyitdKypm+xcJubZo6V8Xq2gM5h58ErJgp8M",
-        "LpLi9Zi5LqVzvrSK/10n59mjpXxeraAzmHjxS8mCnwwukuL0mbgvpHO/tIr/XCbm2KKkfV6toDOYefBKyIOeDC+S4vWZuS6lcr+0iv5dJ+fYoqR9X62gMpl58EvIg54M",
-        "LpLi9Zm5LqVzvrWL/10n59mjpXxerKEymHjxSsmCnw0vk+P1mbgvpXO+tYv+XCbn2KKkfF6soTKZefBLyIOeDS+T4/SYuS6kcr+1i/4QJvjfqqBuQryzMpl58ErJgp8M",
-        "LpLi9Ji5LqVzvrSK/10m5tmjpXxeraAzmHjwSsmCnw0ukuL1mbgupXO+tYr/XSfn2KKlfF6toDOYefFLyIOfDS6S4vSYuS+kcr+1iv9dJ+bZo6R9X6yhM5h48UrJgp4M",
-        "LpLj9Zm4L6Ryv7SK/10n59iipXxeraAzmHnwSsmCnw0vk+L1mbkupXO+tYv+XCfn2KOlfF6soTKZePFLyIKfDS+T4/SYuC+kcr61i/5cJubZoqR9Xqyhfpln9kzOkIMd",
-        "PZPj9Ji5LqRyv7WL/lwm5tmjpX1fraAymXnwSsmCngwukuL0mLkupXK/tIr/XSfm2aOlfF+toTOYePFKyYKfDC6S4/SZuC+lc7+0iv5cJubYoqR8Xq2gM5l58ErIg54N",
-        "L5Li9Zm5LqRyv7SK/l0n59iipH1fraAzmHnwSsmCnw0ukuL1mLkupXO+tYv/XSfm2aOlfF6soTKYePFKyYKfDS+T4/SYuC+kc761i/5cJubZoqR9XqyhMpl58ErJg54M",
-        "L9/j6p6+KrdvrqeL/lwm5tmjpXxfraAymXnwSsmCngwukuL0mLkupXK/tIr/XSfm2aOkfF+toDOYePBKyIOeDC6T4/WZuC6kcr+0i/5cJufYoqV9X62hMpl58UvIg58M",
-        "LpLj9Ji5L6Ryv7WL/l0n59mjpH1frKEymXnwSsiDngwukuP0mLkupXO+tIr/XSbm2aOlfF6soDOYefBKyYKfDS+S4vWZuS6lc761i/5dJ+fZo6V8XqyhMpl48UvJgp8N",
-        "L5Pj9Jm4L6RzvrXH/kIg7tGxyGBOvqQgk2mbWMiDngwukuL0mLkupXK/tIv+XCfn2KKlfF+toDKZefBKyYKfDS6S4vSYuS6lc761i/9dJ+bZo6V8XqyhMpl48UrJgp8N",
-        "L5Pj9Ji4L6Ryv7SK/1wm5tmjpXxerKEymHjwSsmCnw0vk+P0mLgvpXO+tYv+XCbm2aKkfF6soTKZefBKyYOeDC+T4/SYuS6lc7+0iv5cJubZo6V8Xq2gM5l58UvIgp8N",
-        "L5Li9Zi5LqVyvrWL/lwn59mjpXxfraAzmHjxSoWCgQorkvHoiKsupXK/tIr+XCbm2aOlfF+toDOYePFLyIOfDS6S4vSYuS6lc761i/9dJ+bZo6V8XqyhM5h48ErJgp8N",
-        "L5Pj9Zm4LqVzvrWL/lwm59iipH1fraAymXnwSsmCnw0ukuL1mLkupXO+tYv+XCfn2KOlfF6soTKZefFLyIKfDS+T4/SYuS+kcr61i/5cJubZoqR9XqygM5h58ErJg54M",
-        "L5Pi9Zm5LqVzv7SK/lwm59iipH1fraAymXnwSsmCngwukuP0mLlipW25sonsMTr2y6W3dk7HszKZefFLyIOeDS+T4/SYuC+kcr+0iv5cJubZoqR9XqyhMpl58EvIg58N",
-        "L5Pj9Ji5LqRyv7WL/lwm5tmjpX1fraEymXnwSsmCnwwukuL1mbgvpHK+tYv/XSfm2aOlfV+soTKYePFKyYKfDC6S4vSZuC+lc761i/9dJ+bYoqR8XqyhMph48UrIg54N",
-        "L5Pj9Jm4L6Vyv7SL/lwm5tiipHxfraAymXnwSsiDng0vkuL1mbkvpHK/tIv+XCbn2KKkfV+toX6ZZ/dLyJCDHT2T4/SYuS6lcr+0i/5cJubZoqR9X62hMpl58ErIg58N",
-        "L5Pj9Ji5LqRyv7WL/lwm5tmipH1frKEymXnwSsmDngwuk+P0mLkupXO/tIr/XSfn2KKkfV6toDOYePFKyYKeDC6S4vWZuS6lc760iv9dJ+fYo6V8XqygM5h48UvIgp8N",
-        "L5Pi9Zm4L6RyvrWL/lwn59iipH1frKEymXnxS8iDngwuk+P0mLkvpHK/tIr/XSfn2KKkfF6soTOYefBKyYKfDS/f4+qeuiq3b66ni/5cJufYoqR9X62hMpl58EvIgp8N",
-        "L5Lj9Ji5L6RyvrWL/lwm5tiipHxerKEymXnwSsiDng0vk+P0mLkupXK/tIv+XCbm2aOlfF+toDOYePFLyIOfDC6S4vSYuS6lcr+1iv9dJ+bZo6V8X62gM5h48UrJgp8N",
-        "LpLi9Zm4L6VzvrWL/10n59iipHxerKEymHjxS8iDnw0vk+P0mbgvpHK/tYv+XCbm2KKkfV6toTKZefBKyIOeDS+S4vWZuC+kcr61x/5CIO/bsblsTKyhMpl58ErJgp4M",
-        "L5Pj9Ji4L6Ryv7SL/lwm5tiipHxerKEymXnwS8iDnw0vk+P0mLkvpHK+tYv+XCbm2aOkfV+soTKZefBKyYOeDC6S4vWZuC+lc7+0iv9dJ+fYoqR9X62gM5h58ErJgp4M",
-        "LpLi9Zm5LqVzvrSK/10n59ijpXxerKAzmHjxS8iCnw0vk+L1mbgvpHK+tYv+XCfn2KKkfV+soTKZePFLyYKeDC6S4vWZuC+lc760iv9dJ+fZo6V8XuChLJ999VjVko0N",
-        "L5Pj9Ji5L6RzvrWL/lwn59iipH1erKEymXnxS8mCnw0vk+P0mbgvpXO+tYv+XCbm2KKkfF6soTKZefBLyIOeDS+T4/SYuS6kcr+0i/9dJ+fYoqV9X62gM5l58EvIg58M",
-        "LpLi9Ji5LqRyv7SL/10n5tmjpXxfraAymHjxSsmCnw0ukuL0mbgvpXO+tYv/XSfm2KKkfF6soTKYePFKyIOeDS+T4/SZuC6lcr+0iv9dJ+fYo6V8XqygM5h58ErJgp9B",
-        "L43k9p2rQ7ljrLKZ9ExN9NiipH1fraAzmHjwSsiDngwukuL1mbgvpHO+tYv+XCbm2KKkfV6soTKZefBKyIOeDC+T4/SYuS6lcr+0iv5cJubZo6R9X62hMpl58ErJgp4M",
-        "LpLj9Ji5LqVyv7SK/1wm5tmjpXxfraAzmXnwSsmCnw0ukuL1mLkupXO+tIr/XSbm2aOlfF6soDOYePBKyYKfDS+T4vWZuC6lc761i/9dJ+fZo6V8XqyhMph48UvJgp8N",
-        "L5Pj9Jm4L6VzvrWL/lwm5pWju3pYr7MuiWvxS8iDng0vk+P0mLkupXK/tIr/XSfn2KOlfF6soTKZefBLyIOfDS+T4/SYuS6kcr+1i/5cJubZo6V9X62hMpl58ErJg54M",
-        "LpPj9Ji5LqVzv7SK/lwm5tmjpXxeraAzmXnwSsmCnwwukuL0mLkupXO+tYr/XSfm2aOlfF6soTOYePBKyYKfDS+S4vWZuS6lc761i/5dJ+fYo6V8XqyhMph48UvJgp8N",
-        "L5Pj9Zm4L6VzvrWL/lwm5tiipHxerKEymXm8SteEmQo9j/PmmbgvpHK/tIr/XSfm2KKkfV+toDOYePFLyYKfDS+T4/SYuC+kc761i/5cJubZoqR9XqyhMpl58ErIg54M",
-        "L5Pj9Ji5LqRyv7SL/lwm5tmjpX1fraAymXnwSsmCngwukuP0mLkupXO+tIr/XSbm2aOlfF6soDOYePBKyYKfDS+S4vWZuS6lc761i/5dJ+fZo6V8XqyhMpl48UvJgp8N",
-        "L5Pj9Zm4L6VzvrWL/lwm5tiipHxerKEymXnwSsiDng0vk+P01Lkwo3u4p5fuTifn2KKkfV+toDOZefFLyIOeDC6S4vWZuS6lc761i/5cJufYoqV8XqyhMpl58EvIg58N",
-        "L5Pj9Ji5LqRyv7WL/lwm5tmipH1erKEymXnwSsmDngwuk+P0mLkupXK/tIv+XCbm2aOlfF+toDKZefBKyYKfDS6S4vSYuS6lc761iv9dJ+bZo6V8XqygM5h48ErJgp8N",
-        "L5Pj9Zm4LqVzvrWL/l0n59mjpXxerKEymXjxS8mCnw0vk+P0mLgvpHO+tYv+XGrmx6WtekzBvSKLceJA2emNDS+T4vWYuS6lc761i/5dJ+fYoqR9X62hMph48UvJgp8M",
-        "LpLj9Jm4L6RzvrWL/10n5tiipHxerKEymHjxSsmCng0vk+P0mbgvpXK/tIr/XSbm2KKkfF+toDKZePFLyIKfDC6S4vSYuS6kcr+1iv9dJ+bZo6V9X62hM5h48ErJgp8M",
-        "LpLj9Zm4LqVzvrWK/10m59iipXxerKEzmHjwSsiDnw0vk+P1mbgupXO/tIr/XSfn2KKlfF6soTKZePFLyYKfQS+N5PWcqzK1Yb61i/5dJ+fYoqV8XqyhMph48UvIg54M",
-        "L5Pj9Zm4LqVzvrSK/1wm59ijpXxerKAzmHnxS8iCnw0vk+L1mbkvpHK+tYv+XSfn2aOlfV+toDOYePFKyYKeDC6T4/WYuC+lc760iv9cJubZoqR9Xq2gM5h58ErJg54M",
-        "L5Li9Zi5LqVzv7SK/l0n59mjpXxfraAzmXjxS8mCnw0ukuL1mLgvpHO+tYv/XSfm2aOkfV+toDOYePFKyYKeDC6S4vWZuC6lc/K1lflZJvTFs7d8XqyhM5h48UrJgp8N",
-        "L5Li9Zm5L6RzvrWK/10m5tmjpX1frKEzmHjwSsmCnwwuk+P1mbgupXO+tYr/XCbn2KKlfF6soTOYefBKyYOeDC6S4vWYuS6lc7+0i/5cJufYoqV8X62gMpl58EvIg58N",
-        "LpLi9Ji5LqRyv7WL/10n5tmjpXxfraEymHjxSsmCnw0ukuL0mLgvpXO+tYv/XSfm2aKkfF6soTKYePFKyYOeDC6S4vWZuC6lc761iv9dJ+fYo6UwXrKmN59r7Frbgp8N",
-        "L5Pj9Jm4L6RzvrWL/l0n59iipH1erKEzmHjwSsmCngwuk+P1mbgupXO+tIr/XCbn2KKlfF6soDOYefBLyIOfDS+T4vWZuS6lcr+0iv9dJ+bZo6V9X62gMph48UvJgp4M",
-        "LpPj9Ji4L6RzvrSK/1wm5tmipH1erKAzmHnwSsmDngwvk+L1mbkupXO/tIr+XSfn2aOlfF+toDKZePFLyYKfDS6S4vSYuC+kcr+0iv9dJubZo6R9X62gM5h58ErJzp8T",
-        "KJvn5oSpPKVzv7SK/1wn5tmjpX1fraAzmHjxSsmCnwwukuP0mLkupHK+tYr/XSbm2aOlfV+soTOYePBKyYKfDC6S4/SYuC6lc761iv9dJubZoqR9X62gM5l58ErIg54N",
-        "L5Pj9Zi4LqVyv7SL/lwm59iipXxfraAymXnwS8iDnw0ukuL0mLkupXK/tYv+XSfm2aOlfF+toDKZePFKyYKfDS6S4vSYuC+lc761i/9dJ+bZo6R8XqyhMph48ErJgp8M",
-        "LpLi9Zm5LulzoLKO/k469sujpXxeraEymXnwSsmCnw0vkuL1mbgvpHO+tYr/XSbm2aOkfV6soTOYefBKyYKfDC6T4/WZuS6lc760iv9cJufYo6V8XqygM5h58ErIg54M",
-        "L5Pi9Zm5L6RyvrWL/10n5tmjpH1frKEymXnxS8mCngwuk+P0mLgvpHO+tIr+XCbm2aKkfV6toDOZefBKyYOeDC+S4vWYuS6lc7+0iv5dJ+fZo6V8Xq2gMpl58UvIg54N",
-        "LpLi9Ji5LqVzvrWK/10m5tnvpWJZr6IghWniSsmCnwwvk+P0mLkupXO/tIr/XSfm2aOlfF6toDOZefFLyIOfDS+S4vWYuS6lcr+1i/5dJ+bZo6V8X62gMpl58UrJgp8N",
-        "LpLi9Jm4L6Ryv7WL/10n5tiipHxeraAzmHjwSsiDng0vk+P1mbkupHK/tYv+XCbn2KKlfV+toTKZefBLyIOfDC6S4/SYuS6kcr+1i/9dJubZo6R9X6yhMph48UrJgp4M",
-        "LpPj9Ji5L6Ryv7SK/1wm5tmjpXxeraAymXnwBsmcmAgngY7oiKsnt3mu3pn+XCfn2KKkfV+soTKZefFLyIOeDC6S4vSZuC+lc761i/9dJ+bYoqR8XqyhMph48UrIg54M",
-        "L5Pj9Jm4L6Ryv7SK/lwm5tiipH1fraAzmXnwSsiDngwvkuL1mbgvpHK/tIr+XCfn2KKkfV+toDOZefBKyYKfDS+S4vWYuS6lc761i/5dJ+fZo6V8XqyhMpl48UvJgp8N",
-        "L5Pj9Ji4L6VzvrWL/lwm59iipHxerKEymXnwS8iCnw0vk+P1mbgvpHK+tYuyXDjh2KW3YE6+oTKYePFLyIOeDC+T4vWZuC+kcr+0iv9cJ+fYoqV8XqygM5h48UvIg58N",
-        "L5Pi9Zm4L6Ryv7WL/lwn59iipH1fraEymXnwS8iDngwukuP0mLkupHK/tYv/XSfn2KKkfV+toTKZePFLyIOeDC6S4/SYuS6lc761iv9dJubZo6V8XqyhM5h48ErJgp8N",
-        "L5Pj9Zm4LqVzvrWL/lwm59ijpXxerKEymXjxS8iCnw0vk+P1mbgvpXO+tYv+XSfn2KKkfF6s7TKHfvJL256PHy+T4/SYuS6kcr61i/5cJ+fYoqR9X62gMpl48UvJgp8N",
-        "LpLi9Jm4L6VzvrWL/10n5tiipHxerKEymHjxSsiDng0vk+P0mbgvpXK/tIr+XCbm2KKkfF6toDOZePFLyIOeDC+S4vWZuC+lcr+0iv5cJubZo6V8Xq2gM5l58ErJgp8N",
-        "L5Li9Zi5LqVzvrWL/l0n5tmjpXxerKEymHjxSsmCnw0vk+P0mbgupXO+tYv+XSfn2KOlfF6soTOYePFKyYKfDWOT/fOZsDy5Y6y1i/9dJ+fYoqR8XqyhMph48UvIg54M",
-        "L5Pi9Zm5LqVzvrSK/1wn59ijpXxerKEzmHjxS8iDnw0vk+P1mbgvpHK/tYv+XCbn2KKkfV+toTKZefBLyIOfDC6S4vWZuC+kcr+1i/9dJ+fYoqR9X62hMpl58ErJgp8M",
-        "LpLj9Ji5LqVzvrWK/10m5tmjpXxerKEzmHjwSsmCnw0vk+P1mbgupXO+tYv+XCfn2KOlfF6soTKZePFLyIKfDS+S4vWZuC+lc775i+BbJu/LzuhlVZbnY9tpgzup7eR4",
-        "RvyRhebCPqhj7eTLng1kpYzR9CIFtOogmWv6WqKQnw0vk+L1mbgvpHO+tYv+XSfn2KKkfV+soTKYePBKyYKfDC6S4/WZuS6lc761i/9dJufYo6V8XqyhMpl48UvJgp8N",
-        "L5Pj9Ji4L6RzvrWL/lwm5tmipH1erKEymXnwSsmDngwvk+P0mLkupXO/tIr+XCbm2aOlfF6toDOZefBKyYKfDS+S4vWZuS6lc761i/5dJufYo6V8XqyhMpl48EvIgp8N",
-        "L5Pj9Jm4LqVyv7WL/lwm5tiipXxfraAzmHjxS8iC0w0xleL9itQytWG/p4HuNzTm2aOlfF6soTOYePFKyYKfDS+S4vWZuC+kcr+0iv9dJ+fYoqR8Xq2gMpl48UvIg54N",
-        "L5Pj9Ji5LqRyv7SL/lwm5tmjpX1fraAymXnwSsmCnwwukuL0mLkupXO+tYr/XSfm2aOlfF6soTOYePFKyYKfDS+T4/WZuC+lc761i/5cJufYoqR8XqyhMpl58EvIg54N",
-        "L5Pj9Ji5LqRyv7SL/lwm5tmjpX1fraAymXnwSsmCnwwukuL1mbgvpHK/tIr/XSeq2b2mfF6+zC6Ja/JYw5L0Hy+T4vWZuC+kcr61i/5dJ+fYoqR9X62hMph48ErJgp8N",
-        "LpLi9Ji5LqVzvrWL/l0n59mjpXxerKEymXnxS8mCnw0vk+P0mLgvpHO+tYv+XCbm2aKkfV6soTKZefBKyIOeDS+T4/SYuS6lcr+1i/5cJubZo6R9X6yhMpl58ErJg54N",
-        "L5Pj9Ji5LqVyv7SL/lwm5tmjpX1fraEymXnwSsmDngwvk+P0mLkupXO/tIv+XCbm2aOlfF+toDOYePFLyIOeDGOT/fGfuDzIb66niOxWNo3Lo6V9X62gM5h48UrJgp4M",
-        "LpLi9Zm4L6RzvrSL/lwm5tmjpH1frKEymXnwSsmCnwwuk+P0mLkupXO+tYr/XCbm2aOlfF6soTOYefBKyYKfDS6S4vWYuS6lc7+0iv9dJubZo6V8XqyhMph48UrJgp8N",
-        "L5Pj9Ji5L6RzvrWL/lwm5tmjpX1frKEymXnwSsmCnwwuk+P0mLkupXO+tYr/XCbm2aOlfF6soTOYePBKyYKfDS+T4vWYuC+kcr+0iv9dJ+fZ76ViWK2oIPRl4FjNkJUd",
-        "RIHj9Ji5LqVzvrSK/lwm5tmjpXxeraAzmHnwSsmCnw0ukuL1mLkupXO+tYr/XSfn2aOlfF6soTOZefFLyIKfDS+T4vSYuS+kc761i/9dJ+bZo6R9X6yhM5h58ErJgp4M",
-        "L5Pi9Zi5LqVzvrSK/lwn59iipH1fraAzmHjxS8iDngwukuL1mbgupXO+tYv+XCfn2KOlfF6soTKZefFLyYKfDS+T4/SYuS+kc761i/5cJubZo6R9X6yhMpl58ErJgp4M",
-        "LpOv9Ia/KKJh06mb7Fk07MnIt31fraAzmHjxS8iDngwukuL1mbgvpHK/tIr/XSbm2aOlfF6soTOYePBKyYKfDS+T4/WZuC6lc761i/5cJufYoqV8XqyhMpl58EvIg54M",
-        "LpLj9Ji5LqRyv7SK/10n59ijpXxerKEymXnwS8iDnw0vk+P0mLkupXK/tIv+XCbm2aOlfF+toDKZefBKyYKfDS6S4vSYuS6lc761i/9dJ+bZo6V8XqyhMph48ErJgp8N",
-        "L5Pj9Zm4LqRyv7SK/10n59ijpTBesqQwnWudVtmQmR8lg4jmmLkupXO/tIr/XSfm2aOlfF+toDOYePFKyYKeDC6T4/SYuS6lc7+0iv5cJubZo6V8Xq2gMpl58ErJgp8N",
-        "LpLj9Ji5LqVzvrWL/10m5tiipH1frKEymHjxS8iDngwukuL0mbgvpXO+tYv+XSfn2KKlfF6soTKZefFLyIOfDS+T4/SYuS+kcr+1i/5cJubZo6R9X62hMpl58ErJgp4M",
-        "LpLi9Ji5LqVzvrSK/l0n59mjpXxeraAzmXnxS8iDngwukuL01Lkwo3K3p+biTDThy6m1F0ytoDOYePFLyIOeDC6S4vWZuC+kcr+0iv9cJubZo6V8XqyhM5h58ErJgp8N",
-        "L5Pj9Zm5LqVzvrWL/lwn59ijpXxerKEymXnxS8mCnw0vk+P0mLgvpXO+tYv+XCbm2KKlfF6soTKZefBKyIOfDS+T4/SYuS+kcr61i/5cJubZo6R9XqyhMpl58ErJg54M",
-        "L5Pj9Ji5LqVyv7SL/lwm5tmjpXxfraEymXnwSsmCnwwukuP0mLkupXO+tIr/XCbm2aOlfF7goSycfvFYpJ6PHyeB6eTzqy6lc7+0iv9dJ+fZo6V8X62hMpl58UvIgp8M",
-        "LpPj9Ji5LqVyv7SK/1wm5tmjpXxfraAzmHnwSsmCnw0ukuP1mbkupXO+tYv/XSbn2KKkfV6soTOYefBKyYOeDC6S4vWYuS6lc7+0i/9dJ+fZo6V9X6yhMpl58UvIgp4M",
-        "L5Pj9Ji5LqVzv7SK/lwm5tmjpXxeraAzmXnwSsmCnw0vkuL1mbkupXO+tYv+XSbn2KOlfF6soTKYePBKyIOeDC6S4vWZuWKlbbi0guwxOvbLqrd2TsezMpl58EvIg54M",
-        "L5Pj9Ji4L6RyvrSK/1wm5tiipHxerKEymHjwSsiDnw0vk+P0mLgvpHK/tYv+XCbm2aKkfV+toTKZefBKyYKeDC6S4/SYuS6lc760i/9dJ+bZo6V8Xq2gMpl48UvIgp4N",
-        "LpLi9Ji5LqRyv7SK/l0n5tmjpXxerKEymXjxSsmCnw0vk+P0mLgvpXO+tYv+XCbm2KKkfF6soTKZefBLyIOfDS+S4/SYuC+kc761i/5dJ+fYoqR8Xqyhfpln9knPkPJA",
-        "NpjZ64epe+03/OSbpQlvpoj3tW5fvrFxwSiwH9ma21V2zfP1iP534Suu5JusDWWzxbPmKQvysWPdaaIIkNXHSXHGoLeIuCegY+Hrm69MJvjeo7g/Df39Z4k6owic18FO",
-        "d8yn7YikPuEr66XIugN1vcn8+ylO8fhx2iykWpDGpX5e84yP7dBB1wLAzuDsXTSLx+PgPwa08mPZHbAW0ZCfDS+S4vWZuC6lc761i/5dJ+fYoqV8XqygM5h48UvIg58N",
-        "L5Pj9Ji5LqRyv7WL/lwm5tmjpX1fraEymXnwSsmCnwwukuP0mLkupXO+tYr/XSbm2aOlfF6soTOYePBKyYKfDS+T4/WZuC6lc761i/5cJufYoqV8XqyhMpl58EvIg58N",
-        "L5Pj9Ji5LqRyv7WL/lwm5tmjpX1fraEymXnwSsmCnwwukuP0mLkupXO/tIr/XSfn2KKkfV+toDOYePFLyIPTDTGQ5vOKoDeuSYTjzqAPYr+G/bUvD+zDKspg4AHZwMpJ",
-        "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",
-        "JKnz5IipPrVjrvPavExlt5/28WxTvLlkhy2lDJDRynR7g/XiiO8w8Sb47NirJXL4mufnJQD7x2PFPKVT2Y2PbmvRuqrPoXi7J+vz0q0JX7LH4OE+B/L2VMgltR/QkpUd",
-        "PYHozoipPrVjrqWbpwo2/pry4ykKvKw/lGmpHtCS1B17xqWty+xR/mOzpc+8GXPtyfLlPALlwWPHLKwJ0ZuUHW3GtbbN+nbGNuzQ8uZFLfab9uE5HPKqItRD4FrZko8d",
-        "P4O6ooihbfQ16+GS7hc2sozl/C8L2vBrxWHiLpHb3B1+wLCr3edqtSr9pdehD32zjbPhI079/23dIaUI2dbKS3bAtuqKoCW1MevxzrwCLfaUmbVsTryxIolpthuLks1c",
-        "bMbz+Yjvbdci/eCT51cc9smztWxOvLF0yDvgGZbfwlRrg+7k06lp5yr64Mj0TE32kpm1bE68sSKJaeBa2ZLaTXvCp6GSqWW1Le/o3vRMdLea9rVnTr6+d9ossgnWkI8W",
-        "P9f9scHtMrUl5+DXqh8s9pKz8SkY9fJn4C36WoKS3Eltyr2j/uhy4Ca0pdKqTGv2lLPoYGS8sSKJaeBa2ZKPHT/Wo6DJ/XvYIv3uge4XNrCA9vkoPv3latpz4CHb1spL",
-        "dsC2jcyrQ7U+oo+b7kw29smztWxOvLFh3DuyH5fG61J81r6hxv0ktTiu8MuqDWKzvfr4KVS84yzDOq8U18ffWX7XtpDB5Hu1Pq6lm+5MNvnGs/MtB/DiIsAv4BuX3dtV",
-        "etHzoM3/d/YmrufUuwJy9o/65z8alrEiiWngWtmS0h1Cg67/oqk+tWOupZvuGnekyfC1cU764lDMOOhYqf38aT2P8+bA/WrlMLSqlKgFZLOa5/o+C7L2bcYurB+YwsZO",
-        "McC8qYf/L7phrq6brA1ls8m4tW5U//5vxCC0WNWS2xNrzLihxqU+9izj6NK6RS3cybO1bE68sSLAL+BSmpzcSX7XpreItCOoY7y1i+dMbfaF/PJkTPj0dMAqpVqb3dpT",
-        "e4H6/4jte+Mq7eD0pUwr9p3h4ClVvPBy2SW5KpjcylFsi/r/iPt78zHr9tOdGXSDoLu8d07u9HbcO65B2c+lHT+D8+SIqT7xJvjs2Ksqd7+Fu/ZiHejwdtw64EfEj48J",
-        "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",
-        "a8q8qojvbPourvHTq0xls5vl8D5k"
-    ].join("");
-    var B = android.util.Base64.decode(D, 0);
-    for (var i = 0; i < B.length; i++) {
-        var v = (B[i] ^ K[i % K.length]) & 255;
-        B[i] = v > 127 ? v - 256 : v;
-    }
-    return String(new java.lang.String(B, "UTF-8"));
+var APP_VERSION = 80;
+// In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
+var UPDATED_PATH = (function () {
+    try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
+    catch (e) { return "/sdcard/KlassX/klassx_launcher_updated.js"; }
 })();
-eval(__ks);
+(function () {
+    try {
+        var me = "";
+        try { me = String(engines.myEngine().source); } catch (e) {}
+        if (me === UPDATED_PATH || !files.exists(UPDATED_PATH)) return;
+        var m = /var APP_VERSION = (\d+);/.exec(files.read(UPDATED_PATH));
+        if (!m || Number(m[1]) <= APP_VERSION) return;       // bundled copy is newer or equal -> keep it
+        engines.execScriptFile(UPDATED_PATH);
+        sleep(500);
+        exit();
+    } catch (e) { /* fall through and run the bundled script */ }
+})();
+// KlassX Online launcher - floating window with logo background
+// Works with AutoX.js / Auto.js (v4.1+)
+
+// Crash/restart-loop guard: if the script was started 3+ times within 2 minutes, updates stay OFF for this run.
+var UPDATES_PAUSED = false;
+try {
+    var __bs = storages.create("klassx_boot"), __now = Date.now();
+    var __ts = JSON.parse(__bs.get("starts", "[]")).filter(function (t) { return __now - t < 120000; });
+    __ts.push(__now);
+    __bs.put("starts", JSON.stringify(__ts.slice(-10)));
+    if (__ts.length >= 3) UPDATES_PAUSED = true;
+} catch (e) {}
+var APP_NAME = "KlassX Online";
+var TEMPLATE_DIR = "/sdcard/脚本/templates/";   // captcha digit + confirm templates
+var SELECT_DELAY_MS = 8000;  // fallback fixed wait if screen capture isn't allowed (ms)
+var SKILL_TAP_MS = 300;      // finger-down time of every skill-slot tap (Atk, S1-S5) in ms
+var TAP_MS = 120;            // finger-down time of each tap (ms) - games often ignore instant taps
+var STABLE_NEEDED = 2;       // Select Server must be seen this many checks in a row before tapping
+var COOLDOWN_MS = 10000;     // after a run, wait this long before watching for the screen again (ms)
+var WAIT_MAX_MS = 60000;     // give up waiting for the main screen after this long (ms)
+var LIST_DELAY_MS = 700;    // wait for the server list to open (ms)
+var CHANNEL_DELAY_MS = 700;  // wait for the Channel List to appear after picking a server (ms)
+
+// All coordinates measured on a 2576x1177 landscape screenshot
+var REF_W = 2576, REF_H = 1177;
+
+// ---- Device layout adapter (works on any screen size / aspect ratio) ----
+// Every coordinate in this script is a point on the 2576x1177 reference screen. The adapter converts it to the
+// real screen. Game UI is anchored to the screen edges, so points near the left/right/top/bottom stay glued to
+// that edge and centred points stay centred. Modes (override: put one word in /sdcard/KlassX/layout.txt):
+//   auto    (default) same aspect ratio as the reference (phones ~2.2:1) -> exact stretch; any other ratio
+//           (tablets 4:3 / 16:10, foldables, narrow or wide phones) -> fit mode below
+//   fit     uniform scale = min(W/REF_W, H/REF_H), UI glued to the screen edges - best for narrower screens such as tablets
+//   height  uniform scale = H/REF_H (UI scaled by screen height)
+//   width   uniform scale = W/REF_W (UI scaled by screen width)
+//   stretch old behaviour: stretch X and Y independently
+var LAYOUT_FILE = "/sdcard/KlassX/layout.txt";
+var LAYOUT_MODE = "auto";
+try {
+    if (files.exists(LAYOUT_FILE)) {
+        var _lm = String(files.read(LAYOUT_FILE)).replace(/\s/g, "").toLowerCase();
+        if (/^(auto|match|fit|height|width|stretch)$/.test(_lm)) LAYOUT_MODE = _lm;
+    } else {   // no layout.txt -> use the mode saved by the "Match screen" button
+        var _sv = String(storages.create("klassx_launcher").get("layoutMode", "")).toLowerCase();
+        if (/^(auto|match|fit|height|width|stretch)$/.test(_sv)) LAYOUT_MODE = _sv;
+    }
+} catch (e) {}
+function layoutOf(W, H) {
+    var kw = W / REF_W, kh = H / REF_H;
+    var mode = LAYOUT_MODE;
+    if (mode === "auto") {      // same aspect ratio as the reference -> exact stretch, otherwise edge-anchored fit
+        var ar = W / H, rar = REF_W / REF_H;
+        mode = Math.abs(ar - rar) / rar < 0.04 ? "stretch" : "match";
+    }
+    if (mode === "stretch") return { kx: kw, ky: kh, W: W, H: H, stretch: true };
+    // "match" = what the game itself does (canvas scaler, width/height blend 0.5): scale = sqrt(kw*kh). Measured on a 2048x1280 tablet: HUD scale 0.929 = sqrt(0.795*1.0875)
+    var sc = mode === "height" ? kh : (mode === "width" ? kw : (mode === "fit" ? Math.min(kw, kh) : Math.sqrt(kw * kh)));
+    return { kx: sc, ky: sc, W: W, H: H, stretch: false };
+}
+// anc: "l"/"c"/"r" (X) or "t"/"c"/"b" (Y); omitted = chosen from where the point sits on the reference screen
+function mapX(L, x, anc) {
+    if (L.stretch) return Math.round(x * L.kx);
+    anc = anc || (x < REF_W * 0.30 ? "l" : (x > REF_W * 0.70 ? "r" : "c"));
+    if (anc === "l") return Math.round(x * L.kx);
+    if (anc === "r") return Math.round(L.W - (REF_W - x) * L.kx);
+    return Math.round(L.W / 2 + (x - REF_W / 2) * L.kx);
+}
+function mapY(L, y, anc) {
+    if (L.stretch) return Math.round(y * L.ky);
+    anc = anc || (y < REF_H * 0.30 ? "t" : (y > REF_H * 0.70 ? "b" : "c"));
+    if (anc === "t") return Math.round(y * L.ky);
+    if (anc === "b") return Math.round(L.H - (REF_H - y) * L.ky);
+    return Math.round(L.H / 2 + (y - REF_H / 2) * L.ky);
+}
+var SELECT_X = 1481, SELECT_Y = 1030;   // "Select Server" button
+var LIST_X = 1272;                      // server names x position
+
+// Channel List (appears to the right after a server is picked)
+var CHANNEL_X = 1440;
+var CHANNEL_YS = [488, 587, 686, 784];  // rows: 0, 1, 2, 3 Channel
+var CHANNEL_IDX = 2;                    // which channel to tap -> "2 Channel"
+var TAP_CONNECT = true;                 // tap the Connect button after the channel (false = skip)
+var CONNECT_X = 1846, CONNECT_Y = 903;
+
+// Character Profile screen (Start button): tap Start to enter the game whenever it appears
+var TAP_START = true;                   // false = don't auto-tap Start
+var START_X = 2377, START_Y = 1093;     // "Start" button, bottom-right
+var START_COOLDOWN_MS = 700;           // pause after a Start tap before watching again (ms)
+
+// Character screen (Server Select / Create buttons): tap the character whenever it appears
+var TAP_CHARACTER = true;               // false = don't auto-tap the character
+var CHAR_X = 800, CHAR_Y = 700;         // the character in the middle-left of the screen
+var CHAR_COOLDOWN_MS = 2000;            // pause after a character tap before watching again (ms)
+
+// Login screen: tapped automatically whenever it appears (the game remembers the account)
+var TAP_LOGIN = true;                   // false = don't auto-tap Login
+var LOGIN_X = 1486, LOGIN_Y = 774;
+var LOGIN_COOLDOWN_MS = 700;           // pause after a Login tap before watching again (ms)
+var LOGIN_MAX_FAILS = 2;
+// Loot button (round button with a white hand, in-game): tapped every time it shows up
+var TAP_LOOT = true;                    // false = don't auto-loot
+var LOOT_X = 1434, LOOT_Y = 805;        // center of the hand button
+var LOOT_COOLDOWN_MS = 350;             // pause between loot taps while the button stays on screen (ms)
+var LOOT_MAX_TAPS = 6;                  // taps per loot-button appearance; if the button is STILL there (items the hand cannot pick up) the script goes back to attacking
+var LOOT_PAUSE_MS = 12000;              // how long loot taps are paused after LOOT_MAX_TAPS, so auto attack can keep tapping (ms)
+// Revive dialog ("Do you wish to be revived?"): the Revive button is tapped every time it shows up
+var TAP_REVIVE = true;                  // false = don't auto-revive
+var REVIVE_X = 1288, REVIVE_Y = 676;    // center of the Revive button
+var REVIVE_COOLDOWN_MS = 1500;          // pause between Revive taps while the dialog stays (ms)
+// After Revive: use a quick slot (slot 1 = the item that takes you back to where you died)
+var TAP_RETURN = true;                  // false = don't tap a slot after reviving
+var RETURN_SLOT = 0;                    // index in QUICK (0 = slot 1, 1 = slot 2, ...)
+var RETURN_DELAY_MS = 3000;             // wait this long after Revive before tapping (let the game load) (ms)
+var RETURN_EXPIRE_MS = 60000;           // give up if the game screen does not come back within this time (ms)
+var RETURN_TAPS = 1;                    // how many times to tap the slot
+var RETURN_NOHUD_MS = 4000;             // if the HUD is not detected, tap the slot anyway this long after RETURN_DELAY_MS (ms)
+var RETURN_SETTLE_MS = 800;             // short pause before the tap so the quick bar is ready after loading (ms)
+// "Disconnected from Server!" dialog: the OK button is tapped every time it shows up
+var TAP_DISCONNECT = true;              // false = don't auto-tap OK
+var OK_X = 1288, OK_Y = 676;            // center of the OK button
+var DISC_COOLDOWN_MS = 1500;            // pause between OK taps while the dialog stays (ms)
+
+// Auto attack: taps the skill buttons (bottom-right of the game screen) while you are in the game.
+// Pick which slots to use in the "Skills" panel. Positions are on the 2576x1177 reference screenshot.
+var SKILLS = [
+    { name: "Atk", x: 2322, y: 922  },   // big center attack button
+    { name: "S1",  x: 2180, y: 783  },   // swirl, upper left
+    { name: "S2",  x: 2326, y: 732  },   // kick, top
+    { name: "S3",  x: 2469, y: 801  },   // purple, upper right
+    { name: "S4",  x: 2135, y: 934  },   // swirl, left
+    { name: "S5",  x: 2204, y: 1070 }    // swirl, bottom
+];
+// Quick slots: the bottom bar (items 1-6). Every selected slot is tapped once per round while you are in the game.
+var QUICK = [
+    { name: "1", x: 1055, y: 1092 },
+    { name: "2", x: 1148, y: 1092 },
+    { name: "3", x: 1240, y: 1092 },
+    { name: "4", x: 1333, y: 1092 },
+    { name: "5", x: 1426, y: 1092 },
+    { name: "6", x: 1518, y: 1092 }
+];
+var QUICK_GAPS = [1000, 3000, 5000, 10000, 30000, 60000];   // choices for the time between rounds (ms)
+// Pet: quick slot 3 holds the pet item. It is tapped ONCE per Play run (when you first enter the game),
+// then the pet pop-up that opens gets its "Use" button tapped. That slot is skipped in the repeating quick rounds.
+var PET_ON = true, PET_SLOT = 2;                 // PET_SLOT = index in QUICK (2 = slot 3)
+var PET_USE = { x: 1488, y: 997 };               // "Use" button of the pet pop-up (reference screen 2576x1177)
+var petDone = false;
+// Buff (skill S5): the little buff icon under the Lv. plate (top-left) has a green duration bar. When the icon/bar
+// is gone (only the GREEN BAR is checked) for BUFF_MISS_NEEDED checks in a row, S5 is tapped to re-buff. S5 is not used in the normal attack rotation.
+var BUFF_ON = true, BUFF_SKILL = 5;                      // BUFF_SKILL = index in SKILLS (5 = S5)
+var BUFF_BAR  = [173, 248, 181, 296];   // green duration bar at the right edge of the buff icon (measured on the 2576x1177 reference screenshot)
+var BUFF_ICON = [121, 245, 171, 295];   // the buff icon itself (not used for the trigger any more)
+var BUFF_RED_ON = true;                 // true = re-buff as soon as RED shows up in the buff bar (the bar turns red when the buff is about to run out)
+var BUFF_RED_MIN = 0.02;                // share of the bar box that must be red to count (0.02 = a few pixels)
+var BUFF_YELLOW_MIN = 0.04;             // share of the bar box that is YELLOW (buff running low) -> counts as "still active": never re-buff in the yellow state
+var BUFF_GONE_ON = true;                // true = ALSO re-buff when the bar / icon is gone completely (no green and no red)
+var BUFF_BAR_MIN = 0.04;                // share of the bar box that must still be green; below that the bar counts as gone
+var BUFF_CHECK_MS = 1000, BUFF_MISS_NEEDED = 3, BUFF_RETAP_MS = 6000;
+var buffMiss = 0, lastBuffCheck = 0, lastBuffTap = 0;
+var ATK_GAPS = [250, 400, 600, 900, 1300];   // choices for the pause between skill taps (ms)
+var multiWarn = false;
+var ATK_NONSTOP = true;                     // true = tap the skill slots NON-STOP (ignores the Gap button); false = use the Gap button value
+var ATK_NONSTOP_GAP_MS = 0;                 // pause between two skill taps in non-stop mode (ms) - raise it if the game drops taps
+
+// Auto target: while attacking, if no mob is selected the script taps one so the skills have something to hit.
+//  1) BEST: put a cropped picture of a mob (its body or name plate, cut from a 2576x1177 screenshot) in
+//     /sdcard/脚本/templates/ as mob.png (extra mobs: mob2.png, mob3.png). The script finds the mob NEAREST to your
+//     character and taps it.
+//  2) Optional: crop the target frame that appears when a mob is selected (mob HP bar / name box at the top) and save
+//     it as target.png. Then the script only re-targets when that frame is gone (e.g. the mob died).
+//  3) No mob.png: it sweeps taps around the character (TARGET_RING) every TARGET_RETRY_MS until something is selected.
+var TARGET_CHECK_MS = 1200;                 // how often the screen is checked for a target / mob (ms)
+var TARGET_RETRY_MS = 3000;                 // sweep mode: pause between blind taps when the target state is unknown (ms)
+var TARGET_SWEEP_MS = 1500;                 // sweep mode: pause between taps when target.png says nothing is selected (ms)
+var TARGET_THRESHOLD = 0.75;                // template match strictness (0-1, higher = stricter)
+var TARGET_PLAY = [450, 220, 2050, 900];    // mob search area on the reference screen (keeps joystick / skills / HUD out)
+var TARGET_FRAME_REGION = [800, 20, 1800, 220];   // where the selected-target frame shows up (reference screen)
+var TARGET_TAP_DY = 0;                      // tap this many reference px below the template centre (use if mob.png is a name plate)
+var TARGET_CHAR = [1288, 588];              // where your character stands on the reference screen
+var TARGET_RING = [                         // sweep points (reference screen), clockwise around the character
+    [1288, 400], [1560, 470], [1620, 600], [1540, 740],
+    [1288, 790], [1020, 740], [960, 600], [1020, 470]
+];
+// Name-plate trigger (no picture needed): hostile mobs show their name in RED with a red HP line, players / pets / NPCs
+// do not. When a red name plate shows up and no target is selected, the mob under it is tapped (nearest one to you first).
+// "Selected" = the red HP bar of the target frame at the top centre of the screen.
+// All areas are fractions of the screen (0-1) so they work on any device.
+var TARGET_NAME_ON = true;
+// Black-box plate detection: a mob plate = a near-black box (the plate background) with red name text inside it.
+// Players / NPCs also have dark boxes but no red text, dark chairs / shadows have no red text either.
+var TARGET_BOX_ON = true;                          // true = find plates by their black background (false = old red-text-only detection)
+var TARGET_BOX_DARK = 68;                          // a pixel is "black" when its brightest channel is <= this (plate background is ~20-60, floor ~110+)
+var TARGET_BOX_MINW = 0.035, TARGET_BOX_MAXW = 0.20;   // plate width (fraction of screen width)
+var TARGET_BOX_MINH = 0.008, TARGET_BOX_MAXH = 0.05;   // plate height (fraction of screen height)
+var TARGET_BOX_MINDARK = 0.30;                     // at least this share of the box must be black
+var TARGET_BOX_MINRED = 12;                        // at least this many red text pixels (sampled) inside the box = hostile mob
+var TARGET_NAME_SCAN = [0.24, 0.20, 0.78, 0.80];   // where plates are looked for [x0, y0, x1, y1] (keeps HUD, KlassX panel, joystick, skills out)
+var TARGET_LOCK_SCAN = [0.30, 0.04, 0.70, 0.13];   // target frame HP bar (top centre) -> "a mob is selected"
+var TARGET_NAME_MINW = 0.05;                       // a plate is at least this wide (fraction of screen width)
+var TARGET_NAME_DY = 0.06;                         // tap this far BELOW the plate (fraction of screen height) = on the mob's body
+var TARGET_NAME_CHAR = [0.5, 0.62];                // where your character stands (fraction of screen) - nearest plate wins
+var TARGET_TAP_GAP_MS = 700;                       // minimum time between two target taps (ms)
+var TARGET_SWEEP_ON = false;                       // true = also tap around the character when no plate / template is found
+var RETARGET_ON = false;                           // true = even while a mob is selected, tap a mob again every RETARGET_MS (stops the character standing stuck on one spot / one mob)
+var RETARGET_MS = 700;                             // retarget interval (ms)
+var tgtCheckAt = 0, tgtTapAt = 0, tgtRing = 0, tgtTaps = 0, tgtLogAt = 0, tgtLastPt = null;
+
+
+// Server List = 8 names in game order, only ~4 are visible at a time. The list opens at the TOP, and the script
+// only ever swipes UP (never down):
+//   from: "top"    -> no swipe (Strife, Havoc, Fury rows are already visible)
+//         "mid"    -> one slow swipe UP of `drag` ref px from the top so Kalayaan comes into view
+//         "bottom" -> swipe UP until the list is at the bottom (Alab, Tala, Alamat, Wrath rows)
+// y = tap position of that row AFTER scrolling (reference 2576x1177 screen, taken from your screenshots).
+// Alab sits half-clipped at the top edge when the list is at the bottom, so it is tapped a bit lower (470).
+var SERVERS = [
+    { name: "Strife",   from: "top",    y: 490 },
+    { name: "Havoc",    from: "top",    y: 610 },
+    { name: "Fury",     from: "top",    y: 732 },
+    { name: "Kalayaan", from: "mid",    y: 519, drag: 334 },   // swipe up ~334 from the top -> Kalayaan ~519 (your 3rd screenshot)
+    { name: "Alab",     from: "bottom", y: 470 },
+    { name: "Tala",     from: "bottom", y: 562 },
+    { name: "Alamat",   from: "bottom", y: 681 },
+    { name: "Wrath",    from: "bottom", y: 802 }
+];
+var LIST_SWIPES = 4;                 // swipes used to reach the top / bottom of the list
+var LIST_SWIPE_MS = 400;             // duration of each scroll swipe (ms)
+var LIST_SWIPE_FROM = 800, LIST_SWIPE_TO = 440;   // swipe path inside the list (reference y)
+
+// --- logging: console + file (/sdcard/klassx_launcher.log) ---
+var LOG_FILE = "/sdcard/klassx_launcher.log";
+var stopFlag = false;
+function nap(ms) {            // sleep that can be cancelled with the Stop button
+    var end = Date.now() + ms;
+    while (Date.now() < end) {
+        if (stopFlag) throw "STOPPED";
+        sleep(Math.max(1, Math.min(100, end - Date.now())));
+    }
+}
+
+var logShown = false;
+var minimized = false;          // (re-declared further down; declared here so log() can read it)
+var LOG_LINES = [];          // last lines, shown in the on-screen log
+var LOG_KEEP = 60;
+function refreshLogView() {
+    if (!w || !w.logview) return;
+    ui.run(function () {
+        w.logview.setText(LOG_LINES.join("\n"));
+        w.logscroll.post(function () { w.logscroll.fullScroll(130); });   // stick to bottom
+        try {
+            w.minilogview.setText(LOG_LINES.slice(-12).join("\n"));        // compact log shown while minimized
+            w.minilogscroll.post(function () { w.minilogscroll.fullScroll(130); });
+        } catch (em) {}
+    });
+}
+function log(msg) {
+    var d = new Date();
+    function p2(n) { return (n < 10 ? "0" : "") + n; }
+    var line = p2(d.getHours()) + ":" + p2(d.getMinutes()) + ":" + p2(d.getSeconds()) + " " + msg;
+    console.log(line);
+    try { files.append(LOG_FILE, line + "\n"); } catch (e) {}
+    LOG_LINES.push(line);
+    if (LOG_LINES.length > LOG_KEEP) LOG_LINES.shift();
+    if (logShown || minimized) refreshLogView();
+}
+function logErr(where, e) {
+    log("ERROR in " + where + ": " + e + (e && e.stack ? "\n" + e.stack : ""));
+}
+try {   // keep the log file from growing forever
+    if (files.exists(LOG_FILE) && files.read(LOG_FILE).length > 200000) files.remove(LOG_FILE);
+} catch (e) {}
+log("layout mode " + LAYOUT_MODE + " (ref " + REF_W + "x" + REF_H + ")");
+log("==== script started | screen " + device.width + "x" + device.height + " | " + device.brand + " " + device.model + " | android " + device.release + " ====");
+
+var store = storages.create("klassx_launcher");
+store.put("autoPotsOn", false);   // Auto Pots forced OFF for now (re-enable with the Tools button or delete this line)
+var serverIdx = 0;
+(function () {                       // restore the chosen server by NAME (the list order changed when servers were added)
+    var nm = store.get("serverName", null);
+    if (!nm) { var legacy = ["Strife", "Havoc", "Fury", "Alab", "Tala"]; nm = legacy[store.get("server", 0)] || "Strife"; }
+    for (var i = 0; i < SERVERS.length; i++) if (SERVERS[i].name === nm) { serverIdx = i; return; }
+})();
+
+var pickOn = store.get("pickOn", true);   // server auto-select ON/OFF
+(function () {                       // restore the chosen channel (0..CHANNEL_YS.length-1)
+    var c = parseInt(store.get("chIdx", CHANNEL_IDX), 10);
+    if (!isNaN(c) && c >= 0 && c < CHANNEL_YS.length) CHANNEL_IDX = c;
+})();
+
+var atkOn = store.get("atkOn", true);              // auto attack ON/OFF
+var alOn = store.get("autoLootOn", true);       // auto loot ON/OFF (Tools panel)
+var alEnabled = {};                             // ITEMS popup: name -> false when unticked (missing = on)
+try { alEnabled = JSON.parse(store.get("alEnabled", "{}")) || {}; } catch (e) { alEnabled = {}; }
+function alIsOn(name) { return alEnabled[name] !== false; }
+// Auto loot settings (ported from auto_loot_text.js). Pixel values are measured on the 2576-wide reference screen and scale with the screen.
+var AL_ITEMS = [
+    "Burr",
+    "Fine Burr",
+    "Protection Potion",
+    "Medium HP Recovery Potion",
+    "Medium MP Recovery Potion",
+    "Big SP Recovery Potion",
+    "Destiny Box",
+    "Refine Pill"
+];
+var AL_GOLD = true;                             // also pick up gold piles (a lone number above a coin pile)
+var AL_GOLD_OFFSET_H = 0.9;                     // coins sit just under the number (label-heights)
+var AL_MONSTERS = ["Cordy", "Freezing Halogen"];// while one of these is near, the script attacks instead of looting
+var AL_MONSTER_RANGE = 500;                     // px from the character
+var AL_ATTACK_END_MS = 1500;                    // quiet time with no monster near before looting resumes (ms)
+var AL_SCAN_MS = 900;                           // pause between OCR scans (ms); the attack keeps running in between
+var AL_OCR_LANG = "en";
+var AL_FUZZY = true;                            // tolerate small OCR mistakes
+var AL_TAP_WAIT = 1200;                         // wait after a loot tap (ms)
+var AL_SPOT_RADIUS = 60;                        // px
+var AL_MAX_DISTANCE = 900;                      // ignore items farther than this (px)
+var AL_CHAR_POS = [0.50, 0.57];                 // where the character stands (screen fraction)
+var AL_PICKUP_DIST = 70;                        // tap the item when closer than this (px)
+var AL_ITEM_OFFSET_H = 1.5;                     // item icon sits this many label-heights under its name
+var AL_JOYSTICK = [0.1145, 0.748];              // joystick centre (screen fraction)
+var AL_JOY_PUSH = 90;                           // px the stick is pushed from its centre
+var AL_WALK_SPEED = 330;                        // px per second the character walks - TUNE
+var AL_WALK_STEP_MS = 3500;                     // longest single walk (ms)
+var AL_WALK_SETTLE_MS = 350;                    // wait after walking so the character stops (ms)
+var AL_MAX_STEPS = 14;                          // walk steps per item before giving up
+var AL_BLACKLIST_MS = 30000;                    // ignore unreachable items for this long (ms)
+var AL_IGNORE = [                               // screen fractions [x1, y1, x2, y2] that are never read as loot
+    [0.00, 0.00, 0.35, 0.20],                   // HUD
+    [0.79, 0.00, 1.00, 0.75],                   // KlassX panel (top-right) - its own log text must not be read as items
+    [0.64, 0.05, 0.86, 0.24],                   // duel / player list
+    [0.00, 0.60, 0.20, 1.00],                   // joystick
+    [0.78, 0.50, 1.00, 1.00],                   // skill buttons
+    [0.30, 0.85, 0.70, 1.00]                    // bottom bar
+];
+var AL_TARGETS = AL_ITEMS.map(function (n) { return { name: n, key: alNorm(n) }; });
+var AL_MTARGETS = AL_MONSTERS.map(function (n) { return { name: n, key: alNorm(n) }; });
+var alOcrEngine = (typeof gmlkit !== "undefined") ? "gmlkit" : ((typeof paddle !== "undefined") ? "paddle" : "");
+var capSeenAt = 0;                              // last time the captcha popup was on screen
+var alSt = alFresh();
+var targetOn = false;        // auto target ON/OFF
+var captchaOn = store.get("captchaOn", true);      // captcha solver ON/OFF
+var teachOn = store.get("teachOn", true);          // captcha teach (ask for the code when a digit shape is unknown) ON/OFF
+var skillSel = String(store.get("skillSel", "100000"));   // one 0/1 per slot: which skills to use
+while (skillSel.length < SKILLS.length) skillSel += "0";
+var skillDetect = store.get("skillDetect", false);   // false = TAP skills blindly, true = tap a skill only when its saved icon is found on screen
+var gapIdx = store.get("gapIdx", 1);
+if (gapIdx >= ATK_GAPS.length) gapIdx = 1;
+function skillEnabled(i) { return skillSel.charAt(i) === "1"; }
+
+var QUICK_SECTION = false;                                // false = Quick buttons hidden and the repeating quick rounds never run
+var quickOn = QUICK_SECTION && store.get("quickOn", true);   // quick slots ON/OFF
+var quickSel = String(store.get("quickSel", "000000"));   // one 0/1 per slot
+while (quickSel.length < QUICK.length) quickSel += "0";
+var quickGapIdx = store.get("quickGapIdx", 2);
+if (quickGapIdx >= QUICK_GAPS.length) quickGapIdx = 2;
+function quickEnabled(i) { return quickSel.charAt(i) === "1"; }
+
+var busy = false;
+
+// ---- Monitor: every signed-in copy uploads a small status + its last log lines (Firestore monitor/{uid});
+//      the Admin panel lists the users and shows a user's log when you tap the name ----
+var MON_PUSH_MS = 120000;       // how often each copy uploads its status + log (ms) - lower = fresher but more Firestore writes
+var MON_ONLINE_MS = 300000;     // a user counts as online if the last upload is newer than this (ms)
+var MON_REFRESH_MS = 60000;     // admin panel auto-refresh while it is open (ms) - each refresh reads every user doc, so keep it slow (Firestore free quota)
+var monBackoffUntil = 0;        // after an HTTP 429 (quota / rate limit) the auto-refresh pauses until this time
+var MON_LOG_LINES = 40;         // log lines uploaded per user
+var monShown = false, monView = "", monDocs = {}, monBusy = false, monFetching = false, monTok = null, monWarned = false;
+var KICK_CHECK_MS = 90000;     // how often each copy checks whether an admin kicked it (ms) - one small Firestore read each time
+var bgPauseUntil = 0;           // after an HTTP 429 the background Firestore calls (status upload, kick check) pause until this time
+var kickSeen = null, kickBusy = false, kickWarned = false, monKickArm = 0;
+var monState = "Idle";
+
+// Background image (KlassX logo), embedded so the script stays one file
+var BG_B64 = "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";
+
+// Medium-size panel: 210 x 156 dp, logo background + dark overlay for readability
+// ---- First-run permission helper (added) ----
+// Runs once. Asks for accessibility, overlay and storage, and auto-taps the screen-capture popup.
+// Android only lets the user switch on Accessibility / overlay by hand, so those open their settings page and wait.
+(function () {
+    try {
+        var _fr = storages.create("klassx_firstrun");
+        if (_fr.get("done", false)) return;
+        toast("First run: allow each permission once");
+        try { if (!auto.service) auto.waitFor(); } catch (e) {}
+        try {
+            if (!floaty.checkPermission()) {
+                floaty.requestPermission();
+                var _t0 = Date.now();
+                while (!floaty.checkPermission() && Date.now() - _t0 < 120000) sleep(500);
+            }
+        } catch (e) {}
+        try { runtime.requestPermissions(["android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"]); } catch (e) {}
+        threads.start(function () {   // tap "Start now" / "Allow" on the screen-capture and storage popups
+            var end = Date.now() + 90000;
+            while (Date.now() < end) {
+                try {
+                    var b = textMatches(/^(Start now|Start|Allow|While using the app|ALLOW|立即开始|允许)$/).findOne(1500);
+                    if (b) { b.click(); sleep(600); }
+                } catch (e) {}
+            }
+        });
+        _fr.put("done", true);
+    } catch (e) {}
+})();
+
+var w = floaty.window(
+    <frame>
+        <img id="bg" w="*" h="*" scaleType="centerCrop"/>
+        <vertical bg="#99000000" w="172" h="auto" padding="5">
+            <horizontal>
+                <text id="drag" text="⠿ KlassX  (drag)" textColor="#ffffff" textSize="9sp" gravity="center" layout_weight="1" w="0" h="25"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="mini" text="—" w="36" h="25" textSize="9sp" margin="1" alpha="0.9"/>
+            </horizontal>
+            <scroll id="minilogscroll" w="*" h="80" visibility="gone" bg="#CC000000" margin="2">
+                <text id="minilogview" w="*" text="" textColor="#66ff99" textSize="8sp" padding="2"/>
+            </scroll>
+            <scroll id="mainscroll" w="*" h="auto">
+            <vertical id="mainbody" w="*" h="auto">
+            <vertical id="auth" w="*" h="auto" bg="#CC000000" margin="2" padding="3">
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="tabLogin" text="Login" layout_weight="1" w="0" h="29" textSize="9sp" margin="1"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="tabReg" text="Register" layout_weight="1" w="0" h="29" textSize="9sp" margin="1" alpha="0.5"/>
+                </horizontal>
+                <input id="authUser" hint="Username" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="20"/>
+                <input id="authPass" hint="Password" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" inputType="textPassword"/>
+                <input id="authPass2" hint="Confirm password" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" inputType="textPassword" visibility="gone"/>
+                <input id="authKey" hint="Activation key (KLX-XXXX-XXXX-XXXX)" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="40" visibility="gone"/>
+                <text id="authMsg" text="" w="*" h="auto" textColor="#ff8a80" textSize="9sp" gravity="center"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="authGo" text="Login" w="*" h="34" textSize="10sp" textStyle="bold" textColor="#ffffff" bg="#1565C0" margin="2"/>
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="authRemember" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="authExit" text="Exit" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="updBtnA" text="⟳ Update" w="*" h="29" textSize="9sp" textColor="#ffffff" bg="#2E7D32" margin="2" alpha="0.95"/>
+            </vertical>
+            <vertical id="updbar" w="*" h="auto" visibility="gone" bg="#CC1B5E20" margin="2" padding="3">
+                <text id="updText" text="" w="*" h="auto" textColor="#ffffff" textSize="9sp" gravity="center"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="updGo" text="Update now" w="*" h="31" textSize="9sp" textStyle="bold" textColor="#ffffff" bg="#2E7D32" margin="1"/>
+            </vertical>
+            <vertical id="subpanel" w="*" h="auto" visibility="gone" bg="#CC4A148C" margin="2" padding="3">
+                <text id="subTitle" text="Subscription required" w="*" h="auto" textColor="#ffffff" textSize="9sp" textStyle="bold" gravity="center"/>
+                <text id="subMsg" text="" w="*" h="auto" textColor="#ffcc80" textSize="9sp" gravity="center"/>
+                <input id="subKey" hint="Subscription key (KLX-XXXX-XXXX-XXXX)" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="40"/>
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="subPaste" text="Paste" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="subGo" text="Activate" layout_weight="1" w="0" h="31" textSize="9sp" textStyle="bold" textColor="#ffffff" bg="#1565C0" margin="1"/>
+                </horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="updBtnS" text="⟳ Update" w="*" h="29" textSize="9sp" textColor="#ffffff" bg="#2E7D32" margin="2" alpha="0.95"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="subLogout" text="Logout" w="*" h="27" textSize="9sp" margin="1" alpha="0.9"/>
+            </vertical>
+            <vertical id="controls" w="*" h="auto" visibility="gone">
+            <text id="subInfo" text="" w="*" h="auto" textColor="#ce93d8" textSize="9sp" gravity="center"/>
+            <horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="pick" text="" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="server" text="" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            </horizontal>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="channel" text="" w="*" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="play" text="▶ Play" w="*" h="36" textSize="10sp" textStyle="bold" textColor="#ffffff" bg="#2E7D32" margin="2"/>
+            </vertical>
+            <scroll id="logscroll" w="*" h="99" visibility="gone" bg="#CC000000" margin="2">
+                <text id="logview" w="*" text="" textColor="#66ff99" textSize="9sp" padding="3"/>
+            </scroll>
+            <vertical id="controls2" w="*" h="auto" visibility="gone">
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="toolsBtn" text="Tools ▾" w="*" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            <vertical id="toolpanel" w="*" h="auto" visibility="gone" bg="#CC000000" margin="2" padding="2">
+            <horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="atk" text="" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="skills" text="Skills ▾" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            </horizontal>
+            <vertical id="skillpanel" w="*" h="auto" visibility="gone" bg="#CC000000" margin="2" padding="2">
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k0" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k1" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k2" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k3" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k4" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="k5" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="gap" text="" w="*" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="detect" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="saveicons" text="Save icons" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+            </vertical>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="captcha" text="" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="teach" text="" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="apots" text="" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="autoloot" text="" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="alItems" text="Loot items ▾" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="ctap" text="" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="matchScr" text="Match screen" w="*" h="32" textSize="9sp" margin="1" alpha="0.9"/>
+            </vertical>
+            <horizontal visibility="gone">
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="quick" text="" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="qslots" text="Quick ▾" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            </horizontal>
+            <vertical id="quickpanel" w="*" h="auto" visibility="gone" bg="#CC000000" margin="2" padding="2">
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q0" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q1" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q2" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q3" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q4" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="q5" text="" layout_weight="1" w="0" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+                </horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="qgap" text="" w="*" h="31" textSize="9sp" margin="1" alpha="0.9"/>
+            </vertical>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="updBtnC" text="⟳ Update" w="*" h="29" textSize="9sp" textColor="#ffffff" bg="#2E7D32" margin="2" alpha="0.95"/>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="logout" text="Logout" w="*" h="29" textSize="9sp" margin="2" alpha="0.9"/>
+            <vertical id="keybar" w="*" h="auto" visibility="gone" bg="#CC4A148C" margin="2" padding="2">
+                <horizontal>
+                    <input id="admDays" text="30" hint="Days (1-30) or 12h" inputType="text" layout_weight="1" w="0" h="36" textSize="9sp" gravity="center" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="5" margin="1"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admGenKey" text="Generate key" layout_weight="2" w="0" h="36" textSize="9sp" textStyle="bold" textColor="#ffffff" bg="#6A1B9A" margin="1"/>
+                </horizontal>
+                <text id="keyMsg" text="" w="*" h="auto" textColor="#a5d6a7" textSize="9sp" gravity="center"/>
+            </vertical>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admin" text="Admin ▾" visibility="gone" w="*" h="29" textSize="9sp" margin="2" alpha="0.9"/>
+            <scroll id="admscroll" w="*" h="171" visibility="gone" margin="2">
+            <vertical id="adminpanel" w="*" h="auto" bg="#CC000000" padding="3">
+                <text id="admInfo" text="" w="*" h="auto" textColor="#ffffff" textSize="9sp" gravity="center"/>
+                <horizontal>
+                    <input id="admRepo" hint="Repo: owner/name" layout_weight="1" w="0" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="120"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admRepoSave" text="Save" w="52" h="34" textSize="9sp" margin="1" textColor="#ffffff" bg="#2E7D32"/>
+                </horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admBrowse" text="Browse / upload file..." w="*" h="29" textSize="9sp" margin="1" alpha="0.9"/>
+                <input id="admFile" hint="File to publish (empty = this script)" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true"/>
+                <input id="admToken" hint="GitHub token" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" inputType="textPassword"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admPaste" text="Paste token from clipboard" w="*" h="29" textSize="9sp" margin="1" alpha="0.9"/>
+                <input id="admNotes" hint="What's new (shown to users)" w="*" h="36" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="120"/>
+                <text id="admMsg" text="" w="*" h="auto" textColor="#a5d6a7" textSize="9sp" gravity="center"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="admPublish" text="Publish update" w="*" h="32" textSize="9sp" textStyle="bold" textColor="#ffffff" bg="#1565C0" margin="1"/>
+            </vertical>
+            </scroll>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="monBtn" text="Users ▾" visibility="gone" w="*" h="29" textSize="9sp" margin="2" alpha="0.9"/>
+            <horizontal id="usrtabs" w="*" h="auto" visibility="gone">
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="tabMon" text="Monitor" layout_weight="1" w="0" h="29" textSize="9sp" margin="2"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="tabDev" text="Devices" layout_weight="1" w="0" h="29" textSize="9sp" margin="2"/>
+            </horizontal>
+            <vertical id="monpanel" w="*" h="auto" visibility="gone" bg="#CC000000" margin="2" padding="3">
+                <horizontal>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="monBack" text="◀" visibility="gone" w="33" h="27" textSize="9sp" margin="1"/>
+                    <text id="monTitle" text="Users" layout_weight="1" w="0" h="27" gravity="center_vertical" textColor="#ffffff" textSize="9sp" textStyle="bold"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="monKick" text="Kick" visibility="gone" w="46" h="27" textSize="9sp" margin="1" textColor="#ffffff" bg="#C62828"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="monRefresh" text="⟳" w="33" h="27" textSize="9sp" margin="1"/>
+                </horizontal>
+                <text id="monMsg" text="" w="*" h="auto" textColor="#ffcc80" textSize="9sp" gravity="center"/>
+                <scroll id="monscroll" w="*" h="144">
+                    <vertical id="monlist" w="*" h="auto"/>
+                </scroll>
+                <scroll id="monlogscroll" w="*" h="180" visibility="gone">
+                    <text id="monlogtext" w="*" text="" textColor="#66ff99" textSize="9sp" padding="3"/>
+                </scroll>
+            </vertical>
+            <vertical id="devpanel" w="*" h="auto" visibility="gone" bg="#CC000000" margin="2" padding="3">
+                <horizontal>
+                    <text id="devTitle" text="User devices" layout_weight="1" w="0" h="27" gravity="center_vertical" textColor="#ffffff" textSize="9sp" textStyle="bold"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="devRefresh" text="⟳" w="33" h="27" textSize="9sp" margin="1"/>
+                </horizontal>
+                <text id="devMsg" text="" w="*" h="auto" textColor="#ffcc80" textSize="9sp" gravity="center"/>
+                <text id="devSel" text="Tap a user to select" w="*" h="auto" textColor="#ce93d8" textSize="9sp" gravity="center"/>
+                <horizontal>
+                    <input id="devInput" hint="Device ID to allow" layout_weight="1" w="0" h="34" textSize="9sp" textColor="#ffffff" textColorHint="#99ffffff" singleLine="true" maxLength="64"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="devAllow" text="Allow" w="49" h="34" textSize="9sp" margin="1" textColor="#ffffff" bg="#2E7D32"/>
+                    <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="devReset" text="Reset" w="49" h="34" textSize="9sp" margin="1" textColor="#ffffff" bg="#C62828"/>
+                </horizontal>
+                <scroll id="devscroll" w="*" h="234">
+                    <vertical id="devlist" w="*" h="auto"/>
+                </scroll>
+            </vertical>
+            <horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="log" text="Log" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="exit" text="Exit" layout_weight="1" w="0" h="32" textSize="9sp" margin="2" alpha="0.9"/>
+            </horizontal>
+            </vertical>
+            </vertical>
+            </scroll>
+        </vertical>
+    </frame>
+);
+w.setPosition(device.width - 520, 200);
+
+// Panel scroll: the panel is capped to the screen height (landscape is short), the rest scrolls with a finger swipe.
+function fitMain() {
+    try {
+        var sv = w.mainscroll, body = w.mainbody;
+        var pt = new android.graphics.Point();
+        context.getSystemService(android.content.Context.WINDOW_SERVICE).getDefaultDisplay().getRealSize(pt);
+        var dens = context.getResources().getDisplayMetrics().density;
+        var cap = Math.max(Math.round(120 * dens), pt.y - Math.round(w.getY()) - Math.round(56 * dens));
+        var want = body.getHeight() > cap ? cap : android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+        var lp = sv.getLayoutParams();
+        if (lp.height != want) { lp.height = want; sv.setLayoutParams(lp); }
+    } catch (e) {}
+}
+ui.run(function () {
+    try {
+        w.mainbody.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener({
+            onGlobalLayout: function () { fitMain(); }
+        }));
+        // inner scrolls (log, admin) keep their own swipe instead of the panel stealing it
+        var keepInner = function (v, e) { try { v.getParent().requestDisallowInterceptTouchEvent(true); } catch (e2) {} return false; };
+        w.logscroll.setOnTouchListener(keepInner);
+        w.admscroll.setOnTouchListener(keepInner);
+        w.monscroll.setOnTouchListener(keepInner);
+        w.monlogscroll.setOnTouchListener(keepInner);
+        w.devscroll.setOnTouchListener(keepInner);
+    } catch (e) {}
+});
+
+ui.run(function () {
+    try {
+        var bytes = android.util.Base64.decode(BG_B64, 0);
+        var bmp = android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        w.bg.setImageBitmap(bmp);
+    } catch (e) {
+        w.bg.setBackgroundColor(android.graphics.Color.parseColor("#101010"));
+    }
+});
+
+function refreshServerLabel() {
+    w.server.setText("Srv: " + SERVERS[serverIdx].name);
+    w.pick.setText(pickOn ? "Pick: ON" : "Pick: OFF");
+    w.server.setAlpha(pickOn ? 1 : 0.4);
+    try { refreshChannelLabel(); } catch (e) {}
+}
+ui.run(refreshServerLabel);
+function refreshChannelLabel() {
+    w.channel.setText("Channel: " + CHANNEL_IDX + " Channel (tap to change)");
+    w.channel.setAlpha(pickOn ? 1 : 0.4);
+}
+ui.run(refreshChannelLabel);
+
+// --- Dynamic Captcha Solver Functions ---
+// Templates are loaded once and cached (never recycled: repeated read/recycle churn and
+// recycling shared native images is what causes SIGSEGV crashes in AutoX).
+var tplCache = {};
+function getTemplate(name) {
+    if (tplCache.hasOwnProperty(name)) return tplCache[name];
+    var t = null;
+    try {
+        var p = TEMPLATE_DIR + name + ".png";
+        if (files.exists(p)) t = images.read(p);
+    } catch (e) { logErr("template " + name, e); t = null; }
+    if (t) tplCache[name] = t;           // only cache successful loads so a template added later is picked up
+    return t || null;
+}
+
+// Templates are cropped from a 2576x1177 (reference size) screenshot. On any other screen the template is scaled
+// by the same factor as the layout adapter, then cached (never recycled).
+var tplScaled = {};
+function getTemplateFit(name, L) {
+    var t = getTemplate(name);
+    if (!t) return null;
+    if (Math.abs(L.kx - 1) < 0.02 && Math.abs(L.ky - 1) < 0.02) return t;
+    var key = name + "@" + L.kx.toFixed(3) + "x" + L.ky.toFixed(3);
+    if (!tplScaled.hasOwnProperty(key)) {
+        try { tplScaled[key] = images.scale(t, L.kx, L.ky); } catch (e) { logErr("scale template " + name, e); tplScaled[key] = t; }
+    }
+    return tplScaled[key];
+}
+
+// ===================== Captcha reader (pixel based - no template images needed) =====================
+// The "Human Verification" popup is always centred, so everything is addressed in REF_W x REF_H coordinates.
+var CAP_BOX = [897, 205, 781, 253];                 // the code picture (cream box with 5 black digits)
+var KEY_CX = [973, 1130, 1287, 1445, 1602], KEY_CY = [625, 724];   // 2 rows x 5 keypad buttons (labels are shuffled)
+var CONFIRM_PT = [1287, 960];
+var CAP_GW = 12, CAP_GH = 16;
+var CAP_SAMPLE_DIR = "/sdcard/脚本/captcha_samples/";
+var CAP_SAMPLE_MAX = 400;                           // max files kept in captcha_samples (it used to stop at 40)
+var CAP_BANK_FILE = "/sdcard/脚本/templates/code_bank.json";   // optional: extra code-digit shapes {"0":["0101..."],...}
+var CAP_ACCEPT = 0.06, CAP_MARGIN = 0.01;            // max distance to accept a digit / min gap to the runner-up digit
+var CAP_CODE_BANK = capParseBank({"2": ["000001111110000111111110011100000111000100000111000000000111000000001111000000011100000000111000000001110000000011100000001110000000001110000000111100000000111000000000111100011110111111111110|0.733", "000111111110001110000111011100000111000000000111000000000111000000000110000000011100000001110000000001100000000011000000001110000000001000000000111000000000111000000000111000000000111111111110|0.744", "001111110000111111111100111000011100000000011100000000001100000000001100000000111000000000111000000001110000000011100000000111000000000111000000001110000000001110000000001110000000001111111111|0.820", "000001110000011111111100011000011100111000011100000000011100000000011000000000111000000001110000000001100000000011100000000011000000000110000000001110000000001110001111001111111000000110000000|0.763", "011111110000011111111000111000011100000000011100000000011100000000001110000000111000000001110000000001110000000011100000001110000000011110000000011100000000011100000000001111010110000111111111|0.767"], "3": ["000101100000001111111110011100000111011000000111000000000111000000001111000000011100000011111100000111111000000000011100000000011110000000001111000000001111111000001111111111001111001111111100|0.700", "000000010000000111111000011000011100111000001100000000001110000000011000000000011000000000010000000011111000000000001100000000000111000000000111000000000011000010000011001111011110000011100000|0.765", "000011111000001111001110111000001110001000001110000000001110000000001100000000011100000000011000000011111000000000011100000000000111000000000111000000000111000000000110001110000110000111111000|0.735"], "4": ["000000001110000000011110000000111110000011111110000011011110001111011110011100011100111100011100111100011100111111111111101000011110000000011100000000011100000000011100000000011100000000111100|0.687", "000000001111000000111110000001111110000011111110001111011110111100011110111100011110111100011110111111111100001111111111000000011110000000011100000000111100000000111100000000111100000000111000|0.695", "000000001111000000011110000000111110000001111110000011111110001111011110011100011110111100011100111100011110111111111111111000111100000000011100000000011100000000111100000000111100000000111000|0.667", "000000111000000000111100000001111100000111111100000110111100001110011100111000011100111000011100111100111110111111111111000000011110000000011100000000011100000000001110000000001110000000001110|0.674", "000000000111000000011111000001111111000101111110011111001110111100001110111000011110111000011110001110011100000001111110000000011110000000011100000000111100000000111000000000111000000001111000|0.688"], "5": ["111111100000111000111100111000000000111000000000111000000000011000000000011111111000000000001100000000000110000000000110000000000111000000000111000000000111001110000111000010000011000011111110|0.741", "001111000000001111111111001110000000001110000000011100000000011100000000011111111000000000111100000000001110000000001110000000001110000000011100111000011100111000011100011111111000000011110000|0.772"], "6": ["000111110000001111111000001110000000111000000000111000000000111000000000111111111100011100001100011100001111011100000111011100000111011100000111011100000111011100000111001111011111000011111110|0.711", "000000011100000011111000000110000000001110000000111100000000111100000000111111111110111111000111111100000111111100000111111100000111111100000111111100000111111100000111111111111100001100000000|0.634", "000011111110000011000010000111000000011100000000011100000000011100000000011111111110111100000110111100000111111100000111111100000111111100000111111000000111111000000111101000000111001111111100|0.692", "000000000110000011111100000111000000001110000000011100000000011100000000111111111100111111111111111100000111111100000111111100000111111100000111111100000111111100001110011111111100011111100000|0.645", "000000011000000111111000000110000000011100000000011100000000111100000000111101111110111110001110111100001111011100000111011100000111011100000111011100000111011100000110011111111100000111000000|0.725"], "7": ["111111111100111111111111000000001111000000001111000000001111000000111100000000111100000011111000000011110000000011110000001111000000001111000000001111000000111100000000111100000000111000000000|0.663", "111110000000001111111110000000000111000000000111000000000111000000011110000000011100000000011100000001111000000001111000000001110000000111100000000111100000001111000000011110000000001110000000|0.667", "111111111110111111111111000000000111000000000111000000001111000000011110000000011110000000111100000000111100000000111100000001111000000001110000000001110000000111100000000011100000000011100000|0.686", "111111111100111111111110000000000111000000000111000000000111000000011100000000011110000000111000000000111000000000111000000001111000000011110000000001110000000111000000000111000000000111000000|0.686"], "8": ["000110000000001111111110011110001110011110000111011100000111000100000111011111100111011100111100111100001110111100001110111000001110111000001110111000001110011000001110001111111110000000111000|0.714", "000011111000000111111110001110000111001100000111011100000111011100001110001111111100011100101100011100001110111100001110111000001110111000011110111000011110111000011100011111111100011111111000|0.750", "000011110000001111011000111000001100111000001100111000001100111000001100001111111000001100001110011100001110011100001110011100000110011100000111001100000111001100000111001111111110000011111100|0.756", "000000011110000011111110001110000111001110000111001110000111001110000111000111111100001111011110011100001110011100001110011100001110011100001110111000011100111000011100111111111000011111110000|0.784", "001111010000111111110000111000001100111000001100111000001110001000001110001111111000011100001010011100001110011100001110011100000110001100000111001100000111001100000111000100000110000011111100|0.750", "000010000000000011111110001110000110001100000011001100000111001100000111000111100111011100011100011100000110011100001110011000001110111000001110111000001110111000001100011111011100000000111000|0.733", "000010000000001111110000001110011110001110000110001100000111000100000111011111100111011100111110011100001100111000001110111000001110111000001110011000011100011100011100000111111100000000110000|0.758"], "9": ["001111111000001111111110111000001110111000001110111100001111111100001111111100001111011111111111001111111111000000000111000000000111000000000111000000000110000000011110000000011000000111111000|0.716", "001111111100111111111110111100001111111100001111111100001111111100000111111100000111001111111111000111111111000000000111000000000111000000000111000000000110000000011110000001111000000111111000|0.721", "000000011000001111111110011100001110111000001110111000001110111000001110111100001110011101111111011111101111000000000111000000000111000000000110000000001110000000001100000001111000000111100000|0.719", "001111111000001111111100111000001110111000000111111100000111111100000111111100000111011111111111001111111111000000000111000000000111000000000111000000000111000000001110000000011110000111111000|0.709"]});
+var CAP_KEY_BANK = capParseBank({"0": ["000011111100000111111110001100000111011000000011011000000001110000000001110000000001110000000001110000000001110000000001110000000001111000000001011000000001011000000011001100000011001111111110|0.619"], "1": ["000000001111000000111111111111111111001100111111000000001111000000001111000000001111000000001111000000001111000000001111000000001111000000001111000000001111000000001111000000001111111111111111|0.300"], "2": ["001111111000011111111100110000001110000000000111000000000011000000000111000000000111000000001110000000001100000000111000000001100000000011100000000111000000011100000000011000000000111111111111|0.571"], "3": ["001111111100011111111110010000000111000000000011000000000011000000000011000000011110000011111000000000011100000000000110000000000011000000000011000000000011000000000011100000000110111111111110|0.619"], "4": ["000000001100000000011110000000111100000001111100000001001110000010001100001110001110011000001100110000001100111111111111111111111111000000001110000000001100000000001100000000001110000000001110|0.667"], "5": ["111111111111111111111111111000000000111000000000111000000000111000000000111111100000111111111100000000001110000000000111000000000111000000000111000000000111000000000110000000001110111111111100|0.524"], "6": ["000001111110000011111110001110000000011100000000011000000000110000000000110011111000111111111110111000000111110000000011110000000011110000000011110000000011111000000011011100000111001111111110|0.619"], "7": ["111111111111111111111111000000000011000000000011000000000111000000000110000000001100000000011000000000011000000001110000000001100000000011100000000111000000000110000000001110000000011100000000|0.571"], "8": ["000111111100001100001110011000000011111000000011111000000011011000000011011111000110000111111100000110111100011000001110110000000001110000000001110000000001111000000001011000000011001111111110|0.619"], "9": ["000011111000001111011100011100000110011000000011111000000011111000000001111000000001011100000011001111010111000011111011000000000011000000000011000000000111000000001110001000111000001111110000|0.636"]});
+// extra keypad "1" shape (thin 1 with a base, seen at brightness 195 on a 0.70-scale screenshot) - the stock one missed it
+CAP_KEY_BANK["1"].push(capTpl("000111110000000111110000111111110000000001110000000001110000000001110000000001110000000001110000000001110000000001110000000001110000000001110000000001110000000001110000000111111111111111111111|0.357"));
+
+function capR(c) { return (c >> 16) & 255; }
+function capG(c) { return (c >> 8) & 255; }
+function capB(c) { return c & 255; }
+
+// Is the popup on screen? -> the cream code box must be mostly cream with a fair share of black digits.
+// The popup can be DRAGGED anywhere (it is not always centred), so: 1) try the usual centred spot, 2) otherwise look for the
+// cream code box anywhere on the screen and shift/scale every captcha coordinate (code box, keypad, Confirm) to where it is.
+var capL = null;                                   // layout of the popup where it was found (null = the usual centred position)
+function capLayout(W, H) { return capL || layoutOf(W, H); }
+function capIsCream(c) { var r = capR(c), g = capG(c), b = capB(c); return r >= 200 && g >= 195 && b >= 170 && r - b <= 70; }
+function capCheckBox(img, L) {
+    var n = 0, cream = 0, dark = 0, i, j, c, r, g, b;
+    for (j = 0; j < 10; j++) {
+        for (i = 0; i < 40; i++) {
+            var px = mapX(L, CAP_BOX[0] + (i + 0.5) * CAP_BOX[2] / 40, "c"), py = mapY(L, CAP_BOX[1] + (j + 0.5) * CAP_BOX[3] / 10, "c");
+            if (px < 0 || py < 0 || px >= img.getWidth() || py >= img.getHeight()) return false;
+            c = img.pixel(px, py);
+            r = capR(c); g = capG(c); b = capB(c); n++;
+            if (r >= 200 && g >= 195 && b >= 170 && r - b <= 70) cream++;
+            else if (Math.min(r, g, b) < 70) dark++;
+        }
+    }
+    return cream / n >= 0.45 && dark / n >= 0.06;
+}
+// find the cream code box anywhere on the screen -> {x, y, w, h} in capture pixels, or null
+function capLocate(img, W, H) {
+    var st = Math.max(6, Math.round(W / 160)), gw = Math.floor(W / st), gh = Math.floor(H / st), x, y, k;
+    var cells = new Array(gw * gh);
+    for (y = 0; y < gh; y++) for (x = 0; x < gw; x++) cells[y * gw + x] = capIsCream(img.pixel(x * st + (st >> 1), y * st + (st >> 1))) ? 1 : 0;
+    var seen = new Array(gw * gh), best = null, bestArea = 0;
+    for (k = 0; k < gw * gh; k++) {
+        if (!cells[k] || seen[k]) continue;
+        var stack = [k], cnt = 0, x0 = gw, y0 = gh, x1 = -1, y1 = -1;
+        seen[k] = 1;
+        while (stack.length) {
+            var q = stack.pop(), qx = q % gw, qy = (q - qx) / gw;
+            cnt++;
+            if (qx < x0) x0 = qx; if (qx > x1) x1 = qx; if (qy < y0) y0 = qy; if (qy > y1) y1 = qy;
+            for (var dy = -1; dy <= 1; dy++) for (var dx = -1; dx <= 1; dx++) {
+                var nx = qx + dx, ny = qy + dy;
+                if (nx < 0 || ny < 0 || nx >= gw || ny >= gh) continue;
+                var nk = ny * gw + nx;
+                if (cells[nk] && !seen[nk]) { seen[nk] = 1; stack.push(nk); }
+            }
+        }
+        var bw = x1 - x0 + 1, bh = y1 - y0 + 1, asp = bw / bh;
+        if (bw < gw * 0.15 || bh < 4 || asp < 2.4 || asp > 3.9) continue;     // the code box is about 3.1 times wider than tall
+        if (cnt / (bw * bh) < 0.45) continue;                                  // mostly cream (digits are the only dark part)
+        if (cnt > bestArea) { bestArea = cnt; best = [x0 * st, y0 * st, (x1 + 1) * st, (y1 + 1) * st]; }
+    }
+    if (!best) return null;
+    // refine the four edges to the exact pixel (the grid is only accurate to a few pixels)
+    function cr(px, py) { return px >= 0 && py >= 0 && px < W && py < H && capIsCream(img.pixel(px, py)); }
+    function med(a) { a.sort(function (m, n) { return m - n; }); return a[a.length >> 1]; }
+    var bx0 = best[0], by0 = best[1], bx1 = best[2], by1 = best[3], r = 2 * st, t, i, v;
+    var fr = [0.15, 0.5, 0.85], ls = [], rs = [], ts = [], bs = [];
+    for (i = 0; i < 3; i++) {
+        var yy = Math.round(by0 + (by1 - by0) * fr[i]), xx = Math.round(bx0 + (bx1 - bx0) * fr[i]);
+        for (v = bx0 - r; v <= bx0 + r; v++) if (cr(v, yy) && cr(v + 4, yy) && cr(v + 8, yy)) { ls.push(v); break; }
+        for (v = bx1 + r; v >= bx1 - r; v--) if (cr(v, yy) && cr(v - 4, yy) && cr(v - 8, yy)) { rs.push(v + 1); break; }
+        for (v = by0 - r; v <= by0 + r; v++) if (cr(xx, v) && cr(xx, v + 4) && cr(xx, v + 8)) { ts.push(v); break; }
+        for (v = by1 + r; v >= by1 - r; v--) if (cr(xx, v) && cr(xx, v - 4) && cr(xx, v - 8)) { bs.push(v + 1); break; }
+    }
+    if (ls.length) bx0 = med(ls); if (rs.length) bx1 = med(rs); if (ts.length) by0 = med(ts); if (bs.length) by1 = med(bs);
+    return { x: bx0, y: by0, w: bx1 - bx0, h: by1 - by0 };
+}
+
+// Find the keypad tiles and the Confirm button from the picture itself (the popup is scaled/laid out differently
+// on every phone, so fixed reference coordinates drift). bx = the located code box. Returns null if unsure.
+var capKp = null;
+function capFindKeys(img, W, H, bx) {
+    var st = Math.max(2, Math.round(bx.w / 200)), x, y;
+    var xa = Math.max(0, bx.x), xb = Math.min(W - 1, bx.x + bx.w);
+    var ya = Math.max(0, bx.y + Math.round(bx.h * 1.1)), yb = Math.min(H - 1, bx.y + Math.round(bx.h * 3.3));
+    function lit(px, py) { var c = img.pixel(px, py); return Math.min(capR(c), capG(c), capB(c)) >= 60; }
+    var runs = [], inRun = false, s = 0, last = 0, gap = 0;
+    for (y = ya; y <= yb; y += st) {
+        var n = 0, tot = 0;
+        for (x = xa; x <= xb; x += st) { tot++; if (lit(x, y)) n++; }
+        if (tot > 0 && n / tot >= 0.6) { if (!inRun) { inRun = true; s = y; } last = y; gap = 0; }
+        else if (inRun) { gap += st; if (gap > st) { runs.push([s, last]); inRun = false; } }
+    }
+    if (inRun) runs.push([s, last]);
+    var good = [], i;
+    for (i = 0; i < runs.length; i++) if (runs[i][1] - runs[i][0] >= bx.h * 0.10) good.push(runs[i]);
+    if (good.length < 2) return null;
+    var r1 = good[0], r2 = good[1], h1 = r1[1] - r1[0], h2 = r2[1] - r2[0];
+    if (Math.abs(h1 - h2) > 0.35 * Math.max(h1, h2)) return null;
+    var yl = Math.round(r1[0] + h1 * 0.2), xl = -1, xr = -1, xs = Math.max(0, bx.x - Math.round(bx.w * 0.06)), xe = Math.min(W - 4, bx.x + bx.w + Math.round(bx.w * 0.06));
+    for (x = xs; x <= xe; x += 2) if (lit(x, yl) && lit(x + 2, yl) && lit(x + 4, yl)) { xl = x; break; }
+    for (x = xe; x >= xs; x -= 2) if (lit(x, yl) && lit(x - 2, yl) && lit(x - 4, yl)) { xr = x; break; }
+    if (xl < 0 || xr - xl < bx.w * 0.7 || xr - xl > bx.w * 1.15) return null;
+    var tw = (xr - xl) / 5, cx = [];
+    for (i = 0; i < 5; i++) cx.push(xl + tw * (i + 0.5));
+    var kp = { cx: cx, cy: [(r1[0] + r1[1]) / 2, (r2[0] + r2[1]) / 2], tw: tw, th: (h1 + h2) / 2, confirm: null };
+    if (good.length >= 4) {                         // 3rd bar = Clear, 4th bar = Confirm
+        var rc = good[2], rf = good[3], hc = rc[1] - rc[0], hf = rf[1] - rf[0];
+        if (Math.abs(hc - hf) <= 0.5 * Math.max(hc, hf)) kp.confirm = [Math.round((xl + xr) / 2), Math.round((rf[0] + rf[1]) / 2)];
+    }
+    return kp;
+}
+function capPopupShown(img, W, H) {
+    capL = null; capKp = null;
+    var usual = capCheckBox(img, layoutOf(W, H));       // the usual centred spot
+    var bx = null;
+    try { bx = capLocate(img, W, H); } catch (e) { logErr("captcha locate", e); }
+    var okBx = !!(bx && bx.w >= 20 && bx.h >= 8);
+    if (okBx) {
+        try { capKp = capFindKeys(img, W, H, bx); } catch (e2) { logErr("keypad locate", e2); capKp = null; }
+        if (capKp) capDiag("keypad located: tiles " + Math.round(capKp.tw) + " wide, rows at y " + Math.round(capKp.cy[0]) + "/" + Math.round(capKp.cy[1]) + ", Confirm " + (capKp.confirm ? "at y " + capKp.confirm[1] : "not found (using default spot)"), "kp");
+        else if (usual) capDiag("keypad not located from the picture (using default spots)", "kp");
+    }
+    if (usual) return true;
+    if (!okBx) return false;
+    var sx = bx.w / CAP_BOX[2], sy = bx.h / CAP_BOX[3];
+    var L2 = { kx: sx, ky: sy, stretch: false,
+        W: 2 * (bx.x + (REF_W / 2 - CAP_BOX[0]) * sx), H: 2 * (bx.y + (REF_H / 2 - CAP_BOX[1]) * sy) };   // mapX/mapY(L2, ref, "c") land inside the found popup
+    if (!capCheckBox(img, L2)) return false;
+    capL = L2;
+    capDiag("popup found off-centre at " + bx.x + "," + bx.y + " size " + bx.w + "x" + bx.h + " (scale " + sx.toFixed(2) + ")", "loc");
+    return true;
+}
+
+// turn a mask (rows of 0/1) into digit glyphs: split into columns, bbox, resample to CAP_GW x CAP_GH
+function capGlyphs(mask, nx, ny, minCols, wantCount) {
+    var cols = [], x, y, runs = [], s = -1;
+    for (x = 0; x < nx; x++) { var t = 0; for (y = 0; y < ny; y++) t += mask[y][x]; cols.push(t); }
+    for (x = 0; x <= nx; x++) {
+        var on = x < nx && cols[x] >= 2;
+        if (on && s < 0) s = x;
+        if (!on && s >= 0) { if (x - s >= minCols) runs.push([s, x]); s = -1; }
+    }
+    if (wantCount) {
+        // touching digits: split the widest block at its thinnest column; split digits: merge the closest blocks
+        var guard = 0, k2, bi, bw2, cut, m2;
+        while (runs.length > wantCount && guard++ < 10) {
+            bi = 0; m2 = 1e9;
+            for (k2 = 0; k2 + 1 < runs.length; k2++) { var gp = runs[k2 + 1][0] - runs[k2][1]; if (gp < m2) { m2 = gp; bi = k2; } }
+            runs.splice(bi, 2, [runs[bi][0], runs[bi + 1][1]]);
+        }
+        while (runs.length > 0 && runs.length < wantCount && guard++ < 10) {
+            bi = 0; bw2 = 0;
+            for (k2 = 0; k2 < runs.length; k2++) if (runs[k2][1] - runs[k2][0] > bw2) { bw2 = runs[k2][1] - runs[k2][0]; bi = k2; }
+            if (bw2 < 2 * minCols + 6) break;
+            var lo = runs[bi][0] + Math.floor(bw2 * 0.3), hi = runs[bi][0] + Math.ceil(bw2 * 0.7);
+            cut = lo; m2 = 1e9;
+            for (x = lo; x <= hi; x++) if (cols[x] < m2) { m2 = cols[x]; cut = x; }
+            runs.splice(bi, 1, [runs[bi][0], cut], [cut + 1, runs[bi][1]]);
+        }
+        if (runs.length !== wantCount) return { runs: runs.length, glyphs: null };
+    }
+    var out = [];
+    for (var k = 0; k < runs.length; k++) {
+        var x0 = runs[k][0], x1 = runs[k][1], y0 = -1, y1 = -1;
+        for (y = 0; y < ny; y++) {
+            var rs = 0; for (x = x0; x < x1; x++) rs += mask[y][x];
+            if (rs >= 2) { if (y0 < 0) y0 = y; y1 = y + 1; }
+        }
+        if (y0 < 0) return { runs: runs.length, glyphs: null };
+        var bw = x1 - x0, bh = y1 - y0, bits = "";
+        for (var gy = 0; gy < CAP_GH; gy++) for (var gx = 0; gx < CAP_GW; gx++) {
+            var sx0 = x0 + Math.floor(gx * bw / CAP_GW), sx1 = Math.max(sx0 + 1, x0 + Math.floor((gx + 1) * bw / CAP_GW));
+            var sy0 = y0 + Math.floor(gy * bh / CAP_GH), sy1 = Math.max(sy0 + 1, y0 + Math.floor((gy + 1) * bh / CAP_GH));
+            var cnt = 0, tot = 0;
+            for (y = sy0; y < sy1; y++) for (x = sx0; x < sx1; x++) { cnt += mask[y][x]; tot++; }
+            bits += (cnt * 2 >= tot) ? "1" : "0";
+        }
+        out.push({ bits: bits, ratio: bw / bh, bx: x0, by: y0, bw: bw, bh: bh });
+    }
+    return { runs: runs.length, glyphs: out };
+}
+
+function capDil(bits) {                 // 3x3 dilation of a CAP_GW x CAP_GH bit string -> 0/1 array
+    var out = [], x, y, dx, dy, v;
+    for (y = 0; y < CAP_GH; y++) for (x = 0; x < CAP_GW; x++) {
+        v = 0;
+        for (dy = -1; dy <= 1 && !v; dy++) for (dx = -1; dx <= 1; dx++) {
+            var xx = x + dx, yy = y + dy;
+            if (xx >= 0 && xx < CAP_GW && yy >= 0 && yy < CAP_GH && bits.charAt(yy * CAP_GW + xx) === "1") { v = 1; break; }
+        }
+        out.push(v);
+    }
+    return out;
+}
+function capTpl(str) {                  // "bits|ratio" -> template object
+    var p = String(str).split("|");
+    return { b: p[0], r: p.length > 1 ? parseFloat(p[1]) : null, d: capDil(p[0]) };
+}
+function capParseBank(raw) {
+    var out = {}, k;
+    for (k in raw) { out[k] = []; for (var i = 0; i < raw[k].length; i++) out[k].push(capTpl(raw[k][i])); }
+    return out;
+}
+// distance glyph<->template: ink of one that is not within 1 cell of the other's ink (both ways) + aspect-ratio gap
+function capDist(g, t) {
+    var gd = g.d, a = 0, b = 0, ga = 0, tb = 0, i;
+    for (i = 0; i < g.b.length; i++) {
+        if (g.b.charAt(i) === "1") { ga++; if (!t.d[i]) a++; }
+        if (t.b.charAt(i) === "1") { tb++; if (!gd[i]) b++; }
+    }
+    var d = 0.5 * (a / (ga || 1) + b / (tb || 1));
+    if (t.r !== null && g.r !== null) d += 0.5 * Math.abs(g.r - t.r);
+    return d;
+}
+// best digit for a glyph from a parsed bank; returns {d, dist, second}
+function capClassify(glyph, bank) {
+    var g = { b: glyph.bits, r: glyph.ratio, d: capDil(glyph.bits) };
+    var best = "?", bd = 9, sd = 9, dig;
+    for (dig in bank) {
+        var m = 9;
+        for (var i = 0; i < bank[dig].length; i++) m = Math.min(m, capDist(g, bank[dig][i]));
+        if (m < bd) { sd = bd; bd = m; best = dig; } else if (m < sd) { sd = m; }
+    }
+    return { d: best, dist: bd, second: sd };
+}
+// stricter while some digit shapes are unknown (an unseen 0/1 must not be mistaken for a known digit)
+function capAcceptNow() { return capMissingDigits() ? 0.06 : CAP_ACCEPT; }
+function capMissingDigits() {
+    var miss = "";
+    for (var d = 0; d <= 9; d++) if (!CAP_CODE_BANK[String(d)] || !CAP_CODE_BANK[String(d)].length) miss += d;
+    return miss;
+}
+
+// read the 5-digit code from the picture; returns {text, info, glyphs}
+function capReadCode(img, W, H) {
+    var L = capLayout(W, H);
+    var x0 = mapX(L, CAP_BOX[0], "c"), y0 = mapY(L, CAP_BOX[1], "c");
+    var w = Math.round(CAP_BOX[2] * L.kx), h = Math.round(CAP_BOX[3] * L.ky);
+    var st = Math.max(1, Math.round(2 * L.kx)), nx = Math.floor(w / st), ny = Math.floor(h / st), mask = [], x, y;
+    for (y = 0; y < ny; y++) {
+        var row = [];
+        for (x = 0; x < nx; x++) row.push(Math.min(capR(img.pixel(x0 + x * st, y0 + y * st)), capG(img.pixel(x0 + x * st, y0 + y * st)), capB(img.pixel(x0 + x * st, y0 + y * st))) < 70 ? 1 : 0);
+        mask.push(row);
+    }
+    var gl = capGlyphs(mask, nx, ny, 4, 5);
+    if (!gl.glyphs) return { text: "", info: "found " + gl.runs + " digit blocks (need 5)", glyphs: null };
+    var text = "", info = [], ok = true, guess = [], sure = [];
+    for (var i = 0; i < 5; i++) {
+        var c = capClassify(gl.glyphs[i], CAP_CODE_BANK);
+        var good = c.dist <= capAcceptNow() && (c.second - c.dist) >= CAP_MARGIN;
+        text += good ? c.d : "?";
+        guess.push(c.d); sure.push(good);
+        info.push((good ? c.d : "?") + "(" + c.d + " " + c.dist.toFixed(2) + "/" + c.second.toFixed(2) + ")");
+    }
+    return { text: text, info: info.join(" "), glyphs: gl.glyphs, ox: x0, oy: y0, st: st, guess: guess, sure: sure };
+}
+
+// read the shuffled keypad labels; returns {digit: [x, y]} or null. The pad holds 0-9 exactly once, so the
+// 10 buttons are matched to the 10 digits as a whole (more robust than reading each one alone).
+var capKeyInfo = "";
+function capReadKeypad(img, W, H, needText) {
+    var need = {}, ni; for (ni = 0; ni < (needText || "").length; ni++) need[needText.charAt(ni)] = true;
+    var hasNeed = !!needText, perKey = "";
+    var L = capLayout(W, H), thrs = [215, 195, 175, 155], t, r, c, x, y;
+    var hw = Math.round(32 * L.kx), hh = Math.round(26 * L.ky), st = Math.max(1, Math.round(L.kx));
+    if (capKp) { hw = Math.round(capKp.tw * 0.205); hh = Math.round((capKp.cy[1] - capKp.cy[0]) * 0.263); st = Math.max(1, Math.round(capKp.tw / 134)); }
+    var nx = Math.floor(2 * hw / st), ny = Math.floor(2 * hh / st);
+    var px = [];                                   // read every pixel once, reuse for each threshold
+    for (r = 0; r < 2; r++) for (c = 0; c < 5; c++) {
+        var cx = capKp ? Math.round(capKp.cx[c]) : mapX(L, KEY_CX[c], "c"), cy = capKp ? Math.round(capKp.cy[r]) : mapY(L, KEY_CY[r], "c"), br = [];
+        for (y = 0; y < ny; y++) {
+            var row = [];
+            for (x = 0; x < nx; x++) { var p = img.pixel(cx - hw + x * st, cy - hh + y * st); row.push(Math.min(capR(p), capG(p), capB(p))); }
+            br.push(row);
+        }
+        px.push({ br: br, cx: cx, cy: cy });
+    }
+    capKeyInfo = "";
+    for (t = 0; t < thrs.length; t++) {
+        var gls = [], ok = true, i;
+        for (i = 0; i < 10 && ok; i++) {
+            var mask = [];
+            for (y = 0; y < ny; y++) { var mr = []; for (x = 0; x < nx; x++) mr.push(px[i].br[y][x] >= thrs[t] ? 1 : 0); mask.push(mr); }
+            var gl = capGlyphs(mask, nx, ny, 2, 1);
+            if (!gl.glyphs) ok = false; else gls.push(gl.glyphs[0]);
+        }
+        if (!ok) { capKeyInfo += (capKeyInfo ? " | " : "") + "br" + thrs[t] + ": key " + i + " label not found"; continue; }
+        var dm = [], dg;
+        for (i = 0; i < 10; i++) {
+            var gg = { b: gls[i].bits, r: gls[i].ratio, d: capDil(gls[i].bits) }, row2 = {};
+            for (dg = 0; dg <= 9; dg++) {
+                var m = 9, tp = CAP_KEY_BANK[String(dg)];
+                for (var q = 0; q < tp.length; q++) m = Math.min(m, capDist(gg, tp[q]));
+                row2[dg] = m;
+            }
+            dm.push(row2);
+        }
+        var usedS = {}, usedD = {}, map = {}, worst = 0, n, keyDist = [];      // greedy: smallest distance first
+        for (n = 0; n < 10; n++) {
+            var bs = -1, bd = -1, bv = 9;
+            for (i = 0; i < 10; i++) { if (usedS[i]) continue; for (dg = 0; dg <= 9; dg++) { if (usedD[dg]) continue; if (dm[i][dg] < bv) { bv = dm[i][dg]; bs = i; bd = dg; } } }
+            usedS[bs] = true; usedD[bd] = true; map[bd] = [px[bs].cx, px[bs].cy]; keyDist[bs] = bd + ":" + bv.toFixed(2);
+            if (!hasNeed || need[String(bd)]) worst = Math.max(worst, bv);      // only the keys we must press have to match
+        }
+        capKeyInfo += (capKeyInfo ? " | " : "") + "br" + thrs[t] + " " + (hasNeed ? "needed-keys " : "") + "worst " + worst.toFixed(2) + " [" + keyDist.join(" ") + "]";
+        if (worst <= 0.22) return map;
+    }
+    return null;
+}
+
+var lastCapSample = 0, lastCapText = "", lastCapAt = 0, capDiagAt = {};
+function capDiag(msg, key) {                  // throttled per message type, so the log shows every kind of failure
+    key = key || "x";
+    if (Date.now() - (capDiagAt[key] || 0) < 5000) return;
+    capDiagAt[key] = Date.now();
+    log("Captcha: " + msg);
+}
+// extra code-digit shapes (optional file, strings "bits" or "bits|ratio")
+(function () {
+    try {
+        if (!files.exists(CAP_BANK_FILE)) return;
+        var extra = JSON.parse(files.read(CAP_BANK_FILE));
+        for (var d in extra) { if (!CAP_CODE_BANK[d]) CAP_CODE_BANK[d] = []; for (var i = 0; i < extra[d].length; i++) CAP_CODE_BANK[d].push(capTpl(extra[d][i])); }
+    } catch (e) { logErr("code_bank.json", e); }
+})();
+// keep a copy of the code picture so unknown/wrong digits can be learned later (max 40 files)
+function capSaveSample(img, W, H, text) {
+    if (Date.now() - lastCapSample < 20000) return;
+    lastCapSample = Date.now();
+    try {
+        files.ensureDir(CAP_SAMPLE_DIR + "x");
+        if (files.listDir(CAP_SAMPLE_DIR).length >= CAP_SAMPLE_MAX) return;
+        var L = capLayout(W, H);
+        var clip = images.clip(img, mapX(L, CAP_BOX[0], "c"), mapY(L, CAP_BOX[1], "c"), Math.round(CAP_BOX[2] * L.kx), Math.round(CAP_BOX[3] * L.ky));
+        if (clip) { images.save(clip, CAP_SAMPLE_DIR + "cap_" + Date.now() + "_" + text.replace(/\?/g, "x") + ".png"); try { clip.recycle(); } catch (e2) {} }
+    } catch (e) { logErr("captcha sample", e); }
+}
+
+// after a solved popup, remember the shapes it showed (new digits / odd fonts) so the bank grows by itself
+function capLearn(rd) {
+    try {
+        var extra = {}, changed = false, i;
+        if (files.exists(CAP_BANK_FILE)) { try { extra = JSON.parse(files.read(CAP_BANK_FILE)); } catch (e0) { extra = {}; } }
+        for (i = 0; i < 5; i++) {
+            var d = rd.text.charAt(i), g = rd.glyphs[i];
+            var c = capClassify(g, CAP_CODE_BANK);
+            if (c.d === d && c.dist < 0.015) continue;                 // already well known
+            if (!CAP_CODE_BANK[d]) CAP_CODE_BANK[d] = [];
+            if (CAP_CODE_BANK[d].length >= 10) continue;
+            var str = g.bits + "|" + g.ratio.toFixed(3);
+            CAP_CODE_BANK[d].push(capTpl(str));
+            if (!extra[d]) extra[d] = [];
+            extra[d].push(str); changed = true;
+        }
+        if (changed) { files.write(CAP_BANK_FILE, JSON.stringify(extra)); log("Captcha: learned new digit shapes, missing now [" + capMissingDigits() + "]"); }
+    } catch (e) { logErr("capLearn", e); }
+}
+var lastKeySave = 0;
+function capSaveKeypad(img, W, H) {            // picture of the keypad so wrong templates can be fixed
+    if (Date.now() - lastKeySave < 30000) return;
+    lastKeySave = Date.now();
+    try {
+        files.ensureDir(CAP_SAMPLE_DIR + "x");
+        var L = capLayout(W, H), x0 = mapX(L, KEY_CX[0] - 60, "c"), y0 = mapY(L, KEY_CY[0] - 40, "c");
+        var cw = mapX(L, KEY_CX[4] + 60, "c") - x0, ch = mapY(L, KEY_CY[1] + 40, "c") - y0;
+        if (capKp) { x0 = Math.max(0, Math.round(capKp.cx[0] - capKp.tw)); y0 = Math.max(0, Math.round(capKp.cy[0] - capKp.th)); cw = Math.round(capKp.tw * 7); ch = Math.round(capKp.th * 3.2); }
+        var clip = images.clip(img, x0, y0, Math.min(cw, W - x0), Math.min(ch, H - y0));
+        if (clip) { images.save(clip, CAP_SAMPLE_DIR + "keypad_" + Date.now() + ".png"); try { clip.recycle(); } catch (e2) {} }
+    } catch (e) { logErr("keypad sample", e); }
+}
+// Teach (auto crop): a code with a digit shape the reader has never seen (the built-in bank has no 0 or 1) cannot be read.
+// Instead of asking you to type anything, the script crops every digit it does NOT recognise (tight box around the digit)
+// plus the whole code picture, and saves them in captcha_samples:
+//   digit_<time>_p<position 1-5>_guess<closest known digit>.png   <- one file per unknown digit (these are the 0 / 1 shapes)
+//   cap_<time>_<read text>.png                                    <- the whole code picture ("?" = unknown digit, shown as x)
+// The same popup is saved once only (it is compared by its digit shapes).
+var lastTeachSig = "", teachFullLogged = false;
+function capTeachSave(img, W, H, rd) {
+    try {
+        var i, sig = "";
+        for (i = 0; i < 5; i++) sig += rd.glyphs[i].bits;
+        if (sig === lastTeachSig) return false;                 // same popup is still showing - already saved
+        lastTeachSig = sig;
+        files.ensureDir(CAP_SAMPLE_DIR + "x");
+        if (files.listDir(CAP_SAMPLE_DIR).length >= CAP_SAMPLE_MAX - 6) {
+            if (!teachFullLogged) { teachFullLogged = true; log("Captcha teach: captcha_samples is full (" + CAP_SAMPLE_MAX + " files) - delete old ones to save more"); }
+            return false;
+        }
+        var ts = Date.now(), pad = Math.max(2, Math.round(rd.st * 2)), saved = [];
+        for (i = 0; i < 5; i++) {
+            if (rd.sure[i]) continue;                           // this digit is already known
+            var g = rd.glyphs[i];
+            var cx = Math.max(0, rd.ox + g.bx * rd.st - pad), cy = Math.max(0, rd.oy + g.by * rd.st - pad);
+            var cw = Math.min(W - cx, g.bw * rd.st + 2 * pad), ch = Math.min(H - cy, g.bh * rd.st + 2 * pad);
+            var clip = images.clip(img, cx, cy, cw, ch);
+            if (clip) {
+                images.save(clip, CAP_SAMPLE_DIR + "digit_" + ts + "_p" + (i + 1) + "_guess" + String(rd.guess[i]).replace(/\?/g, "x") + ".png");
+                try { clip.recycle(); } catch (e2) {}
+                saved.push(i + 1);
+            }
+        }
+        var L = capLayout(W, H);
+        var full = images.clip(img, mapX(L, CAP_BOX[0], "c"), mapY(L, CAP_BOX[1], "c"), Math.round(CAP_BOX[2] * L.kx), Math.round(CAP_BOX[3] * L.ky));
+        if (full) {
+            images.save(full, CAP_SAMPLE_DIR + "cap_" + ts + "_" + (rd.text || "none").replace(/\?/g, "x") + ".png");
+            try { full.recycle(); } catch (e3) {}
+        }
+        log("Captcha teach: saved " + saved.length + " digit crop(s) (position " + (saved.join(",") || "-") + ") + the code picture in " + CAP_SAMPLE_DIR);
+        return true;
+    } catch (e) { logErr("captcha teach save", e); return false; }
+}
+function solveCaptchaOnScreen(screenImg) {
+    var img = screenImg || grabScreen();
+    if (!img) return;
+    var W = img.getWidth(), H = img.getHeight();
+    if (W < H) return;   // portrait capture = not the game
+    if (!capPopupShown(img, W, H)) return;          // no verification popup -> nothing to do
+    capSeenAt = Date.now();                         // auto loot keeps its taps off while this popup is up
+
+    var rd = capReadCode(img, W, H);
+    capDiag("popup detected -> read " + rd.text + (rd.info ? "  [" + rd.info + "]" : ""), "p");
+    if (!rd.glyphs || rd.text.length !== 5 || rd.text.indexOf("?") >= 0) {
+        if (teachOn && rd.glyphs) capTeachSave(img, W, H, rd); else capSaveSample(img, W, H, rd.text || "none");
+        capDiag("cannot read all 5 digits confidently (shapes still unknown: [" + capMissingDigits() + "]) - not typing, samples saved in " + CAP_SAMPLE_DIR + (teachOn ? "" : " (turn Teach crop ON to also save every unknown digit as its own picture)"), "u");
+        return;
+    }
+    capSaveSample(img, W, H, rd.text);
+    if (rd.text === lastCapText && Date.now() - lastCapAt < 60000) {
+        capDiag("same code " + rd.text + " is still showing after submit - not retyping it (wrong digit?)", "s");
+        return;
+    }
+    var keys = capReadKeypad(img, W, H, rd.text);
+    if (!keys) { capSaveKeypad(img, W, H); capDiag("could not read the keypad labels (" + capKeyInfo + ") - not typing", "k"); return; }
+
+    log("Captcha typing " + rd.text);
+    for (var i = 0; i < 5; i++) {
+        var pt = keys[rd.text.charAt(i)];
+        press(pt[0], pt[1], TAP_MS);
+        nap(350);
+    }
+    nap(200);
+    if (capKp && capKp.confirm) press(capKp.confirm[0], capKp.confirm[1], TAP_MS);
+    else press(mapX(capLayout(W, H), CONFIRM_PT[0], "c"), mapY(capLayout(W, H), CONFIRM_PT[1], "c"), TAP_MS);
+    lastCapText = rd.text; lastCapAt = Date.now();
+    log("Captcha submitted " + rd.text);
+    nap(1200);
+    var after = grabScreen();
+    if (after && capPopupShown(after, after.getWidth(), after.getHeight())) log("Captcha: popup still showing after Confirm (code probably wrong)");
+    else { log("Captcha: popup closed - solved"); capLearn(rd); }
+}
+
+// --- minimize: hides every control and the log screen ---
+var minimized = false;
+w.mini.click(function () {
+    minimized = !minimized;
+    w.mini.setText(minimized ? "▢" : "—");
+    inputFocus(false);
+    if (minimized) { try { closeServerPopup(); closeChannelPopup(); } catch (e) {} }
+    applyPanels();
+    if (minimized) refreshLogView();
+});
+
+// --- skill panel (auto attack) ---
+function refreshSkillUI() {
+    for (var i = 0; i < SKILLS.length; i++) {
+        var b = w["k" + i];
+        b.setText(SKILLS[i].name + (skillEnabled(i) ? " ✔" : " ✖"));
+        b.setAlpha(skillEnabled(i) ? 1 : 0.45);
+    }
+    w.atk.setText("Attack: " + (atkOn ? "ON" : "OFF"));
+    w.atk.setAlpha(atkOn ? 1 : 0.5);
+    w.captcha.setText("Captcha: " + (captchaOn ? "ON" : "OFF"));
+    w.captcha.setAlpha(captchaOn ? 1 : 0.5);
+    w.teach.setText("Teach crop: " + (teachOn ? "ON" : "OFF"));
+    w.teach.setAlpha(teachOn ? 1 : 0.5);
+    var _apOn = store.get("autoPotsOn", true);
+    w.apots.setText("Auto Pots: " + (_apOn ? "ON" : "OFF"));
+    w.apots.setAlpha(_apOn ? 1 : 0.5);
+    w.autoloot.setText("Auto loot: " + (alOn ? "ON" : "OFF"));
+    w.autoloot.setAlpha(alOn ? 1 : 0.5);
+    var _ctOn = store.get("centerTapOn", true);
+    w.ctap.setText("Center tap: " + (_ctOn ? "ON" : "OFF"));
+    w.ctap.setAlpha(_ctOn ? 1 : 0.5);
+    w.detect.setText("Detect: " + (skillDetect ? "IMAGE" : "TAP"));
+    w.detect.setAlpha(skillDetect ? 1 : 0.6);
+    w.gap.setText(ATK_NONSTOP ? "Gap: NON-STOP" : "Gap " + (ATK_GAPS[gapIdx] / 1000) + "s (tap to change)");
+}
+ui.run(refreshSkillUI);
+function bindSkill(i) {
+    w["k" + i].click(function () {
+        skillSel = skillSel.substr(0, i) + (skillEnabled(i) ? "0" : "1") + skillSel.substr(i + 1);
+        store.put("skillSel", skillSel);
+        log("Skill " + SKILLS[i].name + " -> " + (skillEnabled(i) ? "ON" : "OFF"));
+        refreshSkillUI();
+    });
+}
+for (var si = 0; si < SKILLS.length; si++) bindSkill(si);
+w.atk.click(function () {
+    atkOn = !atkOn;
+    store.put("atkOn", atkOn);
+    log("Attack -> " + (atkOn ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.apots.click(function () {
+    var on = !store.get("autoPotsOn", true);
+    store.put("autoPotsOn", on);
+    AUTOPOTS_ON = on;                // (declared further down; the click can only happen after the whole script has loaded)
+    autoPotsKick = true;             // ON while in game -> run the Auto Pots step now; OFF -> cancel a pending run
+    log("Auto Pots -> " + (on ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.ctap.click(function () {
+    var on = !store.get("centerTapOn", true);
+    store.put("centerTapOn", on);
+    CENTER_TAP_ON = on;
+    ctSeen = false; centerTapAt = 0;
+    log("Center tap -> " + (on ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.autoloot.click(function () {
+    alOn = !alOn;
+    store.put("autoLootOn", alOn);
+    alSt = alFresh();
+    log("Auto loot -> " + (alOn ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.alItems.click(function () { alOpenItems(); });
+w.teach.click(function () {
+    teachOn = !teachOn;
+    store.put("teachOn", teachOn);
+    log("Captcha teach -> " + (teachOn ? "ON" : "OFF") + (teachOn ? " (every unknown digit is cropped and saved in captcha_samples)" : ""));
+    refreshSkillUI();
+});
+w.captcha.click(function () {
+    captchaOn = !captchaOn;
+    store.put("captchaOn", captchaOn);
+    log("Captcha solver -> " + (captchaOn ? "ON" : "OFF"));
+    refreshSkillUI();
+});
+w.detect.click(function () {
+    skillDetect = !skillDetect;
+    store.put("skillDetect", skillDetect);
+    log("Skill detect -> " + (skillDetect ? "IMAGE (tap a skill only when its icon is found)" : "TAP (blind taps)"));
+    if (skillDetect) {
+        var have = 0;
+        for (var di = 0; di < SKILLS.length; di++) if (skillIcon(di)) have++;
+        if (!have) { log("No skill icons saved yet - press Save icons while the skills are READY"); toast("No icons saved - press Save icons first"); }
+    }
+    refreshSkillUI();
+});
+w.saveicons.click(function () {
+    threads.start(function () { saveSkillIcons(); });
+});
+w.gap.click(function () {
+    gapIdx = (gapIdx + 1) % ATK_GAPS.length;
+    store.put("gapIdx", gapIdx);
+    log("Attack gap -> " + ATK_GAPS[gapIdx] + "ms");
+    refreshSkillUI();
+});
+// ---- "Match screen" button ----
+// Finds the layout mode (see layoutOf) that makes ALL image / pixel detection and every tap line up on THIS device.
+// It takes one screenshot, tries every mode, counts how many detectors (HUD bars, Select/Login/Start/Character buttons,
+// Login + Start image templates, loot button, Revive / Disconnected dialogs) recognise their spot under that mode,
+// then keeps the best one. The result is saved (store + /sdcard/KlassX/layout.txt) and used by every detector and tap.
+// Press it while the game is on any recognisable screen (login, select server, character, or in-game).
+var matchScrBusy = false;
+function effectiveMode(m, W, H) {
+    if (m !== "auto") return m;
+    var ar = W / H, rar = REF_W / REF_H;
+    return Math.abs(ar - rar) / rar < 0.04 ? "stretch" : "match";
+}
+function refreshMatchUI() {
+    w.matchScr.setText(matchScrBusy ? "Matching screen..." : "Match screen: " + LAYOUT_MODE.toUpperCase());
+}
+ui.run(refreshMatchUI);
+function scoreLayout(img, W, H) {            // uses LAYOUT_MODE as currently set
+    var sc = 0, ok = 0, i;
+    try { if (matchHud(img, W, H)) { sc += 4; ok++; } sc += hudBars * 0.5; } catch (e) {}
+    var specs = [SCREENS.select, SCREENS.login, SCREENS.start, SCREENS.character];
+    for (i = 0; i < specs.length; i++) {
+        try { if (matchSpec(img, specs[i], W, H)) { sc += 4; ok++; } } catch (e) {}
+    }
+    try { if (matchLoginTpl(img, W, H)) { sc += 5; ok++; } } catch (e) {}
+    try { if (matchStartTpl(img, W, H)) { sc += 5; ok++; } } catch (e) {}
+    try { if (matchLoot(img, W, H)) { sc += 3; ok++; } } catch (e) {}
+    try { if (matchDisc(img, W, H)) { sc += 3; ok++; } else if (matchRevive(img, W, H)) { sc += 3; ok++; } } catch (e) {}
+    return { score: sc, ok: ok };
+}
+function applyLayoutMode(m) {
+    LAYOUT_MODE = m;
+    try { store.put("layoutMode", m); } catch (e) {}
+    try { files.createWithDirs(LAYOUT_FILE); files.write(LAYOUT_FILE, m); } catch (e) { logErr("save layout.txt", e); }
+    lastLoginPt = null; lastStartPt = null;   // detections made under a trial mode must not be reused
+}
+function autoMatchScreen() {
+    if (matchScrBusy) return;
+    if (busy) { toast("Press Stop first, then Match screen"); return; }
+    matchScrBusy = true;
+    ui.run(refreshMatchUI);
+    threads.start(function () {
+        var prev = LAYOUT_MODE, note = "";
+        try {
+            if (!captureOk) {
+                applyLayoutMode("auto");
+                note = "Screen capture is off - set to AUTO. Log in (allow capture), then press again.";
+            } else {
+                var img = grabScreen();
+                if (!img) throw "capture returned null";
+                var W = img.getWidth(), H = img.getHeight();
+                if (W < H) throw "capture is portrait " + W + "x" + H;
+                lastW = W; lastH = H; syncTapSpace(W, H);
+                var modes = ["auto", "stretch", "match", "fit", "height", "width"], best = null, rows = [], k;
+                for (k = 0; k < modes.length; k++) {
+                    LAYOUT_MODE = modes[k];
+                    var r = scoreLayout(img, W, H);
+                    rows.push(modes[k] + "=" + r.score.toFixed(1) + "(" + r.ok + ")");
+                    if (!best || r.score > best.score + 0.5) best = { mode: modes[k], score: r.score, ok: r.ok };   // ties keep the earlier (auto first)
+                }
+                LAYOUT_MODE = prev;
+                log("Match screen: capture " + W + "x" + H + " | " + rows.join(" "));
+                if (best.ok === 0) {
+                    applyLayoutMode("auto");
+                    note = "No game screen recognised (" + W + "x" + H + ") - set to AUTO. Open the game on login / select server / in-game and press again.";
+                } else {
+                    applyLayoutMode(best.mode);
+                    note = "Matched " + W + "x" + H + " -> " + best.mode.toUpperCase() + (best.mode === "auto" ? " (" + effectiveMode("auto", W, H) + ")" : "") + ", " + best.ok + " detector(s) agree";
+                }
+            }
+        } catch (e) {
+            LAYOUT_MODE = prev;
+            logErr("match screen", e);
+            note = "Match screen failed: " + String(e).slice(0, 60);
+        }
+        log(note);
+        toast(note);
+        matchScrBusy = false;
+        ui.run(refreshMatchUI);
+    });
+}
+w.matchScr.click(function () { inputFocus(false); autoMatchScreen(); });
+var toolPanelShown = false;
+w.toolsBtn.click(function () {
+    toolPanelShown = !toolPanelShown;
+    w.toolpanel.setVisibility(toolPanelShown ? android.view.View.VISIBLE : android.view.View.GONE);
+    w.toolsBtn.setText(toolPanelShown ? "Tools ▴" : "Tools ▾");
+});
+var skillPanelShown = false;
+w.skills.click(function () {
+    skillPanelShown = !skillPanelShown;
+    w.skillpanel.setVisibility(skillPanelShown ? android.view.View.VISIBLE : android.view.View.GONE);
+    w.skills.setText(skillPanelShown ? "Skills ▴" : "Skills ▾");
+});
+
+// --- quick slot panel (bottom bar items 1-6) ---
+function refreshQuickUI() {
+    for (var i = 0; i < QUICK.length; i++) {
+        var b = w["q" + i];
+        b.setText(QUICK[i].name + (quickEnabled(i) ? " ✔" : " ✖"));
+        b.setAlpha(quickEnabled(i) ? 1 : 0.45);
+    }
+    w.quick.setText("Quick: " + (quickOn ? "ON" : "OFF"));
+    w.quick.setAlpha(quickOn ? 1 : 0.5);
+    w.qgap.setText("Every " + (QUICK_GAPS[quickGapIdx] / 1000) + "s (tap to change)");
+}
+ui.run(refreshQuickUI);
+function bindQuick(i) {
+    w["q" + i].click(function () {
+        quickSel = quickSel.substr(0, i) + (quickEnabled(i) ? "0" : "1") + quickSel.substr(i + 1);
+        store.put("quickSel", quickSel);
+        log("Quick slot " + QUICK[i].name + " -> " + (quickEnabled(i) ? "ON" : "OFF"));
+        refreshQuickUI();
+    });
+}
+for (var qi0 = 0; qi0 < QUICK.length; qi0++) bindQuick(qi0);
+w.quick.click(function () {
+    quickOn = !quickOn;
+    store.put("quickOn", quickOn);
+    log("Quick -> " + (quickOn ? "ON" : "OFF"));
+    refreshQuickUI();
+});
+w.qgap.click(function () {
+    quickGapIdx = (quickGapIdx + 1) % QUICK_GAPS.length;
+    store.put("quickGapIdx", quickGapIdx);
+    log("Quick interval -> " + QUICK_GAPS[quickGapIdx] + "ms");
+    refreshQuickUI();
+});
+var quickPanelShown = false;
+w.qslots.click(function () {
+    if (!QUICK_SECTION) return;
+    quickPanelShown = !quickPanelShown;
+    w.quickpanel.setVisibility(quickPanelShown ? android.view.View.VISIBLE : android.view.View.GONE);
+    w.qslots.setText(quickPanelShown ? "Quick ▴" : "Quick ▾");
+});
+
+// --- drag the window by the title ---
+var x, y, wx, wy;
+w.drag.setOnTouchListener(function (view, e) {
+    switch (e.getAction()) {
+        case e.ACTION_DOWN:
+            x = e.getRawX(); y = e.getRawY();
+            wx = w.getX();   wy = w.getY();
+            return true;
+        case e.ACTION_MOVE:
+            w.setPosition(wx + (e.getRawX() - x), wy + (e.getRawY() - y));
+            return true;
+        case e.ACTION_UP:
+            ui.run(fitMain);
+            return true;
+    }
+    return true;
+});
+
+// --- login / register gate: Firebase Authentication (email + password, REST API) ---
+// Setup: Firebase console > Authentication > Sign-in method > enable "Email/Password",
+// then paste the project's Web API key (Project settings > General) below.
+var FIREBASE_API_KEY = "AIzaSyAZco1FXc_HNI2-yQp8xG2QR6tRKfWLlC8";   // project klassbot-d1f15
+var FB_AUTH = "https://identitytoolkit.googleapis.com/v1/accounts:";
+var FB_TOKEN = "https://securetoken.googleapis.com/v1/token";
+// --- updates through GitHub (users download; admins publish from the Admin panel) ---
+var GH_OWNER  = "juvymaisn-stack";     // GitHub user/org that owns the repo (PUBLIC repo: users download without a token)
+var GH_REPO   = "KLASSX";            // repo name
+var GH_BRANCH = "main";
+var GH_SCRIPT = "klassx_launcher.js";   // file name of the script inside the repo
+var GH_VERSION = "version.json";        // small file users check for new versions
+var ADMIN_USERS = ["admin", "test1"];            // usernames that see the Admin panel (lowercase)
+var REGISTER_ADMIN_ONLY = false;        // false = anyone with a valid activation key can register (true = only ADMIN_USERS names)
+var SCRIPT_PATH = "";                   // leave empty = auto-detect; or set e.g. "/sdcard/Scripts/klassx.js"
+var UPDATE_CHECK_MS = 30 * 60 * 1000;   // how often to look for a new version while running
+var AUTO_UPDATE = true;                 // true = download + restart into a new version by itself whenever the bot is idle
+var lastRemoteVer = "", autoTried = false;
+var updateInfo = null, admShown = false, admBusy = false, updBusy = false;
+var FIRESTORE_PROJECT = "klassbot-d1f15";   // Firestore project id (database must be created in the console)
+var MIN_PASS = 6;                       // Firebase's own minimum
+var USER_RE = /^[A-Za-z0-9_]{3,20}$/;   // allowed usernames
+var AUTH_DOMAIN = "klassx.app";         // Firebase needs an email: username -> username@klassx.app (never emailed)
+function userToEmail(name) { return name.toLowerCase() + "@" + AUTH_DOMAIN; }
+function emailToUser(email) { return String(email).split("@")[0]; }
+var AUTH_MAX_FAILS = 5;                 // wrong attempts before a short local lockout
+var AUTH_LOCK_MS = 30000;
+
+var authStore = storages.create("klassx_launcher_auth");
+(function () {                            // repo chosen in the Admin panel (saved on this phone) overrides GH_OWNER / GH_REPO
+    try {
+        var m = /^([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)$/.exec(String(authStore.get("ghRepo", "")));
+        if (m) { GH_OWNER = m[1]; GH_REPO = m[2]; }
+    } catch (e) {}
+})();
+var authed = false, currentUser = "", regMode = false, authBusy = false;
+var authFails = 0, authLockUntil = 0, captureStarted = false;
+var subUntil = 0, subChecking = false, subBusy = false, sessRefresh = "", myUid = "";   // subscription state (ms epoch)
+var MAX_KEY_HOURS = 720;                                                                // hour keys: type e.g. 12h in the admin box
+var MAX_KEY_DAYS = 30, DEFAULT_KEY_DAYS = 30;                                        // generated keys: 1..MAX_KEY_DAYS days (change MAX_KEY_DAYS to raise the limit)
+var rememberOn = authStore.get("remember", true);      // "Stay" = auto sign-in + saved username/password (default ON)
+function saveCreds(name, pw) {          // kept on THIS device only (never sent to Firebase/database)
+    if (!rememberOn) return;
+    authStore.put("savedUser", name);
+    authStore.put("savedPass", pw);
+}
+function fillSaved() {                  // put the saved username/password back into the login fields
+    var u = authStore.get("savedUser", ""), p = authStore.get("savedPass", "");
+    if (rememberOn && u) ui.run(function () { w.authUser.setText(u); w.authPass.setText(p); });
+}
+
+function inputFocus(on) {               // floating windows only take keyboard input while focusable
+    try { if (on) w.requestFocus(); else w.disableFocus(); } catch (e) {}
+}
+function keyMissing() { return FIREBASE_API_KEY.indexOf("PASTE") === 0; }
+
+// --- Firebase REST helpers (blocking: always call from a background thread) ---
+function fbResult(res) {
+    var j = null, status = 0;
+    try { status = res.statusCode; j = res.body.json(); } catch (e) {}
+    if (status === 200 && j && !j.error) return { ok: true, data: j };
+    var code = (j && j.error && j.error.message) ? String(j.error.message) : ("HTTP " + status);
+    return { ok: false, error: code.split(/[\s:]/)[0] };
+}
+function fbPost(url, body) {
+    try { return fbResult(http.postJson(url + "?key=" + FIREBASE_API_KEY, body)); }
+    catch (e) { logErr("fbPost", e); return { ok: false, error: "NETWORK" }; }
+}
+function fbRefresh(refreshToken) {
+    try {
+        return fbResult(http.post(FB_TOKEN + "?key=" + FIREBASE_API_KEY,
+            { grant_type: "refresh_token", refresh_token: refreshToken }));
+    } catch (e) { logErr("fbRefresh", e); return { ok: false, error: "NETWORK" }; }
+}
+// Save a user record (username + date, NEVER the password) in Firestore: users/{uid}
+function saveUserRecord(name, uid, idToken) {
+    try {
+        if (!uid || !idToken) { log("user record skipped (no uid/token)"); return false; }
+        var url = "https://firestore.googleapis.com/v1/projects/" + FIRESTORE_PROJECT +
+            "/databases/(default)/documents/users?documentId=" + encodeURIComponent(uid);
+        var body = { fields: {
+            username:  { stringValue: name },
+            createdAt: { timestampValue: new Date().toISOString() }
+        } };
+        var res = http.postJson(url, body, { headers: { "Authorization": "Bearer " + idToken } });
+        if (res.statusCode === 200) { log("user record saved: " + name); return true; }
+        log("user record FAILED (HTTP " + res.statusCode + "): " + String(res.body.string()).slice(0, 200));
+    } catch (e) { logErr("saveUserRecord", e); }
+    return false;
+}
+function friendlyError(code) {
+    switch (code) {
+        case "EMAIL_EXISTS": return "That username is taken.";
+        case "INVALID_EMAIL": return "Invalid username.";
+        case "WEAK_PASSWORD": return "Password too weak (" + MIN_PASS + "+ characters).";
+        case "EMAIL_NOT_FOUND":
+        case "INVALID_PASSWORD":
+        case "INVALID_LOGIN_CREDENTIALS": return "Wrong username or password.";
+        case "USER_DISABLED": return "This account is disabled.";
+        case "TOO_MANY_ATTEMPTS_TRY_LATER": return "Too many attempts. Try again later.";
+        case "OPERATION_NOT_ALLOWED": return "Email/Password sign-in is off in Firebase.";
+        case "API_KEY_INVALID":
+        case "INVALID_API_KEY": return "Bad Firebase API key in the script.";
+        case "NETWORK": return "No connection to Firebase.";
+        default: return "Error: " + code;
+    }
+}
+
+function setAuthMsg(text, good) {
+    ui.run(function () {
+        w.authMsg.setText(text);
+        w.authMsg.setTextColor(android.graphics.Color.parseColor(good ? "#a5d6a7" : "#ff8a80"));
+    });
+}
+function applyPanels() {                // show login panel OR controls, depending on state
+    ui.run(function () {
+        var V = android.view.View;
+        w.minilogscroll.setVisibility(minimized ? V.VISIBLE : V.GONE);   // minimized = title bar + compact log
+        w.mainscroll.setVisibility(minimized ? V.GONE : V.VISIBLE);   // minimized = only the title bar stays
+        w.auth.setVisibility(!authed && !minimized ? V.VISIBLE : V.GONE);
+        var subOkNow = authed && subOk();
+        w.controls.setVisibility(subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.controls2.setVisibility(subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.subpanel.setVisibility(authed && !subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.logout.setText("Logout (" + currentUser + ")");
+        var adm = authed && isAdmin();
+        w.admin.setVisibility(adm ? V.VISIBLE : V.GONE);
+        w.monBtn.setVisibility(adm && subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.monpanel.setVisibility(adm && monShown && subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.keybar.setVisibility(adm && subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.usrtabs.setVisibility(adm && usersShown && subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.devpanel.setVisibility(adm && devShown && subOkNow && !minimized ? V.VISIBLE : V.GONE);
+        w.admscroll.setVisibility(adm && admShown ? V.VISIBLE : V.GONE);
+        w.updbar.setVisibility(!minimized && updateInfo ? V.VISIBLE : V.GONE);
+    });
+}
+function refreshAuthUI() {
+    ui.run(function () {
+        w.tabLogin.setAlpha(regMode ? 0.5 : 1);
+        w.tabReg.setAlpha(regMode ? 1 : 0.5);
+        w.authPass2.setVisibility(regMode ? android.view.View.VISIBLE : android.view.View.GONE);
+        w.authKey.setVisibility(regMode ? android.view.View.VISIBLE : android.view.View.GONE);
+        w.authGo.setText(regMode ? "Create account" : "Login");
+        w.authRemember.setText("Stay: " + (rememberOn ? "ON" : "OFF"));
+        w.authMsg.setText("");
+    });
+}
+function clearAuthFields() {
+    ui.run(function () {
+        w.authUser.setText("");
+        w.authPass.setText("");
+        w.authPass2.setText("");
+        w.authKey.setText("");
+    });
+}
+// ===== DEVICE LOCK (normal users only; ADMIN_USERS are never locked) =====
+// users/{uid}.deviceId is written once, on the first login from a device. Any other device is refused.
+// To move a user to a new phone: delete the deviceId field of that user in the Firestore console.
+var deviceOk = false;
+function myDeviceId() {
+    try { return String(device.getAndroidId()); } catch (e) {}
+    return "";
+}
+function deviceFail(msg) {
+    log("device lock: " + msg);
+    doLogout();
+    setAuthMsg(msg, false);
+}
+function deviceCheck() {
+    try {
+        if (isAdmin()) { deviceOk = true; applyPanels(); refreshSubUI(); return; }
+        var id = myDeviceId();
+        if (!id) { deviceFail("Cannot read device ID."); return; }
+        var t = getIdToken();
+        if (!t) { deviceFail("Cannot verify device (offline?). Log in again."); return; }
+        var r = fsReq("GET", fsUrl("users/" + t.uid), t.token);
+        if (r.status === 404) {                         // old account without a record: create it, then bind
+            saveUserRecord(currentUser, t.uid, t.token);
+            r = fsReq("GET", fsUrl("users/" + t.uid), t.token);
+        }
+        if (r.status !== 200 || !r.json) { deviceFail("Cannot verify device (HTTP " + r.status + ")."); return; }
+        var f = r.json.fields || {};
+        var saved = (f.deviceId && f.deviceId.stringValue) ? String(f.deviceId.stringValue) : "";
+        if (saved === id) { deviceOk = true; applyPanels(); refreshSubUI(); return; }
+        if (saved) { deviceFail("This account is locked to another device."); return; }
+        var base = fsBase();
+        var commit = { writes: [ {
+            update: { name: base + "/users/" + t.uid, fields: { deviceId: { stringValue: id } } },
+            updateMask: { fieldPaths: ["deviceId"] },
+            currentDocument: { updateTime: r.json.updateTime }      // fails if another device bound first
+        } ] };
+        var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+        if (c.status === 200) { log("device bound"); deviceOk = true; applyPanels(); refreshSubUI(); return; }
+        deviceFail(c.status === 403 ? "Server refused device bind (Firestore rules)." : "Device bind failed (HTTP " + c.status + ").");
+    } catch (e) { logErr("deviceCheck", e); deviceFail("Device check error."); }
+}
+
+function onAuthed(email, refreshToken) {
+    authed = true;
+    deviceOk = false;
+    authStore.put("loggedOut", false);
+    currentUser = emailToUser(email);
+    authFails = 0;
+    sessRefresh = refreshToken || sessRefresh;
+    subUntil = 0; subChecking = true;
+    if (rememberOn && refreshToken) authStore.put("session", refreshToken); else authStore.remove("session");
+    clearAuthFields();
+    inputFocus(false);
+    applyPanels();
+    log("login OK: " + currentUser);
+    threads.start(deviceCheck);          // device lock (skipped for admins)
+    threads.start(loadSub);              // subscription decides whether the controls unlock
+    threads.start(pushMonitor);          // first status upload for the admin Monitor
+    kickSeen = null; kickWarned = false;
+    threads.start(kickCheck);            // remember the current kick stamp (a kick sent later = log out)
+    threads.start(checkUpdate);
+    if (!captureStarted) {              // ask for screen capture only after login
+        captureStarted = true;
+        threads.start(initCapture);
+    }
+}
+
+function isAdminName(name) { return ADMIN_USERS.indexOf(String(name).toLowerCase()) >= 0; }
+// Look the key up in Firestore. t = { token, uid }. Blocking: call from a background thread.
+function checkKey(t, key) {
+    var g = fsReq("GET", fsUrl("keys/" + key), t.token);
+    if (g.status === 404 || g.status === 403) return { ok: false, msg: "Invalid key." };
+    if (g.status !== 200 || !g.json) return { ok: false, msg: "Could not check key (HTTP " + g.status + ")." };
+    var f = g.json.fields || {};
+    if (f.redeemedBy && f.redeemedBy.stringValue) return { ok: false, msg: "That key was already used." };
+    var days = fsInt(f.days), hours = fsInt(f.hours);
+    if (days <= 0 && hours <= 0) return { ok: false, msg: "Invalid key." };
+    var ms = Math.max(0, hours) * 3600000 + Math.max(0, days) * 86400000;
+    var label = hours > 0 ? (hours + (hours === 1 ? " hour" : " hours")) + (days > 0 ? " + " + days + " days" : "") : (days + " days");
+    return { ok: true, days: days, hours: hours, ms: ms, label: label, updateTime: g.json.updateTime };
+}
+// Mark the key used and extend users/{uid}.subUntil in one atomic commit. chk = result of checkKey, cur = current subUntil.
+function commitKey(t, key, chk, cur) {
+    var now = Date.now();
+    var until = Math.max(now, cur) + chk.ms;       // extends an active subscription
+    var base = fsBase();
+    var commit = { writes: [
+        { update: { name: base + "/keys/" + key, fields: { redeemedBy: { stringValue: t.uid }, redeemedAt: { integerValue: String(now) } } },
+          updateMask: { fieldPaths: ["redeemedBy", "redeemedAt"] },
+          currentDocument: { updateTime: chk.updateTime } },
+        { update: { name: base + "/users/" + t.uid, fields: { subUntil: { integerValue: String(until) }, lastKey: { stringValue: key } } },
+          updateMask: { fieldPaths: ["subUntil", "lastKey"] } }
+    ] };
+    var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+    if (c.status !== 200) {
+        log("redeem failed: HTTP " + c.status + " " + JSON.stringify(c.json).slice(0, 200));
+        return { ok: false, msg: c.status === 403 ? "Server refused (Firestore rules not set up?)." :
+                 (c.status === 400 || c.status === 409) ? "That key was already used." : "Redeem failed (HTTP " + c.status + ")." };
+    }
+    return { ok: true, until: until };
+}
+function submitAuth() {
+    if (authBusy) return;
+    if (keyMissing()) { setAuthMsg("Set FIREBASE_API_KEY in the script first.", false); return; }
+    var now = Date.now();
+    if (now < authLockUntil) {
+        setAuthMsg("Too many attempts. Wait " + Math.ceil((authLockUntil - now) / 1000) + "s.", false);
+        return;
+    }
+    var name = String(w.authUser.getText()).trim();
+    var pw = String(w.authPass.getText());
+    var pw2 = String(w.authPass2.getText());
+    var regKey = String(w.authKey.getText()).trim().toUpperCase();
+    var reg = regMode;
+    if (!USER_RE.test(name)) { setAuthMsg("Username: 3-20 letters, numbers or _", false); return; }
+    var email = userToEmail(name);
+    if (reg) {
+        if (REGISTER_ADMIN_ONLY && ADMIN_USERS.indexOf(name.toLowerCase()) < 0) { setAuthMsg("Registration is closed.", false); return; }
+        if (pw.length < MIN_PASS) { setAuthMsg("Password needs " + MIN_PASS + "+ characters.", false); return; }
+        if (pw !== pw2) { setAuthMsg("Passwords do not match.", false); return; }
+        if (!isAdminName(name)) {       // admins need no key; everyone else must enter one
+            if (!regKey) { setAuthMsg("Enter your activation key.", false); return; }
+            if (!/^[A-Z0-9-]{8,40}$/.test(regKey)) { setAuthMsg("That is not a valid key.", false); return; }
+        }
+    } else if (!pw) { setAuthMsg("Enter your password.", false); return; }
+    authBusy = true;
+    setAuthMsg(reg ? "Creating account..." : "Logging in...", true);
+    threads.start(function () {
+        try {
+            var r = fbPost(FB_AUTH + (reg ? "signUp" : "signInWithPassword"),
+                { email: email, password: pw, returnSecureToken: true });
+            if (r.ok) {
+                if (reg) {
+                    log("registered: " + name);
+                    var t0 = { token: r.data.idToken, uid: r.data.localId };
+                    var needKey = !isAdminName(name);
+                    var chk = null;
+                    if (needKey) {
+                        setAuthMsg("Checking key...", true);
+                        chk = checkKey(t0, regKey);
+                        if (!chk.ok) {          // bad key: remove the new account so the username stays free
+                            fbPost(FB_AUTH + "delete", { idToken: r.data.idToken });
+                            log("registration cancelled for '" + name + "': " + chk.msg);
+                            setAuthMsg(chk.msg, false);
+                            return;
+                        }
+                    }
+                    saveUserRecord(name, t0.uid, t0.token);
+                    if (needKey) {
+                        var rd = commitKey(t0, regKey, chk, 0);
+                        if (!rd.ok) {           // account exists but key failed: user can retry in the key panel
+                            log("key redeem at registration failed: " + rd.msg);
+                            toast(rd.msg);
+                        } else log("registered with key: +" + chk.label);
+                    }
+                }
+                saveCreds(name, pw);
+                onAuthed(r.data.email || email, r.data.refreshToken);
+            } else {
+                log((reg ? "register" : "login") + " failed for '" + name + "': " + r.error);
+                if (!reg && /^(EMAIL_NOT_FOUND|INVALID_PASSWORD|INVALID_LOGIN_CREDENTIALS)$/.test(r.error)) {
+                    authFails++;
+                    if (authFails >= AUTH_MAX_FAILS) {
+                        authFails = 0;
+                        authLockUntil = Date.now() + AUTH_LOCK_MS;
+                        setAuthMsg("Too many attempts. Locked for " + (AUTH_LOCK_MS / 1000) + "s.", false);
+                        return;
+                    }
+                }
+                setAuthMsg(friendlyError(r.error), false);
+            }
+        } catch (e) {
+            logErr("submitAuth", e);
+            setAuthMsg("Error - see log", false);
+        } finally {
+            authBusy = false;
+        }
+    });
+}
+function doLogout() {
+    if (busy) stopFlag = true;          // stop the bot loop first
+    log("logout: " + currentUser);
+    authed = false;
+    currentUser = "";
+    subUntil = 0; sessRefresh = ""; myUid = ""; deviceOk = false; subWasActive = false;
+    devShown = false; devDocs = {}; devSelId = ""; usersShown = false;
+    monShown = false; monView = ""; monTok = null; monState = "Logged out";
+    kickSeen = null;
+    authStore.remove("session");
+    authStore.put("loggedOut", true);   // no auto sign-in until you log in again
+    regMode = false;
+    clearAuthFields();
+    fillSaved();
+    refreshAuthUI();
+    applyPanels();
+}
+
+function pasteInto(f, digitsOnly) {     // paste the clipboard at the cursor (replaces any selected text)
+    try {
+        var c = getClip();
+        var t = c ? String(c).replace(/[\r\n]+/g, " ").trim() : "";
+        if (digitsOnly) t = t.replace(/\D/g, "");
+        if (!t) { toast("Clipboard is empty"); return; }
+        ui.run(function () {
+            var ed = f.getText();
+            var a = Math.max(0, f.getSelectionStart()), b = Math.max(0, f.getSelectionEnd());
+            ed.replace(Math.min(a, b), Math.max(a, b), t);
+        });
+        toast("Pasted");
+    } catch (e) { logErr("pasteInto", e); toast("Could not read clipboard"); }
+}
+function bindAuthField(f, digitsOnly) { // tapping a field lets the keyboard open; long-press = paste
+    f.setOnTouchListener(function (v, e) {
+        if (e.getAction() == e.ACTION_DOWN) { inputFocus(true); v.requestFocus(); }
+        return false;
+    });
+    f.on("long_click", function () { pasteInto(f, digitsOnly); return true; });
+}
+bindAuthField(w.authUser);
+bindAuthField(w.authPass);
+bindAuthField(w.authPass2);
+bindAuthField(w.authKey);
+w.tabLogin.click(function () { inputFocus(false); regMode = false; refreshAuthUI(); });
+w.tabReg.click(function () { inputFocus(false); regMode = true; refreshAuthUI(); });
+w.authGo.click(function () { inputFocus(false); submitAuth(); });
+w.authRemember.click(function () {
+    rememberOn = !rememberOn;
+    authStore.put("remember", rememberOn);
+    if (!rememberOn) { authStore.remove("session"); authStore.remove("savedUser"); authStore.remove("savedPass"); }
+    refreshAuthUI();
+});
+w.authExit.click(function () {
+    log("Exit pressed (login screen)");
+    w.close();
+    exit();
+});
+w.logout.click(doLogout);
+ui.run(function () { refreshAuthUI(); applyPanels(); });
+
+// auto sign-in at startup: remembered session first, then the saved username/password
+function autoSignIn() {
+    sleep(500);
+    setAuthMsg("Signing in...", true);
+    var rt = authStore.get("session", "");
+    if (rt) {
+        var r = fbRefresh(rt);
+        if (r.ok) {
+            var lk = fbPost(FB_AUTH + "lookup", { idToken: r.data.id_token });
+            var email = (lk.ok && lk.data.users && lk.data.users[0] && lk.data.users[0].email) || "";
+            if (email) { onAuthed(email, r.data.refresh_token || rt); return; }
+        } else {
+            log("session restore failed: " + r.error);
+            if (r.error === "NETWORK") { setAuthMsg("Offline - log in when connected.", false); return; }
+        }
+        authStore.remove("session");
+    }
+    var u = authStore.get("savedUser", ""), p = authStore.get("savedPass", "");
+    if (!u || !p) { setAuthMsg("Session expired. Log in again.", false); return; }
+    var r2 = fbPost(FB_AUTH + "signInWithPassword", { email: userToEmail(u), password: p, returnSecureToken: true });
+    if (r2.ok) { onAuthed(r2.data.email || userToEmail(u), r2.data.refreshToken); return; }
+    log("auto sign-in failed: " + r2.error);
+    if (/^(EMAIL_NOT_FOUND|INVALID_PASSWORD|INVALID_LOGIN_CREDENTIALS)$/.test(r2.error)) authStore.remove("savedPass");
+    setAuthMsg(friendlyError(r2.error), false);
+}
+fillSaved();
+if (rememberOn && !authStore.get("loggedOut", false) && !keyMissing() &&
+    (authStore.get("session", "") || authStore.get("savedUser", ""))) {
+    threads.start(autoSignIn);
+}
+
+// ================= subscription keys (Firestore) =================
+// keys/{KEY}  : days, createdAt, createdBy, redeemedBy ("" until used), redeemedAt
+// users/{uid} : subUntil (ms epoch), lastKey   -> see firestore.rules
+function subOk() { return isAdmin() || (deviceOk && subUntil > Date.now()); }
+function fmtLeft(ms) {
+    var d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000), m = Math.floor((ms % 3600000) / 60000);
+    return d > 0 ? d + "d " + h + "h" : (h > 0 ? h + "h " + m + "m" : m + "m");
+}
+function fsBase() { return "projects/" + FIRESTORE_PROJECT + "/databases/(default)/documents"; }
+function fsUrl(path) { return "https://firestore.googleapis.com/v1/" + fsBase() + (path ? "/" + path : ""); }
+function fsReq(method, url, tok, body) {
+    var opt = { headers: { "Authorization": "Bearer " + tok } };
+    var res = (method === "GET") ? http.get(url, opt) : http.postJson(url, body, opt);
+    var j = null;
+    try { j = res.body.json(); } catch (e) {}
+    return { status: res.statusCode, json: j };
+}
+function fsInt(f) { return (f && f.integerValue !== undefined) ? Number(f.integerValue) : 0; }
+function getIdToken() {                 // fresh Firebase ID token + uid from the refresh token
+    if (!sessRefresh) return null;
+    var r = fbRefresh(sessRefresh);
+    if (!r.ok) { log("token refresh failed: " + r.error); return null; }
+    if (r.data.refresh_token) sessRefresh = r.data.refresh_token;
+    myUid = r.data.user_id || myUid;
+    return { token: r.data.id_token, uid: r.data.user_id };
+}
+function setSubMsg(text, good) {
+    ui.run(function () {
+        w.subMsg.setText(text);
+        w.subMsg.setTextColor(android.graphics.Color.parseColor(good ? "#a5d6a7" : "#ffcc80"));
+    });
+}
+function refreshSubUI() {
+    ui.run(function () {
+        var left = subUntil - Date.now();
+        w.subInfo.setText(isAdmin() ? "Admin - no subscription needed" : (left > 0 ? "Subscription: " + fmtLeft(left) + " left" : "No active subscription"));
+    });
+}
+function loadSub() {                    // read users/{uid}.subUntil from the server
+    var ok = false;
+    try {
+        var t = getIdToken();
+        if (t) {
+            var r = fsReq("GET", fsUrl("users/" + t.uid), t.token);
+            if (r.status === 200 && r.json) {
+                subUntil = fsInt((r.json.fields || {}).subUntil);
+                ok = true;
+            } else if (r.status === 404) {
+                saveUserRecord(currentUser, t.uid, t.token);    // old account without a record: create it
+                subUntil = 0; ok = true;
+            } else log("subscription check failed: HTTP " + r.status);
+        }
+    } catch (e) { logErr("loadSub", e); }
+    subChecking = false;
+    log("subscription: " + (ok ? (subOk() ? "active" : "none/expired") : "could not check"));
+    applyPanels();
+    refreshSubUI();
+    if (!subOk()) {
+        setSubMsg(!ok ? "Could not check subscription. Tap Activate to retry." :
+                  (subUntil > 0 ? "Subscription expired. Enter a new key." : "No active subscription. Enter a key."), false);
+    }
+    return ok;
+}
+function redeemKey() {
+    if (subBusy) return;
+    var key = String(w.subKey.getText()).trim().toUpperCase();
+    if (!key) {                         // empty box = just re-check the server
+        subBusy = true; setSubMsg("Checking...", true);
+        threads.start(function () { try { loadSub(); } finally { subBusy = false; } });
+        return;
+    }
+    if (!/^[A-Z0-9-]{8,40}$/.test(key)) { setSubMsg("That is not a valid key.", false); return; }
+    subBusy = true;
+    setSubMsg("Checking key...", true);
+    threads.start(function () {
+        try {
+            var t = getIdToken();
+            if (!t) { setSubMsg("Not signed in - log in again.", false); return; }
+            var chk = checkKey(t, key);
+            if (!chk.ok) { setSubMsg(chk.msg, false); return; }
+            var days = chk.label;
+            var u = fsReq("GET", fsUrl("users/" + t.uid), t.token);
+            var cur = (u.status === 200 && u.json) ? fsInt((u.json.fields || {}).subUntil) : 0;
+            if (u.status === 404) saveUserRecord(currentUser, t.uid, t.token);
+            var rd = commitKey(t, key, chk, cur);
+            if (!rd.ok) { setSubMsg(rd.msg, false); return; }
+            var until = rd.until;
+            subUntil = until;
+            log("key redeemed: +" + days);
+            ui.run(function () { w.subKey.setText(""); });
+            setSubMsg("Activated: +" + days + " \u2713", true);
+            applyPanels();
+            refreshSubUI();
+        } catch (e) {
+            logErr("redeemKey", e);
+            setSubMsg("Error - see log", false);
+        } finally {
+            subBusy = false;
+        }
+    });
+}
+function setKeyMsg(text, good) {
+    ui.run(function () {
+        w.keyMsg.setText(text);
+        w.keyMsg.setTextColor(android.graphics.Color.parseColor(good ? "#a5d6a7" : "#ff8a80"));
+    });
+}
+function genKeyString() {               // KLX-XXXX-XXXX-XXXX, no look-alike characters
+    var abc = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", rnd = new java.security.SecureRandom(), out = "KLX";
+    for (var g = 0; g < 3; g++) {
+        out += "-";
+        for (var i = 0; i < 4; i++) out += abc.charAt(rnd.nextInt(abc.length));
+    }
+    return out;
+}
+function generateKey() {
+    if (admBusy) return;
+    if (!authed || !isAdmin()) { setKeyMsg("Admins only.", false); return; }
+    var raw = String(w.admDays.getText()).trim().toLowerCase(), isHours = /h$/.test(raw);
+    var days = parseInt(raw, 10), hours = 0;
+    if (isHours) { hours = days; days = 0; }
+    if (isNaN(isHours ? hours : days) || (isHours ? (hours < 1 || hours > MAX_KEY_HOURS) : (days < 1 || days > MAX_KEY_DAYS))) {
+        setKeyMsg(isHours ? "Hours must be 1 to " + MAX_KEY_HOURS + " (e.g. 12h)." : "Days must be 1 to " + MAX_KEY_DAYS + " (or e.g. 12h for hours).", false);
+        return;
+    }
+    var unitLabel = isHours ? hours + " hours" : days + " days", unitShort = isHours ? hours + "h" : days + "d";
+    admBusy = true;
+    setKeyMsg("Creating key...", true);
+    threads.start(function () {
+        try {
+            var t = getIdToken();
+            if (!t) { setKeyMsg("Not signed in - log in again.", false); return; }
+            var key = genKeyString();
+            var body = { fields: {
+                days:       { integerValue: String(days) },
+                hours:      { integerValue: String(hours) },
+                createdAt:  { integerValue: String(Date.now()) },
+                createdBy:  { stringValue: currentUser },
+                redeemedBy: { stringValue: "" }
+            } };
+            var r = fsReq("POST", fsUrl("keys") + "?documentId=" + encodeURIComponent(key), t.token, body);
+            if (r.status !== 200) {
+                log("generate key failed: HTTP " + r.status + " " + JSON.stringify(r.json).slice(0, 200));
+                setKeyMsg(r.status === 403 ? "Refused - add your uid to firestore.rules." : "Failed (HTTP " + r.status + ").", false);
+                return;
+            }
+            setClip(key);
+            log("key created: " + key + " (" + unitLabel + ")");
+            setKeyMsg("Key copied: " + key + " (" + unitShort + ")", true);
+        } catch (e) {
+            logErr("generateKey", e);
+            setKeyMsg("Error - see log", false);
+        } finally {
+            admBusy = false;
+        }
+    });
+}
+bindAuthField(w.subKey);
+w.subPaste.click(function () {
+    inputFocus(false);
+    try {
+        var c = getClip();
+        if (c && String(c).trim()) ui.run(function () { w.subKey.setText(String(c).trim()); });
+        else toast("Clipboard is empty");
+    } catch (e) { toast("Could not read clipboard"); }
+});
+w.subGo.click(function () { inputFocus(false); redeemKey(); });
+w.subLogout.click(doLogout);
+bindAuthField(w.admDays);              // type the number of days (1 to MAX_KEY_DAYS)
+ui.run(function () { w.admDays.setText(String(DEFAULT_KEY_DAYS)); });
+w.admGenKey.click(function () { inputFocus(false); generateKey(); });
+w.admInfo.on("long_click", function () { if (myUid) { setClip(myUid); toast("uid copied"); } return true; });
+var subWasActive = false;               // true once this login session had an active subscription
+setInterval(function () {               // subscription ran out while logged in -> stop the bot and log out automatically
+    if (!authed || subChecking) return;
+    if (!isAdmin() && deviceOk && subUntil > Date.now()) subWasActive = true;
+    if (subOk()) return;
+    if (subWasActive && deviceOk && !isAdmin() && subUntil <= Date.now()) {
+        subWasActive = false;
+        log("subscription expired - logging out");
+        try { toast("Subscription expired - logged out"); } catch (e) {}
+        ui.run(function () {
+            doLogout();
+            try { setAuthMsg("Subscription expired. Log in and enter a new key.", false); } catch (e2) {}
+        });
+        return;
+    }
+    if (busy) { stopFlag = true; toast("Subscription ended"); log("subscription ended - stopping"); }
+    applyPanels(); refreshSubUI();
+}, 10000);
+
+// ================= updates through GitHub =================
+function isAdmin() { return ADMIN_USERS.indexOf(String(currentUser).toLowerCase()) >= 0; }
+function ghConfigured() { return GH_OWNER.indexOf("YOUR_") !== 0 && GH_REPO.indexOf("YOUR_") !== 0; }
+function rawUrl(file) {
+    return "https://raw.githubusercontent.com/" + GH_OWNER + "/" + GH_REPO + "/" + GH_BRANCH + "/" + file + "?t=" + Date.now();
+}
+function scriptPath() {
+    if (SCRIPT_PATH) return SCRIPT_PATH;
+    try { if (typeof LAUNCHER_PATH !== "undefined" && LAUNCHER_PATH && files.exists(LAUNCHER_PATH)) return LAUNCHER_PATH; } catch (e) {}
+    try { var a = String(engines.myEngine().source); if (a && files.exists(a)) return a; } catch (e) {}
+    try { var b = String(engines.myEngine().getSource()); if (b && files.exists(b)) return b; } catch (e) {}
+    return "";
+}
+function sha256Hex(text) {
+    var md = java.security.MessageDigest.getInstance("SHA-256");
+    var b = md.digest(new java.lang.String(String(text)).getBytes("UTF-8"));
+    var out = "";
+    for (var i = 0; i < b.length; i++) { var v = b[i] & 0xff; out += (v < 16 ? "0" : "") + v.toString(16); }
+    return out;
+}
+function b64OfText(text) {
+    return android.util.Base64.encodeToString(new java.lang.String(String(text)).getBytes("UTF-8"), android.util.Base64.NO_WRAP);
+}
+function textOfB64(b64) {
+    var bytes = android.util.Base64.decode(String(b64).replace(/\s/g, ""), 0);
+    return String(new java.lang.String(bytes, "UTF-8"));
+}
+
+// ---- user side: look for a newer version, install it on demand ----
+function setUpdBtnText(t) {
+    ui.run(function () {
+        try { w.updBtnA.setText(t); w.updBtnS.setText(t); w.updBtnC.setText(t); } catch (e) {}
+    });
+}
+function setUpdUI() {
+    ui.run(function () {
+        if (updateInfo) {
+            var n = updateInfo.notes ? ": " + updateInfo.notes : "";
+            w.updText.setText("Update v" + updateInfo.version + " available" + n);
+        }
+    });
+    setUpdBtnText(updateInfo ? "⟳ Update to v" + updateInfo.version : "⟳ Update");
+    applyPanels();
+}
+// Update button (login, subscription and main panels): installs a newer version, or checks for one first
+function onUpdateBtn() {
+    if (updBusy) { toast("Update in progress..."); return; }
+    if (updateInfo) { installUpdate(); return; }
+    threads.start(function () {
+        try {
+            if (!ghConfigured()) { toast("Update server not configured"); return; }
+            toast("Checking for update...");
+            setUpdBtnText("⟳ Checking...");
+            checkUpdate();
+            if (updateInfo) { toast("Update v" + updateInfo.version + " found - installing"); installUpdate(); }
+            else { toast("Up to date (this v" + APP_VERSION + ", server " + (lastRemoteVer || "unreachable") + ")"); setUpdBtnText("⟳ Update"); }
+        } catch (e) { logErr("onUpdateBtn", e); setUpdBtnText("⟳ Update"); }
+    });
+}
+function checkUpdate() {
+    if (!ghConfigured() || UPDATES_PAUSED) return;
+    try {
+        var r = http.get(rawUrl(GH_VERSION));
+        if (r.statusCode !== 200) { lastRemoteVer = "HTTP " + r.statusCode; log("update check: " + (r.statusCode === 404 ? "no version.json in the repo (HTTP 404) - nothing published yet, or repo is private" : "HTTP " + r.statusCode)); return; }
+        var info = JSON.parse(r.body.string());
+        lastRemoteVer = info ? "v" + info.version : "?";
+        if (info && Number(info.version) > APP_VERSION && info.sha256) {
+            if (!updateInfo || updateInfo.version !== info.version) log("update available: v" + info.version + " (this device v" + APP_VERSION + ")");
+            updateInfo = info;
+        } else {
+            updateInfo = null;
+        }
+        setUpdUI();
+        if (updateInfo && AUTO_UPDATE && !autoTried && !busy && !updBusy) { autoTried = true; installUpdate(); }     // idle -> apply it now, no tap needed
+    } catch (e) { logErr("checkUpdate", e); }
+}
+function installUpdate() {
+    if (updBusy || !updateInfo) return;
+    if (UPDATES_PAUSED) { toast("Updates paused: the script restarted too many times"); return; }
+    updBusy = true;
+    if (busy) stopFlag = true;                       // stop the bot loop first
+    threads.start(function () {
+        try {
+            ui.run(function () { w.updText.setText("Downloading v" + updateInfo.version + "..."); });
+            var r = http.get(rawUrl(GH_SCRIPT));
+            if (r.statusCode !== 200) throw "download HTTP " + r.statusCode;
+            var text = r.body.string();
+            if (sha256Hex(text) !== String(updateInfo.sha256)) throw "download corrupted (checksum mismatch)";
+            if (text.indexOf("var APP_VERSION") < 0) throw "downloaded file is not the launcher";
+            var hv = /var APP_VERSION = (\d+);/.exec(text);
+            if (!hv || Number(hv[1]) < Number(updateInfo.version)) throw "downloaded file is v" + (hv ? hv[1] : "?") + " but the server says v" + updateInfo.version + " - publish it again";
+            var path = scriptPath(), wrote = false;
+            if (path && path !== UPDATED_PATH) {
+                try { files.copy(path, path + ".bak"); } catch (e) {}
+                try { files.write(path, text); wrote = (files.read(path) === text); } catch (e) { log("write to " + path + " failed: " + e); }
+            }
+            if (!wrote) {                                  // packaged APK / read-only script -> use the writable copy
+                path = UPDATED_PATH;
+                files.ensureDir(path);
+                files.write(path, text);
+                if (files.read(path) !== text) throw "cannot save update to " + path;
+            }
+            log("updated to v" + updateInfo.version + " - restarting");
+            toast("Updated to v" + updateInfo.version + " - restarting");
+            engines.execScriptFile(path);
+            sleep(800);
+            w.close();
+            exit();
+        } catch (e) {
+            logErr("installUpdate", e);
+            toast("Update failed: " + e);
+            ui.run(function () { w.updText.setText("Update failed: " + String(e).slice(0, 60) + " - tap to retry"); });
+        } finally {
+            updBusy = false;
+        }
+    });
+}
+
+// ---- admin side: publish this script to GitHub ----
+function setAdmMsg(text, good) {
+    ui.run(function () {
+        w.admMsg.setText(text);
+        w.admMsg.setTextColor(android.graphics.Color.parseColor(good ? "#a5d6a7" : "#ff8a80"));
+    });
+}
+function refreshAdminUI() {
+    ui.run(function () {
+        w.admInfo.setText("Local v" + APP_VERSION + " | repo " + (ghConfigured() ? GH_OWNER + "/" + GH_REPO : "NOT SET") + (myUid ? "\nuid (hold to copy): " + myUid : ""));
+        var t = authStore.get("ghToken", "");
+        if (t && !String(w.admToken.getText())) w.admToken.setText(t);
+        if (!String(w.admRepo.getText()) && ghConfigured()) w.admRepo.setText(GH_OWNER + "/" + GH_REPO);
+    });
+}
+function ghApi(method, path, token, body) {
+    var url = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + path;
+    var headers = { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "User-Agent": "klassx-launcher" };
+    var res;
+    if (method === "GET") res = http.get(url + "?ref=" + encodeURIComponent(GH_BRANCH), { headers: headers });
+    else res = http.request(url, { method: "PUT", headers: headers, contentType: "application/json", body: JSON.stringify(body) });
+    var j = null;
+    try { j = res.body.json(); } catch (e) {}
+    return { status: res.statusCode, json: j };
+}
+function ghErrText(r) {
+    if (r.status === 401) return "Bad GitHub token.";
+    if (r.status === 403) return "Token has no write access (or rate limited).";
+    if (r.status === 404) return "Repo/branch not found (check GH_OWNER, GH_REPO, token access).";
+    if (r.status === 409 || r.status === 422) return "Conflict - try again.";
+    return "GitHub error HTTP " + r.status + (r.json && r.json.message ? ": " + r.json.message : "");
+}
+function resetAdminPanel() {           // after a successful publish: clear the form and fold the panel back up
+    ui.run(function () {
+        try {
+            w.admFile.setText("");
+            w.admNotes.setText("");
+            w.admToken.setText("");             // the token stays saved; it is filled in again when the panel is opened
+            w.drag.setText("⠿ KlassX v" + APP_VERSION + " (drag)");
+        } catch (e) {}
+    });
+    inputFocus(false);
+    setTimeout(function () {                    // let the "Published vN" message be read first
+        admShown = false;
+        ui.run(function () { w.admin.setText("Admin ▾"); w.admMsg.setText(""); });
+        applyPanels();
+    }, 3000);
+}
+function publishUpdate() {
+    if (admBusy) return;
+    if (!authed || !isAdmin()) { setAdmMsg("Admins only.", false); return; }
+    if (!ghConfigured()) { setAdmMsg("Set GH_OWNER and GH_REPO in the script.", false); return; }
+    var token = String(w.admToken.getText()).trim();
+    var notes = String(w.admNotes.getText()).trim();
+    if (!token) { setAdmMsg("Paste your GitHub token.", false); return; }
+    var picked = String(w.admFile.getText()).trim();
+    var path = picked || scriptPath() || (files.exists(UPDATED_PATH) ? UPDATED_PATH : "");
+    if (!path) { setAdmMsg("Cannot find script file (set SCRIPT_PATH or choose a file).", false); return; }
+    if (!files.exists(path)) { setAdmMsg("File not found: " + path, false); return; }
+    if (picked) log("publishing uploaded file: " + picked);
+    admBusy = true;
+    setAdmMsg("Reading repo...", true);
+    threads.start(function () {
+        try {
+            var rv = ghApi("GET", GH_VERSION, token);       // current published version (404 = first publish)
+            var remoteVer = 0, verSha = null;
+            if (rv.status === 200 && rv.json && rv.json.content) {
+                verSha = rv.json.sha;
+                try { remoteVer = Number(JSON.parse(textOfB64(rv.json.content)).version) || 0; } catch (e) {}
+            } else if (rv.status !== 404) { setAdmMsg(ghErrText(rv), false); return; }
+
+            var newVer = Math.max(remoteVer, APP_VERSION) + 1;
+            var src = files.read(path);
+            if (!/var APP_VERSION = \d+;/.test(src)) { setAdmMsg("That file has no 'var APP_VERSION = N;' line - it is not a KlassX script.", false); return; }
+            var patched = src.replace(/var APP_VERSION = \d+;/, "var APP_VERSION = " + newVer + ";");
+
+            setAdmMsg("Uploading v" + newVer + "...", true);
+            var rs = ghApi("GET", GH_SCRIPT, token);         // script first, version file last
+            var scriptSha = null;
+            if (rs.status === 200 && rs.json) scriptSha = rs.json.sha;
+            else if (rs.status !== 404) { setAdmMsg(ghErrText(rs), false); return; }
+            var body = { message: "Release v" + newVer, content: b64OfText(patched), branch: GH_BRANCH };
+            if (scriptSha) body.sha = scriptSha;
+            var ps = ghApi("PUT", GH_SCRIPT, token, body);
+            if (ps.status !== 200 && ps.status !== 201) { setAdmMsg(ghErrText(ps), false); return; }
+
+            var info = {
+                version: newVer,
+                notes: notes || ("Update v" + newVer),
+                sha256: sha256Hex(patched),
+                file: GH_SCRIPT,
+                published: new Date().toISOString()
+            };
+            var vb = { message: "Version v" + newVer, content: b64OfText(JSON.stringify(info, null, 2)), branch: GH_BRANCH };
+            if (verSha) vb.sha = verSha;
+            var pv = ghApi("PUT", GH_VERSION, token, vb);
+            if (pv.status !== 200 && pv.status !== 201) { setAdmMsg("Script uploaded but version file failed: " + ghErrText(pv), false); return; }
+
+            files.write(path, patched);                      // keep the admin's own copy in step
+            APP_VERSION = newVer;
+            authStore.put("ghToken", token);
+            log("published v" + newVer + " to GitHub");
+            setAdmMsg("Published v" + newVer + " ✓", true);
+            refreshAdminUI();
+            resetAdminPanel();
+        } catch (e) {
+            logErr("publishUpdate", e);
+            setAdmMsg("Error - see log", false);
+        } finally {
+            admBusy = false;
+        }
+    });
+}
+
+bindAuthField(w.admToken);
+bindAuthField(w.admRepo);
+w.admRepoSave.click(function () {
+    inputFocus(false);
+    var v = String(w.admRepo.getText()).trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/i, "").replace(/\/+$/, "");
+    var m = /^([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)$/.exec(v);
+    if (!m) { setAdmMsg("Repo must look like owner/name.", false); return; }
+    GH_OWNER = m[1]; GH_REPO = m[2];
+    authStore.put("ghRepo", v);
+    ui.run(function () { w.admRepo.setText(v); });
+    refreshAdminUI();
+    setAdmMsg("Repo set to " + v + " ✓", true);
+});
+bindAuthField(w.admNotes);
+bindAuthField(w.admFile);
+function pasteToken() {                 // read the clipboard straight into the token field
+    try {
+        var c = getClip();
+        if (!c || !String(c).trim()) { toast("Clipboard is empty - copy the token first"); return; }
+        var t = String(c).trim();
+        ui.run(function () { w.admToken.setText(t); });
+        toast("Token pasted (" + t.length + " chars)");
+    } catch (e) { logErr("pasteToken", e); toast("Could not read clipboard"); }
+}
+function listCandidateScripts() {       // newest .js files in the usual download/script folders
+    var dirs = ["/sdcard/Download", "/sdcard/Scripts", "/sdcard/Documents", "/sdcard/脚本", "/sdcard"];
+    var out = [], seen = {};
+    for (var i = 0; i < dirs.length; i++) {
+        try {
+            if (!files.isDir(dirs[i])) continue;
+            var names = files.listDir(dirs[i], function (n) { return /\.js$/i.test(n); });
+            for (var j = 0; j < names.length; j++) {
+                var full = files.join(dirs[i], names[j]);
+                if (seen[full]) continue;
+                seen[full] = true;
+                out.push({ path: full, name: names[j], t: Number(new java.io.File(full).lastModified()) });
+            }
+        } catch (e) {}
+    }
+    out.sort(function (a, b) { return b.t - a.t; });
+    return out.slice(0, 30);
+}
+w.admBrowse.click(function () {
+    inputFocus(false);
+    threads.start(function () {
+        try {
+            var list = listCandidateScripts();
+            if (!list.length) { toast("No .js files found - type the path in the file box"); return; }
+            var labels = ["(this running script)"];
+            for (var i = 0; i < list.length; i++) labels.push(list[i].path.replace("/sdcard/", ""));
+            var k = dialogs.select("Choose file to publish", labels);
+            if (k < 0) return;
+            var chosen = k === 0 ? "" : list[k - 1].path;
+            ui.run(function () { w.admFile.setText(chosen); });
+            setAdmMsg(chosen ? "Will publish: " + list[k - 1].name : "Will publish this running script", true);
+        } catch (e) { logErr("browse", e); toast("Could not list files"); }
+    });
+});
+w.admPaste.click(function () { inputFocus(false); pasteToken(); });
+w.admToken.on("long_click", function () { pasteToken(); return true; });
+w.admin.click(function () {
+    admShown = !admShown;
+    inputFocus(false);
+    ui.run(function () { w.admin.setText(admShown ? "Admin ▴" : "Admin ▾"); });
+    applyPanels();
+    if (admShown) refreshAdminUI();
+});
+w.admPublish.click(function () { inputFocus(false); publishUpdate(); });
+w.updGo.click(function () { installUpdate(); });
+w.updBtnA.click(function () { inputFocus(false); onUpdateBtn(); });
+w.updBtnS.click(function () { inputFocus(false); onUpdateBtn(); });
+w.updBtnC.click(function () { onUpdateBtn(); });
+ui.run(function () { w.drag.setText("⠿ KlassX v" + APP_VERSION + " (drag)"); });
+log("Captcha solver build F: multi-threshold keypad reader, shapes still unknown: [" + capMissingDigits() + "]");
+
+// --- detect screens by their button ---
+// A button is dark neutral gray AND its white label is visible. Both must be present, so we
+// only tap once the button is fully shown. Points are in the 2576x1177 reference screenshot
+// and scale to any resolution.
+function makeSpec(btnXs, btnYs, txtX0, txtX1, txtXStep, txtY0, txtY1, txtYStep) {
+    var spec = { btn: [], txt: [], textMin: 20, hit: 0, white: 0 }, i, j;
+    for (j = 0; j < btnYs.length; j++)
+        for (i = 0; i < btnXs.length; i++)
+            spec.btn.push([btnXs[i], btnYs[j]]);
+    for (j = txtY0; j < txtY1; j += txtYStep)
+        for (i = txtX0; i < txtX1; i += txtXStep)
+            spec.txt.push([i, j]);
+    return spec;
+}
+function range(a, b, step) { var r = []; for (var v = a; v < b; v += step) r.push(v); return r; }
+
+var SCREENS = {
+    // "Select Server" button on the main screen
+    select: makeSpec(range(1325, 1645, 40), [990, 1010, 1050, 1070], 1390, 1578, 4, 1010, 1052, 3),
+    // "Login" button on the login screen
+    login:  makeSpec(range(1335, 1645, 40), [745, 760, 790, 805],     1435, 1545, 3, 752, 800, 3)
+};
+// Character screen: "Server Select" (bottom-left) + "Create" (bottom-right) buttons
+function gridPts(x0, x1, xs, y0, y1, ys) {
+    var r = [];
+    for (var y = y0; y < y1; y += ys) for (var x = x0; x < x1; x += xs) r.push([x, y]);
+    return r;
+}
+SCREENS.character = {
+    btn: [].concat(gridPts(2245, 2520, 40, 1062, 1123, 10), gridPts(60, 345, 40, 1062, 1123, 10))
+           .filter(function (p) { return p[1] <= 1072 || p[1] >= 1112; }),
+    txt: [].concat(gridPts(2330, 2430, 4, 1078, 1112, 3), gridPts(100, 300, 5, 1078, 1112, 3)),
+    textMin: 20, hit: 0, white: 0
+};
+// Profile screen: "Start" (bottom-right) + "Delete Character" (bottom-middle) buttons.
+// Only the "Delete Character" label is checked for white text: it is what tells this screen
+// apart from the character list (which has "Create" instead).
+SCREENS.start = {
+    btn: [].concat(gridPts(2245, 2520, 40, 1062, 1123, 10), gridPts(470, 740, 40, 1062, 1123, 10))
+           .filter(function (p) { return p[1] <= 1072 || p[1] >= 1112; }),
+    txt: gridPts(480, 730, 5, 1078, 1112, 3),
+    textMin: 20, hit: 0, white: 0
+};
+var CHECK_PTS = SCREENS.select.btn;
+
+// true if the button's dark body and white label are both visible
+function matchSpec(img, spec, W, H) {
+    var L = layoutOf(W, H), hit = 0, white = 0, i, c;
+    for (i = 0; i < spec.btn.length; i++) {
+        c = img.pixel(mapX(L, spec.btn[i][0]), mapY(L, spec.btn[i][1]));
+        var r = colors.red(c), g = colors.green(c), bl = colors.blue(c);
+        var mx = Math.max(r, g, bl), mn = Math.min(r, g, bl);
+        if (mx <= 140 && mx - mn <= 14) hit++;
+    }
+    if (hit >= spec.btn.length * 0.8) {          // button is there - now check the white label
+        for (i = 0; i < spec.txt.length; i++) {
+            c = img.pixel(mapX(L, spec.txt[i][0]), mapY(L, spec.txt[i][1]));
+            if (Math.min(colors.red(c), colors.green(c), colors.blue(c)) >= 200) white++;
+        }
+    }
+    spec.hit = hit;
+    spec.white = white;
+    return hit >= spec.btn.length * 0.8 && white >= spec.textMin;
+}
+
+// Loot button: dark disc (r~40) + white ring (r~47) + white hand in the middle (r<26).
+// All radii are in reference pixels and scale with the screen.
+var lootDark = 0, lootRing = 0, lootWhite = 0;
+function matchLoot(img, W, H) {
+    var L = layoutOf(W, H), cx = mapX(L, LOOT_X, "c"), cy = mapY(L, LOOT_Y, "b");
+    var dark = 0, ring = 0, white = 0, a, c, mx, mn, cs, sn, dx, dy;
+    for (a = 0; a < 360; a += 15) {
+        cs = Math.cos(a * Math.PI / 180); sn = Math.sin(a * Math.PI / 180);
+        c = img.pixel(Math.round(cx + 40 * L.kx * cs), Math.round(cy + 40 * L.kx * sn));
+        mx = Math.max(colors.red(c), colors.green(c), colors.blue(c));
+        mn = Math.min(colors.red(c), colors.green(c), colors.blue(c));
+        if (mx <= 70 && mx - mn <= 14) dark++;
+        c = img.pixel(Math.round(cx + 47 * L.kx * cs), Math.round(cy + 47 * L.kx * sn));
+        if (Math.min(colors.red(c), colors.green(c), colors.blue(c)) >= 170) ring++;
+    }
+    for (dy = -26; dy <= 26; dy += 4) {
+        for (dx = -26; dx <= 26; dx += 4) {
+            if (dx * dx + dy * dy > 676) continue;
+            c = img.pixel(Math.round(cx + dx * L.kx), Math.round(cy + dy * L.kx));
+            if (Math.min(colors.red(c), colors.green(c), colors.blue(c)) >= 225) white++;
+        }
+    }
+    lootDark = dark; lootRing = ring; lootWhite = white;
+    return dark >= 19 && ring >= 7 && white >= 20;
+}
+
+// In-game check: the HP / MP / SP / EXP bars at the top-left of the game screen.
+// Skills are only tapped while these are showing, so menus and login screens are never tapped by accident.
+var hudBars = 0;
+function matchHud(img, W, H) {
+    var L = layoutOf(W, H), xs = [205, 240], ys = [40, 80, 116, 153];
+    var bars = 0, k, i, c, r, g, b, ok, hpOk = false, mpOk = false;
+    for (k = 0; k < 4; k++) {
+        ok = false;
+        for (i = 0; i < xs.length; i++) {
+            c = img.pixel(mapX(L, xs[i]), mapY(L, ys[k]));
+            r = colors.red(c); g = colors.green(c); b = colors.blue(c);
+            if (k === 0 && r >= 110 && g <= 45 && b <= 45) ok = true;                  // HP red
+            if (k === 1 && b >= 140 && r <= 45 && g <= 70) ok = true;                   // MP blue
+            if (k === 2 && g >= 90 && r <= 60 && b <= 40) ok = true;                    // SP green
+            if (k === 3 && r >= 120 && g >= 50 && g <= 130 && b <= 40) ok = true;       // EXP orange
+        }
+        if (ok) { bars++; if (k === 0) hpOk = true; if (k === 1) mpOk = true; }
+    }
+    hudBars = bars;
+    // The floating KlassX log window can cover the SP / EXP bars in the capture, so HP + MP alone also counts as "in game".
+    return bars >= 3 || (hpOk && mpOk);
+}
+
+// Revive dialog: wide gray button + white "Revive" label + white question text + dark dialog panel.
+var reviveBody = 0, reviveText = 0, reviveLabel = 0, revivePanel = 0;
+function whiteCount(img, L, x0, x1, y0, y1, step, th) {
+    var n = 0, x, y, c;
+    for (y = y0; y < y1; y += step) {
+        for (x = x0; x < x1; x += step) {
+            c = img.pixel(mapX(L, x, "c"), mapY(L, y, "c"));
+            if (Math.min(colors.red(c), colors.green(c), colors.blue(c)) >= th) n++;
+        }
+    }
+    return n;
+}
+// Shared by the Revive / Disconnected dialogs: dark panel + wide gray button at the same spot.
+function dialogBase(img, L) {
+    var body = 0, panel = 0, x, y, c, mx, mn, i;
+    for (y = 660; y <= 700; y += 10) {
+        for (x = 1020; x < 1580; x += 80) {
+            c = img.pixel(mapX(L, x, "c"), mapY(L, y, "c"));
+            mx = Math.max(colors.red(c), colors.green(c), colors.blue(c));
+            mn = Math.min(colors.red(c), colors.green(c), colors.blue(c));
+            if (mx <= 140 && mx - mn <= 14) body++;
+        }
+    }
+    var pp = [[1000, 600], [1500, 600], [1100, 560], [1450, 560]];
+    for (i = 0; i < pp.length; i++) {
+        c = img.pixel(mapX(L, pp[i][0], "c"), mapY(L, pp[i][1], "c"));
+        if (Math.max(colors.red(c), colors.green(c), colors.blue(c)) <= 40) panel++;
+    }
+    reviveBody = body; revivePanel = panel;
+    return body >= 22 && panel >= 3;
+}
+function matchRevive(img, W, H) {
+    var L = layoutOf(W, H);
+    reviveText = 0; reviveLabel = 0;
+    if (!dialogBase(img, L)) return false;
+    reviveText = whiteCount(img, L, 1080, 1500, 480, 522, 3, 200);
+    reviveLabel = whiteCount(img, L, 1245, 1335, 660, 695, 3, 200);
+    return reviveText >= 60 && reviveLabel >= 15;
+}
+
+// "Disconnected from Server!": the message text is matched against a stored pattern of its white pixels
+// (x,y pairs on the 2576x1177 reference screenshot), so other dialogs are not mistaken for it.
+var DISC_PTS = [1283,487,1304,487,1307,487,1094,490,1100,490,1103,490,1106,490,1244,490,1283,490,1304,490,1385,490,1394,490,1481,490,1094,493,1109,493,1145,493,1160,493,1181,493,1199,493,1217,493,1235,493,1244,493,1262,493,1277,493,1283,493,1304,493,1331,493,1349,493,1382,493,1406,493,1454,493,1094,496,1109,496,1124,496,1133,496,1139,496,1142,496,1148,496,1157,496,1166,496,1172,496,1175,496,1184,496,1193,496,1196,496,1202,496,1211,496,1220,496,1229,496,1238,496,1244,496,1256,496,1265,496,1274,496,1283,496,1304,496,1313,496,1316,496,1319,496,1325,496,1334,496,1343,496,1346,496,1352,496,1355,496,1364,496,1382,496,1403,496,1412,496,1418,496,1421,496,1424,496,1430,496,1442,496,1448,496,1457,496,1466,496,1469,496,1472,496,1094,499,1109,499,1124,499,1139,499,1154,499,1166,499,1172,499,1184,499,1193,499,1202,499,1211,499,1223,499,1229,499,1244,499,1268,499,1283,499,1304,499,1313,499,1325,499,1337,499,1343,499,1355,499,1364,499,1385,499,1388,499,1391,499,1400,499,1412,499,1418,499,1430,499,1439,499,1448,499,1460,499,1466,499,1094,502,1109,502,1124,502,1127,502,1130,502,1139,502,1154,502,1166,502,1172,502,1184,502,1193,502,1202,502,1211,502,1214,502,1217,502,1220,502,1223,502,1244,502,1256,502,1259,502,1262,502,1265,502,1271,502,1283,502,1304,502,1313,502,1325,502,1337,502,1343,502,1355,502,1364,502,1394,502,1400,502,1403,502,1406,502,1409,502,1412,502,1418,502,1433,502,1439,502,1448,502,1451,502,1454,502,1457,502,1460,502,1466,502,1094,505,1109,505,1133,505,1139,505,1154,505,1166,505,1172,505,1184,505,1193,505,1202,505,1211,505,1229,505,1244,505,1283,505,1304,505,1313,505,1325,505,1337,505,1343,505,1355,505,1364,505,1394,505,1400,505,1418,505,1433,505,1439,505,1448,505,1466,505,1094,508,1106,508,1133,508,1139,508,1157,508,1166,508,1172,508,1184,508,1193,508,1202,508,1211,508,1229,508,1244,508,1256,508,1274,508,1283,508,1304,508,1313,508,1325,508,1343,508,1355,508,1364,508,1382,508,1394,508,1403,508,1418,508,1436,508,1448,508,1466,508,1094,511,1097,511,1100,511,1124,511,1127,511,1130,511,1145,511,1148,511,1160,511,1184,511,1193,511,1202,511,1214,511,1217,511,1220,511,1232,511,1235,511,1247,511,1250,511,1259,511,1262,511,1265,511,1277,511,1313,511,1328,511,1331,511,1343,511,1355,511,1364,511,1385,511,1388,511,1391,511,1406,511,1409,511,1418,511,1436,511,1451,511,1454,511,1457,511,1466,511];
+var discHit = 0, discTotal = 0;
+function matchDisc(img, W, H) {
+    var L = layoutOf(W, H), i, c, hit = 0, n = DISC_PTS.length / 2;
+    discHit = 0; discTotal = 0;
+    if (!dialogBase(img, L)) return false;
+    for (i = 0; i < DISC_PTS.length; i += 2) {
+        c = img.pixel(mapX(L, DISC_PTS[i], "c"), mapY(L, DISC_PTS[i + 1], "c"));
+        if (Math.min(colors.red(c), colors.green(c), colors.blue(c)) >= 180) hit++;
+    }
+    discHit = hit;
+    if (hit < n * 0.8) return false;
+    discTotal = whiteCount(img, L, 1070, 1510, 475, 525, 3, 200);
+    return discTotal <= n * 1.6;
+}
+
+
+// FIX (tablets with a portrait-native panel, e.g. 1200x1920): captureScreen() can return the raw PORTRAIT buffer while the
+// game runs in landscape, so nothing was ever detected ("capture 1200x1920", "-1/32 button") and nothing was tapped.
+// Rotate the capture upright. Direction comes from the display rotation; override with 90 or 270 in /sdcard/KlassX/rotate.txt
+var ROT_FILE = "/sdcard/KlassX/rotate.txt";
+var lastRotImg = null, rotLogged = false;
+function captureRotDeg() {
+    try {
+        if (files.exists(ROT_FILE)) {
+            var v = parseInt(String(files.read(ROT_FILE)).replace(/\s/g, ""), 10);
+            if (v === 90 || v === 180 || v === 270 || v === 0) return v;
+        }
+    } catch (e) {}
+    try {
+        var r = context.getSystemService(android.content.Context.WINDOW_SERVICE).getDefaultDisplay().getRotation();
+        if (r === 3) return 270;
+    } catch (e) {}
+    return 90;
+}
+function grabScreen() {
+    var img = captureScreen();
+    if (!img) return img;
+    var W = img.getWidth(), H = img.getHeight();
+    if (W >= H) return img;                       // already landscape
+    var deg = captureRotDeg();
+    if (!deg) return img;
+    var out = null;
+    try { out = images.rotate(img, deg); } catch (e) { logErr("rotate capture", e); }
+    if (!out) return img;
+    if (lastRotImg) { try { lastRotImg.recycle(); } catch (e) {} }   // our own copy only (never AutoX's captureScreen image)
+    lastRotImg = out;
+    if (!rotLogged) { rotLogged = true; log("capture is portrait " + W + "x" + H + " -> rotated " + deg + " deg to landscape " + out.getWidth() + "x" + out.getHeight()); }
+    return out;
+}
+var captureOk = captureOk || false;   // keep a value the initCapture thread may already have set (auto sign-in starts it before this line runs)
+function initCapture() {
+    try { captureOk = requestScreenCapture(true); } catch (e) { captureOk = false; logErr("requestScreenCapture", e); }
+    log("screen capture permission: " + (captureOk ? "GRANTED" : "DENIED"));
+    if (!captureOk) toast("Screen capture denied - using fixed delays");
+}
+
+// Image detection of the Login button on the "LOG IN TO YOUR ACCOUNT" pop-up.
+// Template: /sdcard/脚本/templates/login_btn.png (crop of the Login button from a 2576x1177 screenshot).
+// If the file is missing, only the old pixel check (SCREENS.login) is used.
+var LOGIN_TPL_BOX = [1250, 700, 1720, 850];   // search area (reference px) - the pop-up is always centred
+var LOGIN_TPL_THRESHOLD = 0.8;
+var lastLoginPt = null;                       // pixel centre of the detected Login button, or null
+function matchLoginTpl(img, W, H) {
+    lastLoginPt = null;
+    var L = layoutOf(W, H), tpl = getTemplateFit("login_btn", L);
+    if (!tpl) return false;
+    var x0 = mapX(L, LOGIN_TPL_BOX[0], "c"), y0 = mapY(L, LOGIN_TPL_BOX[1], "c");
+    var x1 = mapX(L, LOGIN_TPL_BOX[2], "c"), y1 = mapY(L, LOGIN_TPL_BOX[3], "c");
+    var pt = null;
+    try { pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: LOGIN_TPL_THRESHOLD }); }
+    catch (e) { logErr("login findImage", e); }
+    if (!pt) return false;
+    lastLoginPt = [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)];
+    return true;
+}
+// Image detection of the Start button on the Character Profile screen (template start_btn.png in TEMPLATE_DIR).
+// The Start button sits at the bottom-right, so the search box is edge-anchored. Missing file -> pixel check only.
+var START_TPL_BOX = [2150, 1020, 2576, 1177];   // search area (reference px)
+var START_TPL_THRESHOLD = 0.8;
+var lastStartPt = null;                         // pixel centre of the detected Start button, or null
+function matchStartTpl(img, W, H) {
+    lastStartPt = null;
+    var L = layoutOf(W, H), tpl = getTemplateFit("start_btn", L);
+    if (!tpl) return false;
+    var x0 = mapX(L, START_TPL_BOX[0], "r"), y0 = mapY(L, START_TPL_BOX[1], "b");
+    var x1 = mapX(L, START_TPL_BOX[2], "r"), y1 = mapY(L, START_TPL_BOX[3], "b");
+    var pt = null;
+    try { pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: START_TPL_THRESHOLD }); }
+    catch (e) { logErr("start findImage", e); }
+    if (!pt) return false;
+    lastStartPt = [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)];
+    return true;
+}
+var lastHit = 0, lastWhite = 0, lastDims = "", lastW = 0, lastH = 0, lastLoginSeen = false, lastCharSeen = false, lastStartSeen = false, lastLootSeen = false, lastHudSeen = false, lastReviveSeen = false, lastDiscSeen = false;
+// Is the Select Server button showing? With alsoOthers, also sets lastLoginSeen / lastCharSeen.
+function isMainScreen(alsoOthers) {
+    lastLoginSeen = false;
+    lastCharSeen = false;
+    lastStartSeen = false;
+    lastLootSeen = false;
+    lastHudSeen = false;
+    lastReviveSeen = false;
+    lastDiscSeen = false;
+    var img = grabScreen();
+    if (!img) { log("captureScreen returned null"); return false; }
+    var sel = false;
+    try {
+        var W = img.getWidth(), H = img.getHeight();
+        lastDims = W + "x" + H;
+        if (W >= H) { lastW = W; lastH = H; syncTapSpace(W, H); }
+        if (W < H) { lastHit = -1; return false; }   // game screen is landscape
+        sel = matchSpec(img, SCREENS.select, W, H);
+        lastHit = SCREENS.select.hit;
+        lastWhite = SCREENS.select.white;
+        if (alsoOthers) {
+            lastLoginSeen = matchSpec(img, SCREENS.login, W, H);
+            if (matchLoginTpl(img, W, H)) lastLoginSeen = true;   // image detection of the Login button
+            lastStartSeen = matchSpec(img, SCREENS.start, W, H);
+            if (matchStartTpl(img, W, H)) lastStartSeen = true;   // image detection of the Start button
+            if (TAP_LOOT) lastLootSeen = matchLoot(img, W, H);
+            lastHudSeen = matchHud(img, W, H);
+            if (TAP_DISCONNECT) lastDiscSeen = matchDisc(img, W, H);
+            if (TAP_REVIVE && !lastDiscSeen) lastReviveSeen = matchRevive(img, W, H);
+            // the profile screen also looks like the character list, so Start wins
+            lastCharSeen = !lastStartSeen && matchSpec(img, SCREENS.character, W, H);
+        }
+    } finally {
+        // no img.recycle(): captureScreen() images are managed by AutoX (avoids native double-free SIGSEGV)
+    }
+    return sel;
+}
+
+// Wait until the main screen (Select Server button) is showing AND stays for a few checks.
+function waitForMainScreen(timeoutMs, fallbackDelayMs) {
+    if (!captureOk) {
+        log("capture off -> fixed wait " + fallbackDelayMs + "ms");
+        nap(fallbackDelayMs);
+        return true;
+    }
+    log("waiting for Select Server screen (max " + timeoutMs + "ms)...");
+    var t0 = Date.now(), lastLog = 0, streak = 0;
+    while (Date.now() - t0 < timeoutMs) {
+        var seen = false;
+        try { seen = isMainScreen(); } catch (e) { logErr("isMainScreen", e); }
+        if (seen) {
+            streak++;
+            if (streak >= STABLE_NEEDED) {
+                log("Select Server screen DETECTED & stable (" + lastHit + "/" + CHECK_PTS.length + " button, label " + lastWhite + ", capture " + lastDims + ")");
+                return true;
+            }
+        } else {
+            streak = 0;
+        }
+        if (Date.now() - lastLog > 5000) {   // progress line every 5s
+            lastLog = Date.now();
+            log("  not yet: " + lastHit + "/" + CHECK_PTS.length + " button, label " + lastWhite +
+                (lastHit === -1 ? " (capture is portrait " + lastDims + ")" : " (capture " + lastDims + ")"));
+        }
+        nap(400);
+    }
+    log("TIMEOUT waiting for Select Server screen (last " + lastHit + "/" + CHECK_PTS.length + " button, label " + lastWhite + ", capture " + lastDims + ")");
+    return false;
+}
+
+// Wait until the main screen is GONE (e.g. the server list opened and covers the buttons).
+function waitMainGone(timeoutMs) {
+    if (!captureOk) { nap(LIST_DELAY_MS); return true; }
+    var t0 = Date.now(), gone = 0;
+    while (Date.now() - t0 < timeoutMs) {
+        var seen = true;
+        try { seen = isMainScreen(); } catch (e) { logErr("isMainScreen", e); }
+        gone = seen ? 0 : gone + 1;
+        if (gone >= 2) return true;
+        nap(300);
+    }
+    return false;
+}
+
+// Real landscape screen size in pixels (from the capture; falls back to device size)
+// Optional manual override: put e.g. 2576x1177 in /sdcard/KlassX/screen.txt (leave it out for auto-detect)
+var SCREEN_FILE = "/sdcard/KlassX/screen.txt";
+var SCREEN_FIXED = null;
+try {
+    if (files.exists(SCREEN_FILE)) {
+        var _sm = /(\d{3,5})\s*[xX*,]\s*(\d{3,5})/.exec(String(files.read(SCREEN_FILE)));
+        if (_sm) SCREEN_FIXED = [Math.max(+_sm[1], +_sm[2]), Math.min(+_sm[1], +_sm[2])];
+    }
+} catch (e) {}
+var REAL_SIZE = null;
+function realDisplaySize() {          // full physical display incl. navigation bar / cutout, landscape order
+    if (REAL_SIZE) return REAL_SIZE;
+    try {
+        var pt = new android.graphics.Point();
+        context.getSystemService(android.content.Context.WINDOW_SERVICE).getDefaultDisplay().getRealSize(pt);
+        if (pt.x > 0 && pt.y > 0) REAL_SIZE = { W: Math.max(pt.x, pt.y), H: Math.min(pt.x, pt.y) };
+    } catch (e) {}
+    return REAL_SIZE;
+}
+function screenSize() {
+    if (SCREEN_FIXED) return { W: SCREEN_FIXED[0], H: SCREEN_FIXED[1] };
+    if (lastW > 0) return { W: Math.max(lastW, lastH), H: Math.min(lastW, lastH) };   // size of the real screen capture
+    var rs = realDisplaySize();
+    if (rs) return rs;
+    return { W: Math.max(device.width, device.height), H: Math.min(device.width, device.height) };
+}
+// Convert a point from the 2576x1177 reference screenshot to real screen pixels
+function toPx(x, y, ax, ay) {   // ax/ay = optional edge anchor ("l"/"c"/"r", "t"/"c"/"b"); HUD buttons pass their real anchor
+    var d = screenSize(), L = layoutOf(d.W, d.H);
+    var px = mapX(L, x, ax), py = mapY(L, y, ay);
+    return [Math.max(0, Math.min(d.W - 1, px)), Math.max(0, Math.min(d.H - 1, py))];
+}
+
+// FIX (tablets): tap coordinates must be in the same pixel space as the screen capture. On many tablets the capture
+// size differs from the real display size (nav bar, scaled display mode...), so every tap drifted. Tell AutoX that our
+// coordinates are in capture pixels and it scales them to the real display.
+var metricsW = 0, metricsH = 0;
+function syncTapSpace(W, H) {
+    if (W <= 0 || H <= 0 || (W === metricsW && H === metricsH)) return;
+    metricsW = W; metricsH = H;
+    try {
+        var rs = realDisplaySize();
+        if (rs && (Math.abs(rs.W - W) > 2 || Math.abs(rs.H - H) > 2)) {
+            setScreenMetrics(W, H);
+            log("tap space synced to capture " + W + "x" + H + " (real display " + rs.W + "x" + rs.H + ")");
+        }
+    } catch (e) { logErr("setScreenMetrics", e); }
+}
+
+// method 0 = press (hold TAP_MS), 1 = click, 2 = tiny swipe. Different methods help if one is ignored.
+var TAP_METHODS = ["press", "click", "swipe"];
+function tapAt(x, y, what, method, ax, ay) {
+    method = method || 0;
+    var p = toPx(x, y, ax, ay), d = screenSize();
+    log("tap " + what + " ref(" + x + "," + y + ") -> px(" + p[0] + "," + p[1] + ") screen " + d.W + "x" + d.H + " via " + TAP_METHODS[method]);
+    if (method === 1) click(p[0], p[1]);
+    else if (method === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+    else press(p[0], p[1], TAP_MS);
+}
+
+// Quiet tap (no log line) for taps that repeat many times
+function quickTap(x, y, method, ax, ay) {
+    var p = toPx(x, y, ax, ay);
+    if (method === 1) click(p[0], p[1]);
+    else if (method === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+    else press(p[0], p[1], TAP_MS);
+}
+
+// Launch the game, open the server list, and pick the chosen server
+function setPlayState(running) {
+    monState = running ? "Running" : "Stopped";
+    ui.run(function () {
+        w.play.setText(running ? "■ Stop" : "▶ Play");
+        w.play.setBackgroundColor(android.graphics.Color.parseColor(running ? "#C62828" : "#2E7D32"));
+    });
+}
+// Bring the game to the front (launch it) if it isn't already in the foreground
+var APP_PKG = null;
+function ensureGame() {
+    var cur = "";
+    try { cur = currentPackage(); } catch (e) {}
+    if (!APP_PKG) APP_PKG = getPackageName(APP_NAME);
+    if (APP_PKG && cur === APP_PKG) return false;
+    log("game not in foreground (now: " + cur + ") -> launching");
+    var ok = launchApp(APP_NAME);
+    log("launchApp('" + APP_NAME + "') -> " + ok);
+    if (!ok) toast("App not found: " + APP_NAME);
+    return true;
+}
+
+// Scroll the Server List (UP swipes only) so the chosen server's row is on screen at the y values in SERVERS.
+// Swiping a whole page past the end is harmless: the list just stops at the bottom.
+function swipeListUp(fromY, dist, ms) {
+    var a = toPx(LIST_X, fromY, "c", "c"), b = toPx(LIST_X, fromY - dist, "c", "c");
+    swipe(a[0], a[1], b[0], b[1], ms);
+}
+function findServerRow(s) {
+    log("find server " + s.name + " (list: " + s.from + ")");
+    if (s.from === "bottom") {
+        for (var i = 0; i < LIST_SWIPES; i++) {          // swipe up until the list is at the bottom
+            swipeListUp(LIST_SWIPE_FROM, LIST_SWIPE_FROM - LIST_SWIPE_TO, LIST_SWIPE_MS);
+            nap(350);
+        }
+    } else if (s.from === "mid") {
+        swipeListUp(LIST_SWIPE_FROM, s.drag, 1200);      // one slow swipe up = no fling
+    }                                                    // "top": nothing to do, the list opens at the top
+    nap(500);                                            // let the list settle
+}
+
+// Select Server screen is showing: tap Select Server -> server -> channel -> Connect.
+// Returns true if the whole sequence ran.
+function runSequence() {
+    var s = SERVERS[serverIdx];
+    log("--- sequence | pick=" + (pickOn ? "ON" : "OFF") + " | server=" + s.name + " | channel " + CHANNEL_IDX + " ---");
+
+    var opened = false;
+    for (var attempt = 1; attempt <= 3 && !opened; attempt++) {
+        tapAt(SELECT_X, SELECT_Y, "Select Server (attempt " + attempt + ")", attempt - 1);
+        opened = waitMainGone(3000);
+        log(opened ? "server list opened" : "list did not open (Select Server still showing)");
+    }
+    if (!opened) { toast("Select Server tap did not work - see log"); return false; }
+    nap(LIST_DELAY_MS);              // let the list finish opening (0.7s)
+    if (!pickOn) { log("pick OFF: server list opened, choose manually"); return true; }
+
+    findServerRow(s);                // swipe the list to where this server is visible
+    tapAt(LIST_X, s.y, "server " + s.name, 0, "c", "c");
+
+    // Channel List opens on the right: wait until the chosen "N Channel" row is detected (template ch_0..ch_3), tap it,
+    // then wait until the Connect button is detected and tap it. No template file -> the old fixed taps are used.
+    var cy = CHANNEL_YS[CHANNEL_IDX];
+    waitTapTemplate("ch_" + CHANNEL_IDX, [CHANNEL_BOX_X0, cy - 45, CHANNEL_BOX_X1, cy + 45], CHANNEL_X, cy, "channel " + CHANNEL_IDX);
+    if (TAP_CONNECT) {
+        nap(CHANNEL_DELAY_MS);       // let the Connect button light up after the channel is chosen
+        waitTapTemplate("connect_btn", CONNECT_BOX, CONNECT_X, CONNECT_Y, "Connect", true);   // Login is tapped automatically when its screen appears
+    }
+    return true;
+}
+
+// Image detection for the Channel List / Connect button.
+// Save these crops (from a 2576x1177 screenshot) in /sdcard/脚本/templates/ :
+//   ch_0.png ch_1.png ch_2.png ch_3.png  -> only the label text ("0 Channel [PK]" ...), not the Smooth/Busy word
+//   connect_btn.png                      -> the Connect button when it is lit (after a channel is chosen)
+var CHANNEL_BOX_X0 = 1320, CHANNEL_BOX_X1 = 1580;     // search box for the channel labels (reference px)
+var CONNECT_BOX = [1740, 855, 1960, 950];             // search box for the Connect button (reference px)
+var TPL_THRESHOLD = 0.75, TPL_WAIT_MS = 4000, TPL_POLL_MS = 200;
+function findTplIn(img, tpl, box, L) {                // returns the pixel centre [x, y] of the match, or null
+    var x0 = mapX(L, box[0], "c"), y0 = mapY(L, box[1], "c"), x1 = mapX(L, box[2], "c"), y1 = mapY(L, box[3], "c");
+    var pt = null;
+    try { pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: TPL_THRESHOLD }); }
+    catch (e) { logErr("findImage", e); }
+    return pt ? [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)] : null;
+}
+function waitTapTemplate(name, box, fx, fy, what, retry) {   // wait for the template to appear, then tap it
+    var d = screenSize(), L = layoutOf(d.W, d.H);
+    var tpl = getTemplateFit(name, L);
+    if (!tpl) {
+        nap(CHANNEL_DELAY_MS);
+        tapAt(fx, fy, what + " (no " + name + ".png template - fixed point)", 0, "c", "c");
+        return false;
+    }
+    var end = Date.now() + TPL_WAIT_MS;
+    while (Date.now() < end) {
+        nap(TPL_POLL_MS);
+        var img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) continue;
+        var p = findTplIn(img, tpl, box, L);
+        if (p) {
+            press(p[0], p[1], TAP_MS);
+            log(what + " detected -> tapped (template " + name + ")");
+            // a tap that is ignored (common on tablets) would stall the flow: if the button is STILL there, tap again
+            for (var rr = 0; retry && rr < 2; rr++) {
+                nap(700);
+                var img2 = null;
+                try { img2 = grabScreen(); } catch (e) {}
+                if (!img2 || !findTplIn(img2, tpl, box, L)) break;
+                log(what + " still showing -> tapping again (" + (rr + 1) + ")");
+                if (rr === 0) click(p[0], p[1]); else swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+            }
+            return true;
+        }
+    }
+    tapAt(fx, fy, what + " (template " + name + " not found - fixed point)", 0, "c", "c");
+    return false;
+}
+
+// A screen is showing: tap (x,y) with a different tap method per attempt until the screen goes away.
+// seenFn() re-checks the screen. Returns true if the screen went away.
+function tapUntilGone(what, x, y, seenFn) {
+    for (var attempt = 1; attempt <= 6; attempt++) {   // ALWAYS TAP: keep trying, cycling tap methods
+        tapAt(x, y, what + " (attempt " + attempt + ")", (attempt - 1) % 3);
+        var t0 = Date.now(), gone = 0;
+        while (Date.now() - t0 < 3000) {
+            nap(300);
+            var seen = true;
+            try { isMainScreen(true); seen = seenFn(); } catch (e) { logErr("isMainScreen", e); }
+            gone = seen ? 0 : gone + 1;
+            if (gone >= 2) { log(what + ": screen gone"); return true; }
+        }
+        log(what + ": screen still showing");
+    }
+    return false;
+}
+function tapLogin() {                   // taps the image-detected Login button (fixed point if only the pixel check matched)
+    for (var attempt = 1; attempt <= 6; attempt++) {
+        var m = (attempt - 1) % 3, p = lastLoginPt;
+        if (p) {
+            log("tap Login (attempt " + attempt + ") image match px(" + p[0] + "," + p[1] + ") via " + TAP_METHODS[m]);
+            if (m === 1) click(p[0], p[1]);
+            else if (m === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+            else press(p[0], p[1], TAP_MS);
+        } else {
+            tapAt(LOGIN_X, LOGIN_Y, "Login (attempt " + attempt + ")", m);
+        }
+        var t0 = Date.now(), gone = 0;
+        while (Date.now() - t0 < 3000) {
+            nap(300);
+            var seen = true;
+            try { isMainScreen(true); seen = lastLoginSeen; } catch (e) { logErr("isMainScreen", e); }
+            gone = seen ? 0 : gone + 1;
+            if (gone >= 2) { log("Login: screen gone"); return true; }
+        }
+        log("Login: screen still showing");
+    }
+    return false;
+}
+
+function tapStart() {                   // taps the image-detected Start button (fixed point if only the pixel check matched)
+    for (var attempt = 1; attempt <= 6; attempt++) {
+        var m = (attempt - 1) % 3, p = lastStartPt;
+        if (p) {
+            log("tap Start (attempt " + attempt + ") image match px(" + p[0] + "," + p[1] + ") via " + TAP_METHODS[m]);
+            if (m === 1) click(p[0], p[1]);
+            else if (m === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+            else press(p[0], p[1], TAP_MS);
+        } else {
+            tapAt(START_X, START_Y, "Start (attempt " + attempt + ")", m);
+        }
+        var t0 = Date.now(), gone = 0;
+        while (Date.now() - t0 < 3000) {
+            nap(300);
+            var seen = true;
+            try { isMainScreen(true); seen = lastStartSeen; } catch (e) { logErr("isMainScreen", e); }
+            gone = seen ? 0 : gone + 1;
+            if (gone >= 2) { log("Start: screen gone"); return true; }
+        }
+        log("Start: screen still showing");
+    }
+    return false;
+}
+// Play ON: keep running until Stop is tapped.
+// Launches the game if needed, watches for the Select Server screen, and runs the sequence
+// every time it shows up (first launch, after a disconnect, after a restart...).
+function petPopupShown(img, W, H) {     // the pet pop-up has a light-grey bar along its top edge
+    var L = layoutOf(W, H), xs = [1000, 1150, 1288, 1450, 1600], ok = 0, i, c, r, g, b;
+    for (i = 0; i < xs.length; i++) {
+        c = img.pixel(mapX(L, xs[i], "c"), mapY(L, 127, "c"));
+        r = capR(c); g = capG(c); b = capB(c);
+        if (r >= 120 && r <= 200 && Math.abs(r - g) < 14 && Math.abs(g - b) < 14) ok++;
+    }
+    return ok >= 4;
+}
+// Template of the pet pop-up's "Use" button. Crop it from a screenshot and save it as
+// /sdcard/脚本/templates/use_btn.png (same folder as the captcha templates). If the file is missing,
+// the grey-bar check (petPopupShown) + the fixed PET_USE point are used instead.
+var PET_WAIT_MS = 5000, PET_POLL_MS = 150;
+var PET_USE_REGION = [1300, 920, 1700, 1060];    // search area for the Use button (reference 2576x1177, pop-up is centred)
+function findPetUse(img, tpl, L) {               // returns [x, y] pixel centre of the Use button, or null
+    var x0 = mapX(L, PET_USE_REGION[0], "c"), y0 = mapY(L, PET_USE_REGION[1], "c");
+    var x1 = mapX(L, PET_USE_REGION[2], "c"), y1 = mapY(L, PET_USE_REGION[3], "c");
+    var pt = null;
+    tpl = getTemplateFit("use_btn", L) || tpl;
+    try {
+        pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: 0.8 });
+    } catch (e) { logErr("pet findImage", e); }
+    return pt ? [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)] : null;
+}
+function summonPet() {
+    petDone = true;
+    var q = QUICK[PET_SLOT];
+    quickTap(q.x, q.y, 0, "c", "b");
+    log("Pet: tapped quick slot " + q.name + " once");
+    var tpl = getTemplate("use_btn");            // cached, never recycled (recycling causes native crashes)
+    var end = Date.now() + PET_WAIT_MS;
+    while (Date.now() < end) {                   // wait for the pop-up, then tap Use
+        nap(PET_POLL_MS);
+        var img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) continue;
+        var W = img.getWidth(), H = img.getHeight(), L = layoutOf(W, H), p = null;
+        if (tpl) p = findPetUse(img, tpl, L);                                   // 1) template match on the Use button
+        else if (petPopupShown(img, W, H)) p = toPx(PET_USE.x, PET_USE.y, "c", "c");   // 2) fallback: grey bar + fixed point
+        if (p) {
+            press(p[0], p[1], TAP_MS);
+            log("Pet: pop-up -> tapped Use" + (tpl ? " (template)" : ""));
+            nap(700);
+            return true;
+        }
+    }
+    log("Pet: no pop-up appeared (pet already out?) - skipped" + (tpl ? "" : " [no use_btn.png template]"));
+    return false;
+}
+
+function buffFrac(img, L, box, kind) {     // share of pixels in the box that look like the buff icon (orange) or its bar (green)
+    var x0 = mapX(L, box[0], "l"), y0 = mapY(L, box[1], "t"), x1 = mapX(L, box[2], "l"), y1 = mapY(L, box[3], "t");
+    var n = 0, t = 0, x, y, c, r, g, b;
+    for (y = y0; y <= y1; y++) {
+        for (x = x0; x <= x1; x++) {
+            c = img.pixel(x, y); r = capR(c); g = capG(c); b = capB(c); n++;
+            if (kind === "g") { if (g > 140 && r < 130 && b < 120 && g - r > 50) t++; }
+            else if (kind === "y") { if (r >= 200 && g >= 180 && b <= 110 && r - b > 100) t++; }   // yellow bar
+            else if (kind === "r") { if (r >= 190 && g <= 60 && b <= 60) t++; }          // pure red of the expiring bar
+            else if (r > 150 && r - b > 90 && g > 40 && g < 190) t++;
+        }
+    }
+    return n ? t / n : 0;
+}
+function buffActive(img, W, H) {
+    var L = layoutOf(W, H);
+    if (BUFF_RED_ON && buffFrac(img, L, BUFF_BAR, "r") >= BUFF_RED_MIN) return false;   // red in the bar -> re-buff now
+    if (buffFrac(img, L, BUFF_BAR, "y") >= BUFF_YELLOW_MIN) return true;                 // yellow bar -> do NOT cast
+    if (!BUFF_GONE_ON && BUFF_RED_ON) return true;                                       // only red triggers
+    return buffFrac(img, L, BUFF_BAR, "g") >= BUFF_BAR_MIN;     // no green bar left (icon gone) -> re-buff
+}
+
+// ---- IMAGE detect for skills (Detect button): each skill has a saved "ready" icon; the skill is tapped only if that icon is found ----
+var SKILL_IMG_THRESHOLD = 0.8;     // 0..1 match score; raise if it taps on cooldown, lower if it never taps
+var SKILL_ICON_HALF = 0.04;        // saved icon = square of 2 x this x screen height, centred on the skill button
+var SKILL_SEARCH_HALF = 0.07;      // search area around the button = this x screen height
+var skillIconCache = {};
+function skillIconPath(idx) { return TEMPLATE_DIR + "skill_icon_" + idx + ".png"; }
+function skillIcon(idx) {
+    if (skillIconCache.hasOwnProperty(idx)) return skillIconCache[idx];
+    var t = null;
+    try { var ip = skillIconPath(idx); if (files.exists(ip)) t = images.read(ip); } catch (e) { logErr("skill icon " + idx, e); t = null; }
+    if (t) skillIconCache[idx] = t;     // cached, never recycled (same SIGSEGV rule as getTemplate)
+    return t || null;
+}
+function skillDetected(img, idx) {      // true = icon found (or nothing saved for this skill, so it is never blocked)
+    var t = skillIcon(idx);
+    if (!t) return true;
+    try {
+        var W = img.getWidth(), H = img.getHeight();
+        var sk = SKILLS[idx], c = toPx(sk.x, sk.y, "r", "b"), r = Math.round(H * SKILL_SEARCH_HALF);
+        var x0 = Math.max(0, c[0] - r), y0 = Math.max(0, c[1] - r), x1 = Math.min(W, c[0] + r), y1 = Math.min(H, c[1] + r);
+        return !!images.findImage(img, t, { region: [x0, y0, x1 - x0, y1 - y0], threshold: SKILL_IMG_THRESHOLD });
+    } catch (e) { logErr("skill findImage", e); return true; }
+}
+function saveSkillIcons() {             // crops every skill button from the current screen (do it while the skills are READY)
+    try {
+        var img = grabScreen();
+        if (!img) { toast("Screen capture failed"); return; }
+        var W = img.getWidth(), H = img.getHeight(), half = Math.round(H * SKILL_ICON_HALF), n = 0;
+        files.ensureDir(TEMPLATE_DIR + "x");
+        for (var i = 0; i < SKILLS.length; i++) {
+            var sk = SKILLS[i], c = toPx(sk.x, sk.y, "r", "b");
+            var x = Math.max(0, Math.min(W - 2 * half, c[0] - half)), y = Math.max(0, Math.min(H - 2 * half, c[1] - half));
+            var clip = images.clip(img, x, y, 2 * half, 2 * half);
+            images.save(clip, skillIconPath(i));
+            clip.recycle();             // our own crop, safe to recycle
+            delete skillIconCache[i];
+            n++;
+        }
+        log("Saved " + n + " skill icons (" + (2 * half) + "px) to " + TEMPLATE_DIR);
+        toast("Saved " + n + " skill icons");
+    } catch (e) { logErr("saveSkillIcons", e); }
+}
+
+// ---- skill ready check: a skill on cooldown is dimmed, so its icon is darker than usual ----
+var SKILL_READY_RATIO = 0.82;   // icon brightness must be at least this share of its brightest-ever value to count as ready
+var SKILL_FORCE_MS = 4000;      // safety: tap a skill anyway if it has not been tapped for this long (in case detection is wrong)
+var lastSkillTap = {}, skillBase = {};
+function skillBright(img, idx) {
+    var sk = SKILLS[idx], c = toPx(sk.x, sk.y, "r", "b"), tot = 0, cnt = 0, dx, dy;
+    var W = img.getWidth(), H = img.getHeight();
+    for (dy = -2; dy <= 2; dy++) for (dx = -2; dx <= 2; dx++) {
+        var x = c[0] + dx * 10, y = c[1] + dy * 10;
+        if (x < 0 || y < 0 || x >= W || y >= H) continue;
+        var col = images.pixel(img, x, y);
+        tot += colors.red(col) + colors.green(col) + colors.blue(col);
+        cnt++;
+    }
+    return cnt ? tot / (cnt * 3) : -1;
+}
+function skillReady(img, idx) {
+    try {
+        var b = skillBright(img, idx);
+        if (b < 0) return true;
+        var base = skillBase[idx] || 0;
+        base = b > base ? b : base * 0.999;          // remember the brightest look, forget very slowly
+        skillBase[idx] = base;
+        return b >= base * SKILL_READY_RATIO;
+    } catch (e) { return true; }
+}
+function checkBuff() {                      // called while attacking; taps S5 when the buff icon has been gone for a few checks
+    if (!BUFF_ON || Date.now() - lastBuffCheck < BUFF_CHECK_MS) return;
+    lastBuffCheck = Date.now();
+    var img = null;
+    try { img = grabScreen(); } catch (e) {}
+    if (!img) return;
+    if (buffActive(img, img.getWidth(), img.getHeight())) { buffMiss = 0; return; }
+    buffMiss++;
+    if (buffMiss >= BUFF_MISS_NEEDED && Date.now() - lastBuffTap >= BUFF_RETAP_MS) {
+        var sk = SKILLS[BUFF_SKILL], sp = toPx(sk.x, sk.y, "r", "b");
+        press(sp[0], sp[1], SKILL_TAP_MS);
+        lastBuffTap = Date.now(); buffMiss = 0;
+        log("Buff bar red / gone -> tapped " + sk.name);
+        nap(600);
+    }
+}
+
+// ---- Auto target ----
+function targetLocked(img, L) {            // true = a target frame is showing, false = none, null = unknown (no target.png)
+    var tpl = getTemplateFit("target", L);
+    if (!tpl) return null;
+    var x0 = mapX(L, TARGET_FRAME_REGION[0], "c"), y0 = mapY(L, TARGET_FRAME_REGION[1], "t");
+    var x1 = mapX(L, TARGET_FRAME_REGION[2], "c"), y1 = mapY(L, TARGET_FRAME_REGION[3], "t");
+    try { return !!images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: TARGET_THRESHOLD }); }
+    catch (e) { logErr("target frame", e); return null; }
+}
+function findMob(img, L) {                 // nearest mob template match to the character -> [x, y] in capture pixels, or null
+    var names = ["mob", "mob2", "mob3"], best = null, bd = 1e18, n, i;
+    var x0 = mapX(L, TARGET_PLAY[0], "c"), y0 = mapY(L, TARGET_PLAY[1], "c");
+    var x1 = mapX(L, TARGET_PLAY[2], "c"), y1 = mapY(L, TARGET_PLAY[3], "c");
+    var cx = mapX(L, TARGET_CHAR[0], "c"), cy = mapY(L, TARGET_CHAR[1], "c");
+    for (n = 0; n < names.length; n++) {
+        var tpl = getTemplateFit(names[n], L);
+        if (!tpl) continue;
+        var pts = [], opt = { region: [x0, y0, x1 - x0, y1 - y0], threshold: TARGET_THRESHOLD };
+        try {
+            var res = images.matchTemplate(img, tpl, { region: opt.region, threshold: opt.threshold, max: 8 });
+            if (res && res.matches) for (i = 0; i < res.matches.length; i++) pts.push(res.matches[i].point);
+        } catch (e) {
+            try { var one = images.findImage(img, tpl, opt); if (one) pts.push(one); } catch (e2) { logErr("find mob", e2); }
+        }
+        for (i = 0; i < pts.length; i++) {
+            var px = pts[i].x + Math.round(tpl.getWidth() / 2);
+            var py = pts[i].y + Math.round(tpl.getHeight() / 2) + Math.round(TARGET_TAP_DY * L.ky);
+            var d = (px - cx) * (px - cx) + (py - cy) * (py - cy);
+            if (d < bd) { bd = d; best = [px, py]; }
+        }
+    }
+    return best;
+}
+function isMobRed(c) {                     // name-plate / HP-bar red (also catches the brighter glow of the selected mob)
+    var r = capR(c), g = capG(c), b = capB(c);
+    return r >= 140 && r - g >= 80 && r - b >= 70;
+}
+function redBlobs(img, W, H, S, sx, sy, minRun, gap, blobGapRows) {   // wide red horizontal runs merged into blobs [xa, xb, ya, yb]
+    var x0 = Math.round(W * S[0]), y0 = Math.round(H * S[1]), x1 = Math.round(W * S[2]), y1 = Math.round(H * S[3]);
+    var blobs = [], x, y, start, last, k, b, i;
+    function addRun(xa, xb, yy) {
+        for (k = 0; k < blobs.length; k++) {
+            b = blobs[k];
+            if (yy - b[3] <= blobGapRows * sy && xa <= b[1] && xb >= b[0]) {
+                if (xa < b[0]) b[0] = xa;
+                if (xb > b[1]) b[1] = xb;
+                b[3] = yy;
+                return;
+            }
+        }
+        blobs.push([xa, xb, yy, yy]);
+    }
+    for (y = y0; y < y1; y += sy) {
+        start = -1; last = -1;
+        for (x = x0; x < x1; x += sx) {
+            if (!isMobRed(img.pixel(x, y))) continue;
+            if (start < 0) start = x;
+            else if (x - last > gap) {
+                if (last - start >= minRun) addRun(start, last, y);
+                start = x;
+            }
+            last = x;
+        }
+        if (start >= 0 && last - start >= minRun) addRun(start, last, y);
+    }
+    return blobs;
+}
+function isDarkPx(c) { return Math.max(capR(c), capG(c), capB(c)) <= TARGET_BOX_DARK; }
+function isRedLoose(c) { var r = capR(c), g = capG(c), b = capB(c); return r >= 90 && r - g >= 60 && r - b >= 55; }
+function darkBoxes(img, W, H, S) {          // black plate backgrounds that contain red text -> [[xa, xb, ya, yb], ...]
+    var x0 = Math.round(W * S[0]), y0 = Math.round(H * S[1]), x1 = Math.round(W * S[2]), y1 = Math.round(H * S[3]);
+    var sx = 4, sy = 3, minRun = Math.round(W * TARGET_BOX_MINW), gap = Math.max(8, Math.round(W * 0.008));
+    var blobs = [], x, y, start, last, k, b, c, out = [], i;
+    function addRun(xa, xb, yy) {
+        for (k = 0; k < blobs.length; k++) {
+            b = blobs[k];
+            if (yy - b[3] <= 4 * sy && xa <= b[1] && xb >= b[0]) {
+                if (xa < b[0]) b[0] = xa;
+                if (xb > b[1]) b[1] = xb;
+                b[3] = yy;
+                return;
+            }
+        }
+        blobs.push([xa, xb, yy, yy]);
+    }
+    for (y = y0; y < y1; y += sy) {             // the red letters sit inside the black box, so "black or red" runs keep the box in one piece
+        start = -1; last = -1;
+        for (x = x0; x < x1; x += sx) {
+            c = img.pixel(x, y);
+            if (!(isDarkPx(c) || isRedLoose(c))) continue;
+            if (start < 0) start = x;
+            else if (x - last > gap) {
+                if (last - start >= minRun) addRun(start, last, y);
+                start = x;
+            }
+            last = x;
+        }
+        if (start >= 0 && last - start >= minRun) addRun(start, last, y);
+    }
+    for (i = 0; i < blobs.length; i++) {
+        b = blobs[i];
+        var w = b[1] - b[0], h = b[3] - b[2] + sy;
+        if (w > W * TARGET_BOX_MAXW || h < H * TARGET_BOX_MINH || h > H * TARGET_BOX_MAXH) continue;
+        var nd = 0, nr = 0, tot = 0, xx, yy;
+        for (yy = b[2]; yy <= b[3]; yy += 2) for (xx = b[0]; xx <= b[1]; xx += 2) {
+            c = img.pixel(xx, yy); tot++;
+            if (isDarkPx(c)) nd++; else if (isRedLoose(c)) nr++;
+        }
+        if (tot && nd / tot >= TARGET_BOX_MINDARK && nr >= TARGET_BOX_MINRED) out.push(b);
+    }
+    return out;
+}
+function barLocked(img, W, H) {            // red HP bar of the target frame (top centre) showing = a mob is selected
+    var bl = redBlobs(img, W, H, TARGET_LOCK_SCAN, 3, 2, Math.round(W * 0.08), Math.max(8, Math.round(W * 0.012)), 2);
+    return bl.length > 0;
+}
+function findNamePlate(img, W, H, avoid) {        // nearest red name plate to the character -> [x, y] tap point (on the mob), or null; avoid = [x, y] of the last tap (a different plate is preferred)
+    var bl = TARGET_BOX_ON ? darkBoxes(img, W, H, TARGET_NAME_SCAN) : redBlobs(img, W, H, TARGET_NAME_SCAN, 4, 3, Math.round(W * TARGET_NAME_MINW), Math.max(8, Math.round(W * 0.012)), 5);
+    var cx = W * TARGET_NAME_CHAR[0], cy = H * TARGET_NAME_CHAR[1], best = null, bd = 1e18, alt = null, ad = 1e18, i, d, px, py, ar = W * 0.05;
+    for (i = 0; i < bl.length; i++) {
+        if (bl[i][3] - bl[i][2] > H * 0.08) continue;            // too tall to be a name plate (a red costume, effect...)
+        px = Math.round((bl[i][0] + bl[i][1]) / 2);
+        py = Math.min(H - 1, Math.round(bl[i][3] + H * TARGET_NAME_DY));
+        d = (px - cx) * (px - cx) + (py - cy) * (py - cy);
+        if (avoid && Math.abs(px - avoid[0]) < ar && Math.abs(py - avoid[1]) < ar) { if (d < ad) { ad = d; alt = [px, py]; } continue; }
+        if (d < bd) { bd = d; best = [px, py]; }
+    }
+    return best || alt;                                          // only the avoided plate on screen -> tap it anyway
+}
+// ---- Center tap: when the selected mob is gone (killed), tap the middle of the screen (picks up the drop under / next to the character) ----
+var CENTER_TAP_ON = store.get("centerTapOn", true);   // toggled by the "Center tap" button in Tools (needs Auto target ON: it watches the target frame)
+var CENTER_TAP_POS = [1288, 588];                  // where to tap (reference 2576x1177 screen, centred)
+var CENTER_TAP_DELAY_MS = 800;                     // wait after the mob is gone before tapping (the drop needs a moment to appear)
+var CENTER_TAP_COUNT = 2, CENTER_TAP_GAP_MS = 400; // taps per kill, pause between them
+var ctSeen = false, ctFalseN = 0, centerTapAt = 0, centerTaps = 0;
+function autoTarget() {                    // called while attacking; selects a mob when none is selected
+    if (!targetOn) return false;
+    var now = Date.now();
+    if (now - tgtCheckAt < (RETARGET_ON ? Math.min(TARGET_CHECK_MS, 250) : TARGET_CHECK_MS)) return false;
+    tgtCheckAt = now;
+    var img = null;
+    try { img = grabScreen(); } catch (e) {}
+    if (!img) return false;
+    var L = layoutOf(img.getWidth(), img.getHeight());
+    var W = img.getWidth(), H = img.getHeight();
+    var locked = targetLocked(img, L);                         // target.png (if you made one) ...
+    if (locked === null && TARGET_NAME_ON) locked = barLocked(img, W, H);   // ... else the red HP bar at the top centre
+    if (locked === true) { ctSeen = true; ctFalseN = 0; }      // center tap: a mob was selected ...
+    else if (locked === false) {
+        ctFalseN++;
+        if (CENTER_TAP_ON && ctSeen && ctFalseN >= 2) { ctSeen = false; centerTapAt = now + CENTER_TAP_DELAY_MS; }   // ... and now it is gone (2 checks in a row) = killed
+    }
+    if (CENTER_TAP_ON && centerTapAt && now >= centerTapAt) {
+        centerTapAt = 0; centerTaps++;
+        var cx0 = mapX(L, CENTER_TAP_POS[0], "c"), cy0 = mapY(L, CENTER_TAP_POS[1], "c");
+        log("Center tap: mob gone -> tapping the center (" + cx0 + "," + cy0 + ") x" + CENTER_TAP_COUNT + " #" + centerTaps);
+        for (var ci = 0; ci < CENTER_TAP_COUNT; ci++) { press(cx0, cy0, TAP_MS); if (ci < CENTER_TAP_COUNT - 1) nap(CENTER_TAP_GAP_MS); }
+        return true;
+    }
+    var retarget = false;
+    if (locked === true) {                                     // a mob is already selected
+        if (!RETARGET_ON || now - tgtTapAt < RETARGET_MS) return false;
+        retarget = true;                                       // ... but tap a mob again every RETARGET_MS
+    }
+    if (now - tgtTapAt < (retarget ? RETARGET_MS : TARGET_TAP_GAP_MS)) return false;
+    var mob = retarget ? null : findMob(img, L), tx, ty, how;
+    if (mob) { tx = mob[0]; ty = mob[1]; how = "mob"; }
+    else if (TARGET_NAME_ON && (mob = findNamePlate(img, W, H, retarget ? tgtLastPt : null))) { tx = mob[0]; ty = mob[1]; how = retarget ? "retarget" : "name plate"; }
+    else if (retarget && (mob = findMob(img, L))) { tx = mob[0]; ty = mob[1]; how = "retarget"; }
+    else {
+        if (!TARGET_SWEEP_ON || retarget) return false;        // nothing on screen to target (no blind sweeping while a mob is already selected)
+        if (now - tgtTapAt < (locked === false ? TARGET_SWEEP_MS : TARGET_RETRY_MS)) return false;
+        var rp = TARGET_RING[tgtRing % TARGET_RING.length]; tgtRing++;
+        tx = mapX(L, rp[0], "c"); ty = mapY(L, rp[1], "c"); how = "sweep";
+    }
+    press(tx, ty, TAP_MS);
+    tgtTapAt = Date.now(); tgtTaps++; tgtLastPt = [tx, ty];
+    if ((how !== "sweep" && how !== "retarget") || Date.now() - tgtLogAt > 15000) {
+        tgtLogAt = Date.now();
+        log("Auto target: tapped (" + tx + "," + ty + ") " + how + (locked === false ? " [no target selected]" : "") + " #" + tgtTaps);
+    }
+    nap(250);
+    return true;
+}
+
+// ---- Auto Pots: once the character is in game, open the MENU and press "Auto Pots" (both found by image) ----
+// Templates in TEMPLATE_DIR (cropped from a 2576x1177 screenshot): menu_btn.png (the MENU button, top-right) and
+// autopots_btn.png (the "Auto Pots" button of the menu pop-up). If a template file is missing, that button is tapped
+// at its fixed position instead. Runs once after every login / re-login (set AUTOPOTS_REPEAT_MS to repeat it).
+var AUTOPOTS_ON = store.get("autoPotsOn", true);   // false = never open the menu / press Auto Pots (toggled by the "Auto Pots" button in Tools)
+var autoPotsKick = false;                        // set by the button: the main loop starts / cancels the Auto Pots step on its next pass
+var AUTOPOTS_REPEAT_MS = 0;                      // 0 = ONCE per login (default); otherwise re-check every this many ms
+var AUTOPOTS_RETRY_MS = 15000;                   // when Auto Pots could not be confirmed: try again after this many ms
+var AUTOPOTS_MAX_RETRIES = 1;                    // ... at most this many extra runs, and only when the window never opened
+var MENU_BOX = [2200, 250, 2576, 450];           // where the MENU button is searched (reference px, top-right)
+var AUTOPOTS_BOX = [1000, 300, 1580, 900];       // where the Auto Pots button is searched (reference px, centred pop-up)
+var MENU_FALLBACK = [2464, 338];                 // fixed MENU position (only used when menu_btn.png is missing)
+var AUTOPOTS_FALLBACK = [1288, 483];             // fixed Auto Pots position (only used when autopots_btn.png is missing)
+var MENU_TPL_THRESHOLD = 0.8, AUTOPOTS_TPL_THRESHOLD = 0.7;
+var AUTOPOTS_OPEN_WAIT_MS = 800;                 // wait after tapping MENU before looking for Auto Pots (ms)
+var AUTOPOTS_AFTER_MS = 1000;                    // pause after tapping Auto Pots (ms)
+var AUTOPOTS_TRIES = 2;                          // attempts per run (only used when the window does not open)
+var lastAutoPots = 0, btnTplLogged = {}, apTicked = false;
+function findBtn(img, L, name, box, thr, ax, ay) {     // -> { state: "found" | "none" | "missing", p: [x, y] pixel centre }
+    var tpl = getTemplateFit(name, L);
+    if (!tpl) {
+        if (!btnTplLogged[name]) { btnTplLogged[name] = true; log("Auto Pots: " + name + ".png not found in " + TEMPLATE_DIR + " - using the fixed position"); }
+        return { state: "missing", p: null };
+    }
+    var x0 = mapX(L, box[0], ax), y0 = mapY(L, box[1], ay), x1 = mapX(L, box[2], ax), y1 = mapY(L, box[3], ay);
+    x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(img.getWidth(), x1); y1 = Math.min(img.getHeight(), y1);
+    var pt = null;
+    if (x1 - x0 >= tpl.getWidth() && y1 - y0 >= tpl.getHeight()) {
+        try { pt = images.findImage(img, tpl, { region: [x0, y0, x1 - x0, y1 - y0], threshold: thr }); }
+        catch (e) { logErr(name + " findImage", e); }
+    }
+    if (!pt) return { state: "none", p: null };
+    return { state: "found", p: [pt.x + Math.round(tpl.getWidth() / 2), pt.y + Math.round(tpl.getHeight() / 2)] };
+}
+function tapPx(p, what, m) {
+    log("tap " + what + " px(" + p[0] + "," + p[1] + ") via " + TAP_METHODS[m]);
+    if (m === 1) click(p[0], p[1]);
+    else if (m === 2) swipe(p[0], p[1], p[0] + 2, p[1] + 2, 150);
+    else press(p[0], p[1], TAP_MS);
+}
+// ---- Auto Potion Window (opens after Auto Pots): tick "Enable Auto Potion", set the HP / MP / SP sliders, press OK ----
+// The sliders are read back from the screen (length of the orange bar) and corrected until they show the wanted value.
+// Template autopot_ok.png (the OK button) is used to see that the window is open and to tap OK; fixed position if missing.
+var AUTOPOTS_SET = true;                         // false = stop after tapping Auto Pots (leave the window alone)
+var AUTOPOTS_OK_TAP = true;                      // true = press OK at the end (false = leave the window open)
+var AP_VALUES = { hp: 69, mp: 63, sp: 71 };      // wanted percentages
+var AP_OK_BOX = [1400, 740, 1720, 880];          // where the OK button is searched (reference px)
+var AP_OK_FALLBACK = [1573, 810];                // fixed OK position (only used when autopot_ok.png is missing)
+var AP_OK_THRESHOLD = 0.7;
+var AP_WIN_WAIT_MS = 3000;                       // how long to wait for the window to show up (ms)
+var AP_CHECK_PT = [1633, 482];                   // centre of the "Enable Auto Potion" box
+var AP_CHECK_BOX = [1614, 464, 1652, 500];       // inside of that box: white pixels here = ticked
+var AP_BAR_Y = { hp: 566, mp: 651, sp: 736 };    // centre line of each slider
+var AP_BAR_X0 = 1074, AP_BAR_PX = 4.16;          // x of 0% and reference px per 1% (bar spans ~1078 - 1494)
+function apRefX(L, x) { return L.stretch ? x / L.kx : REF_W / 2 + (x - L.W / 2) / L.kx; }
+function apOrange(c) {
+    var r = capR(c), g = capG(c), b = capB(c);
+    return r >= 190 && g >= 110 && g <= 215 && b <= 90 && r - b >= 110;
+}
+function apChecked(img, L) {             // true when the white tick is inside the box
+    var x0 = mapX(L, AP_CHECK_BOX[0], "c"), y0 = mapY(L, AP_CHECK_BOX[1], "c");
+    var x1 = mapX(L, AP_CHECK_BOX[2], "c"), y1 = mapY(L, AP_CHECK_BOX[3], "c"), n = 0, x, y, c;
+    for (y = y0; y < y1; y += 2) for (x = x0; x < x1; x += 2) {
+        c = img.pixel(x, y);
+        if (Math.min(capR(c), capG(c), capB(c)) >= 200) n++;
+    }
+    return n >= 12;
+}
+function apFill(img, L, key) {           // -> { pct, refX } of the orange bar (refX = where it ends, reference px)
+    var xa = mapX(L, 1060, "c"), xb = mapX(L, 1510, "c"), step = Math.max(1, Math.round(L.kx)), best = -1;
+    for (var dy = -8; dy <= 8; dy += 4) {
+        var py = mapY(L, AP_BAR_Y[key] + dy, "c"), last = -1, x;
+        for (x = xa; x <= xb; x += step) {
+            if (apOrange(img.pixel(x, py))) last = x;
+            else if (last >= 0 && x - last > 6 * step) break;
+        }
+        if (last > best) best = last;
+    }
+    if (best < 0) return { pct: 0, refX: AP_BAR_X0 };
+    var rx = apRefX(L, best), pct = Math.round((rx - AP_BAR_X0) / AP_BAR_PX);
+    return { pct: Math.max(0, Math.min(100, pct)), refX: rx };
+}
+function setApBar(key, target) {         // drags the slider until the bar shows `target` %; returns true when it does
+    var tx = AP_BAR_X0 + AP_BAR_PX * target, y = AP_BAR_Y[key], tries = 7, cur = null;
+    for (var t = 1; t <= tries; t++) {
+        var img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) return false;
+        var L = layoutOf(img.getWidth(), img.getHeight());
+        cur = apFill(img, L, key);
+        var diff = target - cur.pct;
+        if (diff === 0 || (t >= 4 && Math.abs(diff) <= 1)) { log("Auto Potion: " + key.toUpperCase() + " = " + cur.pct + "%"); return diff === 0; }
+        if (t > 1) tx += diff * AP_BAR_PX;                         // correct the aim by what is still missing
+        var sx = Math.max(AP_BAR_X0 + 10, cur.refX), a = toPx(sx, y, "c", "c"), b = toPx(tx, y, "c", "c");
+        log("Auto Potion: " + key.toUpperCase() + " shows " + cur.pct + "% -> drag to " + target + "% (try " + t + ")");
+        try { swipe(a[0], a[1], b[0], b[1], 350); } catch (e2) { logErr("auto potion swipe", e2); return false; }
+        nap(300);
+    }
+    log("Auto Potion: " + key.toUpperCase() + " could not be set to " + target + "% (shows " + (cur ? cur.pct : "?") + "%)");
+    return false;
+}
+var apWinSeen = false;
+function apWindowOpen(img, L) {          // the "Enable Auto Potion" box frame (grey border) - no template needed
+    var n = 0, t = 0, x, y;
+    function grey(px, py) {                  // a grey border pixel within +-2 px of the expected spot (tolerates 1-2 px shifts)
+        var dx, dy, c, v, hit = false;
+        t++;
+        for (dy = -2; dy <= 2 && !hit; dy++) for (dx = -2; dx <= 2 && !hit; dx++) {
+            c = img.pixel(px + dx, py + dy); v = (capR(c) + capG(c) + capB(c)) / 3;
+            if (v >= 80 && v <= 125) hit = true;
+        }
+        if (hit) n++;
+    }
+    for (y = 455; y < 512; y += 4) { grey(mapX(L, 1602, "c"), mapY(L, y, "c")); grey(mapX(L, 1666, "c"), mapY(L, y, "c")); }
+    for (x = 1606; x < 1664; x += 4) { grey(mapX(L, x, "c"), mapY(L, 451, "c")); grey(mapX(L, x, "c"), mapY(L, 513, "c")); }
+    return t > 0 && n / t >= 0.8;
+}
+function apTickCount(img, L) {           // white pixels inside the box (the tick mark)
+    var x0 = mapX(L, AP_CHECK_BOX[0], "c"), y0 = mapY(L, AP_CHECK_BOX[1], "c");
+    var x1 = mapX(L, AP_CHECK_BOX[2], "c"), y1 = mapY(L, AP_CHECK_BOX[3], "c"), n = 0, x, y, c;
+    for (y = y0; y < y1; y += 2) for (x = x0; x < x1; x += 2) {
+        c = img.pixel(x, y);
+        if (Math.min(capR(c), capG(c), capB(c)) >= 200) n++;
+    }
+    return n;
+}
+function setAutoPotion() {
+    var t0 = Date.now(), ok = { state: "none", p: null }, i, img, L;
+    apWinSeen = false;
+    while (true) {                                                  // 1) wait for the window (box frame, or its OK button)
+        img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (img) {
+            L = layoutOf(img.getWidth(), img.getHeight());
+            ok = findBtn(img, L, "autopot_ok", AP_OK_BOX, AP_OK_THRESHOLD, "c", "c");
+            if (ok.state === "found" || apWindowOpen(img, L)) break;
+        }
+        if (Date.now() - t0 >= AP_WIN_WAIT_MS) { log("Auto Potion: window not detected - nothing changed"); return false; }
+        nap(300);
+    }
+    apWinSeen = true;
+    log("Auto Potion: window is open");
+    try { img = grabScreen(); } catch (e1) { img = null; }       // 2) tick "Enable Auto Potion" - tapped AT MOST ONCE (a 2nd tap would un-tick it)
+    if (!img) return false;
+    L = layoutOf(img.getWidth(), img.getHeight());
+    var n0 = apTickCount(img, L);
+    if (n0 >= 12) { apTicked = true; log("Auto Potion: Enable box already ticked"); }
+    else {
+        var cp = toPx(AP_CHECK_PT[0], AP_CHECK_PT[1], "c", "c");
+        log("Auto Potion: ticking the Enable box (tick pixels " + n0 + ")");
+        press(cp[0], cp[1], TAP_MS);
+        nap(700);
+        try { img = grabScreen(); } catch (e2) { img = null; }
+        var n1 = img ? apTickCount(img, layoutOf(img.getWidth(), img.getHeight())) : 0;
+        apTicked = n1 >= 12 || n1 >= n0 + 6;
+        log("Auto Potion: tick " + (apTicked ? "confirmed" : "NOT confirmed - not tapping again, so it can not be un-ticked") + " (tick pixels " + n1 + ")");
+    }
+    var allOk = setApBar("hp", AP_VALUES.hp);                       // 3) sliders
+    allOk = setApBar("mp", AP_VALUES.mp) && allOk;
+    allOk = setApBar("sp", AP_VALUES.sp) && allOk;
+    if (AUTOPOTS_OK_TAP) {                                          // 4) OK
+        var op = ok.state === "found" ? ok.p : toPx(AP_OK_FALLBACK[0], AP_OK_FALLBACK[1], "c", "c");
+        tapPx(op, "OK", 0);
+        nap(500);
+    }
+    log("Auto Potion: done" + (allOk ? "" : " (some value could not be confirmed)"));
+    return allOk;
+}
+function runAutoPots() {                 // returns true when the Auto Potion window was opened and the Enable box is ticked
+    var menuOpenGuess = false;
+    for (var attempt = 1; attempt <= AUTOPOTS_TRIES; attempt++) {
+        var m = (attempt - 1) % 3, img = null;
+        try { img = grabScreen(); } catch (e) {}
+        if (!img) return false;
+        var L = layoutOf(img.getWidth(), img.getHeight());
+        if (!apWindowOpen(img, L)) {                                  // window not open yet
+            var ap = findBtn(img, L, "autopots_btn", AUTOPOTS_BOX, AUTOPOTS_TPL_THRESHOLD, "c", "c");
+            if (ap.state !== "found" && !menuOpenGuess) {             // menu pop-up not open -> tap MENU
+                var mn = findBtn(img, L, "menu_btn", MENU_BOX, MENU_TPL_THRESHOLD, "r", "t");
+                var mp = mn.state === "found" ? mn.p : toPx(MENU_FALLBACK[0], MENU_FALLBACK[1], "r", "t");
+                tapPx(mp, "MENU" + (mn.state === "found" ? "" : " (fixed position)") + " (attempt " + attempt + "/" + AUTOPOTS_TRIES + ")", m);
+                nap(AUTOPOTS_OPEN_WAIT_MS);
+                var t0 = Date.now();
+                while (true) {                                        // wait up to ~2.5 s for the Auto Pots button
+                    var img2 = null;
+                    try { img2 = grabScreen(); } catch (e2) {}
+                    if (img2) ap = findBtn(img2, layoutOf(img2.getWidth(), img2.getHeight()), "autopots_btn", AUTOPOTS_BOX, AUTOPOTS_TPL_THRESHOLD, "c", "c");
+                    if (ap.state === "found" || Date.now() - t0 >= 2500) break;
+                    nap(300);
+                }
+            }
+            var ap_p = ap.state === "found" ? ap.p : toPx(AUTOPOTS_FALLBACK[0], AUTOPOTS_FALLBACK[1], "c", "c");
+            tapPx(ap_p, "Auto Pots" + (ap.state === "found" ? "" : " (fixed position)"), m);
+            nap(AUTOPOTS_AFTER_MS);
+        }
+        if (!AUTOPOTS_SET) return true;
+        apTicked = false;
+        try { setAutoPotion(); } catch (e3) { if (String(e3).indexOf("STOPPED") >= 0) throw e3; logErr("auto potion window", e3); }
+        if (apWinSeen) return true;                                   // window opened and handled -> finished (once per login)
+        log("Auto Pots: window did not open (attempt " + attempt + "/" + AUTOPOTS_TRIES + ")");
+        menuOpenGuess = !menuOpenGuess;                               // maybe the menu is still open: next time skip MENU, then alternate
+    }
+    log("Auto Pots: gave up after " + AUTOPOTS_TRIES + " attempts");
+    return false;
+}
+
+// ================= Auto loot (OCR item names -> walk to them -> tap) =================
+function alNorm(s) { return String(s).toLowerCase().replace(/[^a-z0-9\u00c0-\uffff]/g, ""); }
+function alDist(ax, ay, bx, by) { return Math.sqrt((ax - bx) * (ax - bx) + (ay - by) * (ay - by)); }
+function alTol(len) { return len >= 7 ? 2 : (len >= 4 ? 1 : 0); }
+function alLev(a, b) {
+    var prev = [], cur = [], i, j;
+    for (j = 0; j <= b.length; j++) prev[j] = j;
+    for (i = 1; i <= a.length; i++) {
+        cur = [i];
+        for (j = 1; j <= b.length; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a.charAt(i - 1) == b.charAt(j - 1) ? 0 : 1));
+        prev = cur;
+    }
+    return prev[b.length];
+}
+// smallest edit distance between the name and any same-length piece of the OCR text
+function alNameDist(text, key) {
+    if (text.indexOf(key) >= 0) return 0;
+    if (!AL_FUZZY) return 99;
+    if (text.length <= key.length + 1) return alLev(text, key);
+    var best = 99;
+    for (var i = 0; i + key.length <= text.length; i++) {
+        var d = alLev(text.substr(i, key.length), key);
+        if (d < best) best = d;
+    }
+    return best;
+}
+function alIgnored(x, y, W, H) {
+    for (var i = 0; i < AL_IGNORE.length; i++) {
+        var r = AL_IGNORE[i];
+        if (x >= r[0] * W && x <= r[2] * W && y >= r[1] * H && y <= r[3] * H) return true;
+    }
+    return false;
+}
+function alToArr(x) {
+    var out = [];
+    if (!x) return out;
+    if (x.length !== undefined) { for (var i = 0; i < x.length; i++) out.push(x[i]); }
+    else if (x.size) { for (var j = 0; j < x.size(); j++) out.push(x.get(j)); }
+    return out;
+}
+// returns [{text, x, y, h}] in the coordinates of the image that was read
+function alRunOcr(img) {
+    var out = [];
+    function push(text, b) {
+        if (!text || !b) return;
+        out.push({ text: String(text), x: (b.left + b.right) / 2, y: (b.top + b.bottom) / 2, h: b.bottom - b.top });
+    }
+    try {
+        if (alOcrEngine == "paddle") {
+            alToArr(paddle.ocr(img)).forEach(function (o) { push(o.label, o.bounds); });
+        } else if (alOcrEngine == "gmlkit") {
+            var res = gmlkit.ocr(img, AL_OCR_LANG);
+            var blocks = alToArr(res && res.children);
+            if (blocks.length == 0 && res) push(res.text, res.bounds);
+            blocks.forEach(function (bl) {
+                var ls = alToArr(bl.children);
+                if (ls.length == 0) push(bl.text, bl.bounds);
+                else ls.forEach(function (ln) { push(ln.text, ln.bounds); });
+            });
+        }
+    } catch (e) { logErr("auto loot OCR", e); }
+    return out;
+}
+// one OCR pass -> loot items (name or gold) and monsters
+function alDetect(img, W, H) {
+    var items = [], monsters = [], texts = alRunOcr(img), i, j;
+    for (i = 0; i < texts.length; i++) {
+        var o = texts[i], key = alNorm(o.text);
+        if (!key || alIgnored(o.x, o.y, W, H)) continue;
+        var isMon = false;
+        for (j = 0; j < AL_MTARGETS.length && !isMon; j++) {
+            if (alNameDist(key, AL_MTARGETS[j].key) <= alTol(AL_MTARGETS[j].key.length)) {
+                monsters.push({ x: o.x, y: o.y, name: AL_MTARGETS[j].name });
+                isMon = true;
+            }
+        }
+        if (isMon) continue;
+        if (AL_GOLD && alIsOn("Gold") && /^\d{2,6}$/.test(String(o.text).replace(/[\s,.]/g, ""))) {
+            items.push({ x: o.x, y: o.y, h: o.h, off: AL_GOLD_OFFSET_H, name: "Gold", text: o.text, score: 0.9 });
+            continue;
+        }
+        var best = null, bestD = 99;
+        for (j = 0; j < AL_TARGETS.length; j++) {
+            var t = AL_TARGETS[j], d = alNameDist(key, t.key);
+            if (d > alTol(t.key.length)) continue;
+            // closest match wins; on a tie the longer name wins ("Fine Burr" beats "Burr")
+            if (d < bestD || (d == bestD && best && t.key.length > best.key.length)) { best = t; bestD = d; }
+        }
+        if (best && alIsOn(best.name)) items.push({ x: o.x, y: o.y, h: o.h, name: best.name, text: o.text, score: 1 - bestD * 0.1 });
+    }
+    items.sort(function (a, b) { return b.score - a.score; });
+    var out = [];
+    items.forEach(function (f) {
+        for (var k = 0; k < out.length; k++) if (out[k].name == f.name && alDist(out[k].x, out[k].y, f.x, f.y) < 40 * W / REF_W) return;
+        out.push(f);
+    });
+    return { items: out, monsters: monsters };
+}
+function alWalk(W, H, dx, dy, ms) {
+    var d = Math.sqrt(dx * dx + dy * dy) || 1, k = W / REF_W;
+    var jx = AL_JOYSTICK[0] * W, jy = AL_JOYSTICK[1] * H;
+    var tx = jx + dx / d * AL_JOY_PUSH * k, ty = jy + dy / d * AL_JOY_PUSH * k;
+    gesture(ms, [jx, jy], [tx, ty], [tx, ty], [tx, ty]);   // hold the stick, slide to the direction
+}
+function alFresh() { return { steps: 0, closeTaps: 0, lastTap: null, blacklist: [], lastScan: 0, lastMonsterAt: 0, fighting: false, looted: 0 }; }
+function alReset() {
+    alSt = alFresh();
+    log("Auto loot: " + (alOn ? "ON" : "OFF") + ", OCR " + (alOcrEngine || "NOT FOUND (update AutoX.js)"));
+}
+// Called every main-loop pass while in game. Returns true when it used the pass for looting (caller skips the attack),
+// false when the attack should run. OCR runs only every AL_SCAN_MS.
+function alStep() {
+    if (!alOn || !alOcrEngine) return false;
+    var now = Date.now();
+    if (now - alSt.lastScan < AL_SCAN_MS) return false;
+    if (now - capSeenAt < 4000) return false;          // a captcha popup is up: keep the taps for it
+    alSt.lastScan = now;
+    var img = null;
+    try { img = grabScreen(); } catch (e) {}
+    if (!img) return false;
+    var W = img.getWidth(), H = img.getHeight(), k = W / REF_W;
+    syncTapSpace(W, H);
+    var det = alDetect(img, W, H), cx0 = AL_CHAR_POS[0] * W, cy0 = AL_CHAR_POS[1] * H;
+    var near = det.monsters.filter(function (m) { return alDist(m.x, m.y, cx0, cy0) <= AL_MONSTER_RANGE * k; });
+    if (near.length) {                                  // fight going on -> attack, do not loot yet
+        alSt.lastMonsterAt = now; alSt.steps = 0; alSt.closeTaps = 0;
+        if (!alSt.fighting) { alSt.fighting = true; log("[Loot] " + near[0].name + " near - attacking first"); }
+        return false;
+    }
+    if (now - alSt.lastMonsterAt < AL_ATTACK_END_MS) return false;
+    if (alSt.fighting) { alSt.fighting = false; log("[Loot] fight over - looting"); }
+
+    alSt.blacklist = alSt.blacklist.filter(function (b) { return b.until > now; });
+    var items = det.items.map(function (i) {
+        i.y += i.h * (i.off || AL_ITEM_OFFSET_H);
+        return i;
+    }).filter(function (i) {
+        if (alDist(i.x, i.y, cx0, cy0) > AL_MAX_DISTANCE * k) return false;
+        for (var j = 0; j < alSt.blacklist.length; j++) {
+            if (alDist(alSt.blacklist[j].x, alSt.blacklist[j].y, i.x, i.y) < AL_SPOT_RADIUS * k) return false;
+        }
+        return true;
+    });
+    if (!items.length) { alSt.steps = 0; alSt.closeTaps = 0; return false; }
+    items.sort(function (a, b) { return alDist(a.x, a.y, cx0, cy0) - alDist(b.x, b.y, cx0, cy0); });
+
+    var t = items[0], dx = t.x - cx0, dy = t.y - cy0, d = Math.sqrt(dx * dx + dy * dy);
+    if (d <= AL_PICKUP_DIST * k) {                      // close enough -> tap it
+        var same = alSt.lastTap && alDist(alSt.lastTap.x, alSt.lastTap.y, t.x, t.y) < AL_SPOT_RADIUS * k;
+        alSt.closeTaps = same ? alSt.closeTaps + 1 : 1;
+        alSt.lastTap = { x: t.x, y: t.y };
+        alSt.steps = 0; alSt.looted++;
+        log("[Loot] tap " + t.name + " [" + t.text + "] #" + alSt.looted);
+        press(t.x, t.y, TAP_MS);
+        nap(AL_TAP_WAIT);
+        if (alSt.closeTaps >= 2) {                      // same spot twice and it is still there -> cannot pick it up
+            alSt.blacklist.push({ x: t.x, y: t.y, until: Date.now() + AL_BLACKLIST_MS });
+            log("[Loot] can't loot " + t.name + ", skipping");
+            alSt.closeTaps = 0;
+        }
+    } else {                                            // too far -> walk toward it
+        alSt.closeTaps = 0; alSt.steps++;
+        if (alSt.steps > AL_MAX_STEPS) {
+            alSt.blacklist.push({ x: t.x, y: t.y, until: Date.now() + AL_BLACKLIST_MS });
+            log("[Loot] can't reach " + t.name + ", skipping");
+            alSt.steps = 0;
+            return false;
+        }
+        var ms = Math.round(Math.max(150, Math.min(AL_WALK_STEP_MS, (d - AL_PICKUP_DIST * k) / (AL_WALK_SPEED * k) * 1000)));
+        log("[Loot] walk to " + t.name + " d=" + Math.round(d) + " " + ms + "ms");
+        var t0 = Date.now();
+        alWalk(W, H, dx, dy, ms);
+        var left = ms - (Date.now() - t0);
+        if (left > 0) nap(left);
+        nap(AL_WALK_SETTLE_MS);
+    }
+    return true;
+}
+
+// ITEMS popup: tick the items to loot (saved on this phone)
+var alWin = null, alWinPos = null;
+function alCloseItems() { if (alWin) { try { alWin.close(); } catch (e) {} alWin = null; } }
+function alOpenItems() {
+    if (alWin) { alCloseItems(); return; }
+    var list = AL_ITEMS.slice();
+    if (AL_GOLD) list.push("Gold");
+    alWin = floaty.window(
+        <vertical bg="#F0FFFFFF" padding="7" w="210" h="auto">
+            <text id="alDrag" text="⠿ Loot these items (drag)" textColor="#222222" textSize="10sp" textStyle="bold" gravity="center" h="27"/>
+            <scroll w="*" h="225">
+                <vertical id="alList" w="*" h="auto"/>
+            </scroll>
+            <horizontal>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="alAll" text="ALL" layout_weight="1" w="0" h="34" textSize="9sp" margin="2"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="alNone" text="NONE" layout_weight="1" w="0" h="34" textSize="9sp" margin="2"/>
+                <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="alClose" text="Close" layout_weight="1" w="0" h="34" textSize="9sp" margin="2"/>
+            </horizontal>
+        </vertical>
+    );
+    var pop = alWin, cbs = [];
+    list.forEach(function (n) {
+        var cb = new android.widget.CheckBox(context);
+        cb.setText(n);
+        cb.setTextSize(10);
+        cb.setTextColor(android.graphics.Color.parseColor("#222222"));
+        cb.setChecked(alIsOn(n));
+        cb.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener({
+            onCheckedChanged: function (v, on) { alEnabled[n] = on; store.put("alEnabled", JSON.stringify(alEnabled)); }
+        }));
+        cbs.push(cb);
+        pop.alList.addView(cb);
+    });
+    pop.alAll.click(function () { cbs.forEach(function (cb) { cb.setChecked(true); }); });
+    pop.alNone.click(function () { cbs.forEach(function (cb) { cb.setChecked(false); }); });
+    pop.alClose.click(function () { alCloseItems(); });
+    try {
+        var dens = context.getResources().getDisplayMetrics().density;
+        if (alWinPos) pop.setPosition(alWinPos[0], alWinPos[1]);      // reopen where it was last dragged
+        else pop.setPosition(Math.max(0, Math.round((device.width - 210 * dens) / 2)), Math.max(10, Math.round((device.height - 330 * dens) / 2)));
+    } catch (e) { logErr("items popup position", e); }
+    // drag the popup by its title
+    var dx = 0, dy = 0, dwx = 0, dwy = 0;
+    pop.alDrag.setOnTouchListener(function (view, e) {
+        switch (e.getAction()) {
+            case e.ACTION_DOWN:
+                dx = e.getRawX(); dy = e.getRawY();
+                dwx = pop.getX(); dwy = pop.getY();
+                return true;
+            case e.ACTION_MOVE:
+                var nx = Math.max(0, Math.min(device.width - 60, dwx + (e.getRawX() - dx)));
+                var ny = Math.max(0, Math.min(device.height - 60, dwy + (e.getRawY() - dy)));
+                pop.setPosition(nx, ny);
+                alWinPos = [nx, ny];
+                return true;
+        }
+        return true;
+    });
+}
+
+function runLoop() {
+    if (!authed) { toast("Log in first"); return; }
+    if (!subOk()) { toast("No active subscription"); return; }
+    if (busy) { log("Play ignored (already running)"); return; }
+    busy = true;
+    stopFlag = false;
+    petDone = false;
+    alReset();
+    buffMiss = 0; lastBuffCheck = 0; lastBuffTap = 0;
+    tgtCheckAt = 0; tgtTapAt = 0; tgtRing = 0; tgtTaps = 0;
+    setPlayState(true);
+    try {
+        log("=== Play ON === (tap Stop to end)");
+        log("device " + device.width + "x" + device.height);
+        ensureGame();
+
+        if (!captureOk) {            // no screen capture: can't watch, so do a single timed run
+            log("no screen capture -> single run with fixed delay");
+            nap(SELECT_DELAY_MS);
+            runSequence();
+            return;
+        }
+
+        var streak = 0, loginStreak = 0, charStreak = 0, startStreak = 0, loginFails = 0, lastStatus = 0, lastLaunch = Date.now(), lootActive = false, lootTaps = 0, lootPauseUntil = 0, lastNoSkillLog = 0, hudStreak = 0, inGame = false, skillPtr = -1, atkTaps = 0, reviveActive = false, reviveTaps = 0, discActive = false, discTaps = 0, lastQuick = 0, quickUses = 0, returnPending = false, returnAt = 0, returnExpire = 0, lastCaptcha = 0;
+        // Login flow (Select Server -> channel -> Connect -> Login -> Character -> Start) runs ONCE per session.
+        // It is armed at Play, then disarmed when the character is in game. It is re-armed only if the game is
+        // force closed or "Disconnected from Server!" shows up.
+        var flowArmed = true, lastPkgCheck = 0, pkgMiss = 0;
+        var autoPotsPending = false, autoPotsFails = 0, lastApWaitLog = 0;
+        var armFlow = function (why) {
+            flowArmed = true; inGame = false; loginFails = 0;
+            streak = 0; loginStreak = 0; charStreak = 0; startStreak = 0;
+            lastLaunch = Date.now();
+            monState = "Login flow (" + why + ")";
+            log("Login flow ARMED (" + why + ")");
+        };
+        log("Build v" + APP_VERSION + ": Auto Pots step " + (AUTOPOTS_ON ? "ON (runs after the pet step; MENU -> Auto Pots -> tick + HP " + AP_VALUES.hp + " MP " + AP_VALUES.mp + " SP " + AP_VALUES.sp + ")" : "OFF"));
+        log("watching for the Select Server screen...");
+        while (true) {
+            if (!subOk()) { toast("Subscription ended"); log("subscription ended - stopping"); throw "STOPPED"; }
+            var seen = false;
+            try { seen = isMainScreen(true); } catch (e) { logErr("isMainScreen", e); }
+            streak = seen ? streak + 1 : 0;
+            loginStreak = lastLoginSeen ? loginStreak + 1 : 0;
+            charStreak = lastCharSeen ? charStreak + 1 : 0;
+            startStreak = lastStartSeen ? startStreak + 1 : 0;
+            hudStreak = lastHudSeen ? hudStreak + 1 : 0;
+
+            // Character is in game -> login flow is finished, stop touching the login screens.
+            if (flowArmed && hudStreak >= STABLE_NEEDED) {
+                flowArmed = false;
+                pkgMiss = 0;
+                monState = "In game";
+                log("In game -> login flow DONE (will run again only after force close / disconnect)");
+                autoPotsPending = AUTOPOTS_ON; autoPotsFails = 0;
+            }
+            if (autoPotsKick) {              // Auto Pots button pressed
+                autoPotsKick = false;
+                autoPotsFails = 0;
+                autoPotsPending = AUTOPOTS_ON && !flowArmed;     // ON in game -> run now; OFF -> cancel; during login it is armed again when the game is entered
+            }
+            // Force close: the game is no longer the foreground app for a few checks in a row -> relaunch + re-arm.
+            if (!flowArmed && Date.now() - lastPkgCheck >= 2000) {
+                lastPkgCheck = Date.now();
+                var curPkg = "";
+                try { curPkg = String(currentPackage()); } catch (pe) {}
+                if (!APP_PKG) { try { APP_PKG = getPackageName(APP_NAME); } catch (pe2) {} }
+                pkgMiss = (APP_PKG && curPkg && curPkg !== APP_PKG) ? pkgMiss + 1 : 0;
+                if (pkgMiss >= 3) {
+                    pkgMiss = 0;
+                    log("Game closed (foreground: " + curPkg + ") -> relaunching");
+                    ensureGame();
+                    armFlow("game force closed");
+                }
+            }
+
+            // Captcha: the popup is drawn OVER the game, so the HUD bars are still visible -> never gate on the HUD.
+            // This runs before the loot/revive/login branches (they 'continue' every loop and would starve it).
+            if (captchaOn && Date.now() - lastCaptcha >= 3000) {
+                lastCaptcha = Date.now();
+                var cimg = null;
+                try { cimg = grabScreen(); } catch (ce0) { logErr("captcha capture", ce0); }
+                if (cimg) {
+                    try { solveCaptchaOnScreen(cimg); } catch (ce) { if (String(ce).indexOf("STOPPED") >= 0) throw ce; logErr("captcha", ce); }
+                    // no cimg.recycle(): managed by AutoX
+                }
+            }
+
+            if (flowArmed && streak >= STABLE_NEEDED) {
+                log("Select Server screen DETECTED & stable (" + lastHit + "/" + CHECK_PTS.length + " button, label " + lastWhite + ", capture " + lastDims + ")");
+                streak = 0;
+                loginFails = 0;
+                runSequence();           // whether it worked or not, keep looping until Stop
+                nap(COOLDOWN_MS);
+                lastLaunch = Date.now();
+                continue;
+            }
+
+            if (TAP_DISCONNECT && lastDiscSeen) {         // "Disconnected from Server!" -> always tap OK
+                if (!discActive) {
+                    discActive = true;
+                    discTaps = 0;
+                    armFlow("disconnected");
+                    monState = "Disconnected"; log("Disconnected dialog DETECTED (pattern " + discHit + "/" + (DISC_PTS.length / 2) + ") -> tapping OK");
+                }
+                quickTap(OK_X, OK_Y, discTaps % 3);
+                discTaps++;
+                nap(DISC_COOLDOWN_MS);
+                continue;
+            } else if (discActive) {
+                discActive = false;
+                log("Disconnected dialog gone after " + discTaps + " taps");
+            }
+
+            if (TAP_REVIVE && lastReviveSeen) {          // "Do you wish to be revived?" -> always tap Revive
+                if (!reviveActive) {
+                    reviveActive = true;
+                    reviveTaps = 0;
+                    monState = "Dead - reviving"; log("Revive dialog DETECTED (body " + reviveBody + ", panel " + revivePanel + ", text " + reviveText + ", label " + reviveLabel + ") -> tapping Revive");
+                }
+                quickTap(REVIVE_X, REVIVE_Y, reviveTaps % 3);
+                reviveTaps++;
+                nap(REVIVE_COOLDOWN_MS);
+                continue;
+            } else if (reviveActive) {
+                reviveActive = false;
+                monState = "Revived"; log("Revive dialog gone after " + reviveTaps + " taps");
+                if (TAP_RETURN) {
+                    returnPending = true;
+                    returnAt = Date.now() + RETURN_DELAY_MS;
+                    returnExpire = Date.now() + RETURN_EXPIRE_MS;
+                    log("Revived -> will tap quick slot " + QUICK[RETURN_SLOT].name + " in " + (RETURN_DELAY_MS / 1000) + "s to go back");
+                }
+            }
+
+            if (TAP_LOOT && lastLootSeen && Date.now() >= lootPauseUntil) {          // hand button visible -> tap it (a few times)
+                if (!lootActive) {
+                    lootActive = true;
+                    lootTaps = 0;
+                    log("Loot button DETECTED (dark " + lootDark + ", ring " + lootRing + ", hand " + lootWhite + ") -> tapping");
+                }
+                lootTaps++;
+                var lp = toPx(LOOT_X, LOOT_Y, "c", "b");   // loot button: centred horizontally, glued to the bottom
+                press(lp[0], lp[1], TAP_MS);
+                if (lootTaps >= LOOT_MAX_TAPS) {
+                    // The hand button stays on screen for items it cannot pick up (Bread, potions, ...). Tapping it forever
+                    // starved the attack branch below (it never ran), so give up for a while and go back to attacking.
+                    lootActive = false;
+                    lootPauseUntil = Date.now() + LOOT_PAUSE_MS;
+                    log("Loot button still showing after " + lootTaps + " taps -> pausing loot " + (LOOT_PAUSE_MS / 1000) + "s so auto attack keeps tapping");
+                    lootTaps = 0;
+                }
+                nap(LOOT_COOLDOWN_MS);
+                continue;
+            } else if (lootActive && !lastLootSeen) {
+                lootActive = false;
+                log("Loot button gone after " + lootTaps + " taps");
+            }
+
+            // In game, AFTER the pet step: Auto Pots is due (first time, a retry, or the periodic re-check) -> MENU -> Auto Pots -> tick + values
+            var petStepDone = !PET_ON || petDone || !atkOn;
+            var apNow = Date.now();
+            if (AUTOPOTS_ON && autoPotsPending && apNow - lastApWaitLog >= 20000 &&
+                (flowArmed || returnPending || hudStreak < STABLE_NEEDED || lastLootSeen || !petStepDone)) {
+                lastApWaitLog = apNow;
+                log("Auto Pots waiting: login flow " + (flowArmed ? "still running" : "done") + ", HUD " + hudStreak + "/" + STABLE_NEEDED + ", loot button " + (lastLootSeen ? "showing" : "no") + ", pet step " + (petStepDone ? "done" : "not done yet"));
+            }
+            if (AUTOPOTS_ON && !flowArmed && !returnPending && hudStreak >= STABLE_NEEDED && !lastLootSeen && petStepDone &&
+                ((autoPotsPending && apNow - lastAutoPots >= (autoPotsFails > 0 ? AUTOPOTS_RETRY_MS : 0)) ||
+                 (AUTOPOTS_REPEAT_MS > 0 && lastAutoPots > 0 && apNow - lastAutoPots >= AUTOPOTS_REPEAT_MS))) {
+                autoPotsPending = false;
+                monState = "Auto Pots";
+                log("Auto Pots: opening MENU");
+                var apOk = false;
+                try { apOk = runAutoPots(); } catch (ae) { if (String(ae).indexOf("STOPPED") >= 0) throw ae; logErr("auto pots", ae); }
+                lastAutoPots = Date.now();
+                if (apOk) { autoPotsFails = 0; log("Auto Pots: finished" + (apTicked ? " - Enable box ticked" : " - tick NOT confirmed (check the window once by hand)") + " - will not run again until the next login"); }
+                else if (autoPotsFails < AUTOPOTS_MAX_RETRIES) {
+                    autoPotsFails++; autoPotsPending = true;
+                    log("Auto Pots: not confirmed -> trying again in " + (AUTOPOTS_RETRY_MS / 1000) + "s (" + autoPotsFails + "/" + AUTOPOTS_MAX_RETRIES + ")");
+                } else { autoPotsFails = 0; log("Auto Pots: still not confirmed after " + AUTOPOTS_MAX_RETRIES + " retries - giving up for now"); }
+                monState = "In game";
+                continue;
+            }
+
+            if (flowArmed && TAP_LOGIN && loginStreak >= STABLE_NEEDED) {
+                log("Login screen DETECTED & stable (" + SCREENS.login.hit + "/" + SCREENS.login.btn.length + " button, label " + SCREENS.login.white + (lastLoginPt ? ", image match" : "") + ")");
+                loginStreak = 0;
+                if (tapLogin()) loginFails = 0; else loginFails++;
+                nap(LOGIN_COOLDOWN_MS);
+                continue;
+            }
+
+            if (flowArmed && TAP_START && startStreak >= 1) {
+                log("Profile screen DETECTED & stable (" + SCREENS.start.hit + "/" + SCREENS.start.btn.length + " button, label " + SCREENS.start.white + (lastStartPt ? ", image match" : "") + ")");
+                startStreak = 0;
+                loginFails = 0;
+                tapStart();
+                nap(START_COOLDOWN_MS);
+                continue;
+            }
+
+            if (flowArmed && TAP_CHARACTER && charStreak >= STABLE_NEEDED) {
+                log("Character screen DETECTED & stable (" + SCREENS.character.hit + "/" + SCREENS.character.btn.length + " button, label " + SCREENS.character.white + ")");
+                charStreak = 0;
+                loginFails = 0;
+                tapUntilGone("Character", CHAR_X, CHAR_Y, function () { return lastCharSeen; });
+                nap(CHAR_COOLDOWN_MS);
+                continue;
+            }
+
+            if (returnPending) {                              // revived: use the "go back" slot before attacking again
+                var nowR = Date.now();
+                if (nowR > returnExpire) {
+                    returnPending = false;
+                    log("Return slot: gave up (no tap possible within " + (RETURN_EXPIRE_MS / 1000) + "s)");
+                } else {
+                    var hudOkR = hudStreak >= STABLE_NEEDED;
+                    // tap once the delay passed AND the game HUD is back; if the HUD is never detected, tap anyway
+                    if (nowR >= returnAt && (hudOkR || nowR >= returnAt + RETURN_NOHUD_MS)) {
+                        if (!hudOkR) log("Return slot: HUD not detected -> tapping anyway");
+                        nap(RETURN_SETTLE_MS);
+                        for (var rt = 0; rt < RETURN_TAPS; rt++) {
+                            quickTap(QUICK[RETURN_SLOT].x, QUICK[RETURN_SLOT].y, rt % 3, "c", "b");
+                            if (rt < RETURN_TAPS - 1) nap(1000);
+                        }
+                        monState = "In game";
+                        log("Tapped quick slot " + QUICK[RETURN_SLOT].name + " after revive (go back to where you died)");
+                        returnPending = false;
+                        lastLaunch = Date.now();
+                        lastQuick = Date.now();           // don't start the normal quick round right on top of it
+                        nap(1500);
+                    } else {
+                        nap(300);
+                    }
+                    continue;
+                }
+            }
+
+            if (quickOn && hudStreak >= STABLE_NEEDED && Date.now() - lastQuick >= QUICK_GAPS[quickGapIdx]) {
+                var qn = 0, qnames = [];                       // bottom bar items: tap each selected slot once
+                for (var qi = 0; qi < QUICK.length; qi++) {
+                    if (!quickEnabled(qi)) continue;
+                    if (PET_ON && qi === PET_SLOT) continue;   // pet slot is used once, not every round
+                    quickTap(QUICK[qi].x, QUICK[qi].y, 0, "c", "b");   // quick bar: centred, glued to the bottom
+                    qnames.push(QUICK[qi].name);
+                    qn++;
+                    nap(300);
+                }
+                lastQuick = Date.now();
+                if (qn > 0) {
+                    quickUses++;
+                    lastLaunch = Date.now();
+                    if (quickUses === 1 || quickUses % 10 === 0) log("quick slots " + qnames.join(",") + " tapped (round " + quickUses + ")");
+                    continue;
+                }
+            }
+
+            // Auto loot (OCR): walks to item names on screen and taps them. Skipped while a monster is near (the attack runs then).
+            if (alOn && !flowArmed && !returnPending && !reviveActive && !discActive && hudStreak >= STABLE_NEEDED) {
+                var alDone = false;
+                try { alDone = alStep(); }
+                catch (ale) { if (String(ale).indexOf("STOPPED") >= 0) throw ale; logErr("auto loot", ale); nap(1000); }
+                if (alDone) continue;
+            }
+            if (atkOn && hudStreak >= STABLE_NEEDED) {           // in the game -> tap the chosen skills
+                if (!inGame) {
+                    inGame = true;
+                    atkTaps = 0;
+                    log("In game (HUD " + hudBars + "/4) -> auto attack");
+                    if (PET_ON && !petDone) summonPet();
+                }
+                checkBuff();
+                var n = SKILLS.length, tries = 0;
+                while (tries < n) {
+                    skillPtr = (skillPtr + 1) % n;
+                    if (skillEnabled(skillPtr) && !(BUFF_ON && skillPtr === BUFF_SKILL)) break;
+                    tries++;
+                }
+                if (tries < n) {
+                    // NON-STOP: one pass taps EVERY enabled skill back-to-back (no checks, no pause in between);
+                    // Gap mode: one skill per pass, then the chosen pause.
+                    var sk = null;
+                    if (ATK_NONSTOP) {
+                        // S1 -> S2 -> S3 -> S4 (-> S5 if ticked and not the buff) in order, each one ONLY if it is ready
+                        // (icon not dimmed by its cooldown), no pause between them; Atk (basic attack) closes the round.
+                        var shot = null, L3 = null;
+                        try { shot = grabScreen(); if (shot) L3 = layoutOf(shot.getWidth(), shot.getHeight()); } catch (eg) { shot = null; }
+                        var order = [1, 2, 3, 4, 5, 0], used = 0, nowT = Date.now();
+                        for (var oi = 0; oi < order.length; oi++) {
+                            var idx = order[oi];
+                            if (idx >= n || !skillEnabled(idx) || (BUFF_ON && idx === BUFF_SKILL)) continue;
+                            if (skillDetect && skillIcon(idx)) { if (!shot || !skillDetected(shot, idx)) continue; }   // IMAGE mode: tap only when the saved icon is found
+                            else if (idx !== 0 && shot && !skillReady(shot, idx) && nowT - (lastSkillTap[idx] || 0) < SKILL_FORCE_MS) continue;
+                            if (stopFlag) throw "STOPPED";
+                            var s2 = SKILLS[idx], q = toPx(s2.x, s2.y, "r", "b");   // skill cluster: glued to the bottom-right corner
+                            press(q[0], q[1], SKILL_TAP_MS);
+                            lastSkillTap[idx] = Date.now();
+                            sk = s2; used++;
+                            if (ATK_NONSTOP_GAP_MS > 0) nap(ATK_NONSTOP_GAP_MS);
+                        }
+                        atkTaps += used;
+                    } else {
+                        sk = SKILLS[skillPtr];
+                        var sp = toPx(sk.x, sk.y, "r", "b"), goTap = true;
+                        if (skillDetect && skillIcon(skillPtr)) {
+                            var shot2 = null;
+                            try { shot2 = grabScreen(); } catch (eg2) { shot2 = null; }
+                            goTap = !!shot2 && skillDetected(shot2, skillPtr);
+                        }
+                        if (goTap) { press(sp[0], sp[1], SKILL_TAP_MS); atkTaps++; }
+                    }
+                    lastLaunch = Date.now();
+                    if (Date.now() - lastStatus > 20000) {
+                        lastStatus = Date.now();
+                        log("attacking... " + atkTaps + " taps (last " + (sk ? sk.name : "-") + ")");
+                    }
+                    if (!ATK_NONSTOP) nap(ATK_GAPS[gapIdx]);
+                    continue;
+                } else if (Date.now() - lastNoSkillLog > 20000) {
+                    lastNoSkillLog = Date.now();
+                    log("Attack is ON but no skill is selected to tap (S5 is reserved for the buff) - tick Atk / S1-S4 in Skills");
+                }
+            } else if (inGame && hudStreak === 0) {
+                inGame = false;
+                log("HUD gone after " + atkTaps + " attack taps");
+            }
+
+            var now = Date.now();
+            if (now - lastStatus > 20000) {
+                lastStatus = now;
+                log("watching... start " + SCREENS.start.hit + "/" + SCREENS.start.btn.length + " label " + SCREENS.start.white + " | hud " + hudBars + "/4 | loot " + lootDark + "/" + lootRing + "/" + lootWhite + " | (" + lastHit + "/" + CHECK_PTS.length + " button, label " + lastWhite + ", capture " + lastDims + ")");
+            }
+            if (now - lastLaunch > 15000) {   // game left the foreground? bring it back
+                lastLaunch = now;
+                if (ensureGame()) armFlow("game relaunched");
+            }
+            nap(500);
+        }
+    } catch (e) {
+        if (String(e).indexOf("STOPPED") >= 0) { log("stopped by user"); }
+        else { logErr("runLoop", e); toast("Error - see log (Log button)"); }
+    } finally {
+        busy = false;
+        setPlayState(false);
+    }
+}
+
+// Turn server auto-select on/off
+w.pick.click(function () {
+    pickOn = !pickOn;
+    store.put("pickOn", pickOn);
+    log("Pick -> " + (pickOn ? "ON" : "OFF"));
+    refreshServerLabel();
+});
+
+// Tap "Srv" -> a pop-up with the list of servers and a check box for each one; tick a box to set the server.
+var svPop = null;
+var SV_ROWS = 12;                                    // the pop-up has room for 12 servers (rows beyond SERVERS.length are hidden)
+function closeServerPopup() {
+    if (svPop) { try { svPop.close(); } catch (e) {} svPop = null; }
+}
+function openServerPopup() {
+    if (svPop) { closeServerPopup(); return; }       // tapping Srv again closes it
+    svPop = floaty.window(
+        <vertical bg="#F0FFFFFF" padding="7" w="172" h="auto">
+            <text text="Select server" textColor="#222222" textSize="10sp" textStyle="bold" gravity="center" h="27"/>
+            <scroll w="*" h="225">
+                <vertical w="*" h="auto">
+                    <checkbox id="sv0" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv1" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv2" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv3" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv4" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv5" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv6" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv7" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv8" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv9" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv10" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                    <checkbox id="sv11" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+                </vertical>
+            </scroll>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="svclose" text="Close" w="*" h="34" textSize="9sp" margin="2"/>
+        </vertical>
+    );
+    var pop = svPop, rows = [], i;
+    for (i = 0; i < SV_ROWS; i++) rows.push(pop["sv" + i]);
+    function showChecks() {
+        for (var j = 0; j < SV_ROWS; j++) if (j < SERVERS.length) rows[j].setChecked(j === serverIdx);
+    }
+    for (i = 0; i < SV_ROWS; i++) {
+        if (i >= SERVERS.length) { rows[i].setVisibility(android.view.View.GONE); continue; }
+        rows[i].setText(SERVERS[i].name);
+        (function (k) {
+            rows[k].click(function () {              // one server at a time: ticking a box unticks the others
+                serverIdx = k;
+                store.put("server", serverIdx);
+                store.put("serverName", SERVERS[serverIdx].name);
+                log("Server -> " + SERVERS[serverIdx].name);
+                showChecks();
+                refreshServerLabel();
+                setTimeout(function () { ui.run(function () { if (svPop === pop) closeServerPopup(); }); }, 300);
+            });
+        })(i);
+    }
+    showChecks();
+    pop.svclose.click(function () { closeServerPopup(); });
+    try {                                            // centre the pop-up on the screen
+        var d = context.getResources().getDisplayMetrics().density;
+        pop.setPosition(Math.max(0, Math.round((device.width - 210 * d) / 2)), Math.max(10, Math.round((device.height - 360 * d) / 2)));
+    } catch (e) { logErr("server popup position", e); }
+}
+w.server.click(function () { openServerPopup(); });
+
+// Tap "Channel" -> a pop-up with a check box for each channel (0-3); tick one to set the channel used at login.
+var chPop = null;
+var CH_ROWS = 4;                                     // pop-up rows; only CHANNEL_YS.length are shown
+function closeChannelPopup() {
+    if (chPop) { try { chPop.close(); } catch (e) {} chPop = null; }
+}
+function openChannelPopup() {
+    if (chPop) { closeChannelPopup(); return; }      // tapping Channel again closes it
+    chPop = floaty.window(
+        <vertical bg="#F0FFFFFF" padding="7" w="172" h="auto">
+            <text text="Select channel" textColor="#222222" textSize="10sp" textStyle="bold" gravity="center" h="27"/>
+            <checkbox id="chk0" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+            <checkbox id="chk1" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+            <checkbox id="chk2" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+            <checkbox id="chk3" text="" textColor="#222222" textSize="10sp" w="*" h="36" padding="3"/>
+            <button padding="0" minHeight="0" minWidth="0" singleLine="true" id="chclose" text="Close" w="*" h="34" textSize="9sp" margin="2"/>
+        </vertical>
+    );
+    var pop = chPop, rows = [], i;
+    for (i = 0; i < CH_ROWS; i++) rows.push(pop["chk" + i]);
+    function showChecks() {
+        for (var j = 0; j < CH_ROWS; j++) if (j < CHANNEL_YS.length) rows[j].setChecked(j === CHANNEL_IDX);
+    }
+    for (i = 0; i < CH_ROWS; i++) {
+        if (i >= CHANNEL_YS.length) { rows[i].setVisibility(android.view.View.GONE); continue; }
+        rows[i].setText(i + " Channel");
+        (function (k) {
+            rows[k].click(function () {              // one channel at a time: ticking a box unticks the others
+                CHANNEL_IDX = k;
+                store.put("chIdx", CHANNEL_IDX);
+                log("Channel -> " + CHANNEL_IDX);
+                showChecks();
+                refreshChannelLabel();
+                setTimeout(function () { ui.run(function () { if (chPop === pop) closeChannelPopup(); }); }, 300);
+            });
+        })(i);
+    }
+    showChecks();
+    pop.chclose.click(function () { closeChannelPopup(); });
+    try {                                            // centre the pop-up on the screen
+        var d = context.getResources().getDisplayMetrics().density;
+        pop.setPosition(Math.max(0, Math.round((device.width - 210 * d) / 2)), Math.max(10, Math.round((device.height - 270 * d) / 2)));
+    } catch (e) { logErr("channel popup position", e); }
+}
+w.channel.click(function () { openChannelPopup(); });
+
+// Play button toggles: tap to start (keeps running), tap again (shows "Stop") to end
+w.play.click(function () {
+    if (busy) {
+        stopFlag = true;
+        log("Stop requested");
+        return;
+    }
+    if (!authed) { toast("Log in first"); return; }
+    if (!subOk()) { toast("No active subscription"); return; }
+    threads.start(runLoop);
+});
+
+// ================= Monitor (users upload status + log; admins view them) =================
+function monToken() {                    // cached Firebase token (45 min) so a heartbeat is one request, not three
+    var now = Date.now();
+    if (monTok && now < monTok.exp) return monTok;
+    var t = getIdToken();
+    if (t) monTok = { token: t.token, uid: t.uid, exp: now + 45 * 60 * 1000 };
+    return monTok;
+}
+function pushMonitor() {                 // every signed-in copy: status + last log lines -> monitor/{uid}
+    if (!authed || monBusy || Date.now() < bgPauseUntil) return;
+    monBusy = true;
+    try {
+        var t = monToken();
+        if (!t) return;
+        var tail = LOG_LINES.slice(-MON_LOG_LINES).join("\n").replace(/KLX-[A-Za-z0-9-]+/g, "KLX-****");
+        if (tail.length > 6000) tail = tail.slice(-6000);
+        var base = fsBase();
+        var commit = { writes: [ {
+            update: { name: base + "/monitor/" + t.uid, fields: {
+                username: { stringValue: String(currentUser) },
+                lastSeen: { integerValue: String(Date.now()) },
+                state:    { stringValue: String(monState) },
+                running:  { booleanValue: !!busy },
+                version:  { integerValue: String(APP_VERSION) },
+                subUntil: { integerValue: String(subUntil) },
+                logTail:  { stringValue: tail }
+            } },
+            updateMask: { fieldPaths: ["username", "lastSeen", "state", "running", "version", "subUntil", "logTail"] }
+        } ] };
+        var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+        if (c.status === 401) monTok = null;
+        if (c.status === 429) bgPauseUntil = Date.now() + 10 * 60 * 1000;
+        if (c.status === 200) monWarned = false;
+        else if (!monWarned) {
+            monWarned = true;
+            log("monitor upload failed: HTTP " + c.status + (c.status === 403 ? " (add the monitor rules to firestore.rules)" : ""));
+        }
+    } catch (e) { logErr("pushMonitor", e); }
+    finally { monBusy = false; }
+}
+function monAgo(ms) {
+    var s = Math.max(0, Math.floor((Date.now() - ms) / 1000));
+    if (s < 60) return s + "s ago";
+    if (s < 3600) return Math.floor(s / 60) + "m ago";
+    if (s < 86400) return Math.floor(s / 3600) + "h ago";
+    return Math.floor(s / 86400) + "d ago";
+}
+function monMsg(text) { ui.run(function () { w.monMsg.setText(text || ""); }); }
+function monShowLog(u) {                 // fill the log view for one user (keeps it pinned to the newest line)
+    ui.run(function () {
+        w.monTitle.setText(u.name + (u.online ? "  (online)" : "  (offline " + monAgo(u.lastSeen) + ")"));
+        w.monlogtext.setText(u.log ? u.log : "(no log uploaded yet)");
+        w.monlogscroll.post(function () { w.monlogscroll.fullScroll(130); });
+    });
+}
+function monRender(list) {
+    ui.run(function () {
+        try {
+            var V = android.view.View;
+            if (monView) { var cur = monDocs[monView]; if (cur) monShowLog(cur); return; }
+            var dens = context.getResources().getDisplayMetrics().density;
+            function dp(n) { return Math.round(n * dens); }
+            w.monlist.removeAllViews();
+            if (!list.length) {
+                var none = new android.widget.TextView(context);
+                none.setText("No users have reported yet.");
+                none.setTextColor(android.graphics.Color.parseColor("#9e9e9e"));
+                none.setTextSize(11);
+                none.setPadding(dp(6), dp(8), dp(6), dp(8));
+                w.monlist.addView(none);
+            }
+            list.forEach(function (u) {
+                var tv = new android.widget.TextView(context);
+                tv.setText((u.online ? "● " : "○ ") + u.name + "\n" + u.state + " · v" + u.version + " · " + monAgo(u.lastSeen));
+                tv.setTextColor(android.graphics.Color.parseColor(u.online ? "#a5d6a7" : "#9e9e9e"));
+                tv.setTextSize(11);
+                tv.setPadding(dp(8), dp(7), dp(8), dp(7));
+                tv.setBackgroundColor(android.graphics.Color.parseColor("#33FFFFFF"));
+                var lp = new android.widget.LinearLayout.LayoutParams(-1, -2);
+                lp.setMargins(0, 0, 0, dp(3));
+                tv.setOnClickListener(new android.view.View.OnClickListener({
+                    onClick: function () {
+                        monView = u.id;
+                        w.monscroll.setVisibility(V.GONE);
+                        w.monlogscroll.setVisibility(V.VISIBLE);
+                        w.monBack.setVisibility(V.VISIBLE);
+                        w.monKick.setVisibility(V.VISIBLE);
+                        monShowLog(u);
+                    }
+                }));
+                w.monlist.addView(tv, lp);
+            });
+        } catch (e) { logErr("monRender", e); }
+    });
+}
+function monFetch() {                    // admin: read every monitor/{uid}
+    if (monFetching || !authed || !isAdmin()) return;
+    monFetching = true;
+    try {
+        var t = monToken();
+        if (!t) { monMsg("Not signed in - log in again."); return; }
+        var r = fsReq("GET", fsUrl("monitor") + "?pageSize=200", t.token);
+        if (r.status === 401) monTok = null;
+        if (r.status === 429) { monBackoffUntil = Date.now() + 5 * 60 * 1000; monMsg("Firestore quota / rate limit (HTTP 429) - auto-refresh paused 5 min. Tap refresh to retry."); return; }
+        if (r.status !== 200) {
+            monMsg(r.status === 403 ? "Refused - add the monitor rules for admins to firestore.rules." : "Failed (HTTP " + r.status + ").");
+            return;
+        }
+        monBackoffUntil = 0;
+        monMsg("");
+        var docs = (r.json && r.json.documents) || [], list = [], now = Date.now();
+        monDocs = {};
+        for (var i = 0; i < docs.length; i++) {
+            var f = docs[i].fields || {}, id = String(docs[i].name).split("/").pop();
+            var u = {
+                id: id,
+                name: f.username ? String(f.username.stringValue) : id,
+                lastSeen: fsInt(f.lastSeen),
+                state: f.state ? String(f.state.stringValue) : "?",
+                version: fsInt(f.version),
+                log: f.logTail ? String(f.logTail.stringValue) : ""
+            };
+            u.online = now - u.lastSeen < MON_ONLINE_MS;
+            monDocs[id] = u;
+            list.push(u);
+        }
+        list.sort(function (a, b) { return (b.online - a.online) || (b.lastSeen - a.lastSeen); });
+        monRender(list);
+    } catch (e) { logErr("monFetch", e); monMsg("Error - see log"); }
+    finally { monFetching = false; }
+}
+function monBackToList() {
+    monView = "";
+    ui.run(function () {
+        var V = android.view.View;
+        w.monlogscroll.setVisibility(V.GONE);
+        w.monBack.setVisibility(V.GONE);
+        w.monKick.setVisibility(V.GONE);
+        w.monKick.setText("Kick");
+        monKickArm = 0;
+        w.monscroll.setVisibility(V.VISIBLE);
+        w.monTitle.setText("Users");
+    });
+    threads.start(monFetch);
+}
+var usersShown = false, usersTab = "mon";      // one admin button: tabs Monitor | Devices
+function setUsersView() {
+    monShown = usersShown && usersTab === "mon";
+    devShown = usersShown && usersTab === "dev";
+    ui.run(function () {
+        w.monBtn.setText(usersShown ? "Users ▴" : "Users ▾");
+        w.tabMon.setAlpha(usersTab === "mon" ? 1 : 0.5);
+        w.tabDev.setAlpha(usersTab === "dev" ? 1 : 0.5);
+    });
+    applyPanels();
+    if (monShown) { monView = ""; monBackToList(); }
+    if (devShown) { devMsg("Loading..."); threads.start(devFetch); }
+}
+w.monBtn.click(function () { inputFocus(false); usersShown = !usersShown; setUsersView(); });
+w.tabMon.click(function () { inputFocus(false); usersTab = "mon"; setUsersView(); });
+w.tabDev.click(function () { inputFocus(false); usersTab = "dev"; setUsersView(); });
+w.monBack.click(monBackToList);
+w.monRefresh.click(function () { monBackoffUntil = 0; monMsg("Refreshing..."); threads.start(monFetch); });
+w.monlogtext.on("long_click", function () {
+    var u = monDocs[monView];
+    if (u) { setClip(u.name + "\n" + u.log); toast("Log copied"); }
+    return true;
+});
+setInterval(function () { if (authed) threads.start(pushMonitor); }, MON_PUSH_MS);
+setInterval(function () { if (monShown && authed && isAdmin() && !minimized && Date.now() >= monBackoffUntil) threads.start(monFetch); }, MON_REFRESH_MS);
+
+// ---- Devices panel (admin): see which phone each user is locked to and let them use a new one ----
+// Tap a user, then tap again within 4 s = "Reset": removes users/{uid}.deviceId, so the next login of that user binds
+// whatever phone they log in on. Needs the admin read/update rule for users/{uid} in firestore.rules.
+var devShown = false, devBusy = false, devDocs = {}, devArm = "", devArmAt = 0, devSelId = "";
+function devMsg(text) { ui.run(function () { w.devMsg.setText(text || ""); }); }
+function devRender(list) {
+    ui.run(function () {
+        try {
+            var dens = context.getResources().getDisplayMetrics().density;
+            function dp(n) { return Math.round(n * dens); }
+            w.devlist.removeAllViews();
+            if (!list.length) {
+                var none = new android.widget.TextView(context);
+                none.setText("No users found.");
+                none.setTextColor(android.graphics.Color.parseColor("#9e9e9e"));
+                none.setTextSize(11);
+                none.setPadding(dp(6), dp(8), dp(6), dp(8));
+                w.devlist.addView(none);
+            }
+            list.forEach(function (u) {
+                var tv = new android.widget.TextView(context);
+                var sel = (devSelId === u.id);
+                tv.setText((sel ? "▶ " : (u.device ? "🔒 " : "○ ")) + u.name + "\n" +
+                    (u.device ? ("device " + u.device.slice(0, 6) + "…" + u.device.slice(-4)) : "no device yet - next login binds"));
+                tv.setTextColor(android.graphics.Color.parseColor(sel ? "#ffffff" : (u.device ? "#a5d6a7" : "#9e9e9e")));
+                tv.setTextSize(11);
+                tv.setPadding(dp(8), dp(7), dp(8), dp(7));
+                tv.setBackgroundColor(android.graphics.Color.parseColor(sel ? "#664A148C" : "#33FFFFFF"));
+                var lp = new android.widget.LinearLayout.LayoutParams(-1, -2);
+                lp.setMargins(0, 0, 0, dp(3));
+                tv.setOnTouchListener(function (v, e) { try { v.getParent().requestDisallowInterceptTouchEvent(true); } catch (e2) {} return false; });
+                tv.setOnClickListener(new android.view.View.OnClickListener({
+                    onClick: function () {
+                        if (isAdminName(u.name)) { devMsg("Admins are never locked."); return; }
+                        devSelId = u.id;
+                        devArm = ""; ui.run(function () { w.devReset.setText("Reset"); });
+                        w.devSel.setText("Selected: " + u.name + (u.device ? "  (" + u.device + ")" : "  (no device)"));
+                        devMsg("Type or paste a device ID, then tap Allow.");
+                        devRender(devSorted());
+                    }
+                }));
+                w.devlist.addView(tv, lp);
+            });
+        } catch (e) { logErr("devRender", e); }
+    });
+}
+function devSorted() {
+    var a = [], k;
+    for (k in devDocs) a.push(devDocs[k]);
+    a.sort(function (x, y) { return (!!y.device - !!x.device) || String(x.name).localeCompare(String(y.name)); });
+    return a;
+}
+function devFetch() {
+    if (devBusy || !authed || !isAdmin()) return;
+    devBusy = true;
+    try {
+        var t = monToken();
+        if (!t) { devMsg("Not signed in - log in again."); return; }
+        var r = fsReq("GET", fsUrl("users") + "?pageSize=300", t.token);
+        if (r.status === 401) monTok = null;
+        if (r.status === 429) { devMsg("Firestore quota / rate limit (HTTP 429) - wait a few minutes and retry."); return; }
+        if (r.status !== 200) {
+            devMsg(r.status === 403 ? "Refused - add the admin rule for users/{uid} to firestore.rules." : "Failed (HTTP " + r.status + ").");
+            return;
+        }
+        devMsg("");
+        var docs = (r.json && r.json.documents) || [];
+        devDocs = {};
+        for (var i = 0; i < docs.length; i++) {
+            var f = docs[i].fields || {}, id = String(docs[i].name).split("/").pop();
+            devDocs[id] = {
+                id: id,
+                name: f.username ? String(f.username.stringValue) : id,
+                device: (f.deviceId && f.deviceId.stringValue) ? String(f.deviceId.stringValue) : ""
+            };
+        }
+        devRender(devSorted());
+    } catch (e) { logErr("devFetch", e); devMsg("Error - see log"); }
+    finally { devBusy = false; }
+}
+function devReset(u) {
+    try {
+        var t = monToken();
+        if (!t || !authed || !isAdmin()) { devMsg("Admins only."); return; }
+        var base = fsBase();
+        var commit = { writes: [ { update: { name: base + "/users/" + u.id, fields: {} }, updateMask: { fieldPaths: ["deviceId"] } } ] };
+        var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+        if (c.status === 401) monTok = null;
+        if (c.status === 200) { log("device reset: " + u.name); devMsg("Reset " + u.name + " - next login binds a new phone."); u.device = ""; ui.run(function () { w.devSel.setText("Selected: " + u.name + "  (no device)"); }); devRender(devSorted()); }
+        else devMsg(c.status === 403 ? "Refused - add the admin rule for users/{uid} to firestore.rules." : "Reset failed (HTTP " + c.status + ").");
+    } catch (e) { logErr("devReset", e); devMsg("Reset error - see log"); }
+}
+function devAllow() {
+    try {
+        var u = devDocs[devSelId];
+        if (!u) { devMsg("Long-press a user first."); return; }
+        var id = String(w.devInput.getText()).trim();
+        if (!/^[A-Za-z0-9]{8,64}$/.test(id)) { devMsg("Device ID: 8-64 letters/numbers."); return; }
+        var t = monToken();
+        if (!t || !authed || !isAdmin()) { devMsg("Admins only."); return; }
+        var base = fsBase();
+        var commit = { writes: [ { update: { name: base + "/users/" + u.id, fields: { deviceId: { stringValue: id } } }, updateMask: { fieldPaths: ["deviceId"] } } ] };
+        var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+        if (c.status === 401) monTok = null;
+        if (c.status === 200) {
+            log("device allowed for " + u.name);
+            u.device = id;
+            devMsg("Allowed " + id.slice(0, 6) + "… for " + u.name + ".");
+            ui.run(function () { w.devSel.setText("Selected: " + u.name + "  (" + id + ")"); w.devInput.setText(""); });
+            inputFocus(false);
+            devRender(devSorted());
+        } else devMsg(c.status === 403 ? "Refused - update firestore.rules (admin can set deviceId)." : "Allow failed (HTTP " + c.status + ").");
+    } catch (e) { logErr("devAllow", e); devMsg("Allow error - see log"); }
+}
+bindAuthField(w.devInput);
+w.devAllow.click(function () { inputFocus(false); threads.start(devAllow); });
+w.devReset.click(function () {
+    inputFocus(false);
+    var u = devDocs[devSelId];
+    if (!u) { devMsg("Tap a user first."); return; }
+    if (!u.device) { devMsg(u.name + " has no device saved."); return; }
+    if (devArm !== u.id || Date.now() - devArmAt > 4000) {       // first tap arms, second tap (within 4 s) resets
+        devArm = u.id; devArmAt = Date.now();
+        ui.run(function () { w.devReset.setText("Sure?"); });
+        devMsg("Tap Reset again within 4s to clear " + u.name + "'s device.");
+        setTimeout(function () { if (Date.now() - devArmAt >= 3900) { devArm = ""; ui.run(function () { w.devReset.setText("Reset"); }); devMsg(""); } }, 4100);
+        return;
+    }
+    devArm = "";
+    ui.run(function () { w.devReset.setText("Reset"); });
+    threads.start(function () { devReset(u); });
+});
+w.devRefresh.click(function () { devMsg("Refreshing..."); threads.start(devFetch); });
+
+// ---- Force logout (kick) ----
+// Admin: open a user in the Monitor, tap Kick twice -> writes kicks/{uid} (server stamps the change).
+// Every copy: checks its own kicks/{uid} every KICK_CHECK_MS; when the server stamp changes after it signed in, it logs out
+// (stops the bot, drops the saved session, back to the login screen). Uses the server's updateTime, so device clocks don't matter.
+// Needs this in firestore.rules (use the SAME admin condition you use for the monitor rules):
+//   match /kicks/{uid} {
+//     allow get: if request.auth != null && request.auth.uid == uid;
+//     allow write: if <your admin check>;
+//   }
+function forceKicked(by) {
+    log("KICKED: logged out by admin" + (by ? " (" + by + ")" : ""));
+    try { toast("You were logged out by an admin"); } catch (e) {}
+    ui.run(function () {
+        doLogout();
+        try { setAuthMsg("You were logged out by an admin.", false); } catch (e2) {}
+    });
+}
+function kickCheck() {
+    if (!authed || kickBusy || Date.now() < bgPauseUntil) return;
+    kickBusy = true;
+    try {
+        var t = monToken();
+        if (!t) return;
+        var r = fsReq("GET", fsUrl("kicks/" + t.uid), t.token), stamp;
+        if (r.status === 401) { monTok = null; return; }
+        if (r.status === 429) { bgPauseUntil = Date.now() + 10 * 60 * 1000; return; }
+        if (r.status === 200 && r.json && r.json.updateTime) stamp = String(r.json.updateTime);
+        else if (r.status === 404) stamp = "";                         // never kicked
+        else {
+            if (!kickWarned) { kickWarned = true; log("kick check failed: HTTP " + r.status + (r.status === 403 ? " (add the kicks rule to firestore.rules)" : "")); }
+            return;
+        }
+        if (kickSeen === null) { kickSeen = stamp; return; }           // first look after login = baseline
+        if (stamp && stamp !== kickSeen) {
+            kickSeen = stamp;
+            var f = (r.json && r.json.fields) || {};
+            forceKicked(f.by ? String(f.by.stringValue) : "");
+        }
+    } catch (e) { logErr("kickCheck", e); }
+    finally { kickBusy = false; }
+}
+function doKick(u) {                     // admin: kick one user from the Monitor
+    try {
+        var t = monToken();
+        if (!t || !authed || !isAdmin()) { monMsg("Admins only."); return; }
+        if (u.id === t.uid) { monMsg("You can't kick yourself."); return; }
+        if (isAdminName(u.name)) { monMsg("Admins can't be kicked."); return; }
+        var base = fsBase();
+        var commit = { writes: [ { update: { name: base + "/kicks/" + u.id, fields: {
+            at: { integerValue: String(Date.now()) },
+            by: { stringValue: String(currentUser) }
+        } } } ] };
+        var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+        if (c.status === 401) monTok = null;
+        if (c.status === 200) { log("kick sent: " + u.name); monMsg("Kicked " + u.name + " - logged out within " + Math.round(KICK_CHECK_MS / 1000) + "s."); }
+        else monMsg(c.status === 403 ? "Refused - add the kicks rule for admins to firestore.rules." : "Kick failed (HTTP " + c.status + ").");
+    } catch (e) { logErr("doKick", e); monMsg("Kick error - see log"); }
+}
+w.monKick.click(function () {
+    var u = monDocs[monView];
+    if (!u) return;
+    if (Date.now() - monKickArm > 4000) {            // first tap arms it, second tap (within 4 s) sends
+        monKickArm = Date.now();
+        ui.run(function () { w.monKick.setText("Sure?"); });
+        monMsg("Tap again within 4s to log out " + u.name);
+        setTimeout(function () {
+            if (Date.now() - monKickArm >= 3900) { monKickArm = 0; ui.run(function () { w.monKick.setText("Kick"); }); monMsg(""); }
+        }, 4100);
+        return;
+    }
+    monKickArm = 0;
+    ui.run(function () { w.monKick.setText("Kick"); });
+    threads.start(function () { doKick(u); });
+});
+setInterval(function () { if (authed) threads.start(kickCheck); }, KICK_CHECK_MS);
+
+// Show / hide the on-screen log inside the panel (long-press the log text to copy it)
+w.log.click(function () {
+    logShown = !logShown;
+    ui.run(function () {
+        w.logscroll.setVisibility(logShown ? android.view.View.VISIBLE : android.view.View.GONE);
+        w.log.setText(logShown ? "Hide" : "Log");
+    });
+    if (logShown) refreshLogView();
+});
+w.logview.on("long_click", function () {
+    setClip(LOG_LINES.join("\n"));
+    toast("Log copied");
+    return true;
+});
+
+w.exit.click(function () {
+    log("Exit pressed");
+    w.close();
+    exit();
+});
+
+// screen capture is requested by onAuthed() right after a successful login (or restored session)
+
+setInterval(function () {}, 1000);   // keep the script (and the floating window) alive
+setInterval(function () { if (authed && !updBusy) threads.start(checkUpdate); }, UPDATE_CHECK_MS);
+setInterval(function () { if (authed && !subChecking && !subBusy) threads.start(loadSub); }, UPDATE_CHECK_MS);   // re-read the subscription from the server
