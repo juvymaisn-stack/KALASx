@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 110;
+var APP_VERSION = 111;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -4739,7 +4739,7 @@ var LOOT_GOLD_MAX_H = 34;               // gold numbers are small; bigger number
 var LOOT_GOLD_CONFIRM = true;            // gold must be read at the same place on 2 scans (damage numbers float away, gold stays)
 var LOOT_GOLD_MIN_PX = 6;                // yellow pixels needed inside the number - lower it if real gold is missed
 var LOOT_PAUSE_CLICKER = true;           // stop the auto clicker while looting, start it again when the loot is done
-var LOOT_PRE_CONFIRM = true;             // a label must be read at the same place on 2 scans BEFORE loot starts (floating chat / reward text and fading labels are not on the floor, they move or vanish)
+var LOOT_PRE_CONFIRM = false;             // a label must be read at the same place on 2 scans BEFORE loot starts (floating chat / reward text and fading labels are not on the floor, they move or vanish)
 var LOOT_FAST_FIRST = true;              // true = a wanted label read by the plain read is walked to at once (no 2nd read first) - the item may vanish before a 2nd read; the floor check still stops fake labels
 var LOOT_NOT_ITEM_WORDS = ["log", "drag", "klassx", "clicker", "confirming", "released", "copy", "close", "obtained", "acquired", "received", "you", "your", "got", "gained", "used", "sold", "bought", "exp", "chat", "party", "guild", "reward", "quest", "event", "mail", "welcome", "lv", "level", "hp", "mp", "sp", "cooldown", "buff", "effect", "require", "required", "target", "cast", "can", "cannot", "enough", "full", "inventory", "failed", "not", "already", "skill", "bonus", "gauge"];   // a label containing one of these WORDS is a message, not a floor item
 var LOOT_LOOSE_MATCH = false;            // false = a word must be a WHOLE word of the label (potion / potions, not "inbox" or "pillar"). true = old behaviour (word anywhere inside the text)
@@ -4750,7 +4750,7 @@ var LOOT_MAX_LABEL = 32;                 // longer text = a sentence, not an ite
 var LOOT_MEM_MS = 2500;                  // item vanished from the OCR (too small / blurry) while walking: keep going to where it should be for this long (ms)
 var LOOT_FUZZY = true;                   // blurry text: digits inside a word are read as letters (p0tion), 4-letter words may have 1 wrong letter
 var LOOT_ENHANCE = true;                 // nothing found -> sometimes read the screen again, enlarged, so small / blurry labels can be read
-var LOOT_ENHANCE_EVERY = 3;              // ...on every Nth empty scan (1 = every scan, slower)
+var LOOT_ENHANCE_EVERY = 5;              // ...on every Nth empty scan (1 = every scan, slower)
 var LOOT_ENHANCE_SCALE = 1.6;            // enlarge factor for that second read
 var LOOT_COLOR_LOOT = [];                // text colours that are looted even when the NAME is not in the list, e.g. ["green","blue","purple","orange"] (the colour of every seen item is in the "[Loot] item seen" log: col=...). Do NOT add "white" - every name / chat text is white.
 var LOOT_LABEL_MAX_H = 21;               // floor item labels are tiny text; anything taller is a pop-up message / skill text / damage number (text height in reference px - see "too big (h=..)" in the log and tune)
@@ -4950,7 +4950,7 @@ function monGateStep(hud) {             // hud = the in-game HUD streak from run
 }
 var LOOT_DEBUG = false;                  // true = log (at most every 4 s) wanted-looking labels that were read but not looted, with the reason
 var lootDbgAt = 0;
-var LOOT_SCAN_MS = 100;                  // pause between scans while nothing is being looted (ms)
+var LOOT_SCAN_MS = 40;                   // pause between scans while nothing is being looted (ms)
 var LOOT_OVER_MOB = false;                // true = a wanted item has priority over monsters: the clicker is paused and the character goes to the item / taps the loot hand even if a monster is on the screen. false = attack the monster first (old behaviour)
 var LOOT_EARLY_PAUSE = true;             // true = the auto clicker is stopped the moment a loot label is first read (no monster on the screen); the 2nd read only confirms it. false = stop only after the 2nd read
 var LOOT_EARLY_MAX_MS = 10000;           // not confirmed within this time = the clicker is started again (ms)
@@ -4975,7 +4975,8 @@ var LOOT_HAND_TAP = true;                // keep tapping the hand (pick-up) butt
 var LOOT_HAND_EVERY_MS = 220;            // gap between hand-button taps while walking (ms)
 var LOOT_BLACK_MS = 20000;               // a skipped item is ignored this long (ms)
 var LOOT_QUIET_MS = 1500;                // nothing left on the screen for this long = loot done (ms)
-var LOOT_MAX_MS = 8000;                 // longest loot run; then the attack gets LOOT_REST_MS (ms)
+var LOOT_RUN_CAP = false;             // false = no run limit: loot keeps going while items are on the screen (no 8s cap, no rest pause). true = old behaviour (cap at LOOT_MAX_MS, then rest)
+var LOOT_MAX_MS = 8000;                 // longest loot run when LOOT_RUN_CAP is true (ms)
 var LOOT_REST_MS = 6000;
 var LOOT_SELF_HOLD_MS = 2500;            // Self tap stays still this long after the last loot action (ms)
 var LOOT_IGNORE_REF = [                  // screen areas that never hold loot (reference px)
@@ -5174,7 +5175,7 @@ function lootOcr(img, W, H, f) {       // OCR of the loot area only (LOOT_OCR_AR
     return res;
 }
 // ---- speed-up: the plain loot read runs on a smaller image, and the loot scan and the hand step share one read ----
-var LOOT_OCR_SCALE = 0.75;            // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - lower it if labels are missed)
+var LOOT_OCR_SCALE = 0.6;             // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - raise to 0.7 if labels are missed)
 var LOOT_OCR_REUSE_MS = 350;             // the hand step reuses the loot scan's read when it is this fresh (ms) (0 = always read again)
 var lootOcrCache = null, lootOcrCacheAt = 0, lootOcrCacheW = 0;
 function lootOcrFast(img, W, H) {
@@ -5189,7 +5190,7 @@ function lootOcrFast(img, W, H) {
 }
 // ---- Label-only (black screen) read: everything that is not label-text colour is painted black, so monsters / floor / effects behind a label cannot confuse the OCR ----
 var LOOT_MASK_PASS = true;               // true = when the plain read finds nothing, read again on a black image that keeps only the label-text colours
-var LOOT_MASK_EVERY = 3;                 // run that extra read on every Nth empty scan (1 = every scan, slower)
+var LOOT_MASK_EVERY = 5;                 // run that extra read on every Nth empty scan (1 = every scan, slower)
 var LOOT_MASK_COLORS = [[255, 255, 255, 70], [255, 200, 60, 90]];   // [r, g, b, tolerance] of label text to keep: white names, gold / yellow names - ADD the colours of your items
 var handMskN = 0;
 function lootOcrMask(img, W, H) {        // OCR on the black / white mask(s); coords come back in full-screen pixels
@@ -5473,7 +5474,7 @@ function lootStep() {
             try { clickerConfirmStop(img, W, H, "loot"); } catch (e) { if (String(e).indexOf("STOPPED") >= 0) throw e; logErr("clicker stop (loot)", e); }
         }
     }
-    if (now - st.since > LOOT_MAX_MS) {
+    if (LOOT_RUN_CAP && now - st.since > LOOT_MAX_MS) {
         log("[Loot] running for " + (LOOT_MAX_MS / 1000) + "s - attack again, loot resumes in " + (LOOT_REST_MS / 1000) + "s");
         st.pauseUntil = now + LOOT_REST_MS;
         lootEnd();
