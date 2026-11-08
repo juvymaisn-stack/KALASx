@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 114;
+var APP_VERSION = 115;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
