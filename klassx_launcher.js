@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 107;
+var APP_VERSION = 108;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -4935,7 +4935,7 @@ var lootDbgAt = 0;
 var LOOT_SCAN_MS = 150;                  // pause between scans while nothing is being looted (ms)
 var LOOT_OVER_MOB = false;                // true = a wanted item has priority over monsters: the clicker is paused and the character goes to the item / taps the loot hand even if a monster is on the screen. false = attack the monster first (old behaviour)
 var LOOT_EARLY_PAUSE = true;             // true = the auto clicker is stopped the moment a loot label is first read (no monster on the screen); the 2nd read only confirms it. false = stop only after the 2nd read
-var LOOT_EARLY_MAX_MS = 3000;            // not confirmed within this time = the clicker is started again (ms)
+var LOOT_EARLY_MAX_MS = 10000;           // not confirmed within this time = the clicker is started again (ms)
 var LOOT_RECHECK_MS = 80;                // 2nd read of a new label comes this soon after the 1st (ms)
 var LOOT_OCR_AREA = [250, 150, 2350, 1000];   // screen area that is read for loot labels (reference px, same format as TARGET_PLAY). Smaller = faster OCR. null = read the whole screen
 var LOOT_CONFIRM = false;                // true = item must be read at the same place on 2 scans before walking (slower). false = walk right after the first read (gold too).
@@ -5405,7 +5405,7 @@ function lootStep() {
     st.earlyMiss = 0;
     if (!st.active && LOOT_PRE_CONFIRM) {                                      // first sighting: wait for a 2nd scan at the same place before stopping the attack
         var pc = st.pre, hit = null;
-        if (pc && now - pc.at < 2500) for (j = 0; j < items.length; j++) if (lootDist(items[j].x, items[j].y, pc.x, pc.y) <= 30 * k) { hit = items[j]; break; }
+        if (pc && now - pc.at < 6000) for (j = 0; j < items.length; j++) if (lootDist(items[j].x, items[j].y, pc.x, pc.y) <= 30 * k) { hit = items[j]; break; }
         if (!hit) {
             st.pre = { x: items[0].x, y: items[0].y, at: now };
             st.lastScan = now - LOOT_SCAN_MS + LOOT_RECHECK_MS;                // look again very soon
