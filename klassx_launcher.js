@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 106;
+var APP_VERSION = 107;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -1326,7 +1326,10 @@ function capFindKeys(img, W, H, bx) {
     var kp = { cx: cx, cy: [(r1[0] + r1[1]) / 2, (r2[0] + r2[1]) / 2], tw: tw, th: (h1 + h2) / 2, confirm: null };
     if (good.length >= 4) {                         // 3rd bar = Clear, 4th bar = Confirm
         var rc = good[2], rf = good[3], hc = rc[1] - rc[0], hf = rf[1] - rf[0];
-        if (Math.abs(hc - hf) <= 0.5 * Math.max(hc, hf)) kp.confirm = [Math.round((xl + xr) / 2), Math.round((rf[0] + rf[1]) / 2)];
+        if (Math.abs(hc - hf) <= 0.5 * Math.max(hc, hf)) {
+            kp.clear = [Math.round((xl + xr) / 2), Math.round((rc[0] + rc[1]) / 2)];
+            kp.confirm = [Math.round((xl + xr) / 2), Math.round((rf[0] + rf[1]) / 2)];
+        }
     }
     return kp;
 }
@@ -1833,6 +1836,11 @@ function solveCaptchaOnScreen(screenImg) {
 
     var kl = []; for (var ki = 0; ki < 5; ki++) { var kp0 = keys[rd.text.charAt(ki)]; kl.push(rd.text.charAt(ki) + "@" + kp0[0] + "," + kp0[1]); }
     log("Captcha typing " + rd.text + " -> " + kl.join(" ") + (capKp && capKp.confirm ? " | Confirm@" + capKp.confirm[0] + "," + capKp.confirm[1] : " | Confirm default"));
+    if (capKp && capKp.clear) {                     // tap Clear first so no old digits stay in the box
+        press(capKp.clear[0], capKp.clear[1], TAP_MS);
+        log("Captcha: tapped Clear");
+        nap(400);
+    } else log("Captcha: Clear button not located - not tapped");
     capPanelStatus(rd.text, "typing...");
     for (var i = 0; i < 5; i++) {
         var pt = keys[rd.text.charAt(i)];
