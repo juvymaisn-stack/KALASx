@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 109;
+var APP_VERSION = 110;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -4740,6 +4740,7 @@ var LOOT_GOLD_CONFIRM = true;            // gold must be read at the same place 
 var LOOT_GOLD_MIN_PX = 6;                // yellow pixels needed inside the number - lower it if real gold is missed
 var LOOT_PAUSE_CLICKER = true;           // stop the auto clicker while looting, start it again when the loot is done
 var LOOT_PRE_CONFIRM = true;             // a label must be read at the same place on 2 scans BEFORE loot starts (floating chat / reward text and fading labels are not on the floor, they move or vanish)
+var LOOT_FAST_FIRST = true;              // true = a wanted label read by the plain read is walked to at once (no 2nd read first) - the item may vanish before a 2nd read; the floor check still stops fake labels
 var LOOT_NOT_ITEM_WORDS = ["log", "drag", "klassx", "clicker", "confirming", "released", "copy", "close", "obtained", "acquired", "received", "you", "your", "got", "gained", "used", "sold", "bought", "exp", "chat", "party", "guild", "reward", "quest", "event", "mail", "welcome", "lv", "level", "hp", "mp", "sp", "cooldown", "buff", "effect", "require", "required", "target", "cast", "can", "cannot", "enough", "full", "inventory", "failed", "not", "already", "skill", "bonus", "gauge"];   // a label containing one of these WORDS is a message, not a floor item
 var LOOT_LOOSE_MATCH = false;            // false = a word must be a WHOLE word of the label (potion / potions, not "inbox" or "pillar"). true = old behaviour (word anywhere inside the text)
 var LOOT_FALSE_WORDS = ["portion", "projection", "pillar", "pillow", "motion", "lotion", "notion", "option", "position"];   // OCR look-alikes that are never loot
@@ -4949,7 +4950,7 @@ function monGateStep(hud) {             // hud = the in-game HUD streak from run
 }
 var LOOT_DEBUG = false;                  // true = log (at most every 4 s) wanted-looking labels that were read but not looted, with the reason
 var lootDbgAt = 0;
-var LOOT_SCAN_MS = 150;                  // pause between scans while nothing is being looted (ms)
+var LOOT_SCAN_MS = 100;                  // pause between scans while nothing is being looted (ms)
 var LOOT_OVER_MOB = false;                // true = a wanted item has priority over monsters: the clicker is paused and the character goes to the item / taps the loot hand even if a monster is on the screen. false = attack the monster first (old behaviour)
 var LOOT_EARLY_PAUSE = true;             // true = the auto clicker is stopped the moment a loot label is first read (no monster on the screen); the 2nd read only confirms it. false = stop only after the 2nd read
 var LOOT_EARLY_MAX_MS = 10000;           // not confirmed within this time = the clicker is started again (ms)
@@ -5173,8 +5174,8 @@ function lootOcr(img, W, H, f) {       // OCR of the loot area only (LOOT_OCR_AR
     return res;
 }
 // ---- speed-up: the plain loot read runs on a smaller image, and the loot scan and the hand step share one read ----
-var LOOT_OCR_SCALE = 1;               // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - lower it if labels are missed)
-var LOOT_OCR_REUSE_MS = 120;             // the hand step reuses the loot scan's read when it is this fresh (ms) (0 = always read again)
+var LOOT_OCR_SCALE = 0.75;            // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - lower it if labels are missed)
+var LOOT_OCR_REUSE_MS = 350;             // the hand step reuses the loot scan's read when it is this fresh (ms) (0 = always read again)
 var lootOcrCache = null, lootOcrCacheAt = 0, lootOcrCacheW = 0;
 function lootOcrFast(img, W, H) {
     var now = Date.now(), res, out = [], i;
@@ -5423,6 +5424,7 @@ function lootStep() {
     if (!st.active && LOOT_PRE_CONFIRM) {                                      // first sighting: wait for a 2nd scan at the same place before stopping the attack
         var pc = st.pre, hit = null;
         if (pc && now - pc.at < 6000) for (j = 0; j < items.length; j++) if (lootDist(items[j].x, items[j].y, pc.x, pc.y) <= 30 * k) { hit = items[j]; break; }
+        if (!hit && LOOT_FAST_FIRST && !items[0].gold && !items[0].mem) hit = items[0];   // fast first sighting: walk now
         if (!hit) {
             st.pre = { x: items[0].x, y: items[0].y, at: now };
             st.lastScan = now - LOOT_SCAN_MS + LOOT_RECHECK_MS;                // look again very soon
