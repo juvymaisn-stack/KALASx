@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 105;
+var APP_VERSION = 106;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -2960,7 +2960,11 @@ function onUpdateBtn() {
             setUpdBtnText("⟳ Checking...");
             checkUpdate();
             if (updateInfo) { toast("Update v" + updateInfo.version + " found - installing"); installUpdate(); }
-            else { toast("Up to date (this v" + APP_VERSION + ", server " + (lastRemoteVer || "unreachable") + ")"); setUpdBtnText("⟳ Update"); }
+            else if (String(lastRemoteVer).indexOf("HTTP") === 0) {     // the server file could not be read: say so instead of "up to date"
+                toast("Update server error (" + lastRemoteVer + ") - " + GH_OWNER + "/" + GH_REPO + ": version.json not found or repo is private");
+                setUpdBtnText("⟳ Update");
+            }
+            else { toast("Up to date (this v" + APP_VERSION + ", server " + (lastRemoteVer || "unreachable") + ", " + GH_OWNER + "/" + GH_REPO + ")"); setUpdBtnText("⟳ Update"); }
         } catch (e) { logErr("onUpdateBtn", e); setUpdBtnText("⟳ Update"); }
     });
 }
@@ -4711,7 +4715,7 @@ var LOOT_GOLD_CONFIRM = true;            // gold must be read at the same place 
 var LOOT_GOLD_MIN_PX = 6;                // yellow pixels needed inside the number - lower it if real gold is missed
 var LOOT_PAUSE_CLICKER = true;           // stop the auto clicker while looting, start it again when the loot is done
 var LOOT_PRE_CONFIRM = true;             // a label must be read at the same place on 2 scans BEFORE loot starts (floating chat / reward text and fading labels are not on the floor, they move or vanish)
-var LOOT_NOT_ITEM_WORDS = ["obtained", "acquired", "received", "you", "your", "got", "gained", "used", "sold", "bought", "exp", "chat", "party", "guild", "reward", "quest", "event", "mail", "welcome", "lv", "level", "hp", "mp", "sp", "cooldown", "buff", "effect", "require", "required", "target", "cast", "can", "cannot", "enough", "full", "inventory", "failed", "not", "already", "skill", "bonus", "gauge"];   // a label containing one of these WORDS is a message, not a floor item
+var LOOT_NOT_ITEM_WORDS = ["log", "drag", "klassx", "clicker", "confirming", "released", "copy", "close", "obtained", "acquired", "received", "you", "your", "got", "gained", "used", "sold", "bought", "exp", "chat", "party", "guild", "reward", "quest", "event", "mail", "welcome", "lv", "level", "hp", "mp", "sp", "cooldown", "buff", "effect", "require", "required", "target", "cast", "can", "cannot", "enough", "full", "inventory", "failed", "not", "already", "skill", "bonus", "gauge"];   // a label containing one of these WORDS is a message, not a floor item
 var LOOT_LOOSE_MATCH = false;            // false = a word must be a WHOLE word of the label (potion / potions, not "inbox" or "pillar"). true = old behaviour (word anywhere inside the text)
 var LOOT_FALSE_WORDS = ["portion", "projection", "pillar", "pillow", "motion", "lotion", "notion", "option", "position"];   // OCR look-alikes that are never loot
 var LOOT_STILL_STEPS = 2;                // the label did not slide across the screen after this many walk steps in a row = HUD / buff / name text, not a floor item -> skipped
@@ -4720,7 +4724,7 @@ var LOOT_MAX_LABEL = 32;                 // longer text = a sentence, not an ite
 var LOOT_MEM_MS = 2500;                  // item vanished from the OCR (too small / blurry) while walking: keep going to where it should be for this long (ms)
 var LOOT_FUZZY = true;                   // blurry text: digits inside a word are read as letters (p0tion), 4-letter words may have 1 wrong letter
 var LOOT_ENHANCE = true;                 // nothing found -> sometimes read the screen again, enlarged, so small / blurry labels can be read
-var LOOT_ENHANCE_EVERY = 4;              // ...on every Nth empty scan (1 = every scan, slower)
+var LOOT_ENHANCE_EVERY = 3;              // ...on every Nth empty scan (1 = every scan, slower)
 var LOOT_ENHANCE_SCALE = 1.6;            // enlarge factor for that second read
 var LOOT_COLOR_LOOT = [];                // text colours that are looted even when the NAME is not in the list, e.g. ["green","blue","purple","orange"] (the colour of every seen item is in the "[Loot] item seen" log: col=...). Do NOT add "white" - every name / chat text is white.
 var LOOT_LABEL_MAX_H = 21;               // floor item labels are tiny text; anything taller is a pop-up message / skill text / damage number (text height in reference px - see "too big (h=..)" in the log and tune)
@@ -5144,7 +5148,7 @@ function lootOcr(img, W, H, f) {       // OCR of the loot area only (LOOT_OCR_AR
     return res;
 }
 // ---- speed-up: the plain loot read runs on a smaller image, and the loot scan and the hand step share one read ----
-var LOOT_OCR_SCALE = 0.75;               // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - lower it if labels are missed)
+var LOOT_OCR_SCALE = 1;               // size of the plain loot read (1 = full size, 0.75 = about 1.8x faster, 0.6 = faster still - lower it if labels are missed)
 var LOOT_OCR_REUSE_MS = 120;             // the hand step reuses the loot scan's read when it is this fresh (ms) (0 = always read again)
 var lootOcrCache = null, lootOcrCacheAt = 0, lootOcrCacheW = 0;
 function lootOcrFast(img, W, H) {
