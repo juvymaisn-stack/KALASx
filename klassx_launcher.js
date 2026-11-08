@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 104;
+var APP_VERSION = 105;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -2464,13 +2464,15 @@ function checkKey(t, key) {
     var maxUses = f.maxUses ? fsInt(f.maxUses) : 1;
     var used = f.maxUses ? fsInt(f.usedCount) : ((f.redeemedBy && f.redeemedBy.stringValue) ? 1 : 0);
     var usedBy = (f.usedBy && f.usedBy.stringValue) ? String(f.usedBy.stringValue) : "";
-    if (usedBy && usedBy.split(",").indexOf(t.uid) >= 0) return { ok: false, msg: "You already used this key." };
-    if (maxUses > 0 && used >= maxUses) return { ok: false, msg: maxUses === 1 ? "That key was already used." : "That key has no uses left." };
+    var redeemedBy = (f.redeemedBy && f.redeemedBy.stringValue) ? String(f.redeemedBy.stringValue) : "";
+    var mine = (!!usedBy && usedBy.split(",").indexOf(t.uid) >= 0) || (maxUses === 1 && redeemedBy === t.uid);   // this account used it before: it may use it again
+    var taken = (maxUses === 1) ? !!redeemedBy : (maxUses > 0 && used >= maxUses);
+    if (!mine && taken) return { ok: false, msg: maxUses === 1 ? "That key was already used." : "That key has no uses left." };
     var days = fsInt(f.days), hours = fsInt(f.hours);
     if (days <= 0 && hours <= 0) return { ok: false, msg: "Invalid key." };
     var ms = Math.max(0, hours) * 3600000 + Math.max(0, days) * 86400000;
     var label = hours > 0 ? (hours + (hours === 1 ? " hour" : " hours")) + (days > 0 ? " + " + days + " days" : "") : (days + " days");
-    return { ok: true, days: days, hours: hours, ms: ms, label: label, updateTime: g.json.updateTime, used: used, maxUses: maxUses, usedBy: usedBy };
+    return { ok: true, days: days, hours: hours, ms: ms, label: label, updateTime: g.json.updateTime, used: used, maxUses: maxUses, usedBy: usedBy, mine: mine };
 }
 // Mark the key used and extend users/{uid}.subUntil in one atomic commit. chk = result of checkKey, cur = current subUntil.
 function commitKey(t, key, chk, cur) {
@@ -2489,13 +2491,13 @@ function commitKey(t, key, chk, cur) {
         keyMask = ["usedCount", "usedBy", "redeemedAt"];
         if (lastUse) { keyFields.redeemedBy = { stringValue: t.uid }; keyMask.push("redeemedBy"); }
     }
-    var commit = { writes: [
-        { update: { name: base + "/keys/" + key, fields: keyFields },
-          updateMask: { fieldPaths: keyMask },
-          currentDocument: { updateTime: chk.updateTime } },
-        { update: { name: base + "/users/" + t.uid, fields: { subUntil: { integerValue: String(until) }, lastKey: { stringValue: key } } },
-          updateMask: { fieldPaths: ["subUntil", "lastKey"] } }
-    ] };
+    var writes = [];
+    if (!chk.mine) writes.push({ update: { name: base + "/keys/" + key, fields: keyFields },
+                                 updateMask: { fieldPaths: keyMask },
+                                 currentDocument: { updateTime: chk.updateTime } });
+    writes.push({ update: { name: base + "/users/" + t.uid, fields: { subUntil: { integerValue: String(until) }, lastKey: { stringValue: key } } },
+                  updateMask: { fieldPaths: ["subUntil", "lastKey"] } });
+    var commit = { writes: writes };
     var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
     if (c.status !== 200) {
         log("redeem failed: HTTP " + c.status + " " + JSON.stringify(c.json).slice(0, 200));
@@ -2757,7 +2759,6 @@ function redeemKey() {
             var u = fsReq("GET", fsUrl("users/" + t.uid), t.token);
             var cur = (u.status === 200 && u.json) ? fsInt((u.json.fields || {}).subUntil) : 0;
             var lastKey = (u.status === 200 && u.json && (u.json.fields || {}).lastKey) ? String((u.json.fields || {}).lastKey.stringValue || "") : "";
-            if (lastKey === key) { setSubMsg("You already used this key.", false); return; }
             if (u.status === 404) saveUserRecord(currentUser, t.uid, t.token);
             var rd = commitKey(t, key, chk, cur);
             if (!rd.ok) { setSubMsg(rd.msg, false); return; }
@@ -2848,6 +2849,37 @@ w.subPaste.click(function () {
     } catch (e) { toast("Could not read clipboard"); }
 });
 w.subGo.click(function () { inputFocus(false); redeemKey(); });
+w.subGo.on("long_click", function () {        // admin only: hold Activate with a key typed in the box = clear its usage so it can be used again
+    if (!authed || !isAdmin()) return true;
+    var key = String(w.subKey.getText()).trim().toUpperCase();
+    if (!/^[A-Z0-9-]{8,40}$/.test(key)) { setSubMsg("Type the key in the box first, then hold Activate to reset it.", false); return true; }
+    if (subBusy) return true;
+    subBusy = true;
+    setSubMsg("Resetting key...", true);
+    threads.start(function () {
+        try {
+            var t = getIdToken();
+            if (!t) { setSubMsg("Not signed in - log in again.", false); return; }
+            var base = fsBase();
+            var commit = { writes: [ { update: { name: base + "/keys/" + key, fields: {
+                usedCount:  { integerValue: "0" },
+                usedBy:     { stringValue: "" },
+                redeemedBy: { stringValue: "" },
+                redeemedAt: { integerValue: "0" }
+            } }, updateMask: { fieldPaths: ["usedCount", "usedBy", "redeemedBy", "redeemedAt"] } } ] };
+            var c = fsReq("POST", "https://firestore.googleapis.com/v1/" + base + ":commit", t.token, commit);
+            if (c.status === 200) setSubMsg("Key reset - it can be used again.", true);
+            else if (c.status === 404) setSubMsg("That key does not exist.", false);
+            else setSubMsg(c.status === 403 ? "Refused - check firestore.rules (admin can update keys)." : "Reset failed (HTTP " + c.status + ").", false);
+        } catch (e) {
+            logErr("resetKey", e);
+            setSubMsg("Error - see log", false);
+        } finally {
+            subBusy = false;
+        }
+    });
+    return true;
+});
 w.subLogout.click(doLogout);
 bindAuthField(w.admDays);
 bindAuthField(w.admUses);               // users per key (0 = many)              // type the number of days (1 to MAX_KEY_DAYS)
