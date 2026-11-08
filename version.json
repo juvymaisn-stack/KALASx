@@ -1,7 +1,7 @@
 {
-  "version": 80,
-  "notes": "Update v80",
-  "sha256": "19d01c81572e38d796d8c3af0e67298ed9e53deb990cbe8ea5ad4a5fd55f8ea6",
+  "version": 104,
+  "notes": "Update v104",
+  "sha256": "211739cdadf1a2c79f079b04c5d2b38a21c22cbabbefab4eb86265d524016fbe",
   "file": "klassx_launcher.js",
-  "published": "2026-10-24T00:41:34.100Z"
+  "published": "2026-11-08T05:48:29.724Z"
 }
