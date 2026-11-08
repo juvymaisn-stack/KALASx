@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 108;
+var APP_VERSION = 109;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -1771,6 +1771,23 @@ function clickerStop(img, W, H, reason) {
     clickerStoppedByUs = true;
     log("Clicker: " + (reason === "loot" ? "looting" : reason === "map" ? "map open" : reason === "mon" ? "no ticked monster" : reason === "s5" ? "S5 skill" : "captcha showing") + " -> tapped the blue square at " + sq.x + "," + sq.y + " (screen " + W + "x" + H + ") - clicker stopped");
     nap(400);
+}
+// Stops the clicker and CHECKS it stopped: while the blue square is still on the screen the stop is tapped again (up to 3 times).
+// true = no blue square any more (clicker stopped); false = the stop could not be made, so the hand / loot should not count on it.
+function clickerConfirmStop(img, W, H, reason) {
+    for (var t = 1; t <= 3; t++) {
+        var f = clickerFind(img, W, H, clickerRectNear(H)), sq = clickerPick(f, W, H, true);
+        if (!sq && clickerPos) { f = clickerFind(img, W, H); sq = clickerPick(f, W, H, true); }
+        if (!sq) return true;                                   // no blue square = it is not running
+        clickerStoppedByUs = false; clickerMissAt = 0;          // blue square visible = it runs: stop it now
+        clickerStop(img, W, H, reason);
+        if (!clickerStoppedByUs) return false;                  // the tap was not made
+        nap(300);
+        var n = grabScreen(); if (!n) return false;
+        img = n; W = n.getWidth(); H = n.getHeight();
+        log("Clicker: still running after the stop - trying again (" + t + "/3)");
+    }
+    return false;
 }
 function clickerResume(img, W, H, reason) {
     reason = reason || "captcha";
@@ -4851,7 +4868,7 @@ function handAutoStep(hud) {
     if (handVis && HAND_BTN_TRIGGER && !handBtnAlways && HAND_AUTO_PAUSE && LOOT_PAUSE_CLICKER && !handHoldSince) {   // button seen = something lies next to the character: stop the clicker NOW
         handHoldSince = Date.now();
         log("[Hand] loot hand button on the screen - clicker stopped at once");
-        try { clickerStop(img, W, H, "loot"); } catch (e1b) { if (String(e1b).indexOf("STOPPED") >= 0) throw e1b; logErr("clicker stop (hand button)", e1b); }
+        try { clickerConfirmStop(img, W, H, "loot"); } catch (e1b) { if (String(e1b).indexOf("STOPPED") >= 0) throw e1b; logErr("clicker stop (hand button)", e1b); }
         handHoldSince = Date.now();
     }
     var k = layoutOf(W, H).kx, cx = W * LOOT_CHAR_POS[0], cy = H * LOOT_CHAR_POS[1], reach = LOOT_PICKUP * HAND_AUTO_REACH * k;
@@ -4887,7 +4904,7 @@ function handAutoStep(hud) {
         if (!mobH) {
             handHoldSince = Date.now();
             log("[Hand] " + wantName + " next to the character - clicker stopped, tapping the loot hand");
-            try { clickerStop(img, W, H, "loot"); } catch (e1) { if (String(e1).indexOf("STOPPED") >= 0) throw e1; logErr("clicker stop (hand)", e1); }
+            try { clickerConfirmStop(img, W, H, "loot"); } catch (e1) { if (String(e1).indexOf("STOPPED") >= 0) throw e1; logErr("clicker stop (hand)", e1); }
             handHoldSince = Date.now();                                  // the stop itself takes time: the hold time counts from here
         }
     }
@@ -5347,7 +5364,7 @@ function lootMonsterStep(img, W, H, k, cx, cy) {         // true = used this pas
     }
     if (st.monSteps >= LOOT_MON_MAX_STEPS || now - st.monSince > LOOT_MON_MAX_MS) { lootMonsterEnd("could not reach " + t.name + " - attacking again"); return true; }
     if (st.monSteps === 0 && LOOT_PAUSE_CLICKER) {
-        try { clickerStop(img, W, H, "loot"); } catch (e) { if (String(e).indexOf("STOPPED") >= 0) throw e; logErr("clicker stop (monster)", e); }
+        try { clickerConfirmStop(img, W, H, "loot"); } catch (e) { if (String(e).indexOf("STOPPED") >= 0) throw e; logErr("clicker stop (monster)", e); }
     }
     st.monSteps++;
     lootWalk(W, H, k, t.x - cx, t.y - cy, Math.max(40 * k, t.d - near * 0.6), t.name, true);
@@ -5416,7 +5433,7 @@ function lootStep() {
                 if (!mobE) {
                     st.earlyHold = now;
                     log("[Loot] label read: " + items[0].name + " - clicker stopped now, confirming");
-                    try { clickerStop(img, W, H, "loot"); } catch (e1) { if (String(e1).indexOf("STOPPED") >= 0) throw e1; logErr("clicker stop (loot early)", e1); }
+                    try { clickerConfirmStop(img, W, H, "loot"); } catch (e1) { if (String(e1).indexOf("STOPPED") >= 0) throw e1; logErr("clicker stop (loot early)", e1); }
                     st.earlyHold = Date.now();                                  // the stop itself takes time: time-outs count from here
                     if (st.pre) st.pre.at = Date.now();
                     st.lastScan = Date.now() - LOOT_SCAN_MS + LOOT_RECHECK_MS;
@@ -5451,7 +5468,7 @@ function lootStep() {
         st.active = true; st.since = now; st.steps = 0; st.tapN = 0; st.cand = null; st.lastTap = null; st.earlyHold = 0;
         log("[Loot] item seen: " + t.name + (t.pri ? " (PRIORITY)" : "") + " d=" + Math.round(d / k) + " at " + Math.round(t.x) + "," + Math.round(t.y) + " h=" + Math.round(t.h / k) + (t.col ? " col=" + t.col : ""));
         if (LOOT_PAUSE_CLICKER) {
-            try { clickerStop(img, W, H, "loot"); } catch (e) { if (String(e).indexOf("STOPPED") >= 0) throw e; logErr("clicker stop (loot)", e); }
+            try { clickerConfirmStop(img, W, H, "loot"); } catch (e) { if (String(e).indexOf("STOPPED") >= 0) throw e; logErr("clicker stop (loot)", e); }
         }
     }
     if (now - st.since > LOOT_MAX_MS) {
