@@ -1,5 +1,5 @@
 "auto";
-var APP_VERSION = 111;
+var APP_VERSION = 112;
 // In a packaged APK the bundled script is read-only, so updates are saved here and run instead of the bundled copy.
 var UPDATED_PATH = (function () {
     try { return String(context.getFilesDir().getAbsolutePath()) + "/klassx_launcher_updated.js"; }
@@ -650,7 +650,7 @@ log("==== script started | screen " + device.width + "x" + device.height + " | "
 
 // ===== device info (screen, density, refresh rate, model) - logged at start and uploaded with the monitor heartbeat =====
 function devInfo() {
-    var o = { short: "", full: "" };
+    var o = { short: "", full: "", emu: false };
     try {
         var dm = new android.util.DisplayMetrics();
         var disp = context.getSystemService(android.content.Context.WINDOW_SERVICE).getDefaultDisplay();
@@ -668,7 +668,8 @@ function devInfo() {
             rates.sort(function (a, b) { return a - b; });
         } catch (e) {}
         var B = android.os.Build, fp = String(B.FINGERPRINT || "") + " " + String(B.HARDWARE || "") + " " + String(B.PRODUCT || "") + " " + String(B.MODEL || "");
-        var emu = /generic|emulator|sdk_|ranchu|goldfish|vbox|ldplayer|nox|bluestacks|memu|genymotion|andy|droid4x|mumu|aosp on/i.test(fp);
+        var emu = /generic|emulator|sdk_|ranchu|goldfish|vbox|ldplayer|nox|bluestacks|memu|genymotion|andy|droid4x|mumu|aosp on|redfinger|cloud/i.test(fp);
+        o.emu = emu;
         o.short = sh + "x" + lg + " " + dpi + "dpi " + best + " · " + device.brand + " " + device.model + (emu ? " (emulator)" : "");
         o.full = "Display " + sh + " x " + lg + " @ " + hz + " Hz · " + dpi + " ppi (" + bucket + ") · " + inch.toFixed(2) + "in · aspect " + best +
             " · " + Math.round(lg / dm.density) + "dp x " + Math.round(sh / dm.density) + "dp · refresh " + (rates.length ? rates.join("/") + " Hz" : hz + " Hz") +
@@ -1701,8 +1702,11 @@ var CLICKER_PT = [235, 348];             // only used when CLICKER_AUTOFIND is f
 var CAPTCHA_CHECK_MS = 1500;             // how often the screen is checked for the captcha popup (ms)
 var clickerStoppedByUs = false, clickerWarnAt = 0, clickerPos = null, clickerMissAt = 0, clickerLootAt = 0;
 var clickerReasons = { captcha: false, loot: false, map: false, mon: false, s5: false};     // why the clicker is held - it starts again only when no reason is left
+var CLICKER_LOOSE_COLOR = true;          // true = on emulators / RedFinger (detected automatically) accept a paler blue, because their colours are rendered duller
+function clickerLoose() { return CLICKER_LOOSE_COLOR && DEV_INFO && DEV_INFO.emu; }
 function isClickerBlue(c) {                // the blue of the clicker button, about rgb(40,121,254)
     var cr = colors.red(c), cg = colors.green(c), cb = colors.blue(c);
+    if (clickerLoose()) return cb > 140 && cb - cr > 70 && cb - cg > 25;
     return cb > 180 && cb - cr > 100 && cb - cg > 40;
 }
 // scan the screen on a coarse grid and group the blue cells; a group is "sq" when it is a solid square of the right size
@@ -1735,7 +1739,8 @@ function clickerFind(img, W, H, rect) {
             nBlue += cnt;
             var bw = (x1 - x0 + 1) * step, bh = (y1 - y0 + 1) * step, ratio = bw / bh, fill = cnt / ((x1 - x0 + 1) * (y1 - y0 + 1));
             if (bw < H * 0.03 || bw > H * 0.16 || bh < H * 0.03 || bh > H * 0.16 || ratio < 0.6 || ratio > 1.67) continue;   // not button sized
-            groups.push({ cnt: cnt, x: Math.round((x0 + x1 + 1) * step / 2), y: Math.round((y0 + y1 + 1) * step / 2), w: bw, h: bh, sq: fill >= 0.8 && ratio >= 0.75 && ratio <= 1.33 });
+            var fillMin = clickerLoose() ? 0.7 : 0.8;
+            groups.push({ cnt: cnt, x: Math.round((x0 + x1 + 1) * step / 2), y: Math.round((y0 + y1 + 1) * step / 2), w: bw, h: bh, fill: fill, sq: fill >= fillMin && ratio >= 0.75 && ratio <= 1.33 });
         }
     }
     return { groups: groups, blueCells: nBlue };
@@ -1789,16 +1794,26 @@ function clickerConfirmStop(img, W, H, reason) {
     }
     return false;
 }
+function clickerTriangle(f, W, H) {      // the play triangle: a button-sized blue shape that is NOT a solid square (a triangle fills about half its box)
+    var best = null;
+    f.groups.forEach(function (gp) {
+        if (gp.sq || gp.fill > 0.65) return;
+        if (!best || gp.cnt > best.cnt) best = gp;
+    });
+    return best;
+}
 function clickerResume(img, W, H, reason) {
     reason = reason || "captcha";
     clickerReasons[reason] = false;
     if (reason === "loot") clickerLootAt = 0;
     if (clickerReasons.captcha || clickerReasons.loot || clickerReasons.map || clickerReasons.mon || clickerReasons.s5) return;     // another reason still holds the clicker
-    if (!clickerStoppedByUs) return;
+    var forced = (reason === "loot" && !clickerStoppedByUs);     // loot finished but the clicker was not stopped by this loot run (e.g. already stopped): check the screen and start it only when its blue triangle shows
+    if (!clickerStoppedByUs && !forced) return;
     if (!CLICKER_RESUME) { clickerStoppedByUs = false; return; }
     var f = clickerFind(img, W, H, clickerRectNear(H));
     if (clickerPick(f, W, H, true)) { clickerStoppedByUs = false; log("Clicker: blue square is back - already running"); return; }     // square = it runs, never toggle it off
-    var tri = clickerPick(f, W, H, false);                                  // the blue triangle (play) of the stopped clicker
+    var tri = forced ? clickerTriangle(f, W, H) : clickerPick(f, W, H, false);
+    if (forced && !tri) { log("Clicker: loot done - no blue triangle on the screen, clicker not tapped"); return; }                                  // the blue triangle (play) of the stopped clicker
     var tx = tri ? tri.x : (clickerPos ? clickerPos[0] : 0), ty = tri ? tri.y : (clickerPos ? clickerPos[1] : 0);
     if (!tx && !ty) { clickerStoppedByUs = false; return; }
     clickerStoppedByUs = false;
@@ -2262,7 +2277,7 @@ var ADMIN_USERS = ["admin"];            // usernames that see the Admin panel (l
 var REGISTER_ADMIN_ONLY = false;        // false = anyone with a valid activation key can register (true = only ADMIN_USERS names)
 var SCRIPT_PATH = "";                   // leave empty = auto-detect; or set e.g. "/sdcard/Scripts/klassx.js"
 var UPDATE_CHECK_MS = 30 * 60 * 1000;   // how often to look for a new version while running
-var AUTO_UPDATE = true;                 // true = download + restart into a new version by itself whenever the bot is idle
+var AUTO_UPDATE = false;                // false = no automatic update: a new version is only shown, users install it themselves with the Update button. true = download + restart by itself when the bot is idle
 var lastRemoteVer = "", autoTried = false;
 var updateInfo = null, admShown = false, admBusy = false, updBusy = false;
 var FIRESTORE_PROJECT = "captcha-66831";   // Firestore project id (database must be created in the console)
